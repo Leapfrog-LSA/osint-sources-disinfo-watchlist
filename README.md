@@ -51,6 +51,6 @@ The original, unmodified 5,275-row file is kept outside this repo for reference.
 
 `it_disinfo_sources.csv` (an Italy-only subset of this file) was evaluated and dropped — it is fully redundant with `disinfo_sources_master.csv`.
 
-## License / usage
+## License
 
-Not yet decided. Treat as internal/private until a license is added.
+Licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) — see [`LICENSE`](LICENSE). You may use, adapt, and redistribute the datasets, including commercially, as long as you credit Leapfrog-LSA / LAWARA AI.
