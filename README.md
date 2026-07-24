@@ -1,6 +1,7 @@
 # OSINT Sources & Disinformation Watchlist
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Release](https://img.shields.io/github/v/release/Leapfrog-LSA/osint-sources-disinfo-watchlist)](https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/releases)
 
 Two companion CSV datasets for open-source intelligence (OSINT) and due-diligence work:
 
