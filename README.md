@@ -28,18 +28,6 @@ They are kept in the same repo because they're produced and maintained together 
 
 **Columns:** `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`, `Paese / Area`, `Accesso`, `Note`
 
-**Provenance:** derived from a 5,275-row raw catalogue (`v5.25`, 2026-06-17). Cleaned on 2026-07-24:
-
-- Deduplicated (16 redundant entries removed — same source indexed under two domains)
-- Every URL checked for liveness (3 passes, increasing patience, to filter anti-bot false positives); 274 dead/404/SSL-broken entries removed
-- 11 one-off bibliography citations removed (not genuine ongoing sources), 5 mislabeled entries fixed
-- `Paese / Area` filled from ccTLD + explicit country names in source notes (42% → 89% coverage) — never inferred from a country's dominant language without a direct textual/domain signal
-- `Lingua` filled the same way, restricted to countries with an unambiguous single publishing language (81% coverage)
-- `RSS Feed` discovered via HTML `<link rel="alternate">` autodiscovery (6% → 21% coverage)
-- `Accesso` column: miscategorized values ("Online", "Database" used as if they were access types) cleaned up
-
-The original, unmodified 5,275-row file is kept outside this repo for reference.
-
 ## `disinfo_sources_master.csv`
 
 114 documented disinformation domains, two main clusters:
@@ -48,8 +36,6 @@ The original, unmodified 5,275-row file is kept outside this repo for reference.
 - **Italian fake-news / satire network** (~60 entries) — typo-squats, hoax sites, and declared satire, sourced from BUTAC/Bufalopedia.
 
 **Columns:** `domain`, `impersonated_outlet`, `authentic_domain`, `country`, `tld`, `first_seen`, `campaign`, `attribution`, `source`, `evidence_level`, `cats_flag`, `notes`
-
-`it_disinfo_sources.csv` (an Italy-only subset of this file) was evaluated and dropped — it is fully redundant with `disinfo_sources_master.csv`.
 
 ## License
 
