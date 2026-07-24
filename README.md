@@ -1,5 +1,7 @@
 # OSINT Sources & Disinformation Watchlist
 
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+
 Two companion CSV datasets for open-source intelligence (OSINT) and due-diligence work:
 
 - **`Fonti_OSINT_v.0.1.csv`** — a curated catalogue of reliable, ongoing sources (media, open data, corporate registries, sanctions/PEP lists, cybersecurity intel, etc.)
