@@ -115,6 +115,16 @@ python scripts/validate.py
 
 It needs no dependencies beyond the Python standard library, and reports every problem it finds with a line number rather than stopping at the first.
 
-## License
+## Versions
+
+Changes are tracked in [`CHANGELOG.md`](CHANGELOG.md). Released versions are tagged, so a specific snapshot can be pinned:
+
+```bash
+git clone --branch v0.1.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
+```
+
+## License and citation
 
 Licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) — see [`LICENSE`](LICENSE). You may use, adapt, and redistribute the datasets, including commercially, as long as you credit Leapfrog-LSA / LAWARA AI.
+
+For a ready-made citation, use the **Cite this repository** button on the repository page, or see [`CITATION.cff`](CITATION.cff).

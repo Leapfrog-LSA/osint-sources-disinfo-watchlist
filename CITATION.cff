@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+title: OSINT Sources & Disinformation Watchlist
+message: If you use these datasets, please cite them as below.
+type: dataset
+authors:
+  - name: Leapfrog-LSA
+    alias: LAWARA AI
+repository-code: "https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist"
+abstract: >-
+  Two companion datasets for open-source intelligence and due-diligence
+  work. Fonti_OSINT is a curated catalogue of 4,974 reliable, ongoing
+  sources across media, open data, corporate registries, sanctions and
+  PEP lists, cybersecurity intelligence and other domains, annotated with
+  language, geographic scope, access type and RSS feed where available.
+  disinfo_sources_master is a watchlist of 114 documented disinformation
+  domains, covering the Russian state-linked Doppelganger impersonation
+  clones and Italian fake-news and typo-squat networks, each recorded
+  with its attribution, documenting source and level of evidence.
+keywords:
+  - OSINT
+  - disinformation
+  - fact-checking
+  - threat-intelligence
+  - open-data
+  - media-literacy
+  - source-reliability
+  - due-diligence
+license: CC-BY-4.0
+version: 0.1.0
+date-released: "2026-07-24"
