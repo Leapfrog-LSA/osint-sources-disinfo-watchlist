@@ -290,7 +290,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,InfoNile,https://infonile.org,,EN,,,Bacino del Nilo — geo-giornalismo acqua
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Initium Media,https://theinitium.com,https://theinitium.com/rss/,ZH,HK,,Investigativo HK — Hong Kong
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Inkyfada,https://inkyfada.com,https://inkyfada.com/en/feed/,EN/AR,TN,,Investigativo tunisino — Tunisia Inv.
-📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Insecurity Insight,https://insecurityinsight.org,,,Globale/Asia,,Crisi umanitarie
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Insecurity Insight,https://insecurityinsight.org,,,Globale,,Crisi umanitarie
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,InSight Crime,https://insightcrime.org,,,Americhe,,Criminalità organizzata LATAM
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,International Justice Monitor,https://www.ijmonitor.org,https://www.ijmonitor.org/feed/,,Globale,,Crimini di guerra — Globale — Monitor
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Investigace.cz,https://www.investigace.cz,https://www.investigace.cz/feed/,CS,CZ,,Investigativo ceco — Repubblica Ceca
@@ -448,7 +448,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Italia,Class CNBC,https://www.classcnbc.it,,IT,IT,,Business TV — TV
 📰 Media & Testate Giornalistiche,Italia,Commonware,https://www.commonware.org,,IT,IT,,Movimenti — Politica
 📰 Media & Testate Giornalistiche,Italia,Consob,https://www.consob.it,,IT,IT,,Regolatore mercati — Italia
-📰 Media & Testate Giornalistiche,Italia,Corriere del Mezzogiorno,https://corrieredelmezzogiorno.corriere.it,,,Sud,,Sud Italia — Locale
+📰 Media & Testate Giornalistiche,Italia,Corriere del Mezzogiorno,https://corrieredelmezzogiorno.corriere.it,,,IT,,Sud Italia — Locale
 📰 Media & Testate Giornalistiche,Italia,Corriere del Ticino,https://www.cdt.ch,,IT/DE,CH,,Svizzera italiana
 📰 Media & Testate Giornalistiche,Italia,Corriere della Calabria,https://www.corrieredellacalabria.it,https://www.corrieredellacalabria.it/feed/,IT,IT,,Calabria — testata digitale
 📰 Media & Testate Giornalistiche,Italia,Corriere della Sera Milano,https://milano.corriere.it,,,IT-Lombardia,,Milano — Lombardia
@@ -497,7 +497,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Italia,FrosinoneToday,https://www.frosinonetoday.it,,IT,IT,,Frosinone — network Citynews
 📰 Media & Testate Giornalistiche,Italia,G4Media,https://www.g4media.ro,https://www.g4media.ro/feed/,RO,RO,,Romania Inv.
 📰 Media & Testate Giornalistiche,Italia,Garante Privacy,https://www.garanteprivacy.it,,IT,IT,,Privacy IT — Italia — Regolatore
-📰 Media & Testate Giornalistiche,Italia,Gazzetta del Sud,https://www.gazzettadelsud.it,https://gazzettadelsud.it/upload/assets/rss/producer-nazionale-homepage.xml,,IT-Calabria/Sicilia,,Sicilia-Calabria — Locale
+📰 Media & Testate Giornalistiche,Italia,Gazzetta del Sud,https://www.gazzettadelsud.it,https://gazzettadelsud.it/upload/assets/rss/producer-nazionale-homepage.xml,,IT-Calabria/IT-Sicilia,,Sicilia-Calabria — Locale
 📰 Media & Testate Giornalistiche,Italia,Gazzetta dello Sport,https://www.gazzetta.it,https://www.gazzetta.it/rss,IT,IT,,Principale IT — Sport
 📰 Media & Testate Giornalistiche,Italia,Gazzetta di Mantova,https://gazzettadimantova.gelocal.it,,IT,IT,,"Mantova — gruppo GEDI, quotidiano più antico d'Italia"
 📰 Media & Testate Giornalistiche,Italia,Gazzetta di Parma,https://www.gazzettadiparma.it,,,IT-Emilia-Romagna,,Parma — Emilia
@@ -536,7 +536,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Italia,Il Messaggero Veneto,https://www.messaggeroveneto.it,https://www.messaggeroveneto.it/rss,,IT-FVG,,Udine — Locale
 📰 Media & Testate Giornalistiche,Italia,Il Piccolo,https://www.ilpiccolo.it,https://www.ilpiccolo.it/rss,,IT-FVG,,Trieste — Locale
 📰 Media & Testate Giornalistiche,Italia,Il Post,https://www.ilpost.it,https://www.ilpost.it/feed/,IT,IT,,Qualità
-📰 Media & Testate Giornalistiche,Italia,Il Quotidiano del Sud,https://www.quotidianodelsud.it,https://www.quotidianodelsud.it/feed,,Sud,,Cosenza
+📰 Media & Testate Giornalistiche,Italia,Il Quotidiano del Sud,https://www.quotidianodelsud.it,https://www.quotidianodelsud.it/feed,,IT-Calabria,,Cosenza
 📰 Media & Testate Giornalistiche,Italia,Il Quotidiano Giuridico,https://www.ilquotidianogiuridico.it,,IT,IT,,Legale
 📰 Media & Testate Giornalistiche,Italia,Il Resto del Carlino,https://www.ilrestodelcarlino.it,https://www.ilrestodelcarlino.it/rss,,IT-Emilia-Romagna,,Emilia — Quotidiano
 📰 Media & Testate Giornalistiche,Italia,Il Riformista,https://www.ilriformista.it,https://www.ilriformista.it/feed,IT,IT,,Garantista — Quotidiano
@@ -565,7 +565,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Italia,L'Essenziale,https://www.lessenziale.it,https://www.lessenziale.it/rss,IT,IT,,Migrazioni
 📰 Media & Testate Giornalistiche,Italia,L'Indipendente,https://www.lindipendente.online,https://www.lindipendente.online/feed/,IT,IT,,No-pub
 📰 Media & Testate Giornalistiche,Italia,L'Unione Sarda,https://www.unionesarda.it,https://www.unionesarda.it/rss,,IT-Sardegna,,Sardegna — Locale
-📰 Media & Testate Giornalistiche,Italia,La Gazzetta del Mezzogiorno,https://www.lagazzettadelmezzogiorno.it,https://www.lagazzettadelmezzogiorno.it/rss,,IT-Puglia/Basilicata,,Bari — Puglia-Basilicata
+📰 Media & Testate Giornalistiche,Italia,La Gazzetta del Mezzogiorno,https://www.lagazzettadelmezzogiorno.it,https://www.lagazzettadelmezzogiorno.it/rss,,IT-Puglia/IT-Basilicata,,Bari — Puglia-Basilicata
 📰 Media & Testate Giornalistiche,Italia,La Guida,https://www.laguida.it,,IT,IT,,Cuneo — settimanale locale
 📰 Media & Testate Giornalistiche,Italia,La Lettura (CdS),https://www.corriere.it/la-lettura,,IT,IT,,Settimanale — Cultura
 📰 Media & Testate Giornalistiche,Italia,La Nazione,https://www.lanazione.it,https://www.lanazione.it/rss,,IT-Toscana,,Toscana — Locale
@@ -1199,7 +1199,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,America Latina & Caraibi,El País (BO),https://www.elpaisonline.com,,ES,BO,,Bolivia
 📰 Media & Testate Giornalistiche,America Latina & Caraibi,El País Uruguay,https://www.elpais.com.uy,,ES,UY,,Uruguay
 📰 Media & Testate Giornalistiche,America Latina & Caraibi,El Pitazo,https://elpitazo.net,https://elpitazo.net/feed/,ES,VE,,Venezuela
-📰 Media & Testate Giornalistiche,America Latina & Caraibi,El Salvador Times,https://www.elsalvadortimes.com,https://www.elsalvadortimes.com/rss/,,SV_C,,English — El Salvador
+📰 Media & Testate Giornalistiche,America Latina & Caraibi,El Salvador Times,https://www.elsalvadortimes.com,https://www.elsalvadortimes.com/rss/,,SV,,English — El Salvador
 📰 Media & Testate Giornalistiche,America Latina & Caraibi,El Salvador.com (EDH),https://www.elsalvador.com,,ES,SV,,El Salvador — El Diario de Hoy
 📰 Media & Testate Giornalistiche,America Latina & Caraibi,El Tiempo Colombia,https://www.eltiempo.com,https://www.eltiempo.com/rss,ES,CO,,Colombia
 📰 Media & Testate Giornalistiche,America Latina & Caraibi,El Toque,https://eltoque.com,https://eltoque.com/feed/,ES,CU,,Cuba digital
@@ -1410,7 +1410,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Africa,Foroyaa,https://foroyaa.net,,EN,GM,,Gambia — quotidiano indipendente
 📰 Media & Testate Giornalistiche,Africa,Fraternité Matin,https://www.fratmat.info,,FR,CI,,Costa d'Avorio gov
 📰 Media & Testate Giornalistiche,Africa,FrontPage Africa,https://frontpageafricaonline.com,https://fpa.news/feed/,EN,LR,,Liberia
-📰 Media & Testate Giornalistiche,Africa,Gabon Review,https://www.gabonreview.com,https://www.gabonreview.com/feed,,GA_C,,Gabon
+📰 Media & Testate Giornalistiche,Africa,Gabon Review,https://www.gabonreview.com,https://www.gabonreview.com/feed,,GA,,Gabon
 📰 Media & Testate Giornalistiche,Africa,Garowe Online,https://www.garoweonline.com,,SO/EN,SO,,Somalia/Puntland — testata indipendente
 📰 Media & Testate Giornalistiche,Africa,Ghana News Agency,https://ghananewsagency.org,,EN,GH,,"Testata nazionale — Ghana · fonte aggregatore, verifica consigliata"
 📰 Media & Testate Giornalistiche,Africa,Ghanaian Chronicle,https://thechronicle.com.gh,https://thechronicle.com.gh/feed/,EN,GH,,"Testata nazionale — Ghana · fonte aggregatore, verifica consigliata"
@@ -2697,7 +2697,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🏢 Registri Aziendali & Corporate Intelligence,Registri & Ownership,Zambia — PACRA,https://www.pacra.org.zm,,EN,ZM,,Registro imprese zambiano
 🏢 Registri Aziendali & Corporate Intelligence,Catasti & Registri Immobiliari,ANCPI Romania,https://www.ancpi.ro,,RO,RO,,Catasto rumeno
 🏢 Registri Aziendali & Corporate Intelligence,Catasti & Registri Immobiliari,BLM — Bureau of Land Management (USA),https://www.blm.gov/programs/lands-and-realty,,EN,US,,Registro terreni pubblici federali USA
-🏢 Registri Aziendali & Corporate Intelligence,Catasti & Registri Immobiliari,Cadastre Luxembourg,https://www.cadastre.lu,,,FR/LU/LU,,Catasto ufficiale Lussemburgo
+🏢 Registri Aziendali & Corporate Intelligence,Catasti & Registri Immobiliari,Cadastre Luxembourg,https://www.cadastre.lu,,,LU,,Catasto ufficiale Lussemburgo
 🏢 Registri Aziendali & Corporate Intelligence,Catasti & Registri Immobiliari,Cadastre.gouv.fr,https://www.cadastre.gouv.fr,,FR,FR,,Catasto francese
 🏢 Registri Aziendali & Corporate Intelligence,Catasti & Registri Immobiliari,Canada Land Survey System,https://clss.nrcan.gc.ca,,EN/FR,CA,,Sistema catastale Canada — Natural Resources
 🏢 Registri Aziendali & Corporate Intelligence,Catasti & Registri Immobiliari,Daeji Online (Korea),https://www.eum.go.kr,,KO,KR,,Sistema informazioni catastali Corea del Sud
@@ -3472,7 +3472,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,Minority Rights Group,https://minorityrights.org,,EN,Globale,,"Minoranze e popoli indigeni, directory"
 🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,OHCHR — Jurisprudence (Juris),https://juris.ohchr.org,,EN,Globale,,Decisioni organi trattato ONU
 🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,Refugee Legal Aid Information,https://refugeelegalaidinformation.org,,EN,Globale,,Assistenza legale rifugiati per Paese
-🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,RSCSL — Sierra Leone,http://www.rscsl.org,,EN,SL_C,,Corte speciale residuale
+🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,RSCSL — Sierra Leone,http://www.rscsl.org,,EN,SL,,Corte speciale residuale
 🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,Survival International,https://www.survivalinternational.org,,EN/Multi,Globale,,Popoli indigeni
 🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,Tactical Tech,https://tacticaltech.org,,EN,Globale,,Tecnologia e società civile
 🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,Walk Free,https://www.walkfree.org,,EN,Globale,,Global Slavery Index
