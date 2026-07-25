@@ -8,6 +8,16 @@ Both datasets in this repo are only as useful as they are accurate. The rules be
 - **One change, one purpose.** Keep PRs focused — adding sources, fixing a field, removing dead links. Don't mix unrelated edits.
 - **Cite where it matters.** For `disinfo_sources_master.csv` especially, every row needs a real `source` and `evidence_level` — no unverified claims about a domain being malicious/disinformation.
 
+## Check your changes before opening a PR
+
+```bash
+python scripts/validate.py
+```
+
+This runs automatically on every pull request, so it's faster to catch problems locally first. It needs no dependencies, and lists every problem with its line number in one pass.
+
+It checks structure and vocabularies — that a country code is *well-formed*, not that it's the *right* country. Accuracy is still on you; the rules below are what the checker can't verify.
+
 ## Adding a source to `Fonti_OSINT_v.0.1.csv`
 
 Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`, `Paese / Area`, `Accesso`, `Note`
