@@ -1,0 +1,93 @@
+name: Propose a disinformation domain
+description: Suggest an entry for disinfo_sources_master
+title: "[disinfo] "
+labels: ["disinfo entry"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Naming a domain as disinformation is a serious claim, so this list only
+        accepts entries that someone has already documented — a forensic
+        analysis, a newsroom investigation, a court or law-enforcement action,
+        or a fact-checking organisation.
+
+        **Personal suspicion is not enough.** If you can't point to a source,
+        please open a normal issue for discussion instead.
+
+  - type: input
+    id: domain
+    attributes:
+      label: Domain
+      description: The disinformation domain itself, not the outlet it imitates.
+      placeholder: example.cfd
+    validations:
+      required: true
+
+  - type: input
+    id: impersonated
+    attributes:
+      label: Outlet being impersonated
+      description: Leave blank if it isn't imitating anyone specific.
+      placeholder: Der Spiegel
+
+  - type: input
+    id: authentic
+    attributes:
+      label: The real outlet's domain
+      placeholder: spiegel.de
+
+  - type: input
+    id: source
+    attributes:
+      label: Who documented it
+      description: Organisation and date.
+      placeholder: Qurium 2022-09-27
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: Link to the documentation
+    validations:
+      required: true
+
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: Evidence level
+      description: How the claim was established. Pick the strongest that applies.
+      options:
+        - forensic — technical or infrastructure analysis
+        - journalistic — newsroom reporting
+        - judicial — court or law-enforcement action
+        - debunker — fact-checking organisation
+    validations:
+      required: true
+
+  - type: dropdown
+    id: flag
+    attributes:
+      label: Classification
+      options:
+        - disinformation_clone — imitates a real outlet
+        - fake_news_portal — invented outlet, not a clone
+        - fake_news_site — hoax content
+        - satire_recognizable — declared satire
+        - suspect_source — recurring source of hoaxes
+        - suspected — flagged but attribution is weak
+    validations:
+      required: true
+
+  - type: input
+    id: attribution
+    attributes:
+      label: Attribution
+      description: Who is assessed to be behind it — and attribute the claim, don't state it as fact if the source itself calls it unconfirmed.
+      placeholder: Russia (SDA/Structura/ANO Dialog) — per VIGINUM
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything needed to read the entry correctly
+      description: Geo-fencing, takedown status, why a typo-squat pattern was flagged, and so on.

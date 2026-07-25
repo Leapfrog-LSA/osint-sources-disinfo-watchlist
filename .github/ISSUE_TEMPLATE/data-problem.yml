@@ -1,0 +1,56 @@
+name: Report a data problem
+description: Dead link, wrong field, duplicate, or an entry that shouldn't be here
+title: "[data] "
+labels: ["data problem"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem
+      options:
+        - Dead link — the URL no longer resolves
+        - Wrong value — a field says something incorrect
+        - Duplicate — the same source appears twice
+        - Doesn't belong — not a genuine ongoing source
+        - Something else
+    validations:
+      required: true
+
+  - type: dropdown
+    id: file
+    attributes:
+      label: Which file
+      options:
+        - Fonti_OSINT_v.0.1.csv
+        - disinfo_sources_master.csv
+    validations:
+      required: true
+
+  - type: input
+    id: entry
+    attributes:
+      label: Which entry
+      description: Name or URL/domain of the row.
+    validations:
+      required: true
+
+  - type: textarea
+    id: detail
+    attributes:
+      label: What's wrong, and what it should be
+      description: For a wrong value, say which column and what the correct value is.
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        **On dead links:** big sites often block automated requests, so a
+        single failed check isn't proof a source is gone. If you can, try it
+        in a normal browser before reporting it.
+
+  - type: input
+    id: evidence
+    attributes:
+      label: How you know
+      description: A link, a source, or how you checked. Optional but it speeds things up a lot.

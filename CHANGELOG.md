@@ -23,6 +23,11 @@ structure or to the meaning of an existing column.
   "not determined" rather than "none".
 - `CITATION.cff`, so the attribution required by CC BY can be generated from
   the repository page.
+- Issue forms for proposing a source, proposing a disinformation domain, and
+  reporting a data problem, plus a pull request template. The dropdowns offer
+  exactly the vocabularies the validator accepts. The disinformation form
+  requires a documenting source and evidence level, since naming a domain as
+  disinformation is not a claim this list takes on suspicion alone.
 - Badges for CI status, release, stars and issues.
 
 ### Fixed

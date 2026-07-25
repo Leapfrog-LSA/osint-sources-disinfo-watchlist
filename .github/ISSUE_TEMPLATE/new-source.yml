@@ -1,0 +1,95 @@
+name: Propose a new source
+description: Suggest a source to add to Fonti_OSINT
+title: "[source] "
+labels: ["new source"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion. Fill in what you know — leave a field blank
+        rather than guessing. An empty cell is honest; a wrong one misleads
+        everyone downstream.
+
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: The source's actual name. Add a qualifier if it's ambiguous, e.g. "The National (Scotland)".
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      placeholder: https://example.org
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - "📰 Media & Testate Giornalistiche"
+        - "🧩 Settori Specifici"
+        - "🔓 Open Data & Trasparenza"
+        - "📊 Statistiche & Dati Macroeconomici"
+        - "🏢 Registri Aziendali & Corporate Intelligence"
+        - "🔐 Cybersecurity & Digital OSINT"
+        - "🎓 Geopolitica & Intelligence"
+        - "📡 Social Media & Media Monitoring"
+        - "⚖️ Sanzioni, PEP & Compliance"
+        - "🌿 Sostenibilità & ESG"
+        - "🕊️ Diritti Umani & Giudiziario"
+        - "✅ Fact-Checking & Disinformazione"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      description: "Uppercase ISO 639 codes, `/` for several, `Multi` if broadly multilingual. Leave blank if unsure."
+      placeholder: "EN, or EN/FR, or Multi"
+
+  - type: input
+    id: place
+    attributes:
+      label: Country or scope
+      description: "ISO 3166-1 code (`IT`), subdivision (`IT-Lombardia`), or a region (`Globale`, `MENA`). Leave blank if unsure."
+      placeholder: "IT"
+
+  - type: dropdown
+    id: access
+    attributes:
+      label: Access
+      options:
+        - ""
+        - Gratuito
+        - Pubblico
+        - Freemium
+        - A pagamento
+        - Open Source
+        - Commerciale
+        - Community
+        - Premium
+        - Enterprise
+        - Self-hosted
+        - Waitlist
+
+  - type: input
+    id: rss
+    attributes:
+      label: RSS feed
+      description: Only if one genuinely exists.
+      placeholder: https://example.org/feed/
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it belongs here
+      description: What it covers, and what makes it worth tracking. Note any caveats a reader would need.
+    validations:
+      required: true
