@@ -65,8 +65,8 @@ body:
     id: access
     attributes:
       label: Access
+      description: Leave unselected if unsure.
       options:
-        - ""
         - Gratuito
         - Pubblico
         - Freemium
