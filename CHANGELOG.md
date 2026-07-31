@@ -9,6 +9,20 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- Three chamber federations: **AACCLA** (the AmChams' own federation for Latin
+  America and the Caribbean), **FGCCC** (Federation of GCC Chambers) and
+  **EBO Worldwide Network**.
+
+### Fixed
+
+- The row named **GCC Chambers** pointed at `gcc-sg.org`, which is the
+  Secretariat General of the Gulf Cooperation Council — an intergovernmental
+  body, not a chamber federation. Renamed to `GCC — Segretariato Generale`
+  and its note corrected. The actual federation, `fgccc.org`, is now listed
+  separately.
+
 ## [0.3.0] — 2026-07-31
 
 ### Changed

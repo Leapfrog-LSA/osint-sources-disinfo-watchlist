@@ -2475,6 +2475,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📊 Statistiche & Dati Macroeconomici,"Sondaggi, Barometri & Dataset Comparativi",Polity5 Project,https://www.systemicpeace.org/polityproject.html,,EN,Globale,,Dataset regime politico storico 1800-presente
 📊 Statistiche & Dati Macroeconomici,"Sondaggi, Barometri & Dataset Comparativi",QoG — Quality of Government Dataset,https://www.gu.se/en/quality-government/qog-data,,EN,Globale,,Dataset qualità governance per Paese — Università Göteborg
 📊 Statistiche & Dati Macroeconomici,"Sondaggi, Barometri & Dataset Comparativi",World Values Survey,https://www.worldvaluessurvey.org,,EN,Globale,,Valori comparati ~100 Paesi
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,AACCLA (American Chambers in Latin America),https://www.aaccla.org,,EN,LatAm,,Federazione delle AmCham in America Latina e Caraibi — LatAm
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,AARGAU CHAMBER OF COMMERCE AND INDUSTRY,https://www.aihk.ch/,,,CH,,Dataset strutturato: selezione dei membri della World Chambers Federation (WCF)
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,ABBOTSFORD CHAMBER OF COMMERCE,https://www.abbotsfordchamber.com/,,,,,Dataset strutturato: selezione dei membri della World Chambers Federation (WCF)
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,ABHA CHAMBER OF COMMERCE,https://www.abhacci.org.sa/,,,SA,,Dataset strutturato: selezione dei membri della World Chambers Federation (WCF)
@@ -2552,9 +2553,11 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Côte d'Ivoire — CCI-CI,https://www.cci.ci,,FR,CI,,Camera di commercio ivoriana
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Denmark — Dansk Erhverv,https://www.danskerhverv.dk,,DA,DK,,Camera di commercio danese
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Dominican Rep. — Cámara Santo Domingo,https://camarasantodomingo.do,,ES,DO,,Camera di Santo Domingo
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,EBO Worldwide Network,https://eboworldwide.eu,,EN,EU,,Rete delle organizzazioni imprenditoriali europee all'estero — UE
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,El Salvador,https://www.amchamsal.com,,ES,SV,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Eurochambres,https://www.eurochambres.eu,,EN,EU,,Rete camere europee — UE
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,GCC Chambers,https://gcc-sg.org,,AR/EN,,,Camere Consiglio Cooperazione Golfo
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,FGCCC (Federation of GCC Chambers),https://fgccc.org/en/,,AR/EN,Golfo,,Federazione delle camere di commercio del Golfo — Golfo
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,GCC — Segretariato Generale,https://gcc-sg.org,,AR/EN,Golfo,,Organizzazione intergovernativa del Golfo (non una federazione camerale) — Golfo — Istituzione
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Hong Kong — HKGCC,https://www.chamber.org.hk,,EN/ZH,HK,,Camera generale di commercio HK
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,ICC — International Chamber of Commerce,https://iccwbo.org,,EN,Globale,,Camera di commercio internazionale (Parigi)
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Iceland — Iceland Chamber of Commerce,https://www.chamber.is,,IS/EN,IS,,Camera di commercio islandese
