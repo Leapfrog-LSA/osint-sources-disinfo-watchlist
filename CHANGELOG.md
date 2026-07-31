@@ -14,6 +14,9 @@ structure or to the meaning of an existing column.
 - **gNews — Ministero della Giustizia** (`gnewsonline.it`), the Italian Ministry
   of Justice's daily, with its RSS feed. Verified as the ministry's own outlet:
   `giustizia.it` embeds its content and links to it directly.
+- Four AACCLA member chambers: **AmCham Honduras**, **AmCham Jamaica**,
+  **AmCham Peru** and **VenAmCham** (Venezuela). Distinct from the national
+  chambers already listed for Peru and Venezuela.
 
 - `scripts/validate.py` and a GitHub Actions workflow that runs it on every
   push and pull request touching the data. Checks header and field count,
@@ -36,6 +39,10 @@ structure or to the meaning of an existing column.
 
 ### Fixed
 
+- **AmCham Mexico** pointed at `amcham.com`, a parked domain advertising itself
+  as for sale, rather than the chamber. Corrected to `amcham.org.mx`. The row
+  looked healthy — the URL was well-formed and returned HTTP 200 — which is why
+  automated link checking alone doesn't catch this class of error.
 - Nine `Paese / Area` values that matched none of the dataset's conventions:
   `SV_C`, `GA_C`, `SL_C` (stray `_C` suffix), `FR/LU/LU` (spurious country and
   a duplicate), `Globale/Asia`, and two rows using the bare label `Sud`.

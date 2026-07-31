@@ -15,7 +15,7 @@ They are kept in the same repo because they're produced and maintained together 
 
 ## `Fonti_OSINT_v.0.1.csv`
 
-4,975 sources across 12 macro-categories:
+4,979 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
@@ -23,7 +23,7 @@ They are kept in the same repo because they're produced and maintained together 
 | Settori Specifici (AI/dev tools, finance, sector-specific) | 1,200 |
 | Open Data & Trasparenza | 472 |
 | Statistiche & Dati Macroeconomici | 372 |
-| Registri Aziendali & Corporate Intelligence | 250 |
+| Registri Aziendali & Corporate Intelligence | 254 |
 | Cybersecurity & Digital OSINT | 170 |
 | Geopolitica & Intelligence | 151 |
 | Social Media & Media Monitoring | 79 |
