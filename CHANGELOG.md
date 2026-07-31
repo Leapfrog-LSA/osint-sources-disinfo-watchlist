@@ -9,6 +9,11 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-07-31
+
+Column structure is unchanged, so anything reading the previous release keeps
+working. What changed is the content, plus tooling to keep it honest.
+
 ### Added
 
 - **gNews — Ministero della Giustizia** (`gnewsonline.it`), the Italian Ministry
@@ -73,5 +78,6 @@ Initial release.
   satire networks, with attribution, documenting source and evidence level.
 - `README.md`, `CONTRIBUTING.md`, `LICENSE` (CC BY 4.0) and `.gitignore`.
 
-[Unreleased]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/releases/tag/v0.1.0

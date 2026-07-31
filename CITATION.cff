@@ -8,7 +8,7 @@ authors:
 repository-code: "https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist"
 abstract: >-
   Two companion datasets for open-source intelligence and due-diligence
-  work. Fonti_OSINT is a curated catalogue of 4,974 reliable, ongoing
+  work. Fonti_OSINT is a curated catalogue of 4,979 reliable, ongoing
   sources across media, open data, corporate registries, sanctions and
   PEP lists, cybersecurity intelligence and other domains, annotated with
   language, geographic scope, access type and RSS feed where available.
@@ -26,5 +26,5 @@ keywords:
   - source-reliability
   - due-diligence
 license: CC-BY-4.0
-version: 0.1.0
-date-released: "2026-07-24"
+version: 0.2.0
+date-released: "2026-07-31"
