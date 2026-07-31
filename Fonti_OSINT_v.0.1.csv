@@ -34,7 +34,6 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Globali & Internazionali,CNN International,https://edition.cnn.com,,EN,US,,Breaking news USA
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Colorado Sun,https://coloradosun.com,,EN,US,,Colorado investigativo
 📰 Media & Testate Giornalistiche,Globali & Internazionali,CoronaVirusFacts Alliance,https://www.poynter.org/ifcn/covid-19-misinformation,,,Globale,,FC COVID
-📰 Media & Testate Giornalistiche,Globali & Internazionali,UAE — Financial Credibility Info,https://u.ae/en/information-and-services/business/financial-credibility-for-individuals-and-companies,,,AE,,Info creditizie individui/aziende — Emirati Arabi Uniti — Portale ufficiale
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Current Affairs,https://www.currentaffairs.org,,EN,US,,Analisi critica
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Daily Sabah,https://www.dailysabah.com,,EN,TR,,Turchia pro-gov
 📰 Media & Testate Giornalistiche,Globali & Internazionali,DataJournalism.com,https://datajournalism.com,https://datajournalism.com/read/rss/longreads.xml,,Globale,,Risorse data journalism
@@ -195,6 +194,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Trinidad Guardian,https://www.guardian.co.tt,,EN,TT,,Trinidad
 📰 Media & Testate Giornalistiche,Globali & Internazionali,TRT World,https://www.trtworld.com,https://www.trtworld.com/feed/rss.xml,EN,TR,,Turchia pubblica
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Truthout Environment,https://truthout.org/environment,https://truthout.org/authors/environment-news-service/feed/?withoutcomments=1,,US,,Giustizia ambientale — USA
+📰 Media & Testate Giornalistiche,Globali & Internazionali,UAE — Financial Credibility Info,https://u.ae/en/information-and-services/business/financial-credibility-for-individuals-and-companies,,,AE,,Info creditizie individui/aziende — Emirati Arabi Uniti — Portale ufficiale
 📰 Media & Testate Giornalistiche,Globali & Internazionali,UNCTAD Stat,https://unctadstat.unctad.org,,,Globale,,"Commercio internazionale, investimenti esteri — Gratuito — Portale ufficiale"
 📰 Media & Testate Giornalistiche,Globali & Internazionali,UNESCO Institute of Statistics,https://uis.unesco.org,,,Globale,,"Istruzione, cultura, scienza, comunicazione — Gratuito — Portale ufficiale"
 📰 Media & Testate Giornalistiche,Globali & Internazionali,UNIDO Statistics Portal,https://stat.unido.org,,,Globale,,Industria manifatturiera globale — Gratuito — Portale ufficiale
@@ -1836,8 +1836,8 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Asia & Pacifico,Manila Bulletin,https://mb.com.ph,https://mb.com.ph/feed/,EN,PH,,Filippine
 📰 Media & Testate Giornalistiche,Asia & Pacifico,Marianas Variety,https://www.mvariety.com,http://www.mvariety.com/search/?f=rss&amp;t=article&amp;l=50&amp;s=start_time&amp;sd=desc&amp;k%5B%5D=%23topstory,EN,MP,,Isole Marianne — quotidiano regionale
 📰 Media & Testate Giornalistiche,Asia & Pacifico,Matangi Tonga,https://matangitonga.to,,EN/TO,TO,,Tonga — testata online
-📰 Media & Testate Giornalistiche,Asia & Pacifico,Mathrubhumi (Malayalam),https://www.mathrubhumi.com,https://www.mathrubhumi.com/sitemaps/mathrubhumi/rss,ML,IN,,Kerala — malayalam
 📰 Media & Testate Giornalistiche,Asia & Pacifico,Mathrubhumi (English),https://english.mathrubhumi.com,https://english.mathrubhumi.com/sitemaps/mathrubhumien/rss,,IN,,Kerala — India
+📰 Media & Testate Giornalistiche,Asia & Pacifico,Mathrubhumi (Malayalam),https://www.mathrubhumi.com,https://www.mathrubhumi.com/sitemaps/mathrubhumi/rss,ML,IN,,Kerala — malayalam
 📰 Media & Testate Giornalistiche,Asia & Pacifico,Matichon,https://www.matichon.co.th,https://www.matichon.co.th/feed,TH,TH,,Thailandia — quotidiano
 📰 Media & Testate Giornalistiche,Asia & Pacifico,Media Indonesia,https://mediaindonesia.com,,ID,ID,,Indonesia — quotidiano
 📰 Media & Testate Giornalistiche,Asia & Pacifico,Medianama,https://www.medianama.com,https://www.medianama.com/feed/,,IN,,Tech policy — India
@@ -2481,126 +2481,126 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Abu Dhabi Chamber of Commerce & Industry,https://www.abudhabichamber.ae/,,,AE,,Dataset strutturato: selezione dei membri della World Chambers Federation (WCF)
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,African Chambers of Commerce,https://africanchambersofcommerce.org,,EN,Pan-Africa,,Rete africana — Pan-Africa
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Albania — Union of Chambers,https://uccial.al,,SQ/EN,AL,,Unione camere albanesi
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Algeria,https://caci.dz/en/,,,DZ,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Angola,https://ccia.ao/,,,AO,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,AmCham Honduras,https://amchamhonduras.org,,ES,HN,,Camera di Commercio Americana (AmCham) — membro AACCLA
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,AmCham Jamaica,https://amchamjamaica.org,,EN,JM,,Camera di Commercio Americana (AmCham) — membro AACCLA
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,AmCham Peru,https://amcham.org.pe,,ES,PE,,Camera di Commercio Americana (AmCham) — membro AACCLA
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Argentina — CAC,https://www.cac.com.ar,,ES,AR,,Cámara Argentina de Comercio
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,ASCAME,https://www.ascame.org,,EN/FR,,,Camere del Mediterraneo
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Australia — ACCI,https://www.australianchamber.com.au,,EN,AU,,Camera di commercio e industria australiana
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Austria,https://www.wko.at/,,DE,AT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Bahrain — BCCI,https://www.bcci.bh,,AR/EN,BH,,Camera di commercio del Bahrein
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Belarus — BelCCI,https://www.cci.by,,RU/EN,BY,,Camera di commercio bielorussa
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Belgio,https://belgianchambers.be/,,,BE,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Benin,https://www.cci.bj/,,,BJ,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Bosnia — Spoljnotrgovinska komora BiH,https://komorabih.ba,,BS/EN,BA,,Camera di commercio estero BiH
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Botswana,https://bb.org.bw/,,,BW,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Brazil — CACB,https://cacb.org.br,,PT,BR,,Confederazione associazioni commerciali
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Brazil — CNI,https://www.portaldaindustria.com.br,,PT,BR,,Confederazione nazionale industria
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Bulgaria,https://www.bcci.bg/,,BG,BG,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Burkina Faso,https://cci.bf/?q=en,,,BF,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,CACCI (Confederation of Asia-Pacific Chambers of Commerce and Industry),https://www.cacci.biz/,,,,,Camere di commercio Asia-Pacifico — rete regionale
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Algeria,https://caci.dz/en/,,,DZ,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Angola,https://ccia.ao/,,,AO,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Austria,https://www.wko.at/,,DE,AT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Belgio,https://belgianchambers.be/,,,BE,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Benin,https://www.cci.bj/,,,BJ,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Botswana,https://bb.org.bw/,,,BW,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Bulgaria,https://www.bcci.bg/,,BG,BG,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Camerun,http://ccima.cm/,,,CM,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Canada — Canadian Chamber of Commerce,https://chamber.ca,,EN/FR,CA,,Camera di commercio canadese
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Chile — CNC,https://www.cnc.cl,,ES,CL,,Camera nazionale commercio cilena
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,China — CCPIT,https://www.ccpit.org,,ZH/EN,CN,,Consiglio promozione commercio internazionale
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Cile,https://www.amchamchile.cl/,,ES,CL,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Cipro,http://www.ccci.org.cy/,,EL,CY,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Colombia — Confecámaras,https://confecamaras.org.co,,ES,CO,,Rete camere colombiane
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Croazia,http://www.investincroatia.hr/,,HR,HR,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Côte d'Ivoire — CCI-CI,https://www.cci.ci,,FR,CI,,Camera di commercio ivoriana
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Denmark — Dansk Erhverv,https://www.danskerhverv.dk,,DA,DK,,Camera di commercio danese
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Dominican Rep. — Cámara Santo Domingo,https://camarasantodomingo.do,,ES,DO,,Camera di Santo Domingo
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Ecuador,https://www.ecamcham.com,,ES,EC,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Egitto,http://fedcoc.org.eg/,,,EG,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,El Salvador,https://www.amchamsal.com,,ES,SV,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Estonia,https://www.koda.ee/,,,EE,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Etiopia,https://www.ethiopianchamber.com/,,,ET,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Eurochambres,https://www.eurochambres.eu,,EN,EU,,Rete camere europee — UE
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Finlandia,https://www.kauppakamari.fi/,,FI,FI,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Francia,https://www.cci.fr/,,FR,FR,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,GCC Chambers,https://gcc-sg.org,,AR/EN,,,Camere Consiglio Cooperazione Golfo
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Georgia,http://www.gcci.ge/,,,GE,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Germania,https://www.dihk.de/de,,DE,DE,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Ghana,http://ghanachamber.org/,,,GH,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Grecia,http://www.uhc.gr/,,EL,GR,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Guatemala,https://www.amchamguate.com,,ES,GT,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Irlanda,https://www.chambers.ie/,,EN,IE,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Italia,https://www.unioncamere.gov.it/,,IT,IT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Kenya,https://www.kenyachamber.or.ke/,,,KE,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Lettonia,https://www.chamber.lv/,,LV,LV,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Lituania,https://chambers.lt/,,LT,LT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Lussemburgo,https://www.cc.lu/accueil/,,,LU,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Malta,https://www.maltachamber.org.mt/,,,MT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Messico,https://amcham.org.mx,,ES,MX,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Nigeria,http://naccima.com/,,,NG,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Norvegia,http://dnhf.no/home-en/,,NO,NO,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Panama,https://www.panamcham.com,,ES,PA,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Polonia,https://kig.pl/,,PL,PL,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Portogallo,https://www.ccip.pt/pt/,,PT,PT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Romania,https://ccir.ro/,,RO,RO,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Ruanda,http://rwandachamber.org/,,,RW,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Senegal,https://cciad.sn/,,,SN,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Slovacchia,https://www.sopk.sk/,,SK,SK,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Slovenia,https://www.gzs.si/,,SL,SI,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Spagna,https://www.camara.es/en,,ES,ES,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Sudafrica,http://sacci.org.za/,,,ZA,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Svizzera,https://www.sihk.ch/,,,CH,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Tanzania,http://tccia.com/,,,TZ,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Tunisia,http://utica.org.tn/,,,TN,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Turchia,https://www.tobb.org.tr,,TR,TR,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Ucraina,https://ucci.org.ua/,,UK,UA,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Uganda,https://www.chamberuganda.go.ug/,,,UG,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Ungheria,https://mkik.hu/,,HU,HU,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Uruguay,https://www.ccuruguayusa.com,,ES,UY,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Zambia,https://zambiachamber.org/,,,ZM,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Canada — Canadian Chamber of Commerce,https://chamber.ca,,EN/FR,CA,,Camera di commercio canadese
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Chile — CNC,https://www.cnc.cl,,ES,CL,,Camera nazionale commercio cilena
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,China — CCPIT,https://www.ccpit.org,,ZH/EN,CN,,Consiglio promozione commercio internazionale
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Colombia — Confecámaras,https://confecamaras.org.co,,ES,CO,,Rete camere colombiane
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Côte d'Ivoire — CCI-CI,https://www.cci.ci,,FR,CI,,Camera di commercio ivoriana
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Denmark — Dansk Erhverv,https://www.danskerhverv.dk,,DA,DK,,Camera di commercio danese
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Dominican Rep. — Cámara Santo Domingo,https://camarasantodomingo.do,,ES,DO,,Camera di Santo Domingo
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,El Salvador,https://www.amchamsal.com,,ES,SV,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Eurochambres,https://www.eurochambres.eu,,EN,EU,,Rete camere europee — UE
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,GCC Chambers,https://gcc-sg.org,,AR/EN,,,Camere Consiglio Cooperazione Golfo
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Hong Kong — HKGCC,https://www.chamber.org.hk,,EN/ZH,HK,,Camera generale di commercio HK
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,ICC — International Chamber of Commerce,https://iccwbo.org,,EN,Globale,,Camera di commercio internazionale (Parigi)
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Iceland — Iceland Chamber of Commerce,https://www.chamber.is,,IS/EN,IS,,Camera di commercio islandese
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,India — CII,https://www.cii.in,,EN,IN,,Confederation of Indian Industry
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,India — FICCI,https://www.ficci.in,,EN,IN,,Federazione camere indiane
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Irlanda,https://www.chambers.ie/,,EN,IE,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Israel — Federation of Chambers,https://www.chamber.org.il,,HE/EN,IL,,Federazione camere israeliane
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Italia,https://www.unioncamere.gov.it/,,IT,IT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Japan — JCCI,https://www.jcci.or.jp,,JA/EN,JP,,Camera di commercio e industria giapponese
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Jordan — Jordan Chamber of Commerce,https://www.jocc.org.jo,,AR/EN,JO,,Camera di commercio giordana
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Kazakhstan — Atameken,https://atameken.kz,,KK/RU/EN,KZ,,Camera nazionale imprenditori
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Kenya,https://www.kenyachamber.or.ke/,,,KE,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Kuwait — KCCI,https://www.kcci.org.kw,,AR/EN,KW,,Camera di commercio kuwaitiana
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Lebanon — CCIA Beirut,https://www.ccib.org.lb,,AR/FR/EN,LB,,Camera di Beirut e Monte Libano
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Lettonia,https://www.chamber.lv/,,LV,LV,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Lituania,https://chambers.lt/,,LT,LT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Lussemburgo,https://www.cc.lu/accueil/,,,LU,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Malta,https://www.maltachamber.org.mt/,,,MT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Mauritius — MCCI,https://www.mcci.org,,EN/FR,MU,,Camera di commercio mauriziana
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Messico,https://amcham.org.mx,,ES,MX,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Moldova — Camera de Comerț,https://chamber.md,,RO/EN,MD,,Camera di commercio moldava
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Mongolia — MNCCI,https://mongolchamber.mn,,MN/EN,MN,,Camera di commercio mongola
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Morocco — CGEM,https://www.cgem.ma,,FR/AR,MA,,Confederazione imprese marocchine
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Mozambique — CTA,https://cta.org.mz,,PT,MZ,,Confederazione associazioni economiche
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Namibia — NCCI,https://www.ncci.org.na,,EN,NA,,Camera di commercio namibiana
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Nepal — FNCCI,https://fncci.org,,EN/NE,NP,,Federazione camere nepalesi
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Nigeria,http://naccima.com/,,,NG,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Nigeria — Lagos Chamber (LCCI),https://lagoschamber.com,,EN,NG,,Camera di Lagos
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,North Macedonia — Economic Chamber,https://www.mchamber.mk,,MK/EN,MK,,Camera economica macedone
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Norvegia,http://dnhf.no/home-en/,,NO,NO,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Oman — OCCI,https://chamberoman.om,,AR/EN,OM,,Camera di commercio omanita
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,PACCI (Pan-African Chambers),https://pacci.org,,EN/FR,Pan-Africa,,Camere panafricane — Pan-Africa
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Pakistan — FPCCI,https://fpcci.org.pk,,EN,PK,,Federazione camere pakistane
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Panama,https://www.panamcham.com,,ES,PA,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Peru — Cámara de Comercio de Lima,https://www.camaralima.org.pe,,ES,PE,,Camera di commercio di Lima
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Philippines — PCCI,https://www.philippinechamber.com,,EN,PH,,Camera di commercio filippina
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Polonia,https://kig.pl/,,PL,PL,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Portogallo,https://www.ccip.pt/pt/,,PT,PT,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Qatar Chamber — Comitato Sanità,https://www.qatarchamber.com/members,,EN,QA,,Qatar Chamber — settore sanitario privato
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Repubblica Ceca,https://www.komora.cz/,,CS,CZ,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Romania,https://ccir.ro/,,RO,RO,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Ruanda,http://rwandachamber.org/,,,RW,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Russia — TPP RF,https://tpprf.ru,,RU/EN,RU,,Camera di commercio e industria russa
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Saudi Arabia — Council of Saudi Chambers,https://csc.org.sa,,AR/EN,SA,,Consiglio camere saudite
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Senegal,https://cciad.sn/,,,SN,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Serbia — Privredna komora Srbije,https://pks.rs,,SR/EN,RS,,Camera di commercio serba
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Singapore — SBF,https://www.sbf.org.sg,,EN,SG,,Singapore Business Federation
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Slovacchia,https://www.sopk.sk/,,SK,SK,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Slovenia,https://www.gzs.si/,,SL,SI,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Spagna,https://www.camara.es/en,,ES,ES,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Sri Lanka — Ceylon Chamber of Commerce,https://www.chamber.lk,,EN,LK,,Camera di commercio di Ceylon
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Sudafrica,http://sacci.org.za/,,,ZA,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Svizzera,https://www.sihk.ch/,,,CH,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Tanzania,http://tccia.com/,,,TZ,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Thailand — Thai Chamber of Commerce,https://www.thaichamber.org,,TH/EN,TH,,Camera di commercio thailandese
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Trinidad e Tobago,https://www.amchamtt.com,,,TT,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Tunisia,http://utica.org.tn/,,,TN,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Turchia,https://www.tobb.org.tr,,TR,TR,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,UAE — Dubai Chamber,https://www.dubaichamber.com,,AR/EN,AE,,Camera di commercio di Dubai
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Ucraina,https://ucci.org.ua/,,UK,UA,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Uganda,https://www.chamberuganda.go.ug/,,,UG,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,UK — British Chambers of Commerce,https://www.britishchambers.org.uk,,EN,GB,,Federazione camerale britannica
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Ungheria,https://mkik.hu/,,HU,HU,,Dataset strutturato: membri effettivi e affiliati di Eurochambres
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Uruguay,https://www.ccuruguayusa.com,,ES,UY,,Dataset strutturato: le Camere di Commercio Americane (AmChams) in America Latin
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,US — U.S. Chamber of Commerce,https://www.uschamber.com,,EN,US,,Camera di commercio statunitense
+🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,VenAmCham (Venezuela),https://www.venamcham.org,,ES,VE,,Camera di Commercio Americana (AmCham) — membro AACCLA
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Venezuela — Fedecámaras,https://fedecamaras.org,,ES,VE,,Federazione camere venezuelane
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Vietnam — VCCI,https://vcci.com.vn,,VI/EN,VN,,Camera di commercio vietnamita
 🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,World Chambers Federation (ICC),https://worldchambers.com,,EN,Globale,,Federazione mondiale camere — Globale
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,Camera di Commercio — Zambia,https://zambiachamber.org/,,,ZM,,Dataset strutturato: membri della Pan African Chamber of Commerce and Industry (
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,AmCham Honduras,https://amchamhonduras.org,,ES,HN,,Camera di Commercio Americana (AmCham) — membro AACCLA
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,AmCham Jamaica,https://amchamjamaica.org,,EN,JM,,Camera di Commercio Americana (AmCham) — membro AACCLA
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,AmCham Peru,https://amcham.org.pe,,ES,PE,,Camera di Commercio Americana (AmCham) — membro AACCLA
-🏢 Registri Aziendali & Corporate Intelligence,Camere di Commercio,VenAmCham (Venezuela),https://www.venamcham.org,,ES,VE,,Camera di Commercio Americana (AmCham) — membro AACCLA
-🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,Buró de Crédito,https://www.burodecredito.com.mx,,ES,MX,,Credit bureau — Messico
 🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,ALIDE,https://www.alide.org.pe,,ES,PE,,Assoc. latinoam. istituzioni finanziarie per sviluppo — Risk/Credit
 🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,BIIA (Business Information Industry Association),https://www.biia.com,,,,,Associazione settore business information — Globale
-🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,Coface,https://www.coface.com,,FR,FR,,Risk economico — Francia
+🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,Buró de Crédito,https://www.burodecredito.com.mx,,ES,MX,,Credit bureau — Messico
 🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,CFPB — Consumer Reporting Companies List,https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/consumer-reporting-companies/companies-list/,,,,,Elenco ufficiale credit bureau USA — CFPB — Database
+🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,Coface,https://www.coface.com,,FR,FR,,Risk economico — Francia
 🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,Confcommercio Milano,https://www.confcommerciomilano.it,,IT,IT,,Associazione commercio Milano — Reti imprese · Italia
 🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,CRIBIS,https://www.cribis.com/it,,IT,IT,,Business information e credit risk Italia — Gruppo CRIF
 🏢 Registri Aziendali & Corporate Intelligence,Risk Management & Business Intelligence,CTOS Credit Malaysia,https://ctoscredit.com.my,,EN,MY,,Credit reporting agency — Malaysia
@@ -2819,8 +2819,8 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Copernicus Climate CDS,https://cds.climate.copernicus.eu,,,EU,,Gratuito — Clima EU
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Copernicus Climate Change,https://climate.copernicus.eu,,,EU,,Dati EU clima — Scienza
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Copernicus CLMS,https://land.copernicus.eu,,,EU,,Gratuito — Copertura suolo EU
-🔓 Open Data & Trasparenza,Portali Open Data & Database,Copernicus EU,https://www.copernicus.eu,,,EU,,Osservazione terra EU — Pubblico — Satellite
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Copernicus Data Space Ecosystem,https://dataspace.copernicus.eu,,,EU,Pubblico,"ESA immagini satellitari — portale ufficiale (sostituisce scihub, dismesso 11/2023) — Satellite"
+🔓 Open Data & Trasparenza,Portali Open Data & Database,Copernicus EU,https://www.copernicus.eu,,,EU,,Osservazione terra EU — Pubblico — Satellite
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Corriere Adriatico,https://www.corriereadriatico.it,https://www.corriereadriatico.it/rss,,IT-Marche,,Ancona — Locale
 🔓 Open Data & Trasparenza,Portali Open Data & Database,COVIP — Open Data,https://www.covip.it,,IT,IT,,Vigilanza fondi pensione — IODL 2.0
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Dados.gov.br,https://dados.gov.br,,PT,BR,,Gratuito
@@ -2893,6 +2893,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔓 Open Data & Trasparenza,Portali Open Data & Database,IMF Data,https://www.imf.org/en/Data,,,Globale,Pubblico,Dati finanziari — Database
 🔓 Open Data & Trasparenza,Portali Open Data & Database,INAIL — Open Data,https://dati.inail.it,,IT,IT,,Infortuni e malattie professionali — IODL 2.0
 🔓 Open Data & Trasparenza,Portali Open Data & Database,InfluenceWatch,https://www.influencewatch.org,,EN,US,,USA
+🔓 Open Data & Trasparenza,Portali Open Data & Database,INFORM Risk Index,https://drmkc.jrc.ec.europa.eu/inform-index,,EN,Globale,,"Indice rischio umanitario per paese (JRC-EU), aggiornamento annuale"
 🔓 Open Data & Trasparenza,Portali Open Data & Database,INPS — Open Data,https://www.inps.it,,IT,IT,,"Pensioni, CIG, contributi — IODL 2.0"
 🔓 Open Data & Trasparenza,Portali Open Data & Database,International Aid Transparency,https://iatistandard.org/en/iati-tools-and-resources,,,,,Standard trasparenza aiuti allo sviluppo — Gratuito
 🔓 Open Data & Trasparenza,Portali Open Data & Database,International Budget Partnership,https://internationalbudget.org,,,,,Bilanci — ONG — Bilanci pubblici — Gratuito
@@ -2981,7 +2982,6 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔓 Open Data & Trasparenza,Portali Open Data & Database,World Justice Project,https://worldjusticeproject.org,,,,,Rule of law — Org.
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Zenodo,https://zenodo.org,,,CH,,CERN — Accademia — Gratuito — Repository CERN per dati e pubblicazioni scientifiche
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Zero Day Initiative,https://www.zerodayinitiative.com,,,,,Trend Micro — Vulnerabilità
-🔓 Open Data & Trasparenza,Portali Open Data & Database,INFORM Risk Index,https://drmkc.jrc.ec.europa.eu/inform-index,,EN,Globale,,"Indice rischio umanitario per paese (JRC-EU), aggiornamento annuale"
 🔓 Open Data & Trasparenza,Gazzette Ufficiali & Legislazione,Andorra — BOPA,https://www.bopa.ad,,CA,AD,,Bollettino ufficiale andorrano
 🔓 Open Data & Trasparenza,Gazzette Ufficiali & Legislazione,Argentina — Boletín Oficial,https://www.boletinoficial.gob.ar,,ES,AR,,Gazzetta ufficiale argentina
 🔓 Open Data & Trasparenza,Gazzette Ufficiali & Legislazione,Australia — Federal Register of Legislation,https://www.legislation.gov.au,,EN,AU,,Legislazione federale
@@ -3077,10 +3077,12 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",BDAP (Banca Dati AP),https://bdap-opendata.rgs.mef.gov.it,,IT,IT,Gratuito,Gratuito — Bilanci enti locali e PA
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",Camera dei Deputati,https://www.camera.it,,IT,IT,,Parlamento IT — Italia
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",CIA FOIA,https://www.cia.gov/library/readingroom,,EN,US,Pubblico,Documenti CIA declassificati — Archivio
+🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",Contracts Finder (UK),https://www.contractsfinder.service.gov.uk,,EN,GB,,Portale appalti pubblici UK (contratti >£10.000)
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",Copernicus Browser,https://browser.dataspace.copernicus.eu,,,EU,,Gratuito — Immagini satellitari ESA (nuovo portale 2024) — Satellite
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",Court of Justice EU,https://curia.europa.eu,,,EU,,Giustizia UE
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",EEA Data,https://www.eea.europa.eu/data-and-maps,,,,,Gratuito — Dati ambientali Agenzia Europea Ambiente — Portale
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",ENISA,https://www.enisa.europa.eu,,,EU,,Agenzia sicurezza UE — ENISA EU — CERT
+🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",EU Funding & Tenders Portal,https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/home,,EN,EU,,"Bandi e opportunità di finanziamento UE, accesso a tutti i programmi"
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",EU Integrity Watch,https://integritywatch.eu,,,EU,Pubblico,Gratuito — Pubblico — Conflitti interesse parlamento UE
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",EU TED (appalti),https://ted.europa.eu,,,EU,Pubblico,Appalti UE — Appalti pubblici europei — Database
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",Europa.eu Legislation,https://eur-lex.europa.eu,,,EU,,Legislazione UE — Pubblico — Database
@@ -3107,11 +3109,9 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",SIOPE – Finanza Locale,https://www.siope.it,,IT,IT,Gratuito,Gratuito — Incassi e pagamenti tesoreria enti pubblici
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",Sunlight Foundation,https://sunlightfoundation.com,,,,,Trasparenza governativa — Pubblico — Risorse — ONG
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",Transparency Intl. Italia,https://www.transparency.it,,IT,IT,,Anti-corruzione IT — Italia
+🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",USASpending.gov,https://www.usaspending.gov,,EN,US,,"Spesa federale USA: contratti, sussidi, prestiti — open data"
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",WhatDoTheyKnow UK,https://www.whatdotheyknow.com,,EN,GB,Pubblico,FOIA UK — Database
 🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",WTO Data,https://stats.wto.org,,,Globale,,"Commercio mondiale, tariffe, dispute — Gratuito — Portale ufficiale"
-🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",Contracts Finder (UK),https://www.contractsfinder.service.gov.uk,,EN,GB,,Portale appalti pubblici UK (contratti >£10.000)
-🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",EU Funding & Tenders Portal,https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/home,,EN,EU,,"Bandi e opportunità di finanziamento UE, accesso a tutti i programmi"
-🔓 Open Data & Trasparenza,"Istituzioni, Trasparenza & Open Government",USASpending.gov,https://www.usaspending.gov,,EN,US,,"Spesa federale USA: contratti, sussidi, prestiti — open data"
 🔓 Open Data & Trasparenza,Parlamenti & Organi Elettorali,Abgeordnetenwatch,https://www.abgeordnetenwatch.de,,DE,DE,,Monitoraggio eletti tedeschi
 🔓 Open Data & Trasparenza,Parlamenti & Organi Elettorali,ACE Electoral Knowledge Network,https://aceproject.org,,EN/Multi,Globale,,Enciclopedia amministrazione elettorale
 🔓 Open Data & Trasparenza,Parlamenti & Organi Elettorali,AEC — Australian Electoral Commission,https://www.aec.gov.au,,EN,AU,,Commissione elettorale australiana
@@ -3810,6 +3810,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🧩 Settori Specifici,"Finanza, Economia & Business",Global Financial Integrity,https://gfintegrity.org,,EN,US,,Flussi illeciti — Research
 🧩 Settori Specifici,"Finanza, Economia & Business",Harvard Business Review,https://hbr.org,,EN,US,,Management — USA
 🧩 Settori Specifici,"Finanza, Economia & Business",IMF Blog,https://www.imf.org/en/Blogs,,,Globale,,Org.
+🧩 Settori Specifici,"Finanza, Economia & Business",IMF Finances,https://finances.worldbank.org,,,Globale,Gratuito,Dati finanziari storici dal 1984 — Gratuito
 🧩 Settori Specifici,"Finanza, Economia & Business",Inc. Magazine,https://www.inc.com,,EN,US,,Startup e business — USA
 🧩 Settori Specifici,"Finanza, Economia & Business",Investing.com,https://www.investing.com,,,Globale,,Dati mercati
 🧩 Settori Specifici,"Finanza, Economia & Business",Investopedia,https://www.investopedia.com,,EN,US,,Education
@@ -3822,7 +3823,9 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🧩 Settori Specifici,"Finanza, Economia & Business",Motley Fool,https://www.fool.com,,,,Community,Analisi e formazione sugli investimenti — USA
 🧩 Settori Specifici,"Finanza, Economia & Business",NBER,https://www.nber.org,,EN,US,,Ricerca economica — USA
 🧩 Settori Specifici,"Finanza, Economia & Business",Nextdraft,https://nextdraft.com,,,,,Dave Pell cura — Newsletter
+🧩 Settori Specifici,"Finanza, Economia & Business",OCSE Data Explorer,https://data-explorer.oecd.org,,,Globale,,"Economie OCSE: lavoro, commercio, istruzione — Gratuito — Portale ufficiale"
 🧩 Settori Specifici,"Finanza, Economia & Business",OECD Data,https://data.oecd.org,,,Globale,Pubblico,Paesi OCSE — Database
+🧩 Settori Specifici,"Finanza, Economia & Business",OECD Tax Stats,https://stats.oecd.org/index.aspx?DataSetCode=REV,,,Globale,,Gratuito — Fiscalità
 🧩 Settori Specifici,"Finanza, Economia & Business",Pitchbook,https://pitchbook.com,,,,,Database — VC/PE
 🧩 Settori Specifici,"Finanza, Economia & Business",Project Syndicate,https://www.project-syndicate.org,,,Globale,,Opinion economia
 🧩 Settori Specifici,"Finanza, Economia & Business",Reuters Business,https://www.reuters.com/business,,EN,GB,,Wire
@@ -3832,9 +3835,6 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🧩 Settori Specifici,"Finanza, Economia & Business",Wall Street Journal,https://www.wsj.com,,EN,US,,Business USA
 🧩 Settori Specifici,"Finanza, Economia & Business",World Bank Blogs,https://blogs.worldbank.org,,,Globale,,Org.
 🧩 Settori Specifici,"Finanza, Economia & Business",World Bank News,https://www.worldbank.org/en/news,https://www.worldbank.org/en/news/rss.xml,EN,Globale,,Istituzionale
-🧩 Settori Specifici,"Finanza, Economia & Business",IMF Finances,https://finances.worldbank.org,,,Globale,Gratuito,Dati finanziari storici dal 1984 — Gratuito
-🧩 Settori Specifici,"Finanza, Economia & Business",OCSE Data Explorer,https://data-explorer.oecd.org,,,Globale,,"Economie OCSE: lavoro, commercio, istruzione — Gratuito — Portale ufficiale"
-🧩 Settori Specifici,"Finanza, Economia & Business",OECD Tax Stats,https://stats.oecd.org/index.aspx?DataSetCode=REV,,,Globale,,Gratuito — Fiscalità
 🧩 Settori Specifici,Autorità di Vigilanza Finanziaria & Regolatori,Argentina — CNV,https://www.argentina.gob.ar/cnv,,ES,AR,,Comisión Nacional de Valores
 🧩 Settori Specifici,Autorità di Vigilanza Finanziaria & Regolatori,Australia — APRA,https://www.apra.gov.au,,EN,AU,,Vigilanza prudenziale bancaria/assicurativa
 🧩 Settori Specifici,Autorità di Vigilanza Finanziaria & Regolatori,Austria — FMA,https://www.fma.gv.at,,DE/EN,AT,,Autorità mercati finanziari austriaca
@@ -3903,8 +3903,8 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🧩 Settori Specifici,"AI, LLM & Ricerca Scientifica",Adobe Firefly,https://firefly.adobe.com,,,,Freemium,Creative AI
 🧩 Settori Specifici,"AI, LLM & Ricerca Scientifica",AI21 Labs,https://www.ai21.com,,,,Freemium,LLM API
 🧩 Settori Specifici,"AI, LLM & Ricerca Scientifica",Aider,https://aider.chat,,,,Open Source,CLI — AI Code
-🧩 Settori Specifici,"AI, LLM & Ricerca Scientifica",Anthropic Console,https://console.anthropic.com,,,,,Dev platform — A pagamento — API
 🧩 Settori Specifici,"AI, LLM & Ricerca Scientifica",Anthropic API,https://www.anthropic.com/api,,,,A pagamento,Claude — API
+🧩 Settori Specifici,"AI, LLM & Ricerca Scientifica",Anthropic Console,https://console.anthropic.com,,,,,Dev platform — A pagamento — API
 🧩 Settori Specifici,"AI, LLM & Ricerca Scientifica",AnythingLLM,https://anythingllm.com,,,,Open Source,RAG privato — RAG App
 🧩 Settori Specifici,"AI, LLM & Ricerca Scientifica",AssemblyAI,https://www.assemblyai.com,,,,,Trascrizione + analisi — Freemium — Audio AI
 🧩 Settori Specifici,"AI, LLM & Ricerca Scientifica",Beautiful.ai,https://www.beautiful.ai,,,,Freemium,Presentazioni
@@ -3995,6 +3995,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🧩 Settori Specifici,"Automazione, Dev & Produttività",Appwrite,https://appwrite.io,,,,Open Source,Backend
 🧩 Settori Specifici,"Automazione, Dev & Produttività",Asana,https://asana.com,,,,Freemium,Project mgmt
 🧩 Settori Specifici,"Automazione, Dev & Produttività",Asharq Al-Awsat,https://english.aawsat.com,,EN/AR,Pan-Arab,,Pan-Arab KSA
+🧩 Settori Specifici,"Automazione, Dev & Produttività",Awesome Public Datasets,https://github.com/awesomedata/awesome-public-datasets,,,,,Lista curata di dataset pubblici per tema — Gratuito — Lista GitHub
 🧩 Settori Specifici,"Automazione, Dev & Produttività",AWS Bedrock,https://aws.amazon.com/bedrock,,,,A pagamento,Amazon — API
 🧩 Settori Specifici,"Automazione, Dev & Produttività",Baserow,https://baserow.io,,,,Open Source,No-code DB
 🧩 Settori Specifici,"Automazione, Dev & Produttività",BeautifulSoup4,https://pypi.org/project/beautifulsoup4,,,,,HTML parsing — Open Source — Python lib
@@ -4134,7 +4135,6 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🧩 Settori Specifici,"Automazione, Dev & Produttività",Windmill,https://www.windmill.dev,,,,Open Source,Script e workflow — Dev Platform
 🧩 Settori Specifici,"Automazione, Dev & Produttività",Zapier,https://zapier.com,,,,Freemium,Workflow no-code — Automazione
 🧩 Settori Specifici,"Automazione, Dev & Produttività",Zotero,https://www.zotero.org,,,,Open Source,Ricerca — Reference
-🧩 Settori Specifici,"Automazione, Dev & Produttività",Awesome Public Datasets,https://github.com/awesomedata/awesome-public-datasets,,,,,Lista curata di dataset pubblici per tema — Gratuito — Lista GitHub
 🧩 Settori Specifici,Borse Valori & Mercati,ADX — Abu Dhabi Securities Exchange,https://www.adx.ae,,AR/EN,AE,,Borsa di Abu Dhabi
 🧩 Settori Specifici,Borse Valori & Mercati,ASE — Amman Stock Exchange,https://www.ase.com.jo,,AR/EN,JO,,Borsa giordana
 🧩 Settori Specifici,Borse Valori & Mercati,ASX — Australian Securities Exchange,https://www.asx.com.au,,EN,AU,,Borsa australiana
@@ -4666,8 +4666,8 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🧩 Settori Specifici,Agricoltura & Sicurezza Alimentare,IPPC,https://www.ippc.int,,EN,Globale,,Convenzione protezione piante
 🧩 Settori Specifici,Agricoltura & Sicurezza Alimentare,IRRI — International Rice Research Institute,https://www.irri.org,,EN,Globale,,Ricerca riso globale — sicurezza alimentare Asia
 🧩 Settori Specifici,Agricoltura & Sicurezza Alimentare,MASAF,https://www.masaf.gov.it,,IT,IT,,Ministero agricoltura italiano
-🧩 Settori Specifici,Agricoltura & Sicurezza Alimentare,USDA ERS — Economic Research Service,https://www.ers.usda.gov,,EN,US,,Ricerca economica settore agricolo USA
 🧩 Settori Specifici,Agricoltura & Sicurezza Alimentare,USDA,https://www.usda.gov,,EN,US,,"Dipartimento agricoltura USA, WASDE"
+🧩 Settori Specifici,Agricoltura & Sicurezza Alimentare,USDA ERS — Economic Research Service,https://www.ers.usda.gov,,EN,US,,Ricerca economica settore agricolo USA
 🧩 Settori Specifici,Agricoltura & Sicurezza Alimentare,Wageningen UR,https://www.wur.nl,,NL/EN,NL,,Università e ricerca agroalimentare
 🧩 Settori Specifici,Agricoltura & Sicurezza Alimentare,WAHIS — WOAH Animal Disease Data,https://wahis.woah.org,,EN,Globale,,Database sorveglianza malattie animali WOAH
 🧩 Settori Specifici,Agricoltura & Sicurezza Alimentare,WOAH — Organizzazione mondiale sanità animale,https://www.woah.org,,EN/FR,Globale,,"Ex OIE, epidemie animali"
@@ -4735,8 +4735,8 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🧩 Settori Specifici,"Cultura, Arte & Patrimonio",Musei Vaticani,https://www.museivaticani.va,,IT/EN,VA,,Musei Vaticani
 🧩 Settori Specifici,"Cultura, Arte & Patrimonio",Museo del Prado,https://www.museodelprado.es,,ES/EN,ES,,"Museo, collezione online"
 🧩 Settori Specifici,"Cultura, Arte & Patrimonio",Rijksmuseum,https://www.rijksmuseum.nl,,NL/EN,NL,,"Museo, Rijksstudio open data"
-🧩 Settori Specifici,"Cultura, Arte & Patrimonio",Smithsonian Open Access,https://www.si.edu/openaccess,,EN,US,,Collezioni Smithsonian in open access — 4.5M oggetti digitali
 🧩 Settori Specifici,"Cultura, Arte & Patrimonio",Smithsonian,https://www.si.edu,,EN,US,,Rete musei e open access
+🧩 Settori Specifici,"Cultura, Arte & Patrimonio",Smithsonian Open Access,https://www.si.edu/openaccess,,EN,US,,Collezioni Smithsonian in open access — 4.5M oggetti digitali
 🧩 Settori Specifici,"Cultura, Arte & Patrimonio",Tate,https://www.tate.org.uk,,EN,GB,,Galleria nazionale arte britannica — archivio
 🧩 Settori Specifici,"Cultura, Arte & Patrimonio",The Art Newspaper,https://www.theartnewspaper.com,,EN,Globale,,News mondo dell'arte
 🧩 Settori Specifici,"Cultura, Arte & Patrimonio",The Met,https://www.metmuseum.org,,EN,US,,"Metropolitan Museum, open access"
