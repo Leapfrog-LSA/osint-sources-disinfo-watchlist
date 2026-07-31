@@ -1636,7 +1636,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Medio Oriente & Nord Africa (MENA),Gulf News,https://gulfnews.com,https://gulfnews.com/rss,EN,AE,,Dubai
 📰 Media & Testate Giornalistiche,Medio Oriente & Nord Africa (MENA),Gulf Times,https://www.gulf-times.com,,EN,QA,,Qatar — quotidiano anglofono
 📰 Media & Testate Giornalistiche,Medio Oriente & Nord Africa (MENA),Haaretz English,https://www.haaretz.com,https://www.haaretz.com/rss/feed.xml,EN,IL,,Israele
-📰 Media & Testate Giornalistiche,Medio Oriente & Nord Africa (MENA),HRANA Iran,https://www.en-hrana.org,https://www.en-hrana.org/feed/,HR,IR,,Iran
+📰 Media & Testate Giornalistiche,Medio Oriente & Nord Africa (MENA),HRANA Iran,https://www.en-hrana.org,https://www.en-hrana.org/feed/,EN,IR,,Iran
 📰 Media & Testate Giornalistiche,Medio Oriente & Nord Africa (MENA),Hürriyet,https://www.hurriyet.com.tr,,TR,TR,,Turchia — quotidiano principale
 📰 Media & Testate Giornalistiche,Medio Oriente & Nord Africa (MENA),i24NEWS,https://www.i24news.tv,,EN/FR/AR,IL,,Israele — all-news internazionale
 📰 Media & Testate Giornalistiche,Medio Oriente & Nord Africa (MENA),Iran Focus,https://iranfocus.com,https://iranfocus.com/feed/,,IR,,Diaspora inv. — Iran
@@ -3318,7 +3318,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,Carnegie Endowment,https://carnegieendowment.org,,EN,US,,Policy internazionale — USA
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,Cato Institute,https://www.cato.org,,EN,US,,Libertarismo — USA
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,CEBRI,https://cebri.org,,PT/EN,BR,,Centro Brasileiro de Relações Internacionais
-🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,Center for Human Rights Iran,https://iranhumanrights.org,https://iranhumanrights.org/feed/,HR,IR,,Iran
+🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,Center for Human Rights Iran,https://iranhumanrights.org,https://iranhumanrights.org/feed/,EN,IR,,Iran
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,CEPR,https://cepr.org,,UK,GB,,Economia e policy
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,CEPS,https://www.ceps.eu,,EN,EU,,Centre for European Policy Studies
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,CeSPI,https://www.cespi.it,,IT,IT,,Cooperazione internazionale — Italia
@@ -3813,7 +3813,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🧩 Settori Specifici,"Finanza, Economia & Business",Inc. Magazine,https://www.inc.com,,EN,US,,Startup e business — USA
 🧩 Settori Specifici,"Finanza, Economia & Business",Investing.com,https://www.investing.com,,,Globale,,Dati mercati
 🧩 Settori Specifici,"Finanza, Economia & Business",Investopedia,https://www.investopedia.com,,EN,US,,Education
-🧩 Settori Specifici,"Finanza, Economia & Business",Korn Ferry Insights,https://www.kornferry.com/insights,,HR,US,,
+🧩 Settori Specifici,"Finanza, Economia & Business",Korn Ferry Insights,https://www.kornferry.com/insights,,EN,US,,
 🧩 Settori Specifici,"Finanza, Economia & Business",MarketWatch,https://www.marketwatch.com,,EN,US,,Mercati USA — News
 🧩 Settori Specifici,"Finanza, Economia & Business",McKinsey Insights,https://www.mckinsey.com/insights,,EN,US,A pagamento,Consulting — Globale
 🧩 Settori Specifici,"Finanza, Economia & Business",Microsoft Security Blog,https://www.microsoft.com/en-us/security/blog,,,US,,Microsoft — Microsoft threats — Threat intel
