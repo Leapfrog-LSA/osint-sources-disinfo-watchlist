@@ -15,11 +15,11 @@ They are kept in the same repo because they're produced and maintained together 
 
 ## `Fonti_OSINT_v.0.1.csv`
 
-4,974 sources across 12 macro-categories:
+4,975 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
-| Media & Testate Giornalistiche | 2,103 |
+| Media & Testate Giornalistiche | 2,104 |
 | Settori Specifici (AI/dev tools, finance, sector-specific) | 1,200 |
 | Open Data & Trasparenza | 472 |
 | Statistiche & Dati Macroeconomici | 372 |

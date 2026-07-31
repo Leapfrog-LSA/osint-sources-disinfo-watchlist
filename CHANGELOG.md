@@ -11,6 +11,10 @@ structure or to the meaning of an existing column.
 
 ### Added
 
+- **gNews — Ministero della Giustizia** (`gnewsonline.it`), the Italian Ministry
+  of Justice's daily, with its RSS feed. Verified as the ministry's own outlet:
+  `giustizia.it` embeds its content and links to it directly.
+
 - `scripts/validate.py` and a GitHub Actions workflow that runs it on every
   push and pull request touching the data. Checks header and field count,
   required fields, URL format, duplicate URLs and domains, ISO 639 language
