@@ -37,6 +37,15 @@ structure or to the meaning of an existing column.
   disinformation is not a claim this list takes on suspicion alone.
 - Badges for CI status, release, stars and issues.
 
+### Changed
+
+- Moved 28 Middle Eastern outlets from the `Africa` subsection to
+  `Medio Oriente & Nord Africa (MENA)` — Lebanese, Jordanian, Syrian, Iranian,
+  Iraqi, Gulf, Israeli and Palestinian titles that had no African remit.
+  Publications that *cover* Africa from elsewhere (Jeune Afrique, Le Monde
+  Afrique, TRT Africa, Al Jazeera Africa and others) stay under `Africa`:
+  the subsection tracks editorial focus, not where a title is published.
+
 ### Fixed
 
 - **AmCham Mexico** pointed at `amcham.com`, a parked domain advertising itself
