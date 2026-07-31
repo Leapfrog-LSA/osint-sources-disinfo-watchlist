@@ -13,6 +13,35 @@ Two companion CSV datasets for open-source intelligence (OSINT) and due-diligenc
 
 They are kept in the same repo because they're produced and maintained together as part of the same research workflow, but they serve opposite purposes: one is a "trust these" list, the other is a "watch out for these" list.
 
+## Contents
+
+```
+Fonti_OSINT_v.0.1.csv        the source catalogue
+disinfo_sources_master.csv   the disinformation watchlist
+scripts/validate.py          checks both files; run before opening a PR
+CHANGELOG.md                 what changed, by release
+CONTRIBUTING.md              conventions and data-quality rules
+CITATION.cff                 citation metadata
+```
+
+Both files are UTF-8, comma-separated, with a header row and no index column. Every field is optional except `Macro-categoria`, `Sottosezione`, `Fonte` and `URL` — and, in the watchlist, `domain`, `campaign`, `source`, `evidence_level` and `cats_flag`.
+
+```python
+import pandas as pd
+
+sources = pd.read_csv("Fonti_OSINT_v.0.1.csv")
+italian_feeds = sources[
+    sources["Paese / Area"].eq("IT") & sources["RSS Feed"].notna()
+]
+```
+
+A multi-value field splits on `/`, and every token stands on its own:
+
+```python
+sources["Lingua"].str.split("/")          # "EN/FR" -> ["EN", "FR"]
+sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
+```
+
 ## `Fonti_OSINT_v.0.1.csv`
 
 4,979 sources across 12 macro-categories:
@@ -66,6 +95,7 @@ Optional fields are filled only where the value could be established from the so
 
 | Field | Filled |
 |---|---:|
+| `Note` | 100% |
 | `Paese / Area` | 89% |
 | `Lingua` | 81% |
 | `RSS Feed` | 21% |
@@ -120,8 +150,12 @@ It needs no dependencies beyond the Python standard library, and reports every p
 Changes are tracked in [`CHANGELOG.md`](CHANGELOG.md). Released versions are tagged, so a specific snapshot can be pinned:
 
 ```bash
-git clone --branch v0.1.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
+git clone --branch v0.2.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
 ```
+
+A major version bump would signal a change to the column structure or to the meaning of an existing column. Adding, correcting or reclassifying rows does not.
+
+> **On the filename:** `Fonti_OSINT_v.0.1.csv` keeps the name it had at first release. It does not track the release number — `v0.2.0` of this repository still contains a file called `…v.0.1.csv`. Use the git tag, not the filename, to know which snapshot you have.
 
 ## License and citation
 

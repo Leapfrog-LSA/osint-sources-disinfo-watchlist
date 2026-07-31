@@ -26,8 +26,8 @@ Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`
 - **Fonte**: the source's actual name, not a generic placeholder. Add a parenthetical qualifier when the name alone is ambiguous (e.g. `Al Jazeera English` vs `Al Jazeera Africa`).
 - **URL**: check it resolves before adding. No tracking parameters, no session-specific paths.
 - **RSS Feed**: only fill if the feed genuinely exists — check the page's `<link rel="alternate">` tags or a known `/feed`, `/rss.xml` path.
-- **Lingua / Paese / Area**: use ISO 639-1 (language) and ISO 3166-1 alpha-2 (country) codes. Only fill these when you have a real signal — the domain's ccTLD, an explicit statement on the site, or direct knowledge of the outlet. Don't default a country's official language onto every publication in it: plenty of national outlets publish in English (or another second language) for an international audience.
-- **Accesso**: what it costs to use — `Gratuito`, `Freemium`, `A pagamento`, `Open Source`, `Pubblico`, `Commerciale`. Not a content-type label.
+- **Lingua / Paese / Area**: see [the README](README.md#columns) for the exact forms each accepts — `Paese / Area` takes subdivisions (`IT-Lombardia`) and region labels (`Globale`, `MENA`) as well as country codes. Only fill these when you have a real signal: the domain's ccTLD, an explicit statement on the site, or direct knowledge of the outlet. Don't default a country's official language onto every publication in it — plenty of national outlets publish in English (or another second language) for an international audience.
+- **Accesso**: what it costs to use, not a content-type label. One of `Gratuito`, `Pubblico`, `Freemium`, `A pagamento`, `Open Source`, `Commerciale`, `Community`, `Premium`, `Enterprise`, `Self-hosted`, `Waitlist`.
 - **Note**: short, factual context — what the source covers, notable caveats, why it's included.
 
 ## Adding an entry to `disinfo_sources_master.csv`
@@ -37,6 +37,7 @@ Columns: `domain`, `impersonated_outlet`, `authentic_domain`, `country`, `tld`, 
 - **domain**: the disinformation/clone domain itself, not the outlet it imitates.
 - **authentic_domain**: the real outlet's domain, if this is an impersonation. `N/A` if it isn't imitating anyone specific.
 - **evidence_level**: how the entry was established — `forensic` (technical/infrastructure analysis, e.g. Qurium), `journalistic` (reported by a newsroom), `judicial` (court/law-enforcement action), `debunker` (fact-checking organization). Don't add an entry you can't back with at least one of these.
+- **cats_flag**: the classification — see [the README](README.md#columns-1) for the full list. Use `satire_recognizable` for declared satire and `suspected` when the attribution itself is weak; don't reach for `disinformation_clone` unless the entry really impersonates a specific outlet.
 - **attribution**: who's assessed to be behind it, and by whom — attribute the claim, don't state it as fact if the source itself calls it unconfirmed (see the existing `Doppelganger (linked)` row for how to flag weak attribution).
 - **notes**: anything a reader needs to correctly interpret the row — geo-fencing, takedown status, why the typo-squat pattern was flagged, etc.
 
