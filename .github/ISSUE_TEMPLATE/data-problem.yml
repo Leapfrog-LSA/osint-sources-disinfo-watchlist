@@ -21,7 +21,7 @@ body:
     attributes:
       label: Which file
       options:
-        - Fonti_OSINT_v.0.1.csv
+        - Fonti_OSINT.csv
         - disinfo_sources_master.csv
     validations:
       required: true

@@ -21,7 +21,7 @@ from urllib.parse import urlparse
 
 REPO = Path(__file__).resolve().parent.parent
 
-OSINT_CSV = REPO / "Fonti_OSINT_v.0.1.csv"
+OSINT_CSV = REPO / "Fonti_OSINT.csv"
 DISINFO_CSV = REPO / "disinfo_sources_master.csv"
 
 # --------------------------------------------------------------------------

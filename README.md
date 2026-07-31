@@ -8,7 +8,7 @@
 
 Two companion CSV datasets for open-source intelligence (OSINT) and due-diligence work:
 
-- **`Fonti_OSINT_v.0.1.csv`** — a curated catalogue of reliable, ongoing sources (media, open data, corporate registries, sanctions/PEP lists, cybersecurity intel, etc.)
+- **`Fonti_OSINT.csv`** — a curated catalogue of reliable, ongoing sources (media, open data, corporate registries, sanctions/PEP lists, cybersecurity intel, etc.)
 - **`disinfo_sources_master.csv`** — a watchlist of documented disinformation domains, impersonation clones, and fake-news networks
 
 They are kept in the same repo because they're produced and maintained together as part of the same research workflow, but they serve opposite purposes: one is a "trust these" list, the other is a "watch out for these" list.
@@ -16,7 +16,7 @@ They are kept in the same repo because they're produced and maintained together 
 ## Contents
 
 ```
-Fonti_OSINT_v.0.1.csv        the source catalogue
+Fonti_OSINT.csv              the source catalogue
 disinfo_sources_master.csv   the disinformation watchlist
 scripts/validate.py          checks both files; run before opening a PR
 CHANGELOG.md                 what changed, by release
@@ -29,7 +29,7 @@ Both files are UTF-8, comma-separated, with a header row and no index column. Ev
 ```python
 import pandas as pd
 
-sources = pd.read_csv("Fonti_OSINT_v.0.1.csv")
+sources = pd.read_csv("Fonti_OSINT.csv")
 italian_feeds = sources[
     sources["Paese / Area"].eq("IT") & sources["RSS Feed"].notna()
 ]
@@ -42,7 +42,7 @@ sources["Lingua"].str.split("/")          # "EN/FR" -> ["EN", "FR"]
 sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 ```
 
-## `Fonti_OSINT_v.0.1.csv`
+## `Fonti_OSINT.csv`
 
 4,979 sources across 12 macro-categories:
 
@@ -155,7 +155,9 @@ git clone --branch v0.2.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-
 
 A major version bump would signal a change to the column structure or to the meaning of an existing column. Adding, correcting or reclassifying rows does not.
 
-> **On the filename:** `Fonti_OSINT_v.0.1.csv` keeps the name it had at first release. It does not track the release number — `v0.2.0` of this repository still contains a file called `…v.0.1.csv`. Use the git tag, not the filename, to know which snapshot you have.
+Filenames carry no version number — the git tag is what identifies a snapshot, so the paths above stay stable across releases.
+
+> **Moved in v0.3.0:** the catalogue was renamed from `Fonti_OSINT_v.0.1.csv` to `Fonti_OSINT.csv`. Links to the old path resolve only up to the `v0.2.0` tag.
 
 ## License and citation
 

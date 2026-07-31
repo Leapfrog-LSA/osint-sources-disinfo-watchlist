@@ -18,7 +18,7 @@ This runs automatically on every pull request, so it's faster to catch problems 
 
 It checks structure and vocabularies — that a country code is *well-formed*, not that it's the *right* country. Accuracy is still on you; the rules below are what the checker can't verify.
 
-## Adding a source to `Fonti_OSINT_v.0.1.csv`
+## Adding a source to `Fonti_OSINT.csv`
 
 Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`, `Paese / Area`, `Accesso`, `Note`
 

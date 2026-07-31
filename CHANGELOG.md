@@ -9,6 +9,16 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Changed
+
+- **Renamed `Fonti_OSINT_v.0.1.csv` to `Fonti_OSINT.csv`.** The old name carried
+  a version that never moved, so a `v0.2.0` checkout still shipped a file called
+  `…v.0.1.csv`. The git tag identifies a snapshot; the filename no longer
+  pretends to. Filenames are now stable across releases.
+
+  **This breaks direct links to the old path.** Anything fetching the raw file
+  needs the new name, or can pin the `v0.2.0` tag to keep the old one.
+
 ## [0.2.0] — 2026-07-31
 
 Column structure is unchanged, so anything reading the previous release keeps
