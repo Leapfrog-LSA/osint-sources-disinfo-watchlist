@@ -9,6 +9,8 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-08-01
+
 ### Changed
 
 - Twenty-five outlets now state how they are owned or funded in their `Note`.
@@ -126,7 +128,8 @@ Initial release.
   satire networks, with attribution, documenting source and evidence level.
 - `README.md`, `CONTRIBUTING.md`, `LICENSE` (CC BY 4.0) and `.gitignore`.
 
-[Unreleased]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/releases/tag/v0.1.0
