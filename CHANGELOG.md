@@ -9,6 +9,28 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Changed
+
+- Twenty-five outlets now state how they are owned or funded in their `Note`.
+  The catalogue already used this convention for 134 rows (`agenzia di stato`,
+  `pubblica`, `USA governo`); these were the significant omissions — RT, Press
+  TV, CGTN, Xinhua, Al Jazeera, RFI and RFE/RL all carried only a country name.
+
+  Ownership was verified per outlet rather than assumed from the country, which
+  mattered: **i24NEWS** is privately held by Altice (Patrick Drahi), **Kompas**
+  by Kompas Gramedia, **Saudi Gazette** by the Okaz Organization and **Gulf
+  News** by Al Nisr Publishing — labelling any of them state media would have
+  been false. Conversely **Arab News** is not simply private: its publisher
+  SRMG is controlled through funds tracing to the Saudi sovereign wealth fund.
+
+  The notes keep three distinctions the catalogue already made, because
+  collapsing them would misinform: an organ of the state (Xinhua), a public
+  broadcaster with statutory independence (RFI, RFE/RL), and a private outlet
+  aligned with power. Where ownership rests on investigative reporting rather
+  than public record — Egypt Today and Youm7, traced to intelligence-linked
+  vehicles — the note attributes the claim to Reporters Without Borders' Media
+  Ownership Monitor instead of asserting it.
+
 ### Added
 
 - Three chamber federations: **AACCLA** (the AmChams' own federation for Latin
