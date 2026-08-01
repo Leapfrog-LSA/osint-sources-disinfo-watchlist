@@ -150,7 +150,7 @@ It needs no dependencies beyond the Python standard library, and reports every p
 Changes are tracked in [`CHANGELOG.md`](CHANGELOG.md). Released versions are tagged, so a specific snapshot can be pinned:
 
 ```bash
-git clone --branch v0.2.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
+git clone --branch v0.4.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
 ```
 
 A major version bump would signal a change to the column structure or to the meaning of an existing column. Adding, correcting or reclassifying rows does not.
