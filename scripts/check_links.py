@@ -31,6 +31,7 @@ Standard library only — no dependencies to install.
 
 import csv
 import datetime as dt
+import http.cookiejar
 import json
 import os
 import random
@@ -40,6 +41,7 @@ import ssl
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from collections import defaultdict, namedtuple
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -72,6 +74,23 @@ MAX_WORKERS = 25
 MAX_BODY_BYTES = 200_000
 
 SSL_CONTEXT = ssl.create_default_context()
+
+# A shared cookie jar so a redirect chain that gates on a consent/session
+# cookie (common on EU institutional and Swiss news sites) can complete
+# instead of looping forever — CookieJar is documented as thread-safe.
+OPENER = urllib.request.build_opener(
+    urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()),
+    urllib.request.HTTPSHandler(context=SSL_CONTEXT),
+)
+
+# A handful of sites still use a client-side meta-refresh instead of an
+# HTTP redirect. urllib has no reason to follow that on its own, so a
+# small stub body would otherwise look empty/parked even though the page
+# is alive — chase it exactly one hop further.
+META_REFRESH_RE = re.compile(
+    r'<meta[^>]+http-equiv=["\']?refresh["\']?[^>]+content=["\'][^;]*;\s*url=([^"\'>]+)',
+    re.IGNORECASE,
+)
 
 # Status codes typical of anti-bot / rate-limit responses rather than a
 # genuinely missing page.
@@ -175,7 +194,7 @@ def classify_response(status, headers, body_bytes):
         detail = f"HTTP {status}" + (f", matched anti-bot marker {bot_hit!r}" if bot_hit else "")
         return Attempt("blocked", status, detail)
 
-    if 200 <= status < 400:
+    if 200 <= status < 300:
         parked_hit = next((m for m in PARKED_MARKERS if m in text), None)
         if parked_hit:
             return Attempt("parked", status, f"HTTP {status}, matched parked-domain marker {parked_hit!r}")
@@ -184,11 +203,25 @@ def classify_response(status, headers, body_bytes):
             return Attempt("parked", status, f"HTTP {status}, body is empty or near-empty ({len(body_bytes)} bytes)")
         return Attempt("success", status, f"HTTP {status}")
 
+    if 300 <= status < 400:
+        # A redirect chain that never lands on a final page — with cookies
+        # enabled in fetch_once, that's usually a loop urllib gave up on,
+        # not evidence the destination is gone.
+        return Attempt("blocked", status, f"HTTP {status}, redirect never reached a final page — needs a manual check")
+
     return Attempt("http_error", status, f"HTTP {status}")
 
 
-def fetch_once(url, user_agent, timeout):
-    req = urllib.request.Request(
+def _meta_refresh_target(base_url, body_bytes):
+    text = body_bytes.decode("utf-8", errors="replace")
+    match = META_REFRESH_RE.search(text)
+    if not match:
+        return None
+    return urllib.parse.urljoin(base_url, match.group(1).strip().strip("'\""))
+
+
+def _request(url, user_agent):
+    return urllib.request.Request(
         url,
         headers={
             "User-Agent": user_agent,
@@ -196,9 +229,25 @@ def fetch_once(url, user_agent, timeout):
             "Accept-Language": "en-US,en;q=0.9,it;q=0.8",
         },
     )
+
+
+def fetch_once(url, user_agent, timeout):
+    req = _request(url, user_agent)
     try:
-        with urllib.request.urlopen(req, timeout=timeout, context=SSL_CONTEXT) as resp:
-            return classify_response(resp.status, resp.headers, resp.read(MAX_BODY_BYTES))
+        with OPENER.open(req, timeout=timeout) as resp:
+            status, headers, final_url = resp.status, resp.headers, resp.geturl()
+            body = resp.read(MAX_BODY_BYTES)
+            if 200 <= status < 300:
+                stripped = re.sub(r"\s+", "", body.decode("utf-8", errors="replace"))
+                if len(stripped) < 500:
+                    target = _meta_refresh_target(final_url, body)
+                    if target and target != final_url:
+                        try:
+                            with OPENER.open(_request(target, user_agent), timeout=timeout) as resp2:
+                                return classify_response(resp2.status, resp2.headers, resp2.read(MAX_BODY_BYTES))
+                        except Exception:
+                            pass  # fall through and classify the un-followed stub below
+            return classify_response(status, headers, body)
     except urllib.error.HTTPError as e:
         try:
             body = e.read(MAX_BODY_BYTES)
