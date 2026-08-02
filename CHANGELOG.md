@@ -15,6 +15,18 @@ structure or to the meaning of an existing column.
   **Hacker News**, which had none. Each was found by probing the domain already
   in the catalogue and confirming the response was a live feed — item count and
   most recent post date — rather than trusting the URL's shape.
+- `scripts/check_links.py` and a scheduled workflow
+  (`.github/workflows/link-check.yml`) that fetches every URL in both files
+  once a month, since `scripts/validate.py` only checks that a URL is
+  well-formed, not that it still resolves, and nothing was watching the
+  over 6,000 live URLs between pushes. A failed request is retried up to three
+  times with a delay and a different browser identity before being reported,
+  so an anti-bot block doesn't get reported as a dead link; and a 200
+  response is only accepted if the body doesn't look like a parked or
+  for-sale page — the same failure mode that got past a plain status check
+  in `v0.2.0` (see below). Findings land as a comment on one recurring
+  issue rather than a new issue every run. The workflow only reports; it
+  never edits either CSV.
 
 ## [0.4.0] — 2026-08-01
 
