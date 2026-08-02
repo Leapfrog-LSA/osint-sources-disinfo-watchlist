@@ -49,7 +49,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Globali & Internazionali,DKAN,https://getdkan.org,,,,,Alternativa open source a CKAN basata su Drupal — Gratuito — Software/portale
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Documented NY,https://documentedny.com,,EN,US,,Immigrazione USA
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Dropsite News,https://www.dropsitenews.com,https://www.dropsitenews.com/feed,EN,US,,Investigativo USA
-📰 Media & Testate Giornalistiche,Globali & Internazionali,DW News,https://www.dw.com,,EN,DE,,Prospettiva tedesca
+📰 Media & Testate Giornalistiche,Globali & Internazionali,DW News,https://www.dw.com,https://rss.dw.com/xml/rss-en-all,EN,DE,,Prospettiva tedesca
 📰 Media & Testate Giornalistiche,Globali & Internazionali,El Nacional DR,https://elnacional.com.do,https://elnacional.com.do/rss/home.xml,ES,DO,,Quotidiano generalista — Repubblica Dominicana
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Emeequis,https://www.m-x.com.mx,,ES,MX,,Inv. — Messico
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Energymonitor.ai,https://energymonitor.ai,https://www.energymonitor.ai/feed/,,Globale,,Energia e transizione
@@ -58,7 +58,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Globali & Internazionali,EUfactcheck,https://eufactcheck.eu,https://eufactcheck.eu/feed/,,EU,,Fact-checking universitario (EJTA) — UE
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Euractiv,https://www.euractiv.com,,EN,BE,,UE policy
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Eurasia Group,https://www.eurasiagroup.net,,EN,US,,Rischio politico — USA
-📰 Media & Testate Giornalistiche,Globali & Internazionali,Euronews,https://www.euronews.com,,EN/IT,FR,,Prospettiva europea
+📰 Media & Testate Giornalistiche,Globali & Internazionali,Euronews,https://www.euronews.com,https://www.euronews.com/rss,EN/IT,FR,,Prospettiva europea
 📰 Media & Testate Giornalistiche,Globali & Internazionali,Expansión política MX,https://politica.expansion.mx,https://politica.expansion.mx/index.rss,ES,MX,,Messico
 📰 Media & Testate Giornalistiche,Globali & Internazionali,FactCheck.org,https://www.factcheck.org,https://www.factcheck.org/feed/,EN,US,,Fact-checking USA
 📰 Media & Testate Giornalistiche,Globali & Internazionali,FinanzaOnline,https://www.finanzaonline.com,https://www.finanzaonline.com/feed,IT,IT,,Community — Finanza
@@ -734,7 +734,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Europa Occidentale,Doğruluk Payı,https://dogrulukpayi.com,,TR,TR,,FC TR — Turchia
 📰 Media & Testate Giornalistiche,Europa Occidentale,DPA International,https://www.dpa-international.com,https://www.dpa-international.com/feed,EN,DE,,Wire Germania
 📰 Media & Testate Giornalistiche,Europa Occidentale,Dublin Live,https://www.dublinlive.ie,https://www.dublinlive.ie/rss.xml,EN,IE,,Irlanda
-📰 Media & Testate Giornalistiche,Europa Occidentale,DW English,https://www.dw.com/en,,EN,DE,,Germania
+📰 Media & Testate Giornalistiche,Europa Occidentale,DW English,https://www.dw.com/en,https://rss.dw.com/xml/rss-en-all,EN,DE,,Germania
 📰 Media & Testate Giornalistiche,Europa Occidentale,Eastern Daily Press,https://www.edp24.co.uk,,EN,GB,,"UK — East Anglia, Norwich"
 📰 Media & Testate Giornalistiche,Europa Occidentale,EFE Verifica,https://verifica.efe.com,https://verifica.efe.com/feed/,ES,ES,,FC ES — Spagna
 📰 Media & Testate Giornalistiche,Europa Occidentale,Efimerida ton Syntakton,https://www.efsyn.gr,,EL,GR,,Sinistra — Grecia
@@ -1339,7 +1339,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Africa,African Independent,https://www.africanindependent.com,,,ZA,,Online — Sud Africa
 📰 Media & Testate Giornalistiche,Africa,African Independent,https://www.africanindy.com,,EN,Pan-Africa,,"Testata/portale — Pan-Africa · fonte aggregatore, verifica consigliata"
 📰 Media & Testate Giornalistiche,Africa,African Manager,https://africanmanager.com,https://africanmanager.com/feed/,EN,Pan-Africa,,"Testata/portale — Pan-Africa · fonte aggregatore, verifica consigliata"
-📰 Media & Testate Giornalistiche,Africa,Africanews,https://www.africanews.com,,EN/FR,Pan-Africa,,News panafricane (gruppo Euronews) — Pan-Africa
+📰 Media & Testate Giornalistiche,Africa,Africanews,https://www.africanews.com,https://www.africanews.com/feed/,EN/FR,Pan-Africa,,News panafricane (gruppo Euronews) — Pan-Africa
 📰 Media & Testate Giornalistiche,Africa,Afrik.com,https://www.afrik.com,,FR,FR,,Pan-Africa online
 📰 Media & Testate Giornalistiche,Africa,Ahora EG,https://ahoraeg.com,https://ahoraeg.com/feed/,ES,GQ,,Guinea Equatoriale — testata indipendente
 📰 Media & Testate Giornalistiche,Africa,AIIJ Uganda,https://aiij.org,https://aiij.org/feed,,UG,,Inv. — Uganda
@@ -3677,7 +3677,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Free Press,https://www.freepress.net,,EN,US,,USA — Advocacy
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Google News,https://news.google.com,,,,,Google — App
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Ground News,https://ground.news,,,,,Bias comparazione — App
-📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Hacker News,https://news.ycombinator.com,,,,Community,Tech
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Hacker News,https://news.ycombinator.com,https://news.ycombinator.com/rss,EN,,Community,Tech
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Hard Fork (NYT),https://www.nytimes.com/column/hard-fork,,,,,Tech — Podcast
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Hardcore History,https://www.dancarlin.com,,,,,Storia — Podcast
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,How I Built This,https://www.npr.org/podcasts/510313/how-i-built-this,,,,,Imprenditoria — Podcast

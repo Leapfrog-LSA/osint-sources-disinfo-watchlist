@@ -9,6 +9,13 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- RSS feeds for **Euronews**, **Africanews**, **DW News**, **DW English** and
+  **Hacker News**, which had none. Each was found by probing the domain already
+  in the catalogue and confirming the response was a live feed — item count and
+  most recent post date — rather than trusting the URL's shape.
+
 ## [0.4.0] — 2026-08-01
 
 ### Changed

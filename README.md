@@ -98,7 +98,7 @@ Optional fields are filled only where the value could be established from the so
 | `Note` | 100% |
 | `Paese / Area` | 89% |
 | `Lingua` | 81% |
-| `RSS Feed` | 21% |
+| `RSS Feed` | 22% |
 | `Accesso` | 8% |
 
 `RSS Feed` and `Accesso` are sparse largely by nature: many entries are databases, portals and tools that publish no feed and have no single access tier.
