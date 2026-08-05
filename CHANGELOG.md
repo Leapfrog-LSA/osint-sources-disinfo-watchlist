@@ -28,6 +28,44 @@ structure or to the meaning of an existing column.
   issue rather than a new issue every run. The workflow only reports; it
   never edits either CSV.
 
+### Fixed
+
+- **RTS — Radio-televizija Srbije**'s `RSS Feed` cleared. It pointed at
+  `https://rss.html` — not a real domain, but RTS's own homepage markup
+  (a protocol-relative `rel=alternate` href with no host) copied verbatim.
+  The real target, `https://www.rts.rs/rss.html`, exists but returns a
+  completely empty RSS channel, and no working feed was found elsewhere
+  on the site.
+- Seven rows in `disinfo_sources_master.csv` — **Associazione Agitalia**,
+  **Avvocato Giacinto Canzona**, **Ermes Maiolica**, **Lorenzo Croce**,
+  **Proto Group**, **Senatore Cirenga**, **AIDAA** — had a person or
+  organization name in `domain` instead of a domain. Reading their
+  `notes`, none are clone/typo-squat sites; they document recurring hoax
+  subjects and personas from BUTAC/Bufalopedia (e.g. "Senatore Cirenga"
+  is the fictional senator from the "emendamento Cirenga" hoax), which
+  is worth keeping but isn't what `domain` means. `domain` is now `N/A`,
+  matching the convention `authentic_domain` already uses for "no
+  specific target," and the name moved into `notes`.
+  `scripts/validate.py`'s duplicate-domain check now exempts `N/A`, the
+  same way an empty field already is — seven rows sharing that literal
+  value was never a real collision.
+
+### Removed
+
+- 21 sources from `Fonti_OSINT.csv`, confirmed dead or parked by two
+  independent runs of `scripts/check_links.py` on different days —
+  `scripts/validate.py` had no way to catch these, since a parked-domain
+  page or an empty government portal still returns HTTP 200:
+  **Sci-Hub**, **Visão**, **World Chambers Federation (ICC)**,
+  **Central Bank of The Gambia**, **Dillinger News**, **Department of
+  Statistics** (Jordan), **INMETRO Brazil**, **National Institute of
+  Statistics (INS)** (Romania), **Media Observatory**, **Office
+  national de la statistique** (Mauritania), **Poligrafi**,
+  **Statistical Office of Slovenia (SURS)**, **W3C**, **Camera di
+  Commercio — Tunisia**, **Camera di Commercio — Angola**, **Lanka
+  Business Online**, **Luxembourg Times**, **Ojo Público**, **SupChina**,
+  **VERA Files**, **ReportUSA Albania**.
+
 ## [0.4.0] — 2026-08-01
 
 ### Changed
