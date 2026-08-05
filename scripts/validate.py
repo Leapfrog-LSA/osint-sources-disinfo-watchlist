@@ -217,7 +217,7 @@ def validate_disinfo(report):
                 report.error(dataset, line, column, "required field is empty")
 
         domain = row["domain"].strip().lower()
-        if domain:
+        if domain and domain != "n/a":
             if domain in seen_domains:
                 report.error(dataset, line, "domain",
                              f"duplicate of line {seen_domains[domain]}: {domain!r}")
