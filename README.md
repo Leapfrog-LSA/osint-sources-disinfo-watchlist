@@ -1,6 +1,7 @@
 # OSINT Sources & Disinformation Watchlist
 
 [![Validate datasets](https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/actions/workflows/validate.yml/badge.svg)](https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/actions/workflows/validate.yml)
+[![Monthly link check](https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/actions/workflows/link-check.yml/badge.svg)](https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/actions/workflows/link-check.yml)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Release](https://img.shields.io/github/v/release/Leapfrog-LSA/osint-sources-disinfo-watchlist)](https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/releases)
 [![Stars](https://img.shields.io/github/stars/Leapfrog-LSA/osint-sources-disinfo-watchlist)](https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/stargazers)
@@ -19,6 +20,7 @@ They are kept in the same repo because they're produced and maintained together 
 Fonti_OSINT.csv              the source catalogue
 disinfo_sources_master.csv   the disinformation watchlist
 scripts/validate.py          checks both files; run before opening a PR
+scripts/check_links.py       checks every URL still resolves; runs monthly in CI
 CHANGELOG.md                 what changed, by release
 CONTRIBUTING.md              conventions and data-quality rules
 CITATION.cff                 citation metadata
@@ -144,6 +146,25 @@ python scripts/validate.py
 ```
 
 It needs no dependencies beyond the Python standard library, and reports every problem it finds with a line number rather than stopping at the first.
+
+### Link checking
+
+`scripts/validate.py` checks that a URL is *well-formed* — it never fetches it. Whether a source is still live is checked separately, on a schedule, by [`scripts/check_links.py`](scripts/check_links.py) via [`.github/workflows/link-check.yml`](.github/workflows/link-check.yml), because dead links accumulate silently between pushes otherwise.
+
+Every URL in both files is fetched once a month. Two things make this different from a plain HTTP status check:
+
+- **A single failed request doesn't mean a link is dead.** Large sites routinely block automated clients. A URL that fails is retried up to three times, spaced out with a delay and a different browser identity each time, and a response that looks like an anti-bot challenge (Cloudflare, Akamai, PerimeterX and similar) is reported separately from one that never resolves at all — the two need different follow-up.
+- **HTTP 200 is not proof of life.** The response body is checked for parked-domain and for-sale pages, the same failure mode that got past a plain status check in `v0.2.0` (see [`CHANGELOG.md`](CHANGELOG.md)).
+
+Findings are posted to a single recurring issue (label `link-check`) rather than a fresh issue every run, so a URL that keeps failing month after month is visible in one place. The workflow never edits either CSV — a flagged row still needs a human to confirm it before removing or fixing it, per [`CONTRIBUTING.md`](CONTRIBUTING.md).
+
+Run it locally the same way:
+
+```bash
+python scripts/check_links.py
+```
+
+With no `GITHUB_TOKEN` set, it prints the findings and stops there.
 
 ## Versions
 
