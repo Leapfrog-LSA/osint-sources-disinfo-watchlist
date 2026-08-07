@@ -46,7 +46,7 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-4,961 sources across 12 macro-categories:
+5,040 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
@@ -57,11 +57,11 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 | Registri Aziendali & Corporate Intelligence | 254 |
 | Cybersecurity & Digital OSINT | 169 |
 | Geopolitica & Intelligence | 151 |
+| Fact-Checking & Disinformazione | 109 |
 | Social Media & Media Monitoring | 78 |
 | Sanzioni, PEP & Compliance | 67 |
 | Sostenibilità & ESG | 46 |
 | Diritti Umani & Giudiziario | 34 |
-| Fact-Checking & Disinformazione | 30 |
 
 ### Columns
 
@@ -100,8 +100,8 @@ Optional fields are filled only where the value could be established from the so
 | `Note` | 100% |
 | `Paese / Area` | 89% |
 | `Lingua` | 81% |
-| `RSS Feed` | 22% |
-| `Accesso` | 8% |
+| `RSS Feed` | 21% |
+| `Accesso` | 7% |
 
 `RSS Feed` and `Accesso` are sparse largely by nature: many entries are databases, portals and tools that publish no feed and have no single access tier.
 
