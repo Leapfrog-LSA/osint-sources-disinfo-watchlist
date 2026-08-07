@@ -65,11 +65,17 @@ OSINT_COLUMNS = [
 IFCN_API = "https://ifcn-cop-prod-server-8q9x7.ondigitalocean.app/api/organization/signatories"
 
 OPENSANCTIONS_INDEX = "https://data.opensanctions.org/datasets/latest/index.json"
+# "list.pep" is deliberately excluded: checked against this same index,
+# 115 of its 169 official-publisher datasets are national parliaments
+# (cited because their members are PEPs by virtue of holding office) —
+# every other tag here has at most one such case. Dropping that one tag
+# does more than any keyword list to keep parliaments out.
 OPENSANCTIONS_TAGS = {
-    "list.pep", "list.pep.bulk", "list.sanction", "list.sanction.counter",
+    "list.pep.bulk", "list.sanction", "list.sanction.counter",
     "list.sanction.eu", "list.wanted", "list.debarment", "list.enforcement",
 }
-# Best-effort only — catches common English legislature names, not every
+# Safety net for the handful of legislatures that still get through —
+# best-effort, catches common English/Romance-language names, not every
 # language. --source opensanctions output needs a human pass regardless.
 LEGISLATURE_KEYWORDS = [
     "parliament", "senate", "congress", "assembly", "chamber", "camera",
@@ -79,7 +85,10 @@ LEGISLATURE_KEYWORDS = [
     "kenesh", "khural", "rada", "sabor", "nationalrat", "landtag",
     "legislative", "diet", "shura", "mejlis", "jogorku", "verkhovna",
     "stortinget", "house of representatives", "house of commons",
-    "national assembly", "supreme council",
+    "national assembly", "supreme council", "riigikogu", "consiglio grande",
+    "majlisi", "national council of",  # e.g. "National Council of the Slovak
+    # Republic" — narrower than "council of the", which would also catch
+    # the legitimately relevant "Council of the European Union"
 ]
 
 SOURCES = {
