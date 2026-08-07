@@ -11,6 +11,24 @@ structure or to the meaning of an existing column.
 
 ### Added
 
+- 52 sanctions/AML/PEP authorities, growing `Sanzioni, PEP & Compliance`'s
+  `AML, Sanzioni & PEP` subsection from 52 to 104 rows. Second pilot of
+  `scripts/discover_candidates.py` (`--source opensanctions`), sourced
+  from OpenSanctions' own catalogue of the official publishers it
+  aggregates. That catalogue turned out to be far noisier than IFCN's:
+  a first pass tagged on `list.pep` pulled in national parliaments,
+  cited because their members are PEPs by holding office — 115 of 169
+  such datasets' publishers were legislatures, against at most one for
+  every other tag. Dropping `list.pep` (keeping the cleaner
+  `list.pep.bulk`) fixed that structurally; a keyword filter catches
+  the rest, but not every language (an English-only list won't stop
+  a Riigikogu or a 全国人民代表大会), so this source's output was reviewed
+  by hand rather than added on verification alone. Two more were
+  dropped by hand from the reviewed set: `Office of Foreign Assets
+  Control` pointing at the generic `treasury.gov` (redundant with the
+  two OFAC rows already in the catalogue, which point at OFAC's actual
+  tools) and `United States Navy` (not a plausible sanctions/PEP/AML
+  source).
 - 79 fact-checking organizations, growing `Fact-Checking & Disinformazione`
   from 30 to 109 rows. Discovered via `scripts/discover_candidates.py`, a
   pilot for growing the catalogue without lowering the bar for what goes

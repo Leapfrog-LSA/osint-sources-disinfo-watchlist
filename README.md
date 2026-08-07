@@ -46,7 +46,7 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-5,040 sources across 12 macro-categories:
+5,092 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
@@ -57,9 +57,9 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 | Registri Aziendali & Corporate Intelligence | 254 |
 | Cybersecurity & Digital OSINT | 169 |
 | Geopolitica & Intelligence | 151 |
+| Sanzioni, PEP & Compliance | 119 |
 | Fact-Checking & Disinformazione | 109 |
 | Social Media & Media Monitoring | 78 |
-| Sanzioni, PEP & Compliance | 67 |
 | Sostenibilità & ESG | 46 |
 | Diritti Umani & Giudiziario | 34 |
 
