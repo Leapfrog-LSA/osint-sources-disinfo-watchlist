@@ -11,6 +11,21 @@ structure or to the meaning of an existing column.
 
 ### Added
 
+- 79 fact-checking organizations, growing `Fact-Checking & Disinformazione`
+  from 30 to 109 rows. Discovered via `scripts/discover_candidates.py`, a
+  pilot for growing the catalogue without lowering the bar for what goes
+  into it: candidates come from the IFCN's own "Verified Signatory" list
+  (an already-curated directory, not open scraping), each one is fetched
+  for real and only kept if it resolves to actual content — of 84
+  candidates not already in the catalogue, 5 were rejected as dead or
+  parked, including `verafiles.org`, independently confirmed dead in the
+  removal below. Language and country are filled only from a signal on
+  the candidate's own page (an `<html lang>` attribute, a non-generic
+  ccTLD); everything else is left empty rather than guessed. One entry,
+  IFCN's plain **"Reuters"** pointing at `reutersagency.com` (their
+  corporate site, not a fact-check page), was renamed **Reuters Fact
+  Check** to avoid reading as a duplicate of the existing wire-service
+  **Reuters** row.
 - RSS feeds for **Euronews**, **Africanews**, **DW News**, **DW English** and
   **Hacker News**, which had none. Each was found by probing the domain already
   in the catalogue and confirming the response was a live feed — item count and
