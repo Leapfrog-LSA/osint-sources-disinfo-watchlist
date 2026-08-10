@@ -9,6 +9,36 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- Six sources found while cross-checking the maintainer's own browser
+  bookmarks against the catalogue, each verified live by
+  `scripts/check_links.py` before being added: **Agência Pública** (Brazilian
+  investigative nonprofit), **Il Dubbio** (Italian daily), **EU Scream** (EU
+  affairs newsletter/podcast), **Webz.io** (open/deep/dark web intelligence
+  feed) and **Tax Justice Network — Data Portal**. The sixth, **Ojo
+  Público**, is a re-addition: the bookmark pointed at `ojo-publico.com`,
+  not the `ojopublico.com` removed as dead in `v0.5.0` — a different
+  domain, confirmed to be the same outlet's current one by the page's own
+  title and description ("OjoPúblico | Periodismo de investigación").
+  `Tax Justice Network — Data Portal` (`data.taxjustice.net`) is a distinct
+  URL from the organization's main site already in the catalogue
+  (`taxjustice.net`, under `Settori Specifici`); both are kept pending a
+  decision on whether the data portal is redundant with the parent entry.
+
+  Seven other bookmarked sources could not be checked at all — this
+  environment's outbound proxy returned a 502 on the connection itself for
+  `thedial.media`, `rise.ro`, `westafricaleaks.org`, `lalista.news`,
+  `direktoro.media`, `ocindex.africa` and `centreforinformationresilience.org`,
+  consistently on retry, which is a sandbox-side failure rather than a
+  verdict on the sites — they're left out rather than guessed at either way.
+  An eighth, `osintcat.net`, returned HTTP 503 on all three attempts and
+  landed in the same "blocked, not proof of death" bucket link-checking
+  already uses. A ninth, `sassate.it`, resolves fine but doesn't
+  self-declare as satire or fit any existing category on inspection, so it
+  was left out rather than forced into `disinfo_sources_master.csv` or
+  `Fonti_OSINT.csv` without the evidence either would need.
+
 ## [0.5.0] — 2026-08-10
 
 ### Added
