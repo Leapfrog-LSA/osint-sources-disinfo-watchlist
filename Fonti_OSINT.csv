@@ -218,6 +218,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Africa Is a Country,https://africasacountry.com,https://africasacountry.com/feed/,EN,Pan-Africa,,Cultura e politica — Pan-Africa
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,African Arguments,https://africanarguments.org,https://africanarguments.org/feed/,EN,Pan-Africa,,Analisi politica — Pan-Africa
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Afrique XXI,https://afriquexxi.info,https://afriquexxi.info/spip.php?page=backend,FR,FR,,Investigativo AF — Africa Inv. FR
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Agência Pública,https://apublica.org,,PT,BR,,Giornalismo investigativo — Brasile
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Al-Monitor,https://www.al-monitor.com,https://www.al-monitor.com/rss,EN,US,,Medio Oriente — MENA
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,AllAfrica,https://allafrica.com,,EN,Pan-Africa,,Aggregatore notizie africane — Pan-Africa
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,AmaBhungane,https://amabhungane.org,https://amabhungane.org/feed/,EN,ZA,,"Corruzione, stato — Sudafrica"
@@ -331,6 +332,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,OCCRP,https://www.occrp.org,https://www.occrp.org/en/feed,EN,Globale,,Criminalità organizzata — Globale
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,OCCRP Aleph,https://aleph.occrp.org,,,,Freemium,"Documenti, aziende, persone — Registrazione (Pro) — Database"
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,OCCRP Data,https://data.occrp.org,,,,Pubblico,Dataset investigativi — Database
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Ojo Público,https://ojo-publico.com,,ES,PE,,"Investigativo peruviano — Perù. Dominio nuovo, successore di ojopublico.com, rimosso in v0.5.0 perché morto"
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Ojoconmipisto,https://ojoconmipisto.com,,ES,GT,,Finanza pubblica GT — Guatemala
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Open Democracy,https://www.opendemocracy.net,https://www.opendemocracy.net/rss/,UK,GB,,Democrazia e potere — UK/Globale
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Open Secrets Blog,https://www.opensecrets.org/news/feed,,EN,US,,Finanziamenti politici — USA
@@ -520,6 +522,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Italia,Il Cittadino MB,https://www.ilcittadinomb.it,,,IT-Lombardia,,Monza Brianza — Lombardia
 📰 Media & Testate Giornalistiche,Italia,Il Corriere del Veneto,https://corrieredelveneto.corriere.it,,,IT-Veneto,,Venezia CdS — Veneto
 📰 Media & Testate Giornalistiche,Italia,Il Corriere della Sera,https://www.corriere.it,https://www.corriere.it/rss/primo_piano.xml,IT,IT,,1° quotidiano — già in cat. 2 — Quotidiano
+📰 Media & Testate Giornalistiche,Italia,Il Dubbio,https://www.ildubbio.news,,IT,IT,,Giustizia e politica — Quotidiano
 📰 Media & Testate Giornalistiche,Italia,Il Fatto Quotidiano,https://www.ilfattoquotidiano.it,https://www.ilfattoquotidiano.it/feed/,IT,IT,,Investigativo — Quotidiano
 📰 Media & Testate Giornalistiche,Italia,Il Foglio,https://www.ilfoglio.it,https://www.ilfoglio.it/rss,IT,IT,,Liberale — Quotidiano
 📰 Media & Testate Giornalistiche,Italia,Il Friuli,https://www.ilfriuli.it,https://www.ilfriuli.it/feed/,IT,IT,,Friuli — settimanale e portale
@@ -2998,6 +3001,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔓 Open Data & Trasparenza,Portali Open Data & Database,SNPA — Protezione Ambiente,https://www.snpambiente.it,,IT,IT,,Sistema Nazionale Protezione Ambiente (L.132/2016) — dati ambientali ufficiali
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Socrata Open Data,https://dev.socrata.com/data,,EN,US,,"Portali città USA (Chicago, NYC, ecc.) — Gratuito — Piattaforma"
 🔓 Open Data & Trasparenza,Portali Open Data & Database,SSRN,https://www.ssrn.com,,,,,Pre-print — Accademia
+🔓 Open Data & Trasparenza,Portali Open Data & Database,Tax Justice Network — Data Portal,https://data.taxjustice.net,,EN,,,"Portale dati di Tax Justice Network (indice segretezza finanziaria) — organizzazione già in catalogo come taxjustice.net in Settori Specifici, dominio distinto"
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Technisette Toolkit,https://technisette.com/p/tools,,,,Pubblico,OSINT tools — Risorse
 🔓 Open Data & Trasparenza,Portali Open Data & Database,The Diplomat,https://thediplomat.com,,EN,Asia-Pacifico,,Geopolitica asiatica — Asia-Pacifico
 🔓 Open Data & Trasparenza,Portali Open Data & Database,They Work For You,https://www.theyworkforyou.com,,UK,GB,,Parlamento UK
@@ -3461,6 +3465,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,EFF,https://www.eff.org,,EN,US,,Diritti digitali — USA — ONG
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,Egmont Institute,https://www.egmontinstitute.be,,EN/FR,BE,,"Relazioni internazionali, Bruxelles"
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,Equal Times,https://www.equaltimes.org,https://www.equaltimes.org/spip.php?page=backend&amp;lang=en,,Globale,,Lavoro e diritti
+🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,EU Scream,https://euscream.com,,,,,Newsletter/podcast di geopolitica sull'Unione Europea
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,EUISS,https://www.iss.europa.eu,,EN,EU,,Istituto studi sicurezza UE
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,Eurobarometer,https://europa.eu/eurobarometer,,,EU,,Dati opinione pubblica EU
 🎓 Geopolitica & Intelligence,Geopolitica & Intelligence,FIDH,https://www.fidh.org,https://www.fidh.org/fr/spip.php?page=backend,,Globale,,Federazione diritti umani
@@ -3764,6 +3769,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,VK Parser,https://vk.com,,,,,Social russo — Pubblico
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,Wayback CDX,https://web.archive.org/cdx/search,,,,Pubblico,Archive API — API
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,Wayback Machine,https://archive.org/web,,,,Pubblico,Pagine web storiche — Archivio
+🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,Webz.io,https://webz.io,,EN,,,Feed di intelligence su open/deep/dark web — Commerciale
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,Whitepages,https://www.whitepages.com,,EN,US,Freemium,USA — People search
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,WHOIS,https://who.is,,,IS,Pubblico,Domain lookup
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,World Monitor,https://worldmonitor.app,,,Globale,Freemium,Monitoraggio globale — Dashboard
