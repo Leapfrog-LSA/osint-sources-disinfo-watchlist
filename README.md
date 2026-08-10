@@ -171,7 +171,7 @@ With no `GITHUB_TOKEN` set, it prints the findings and stops there.
 Changes are tracked in [`CHANGELOG.md`](CHANGELOG.md). Released versions are tagged, so a specific snapshot can be pinned:
 
 ```bash
-git clone --branch v0.5.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
+git clone --branch v0.5.0.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
 ```
 
 A major version bump would signal a change to the column structure or to the meaning of an existing column. Adding, correcting or reclassifying rows does not.
