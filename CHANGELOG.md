@@ -12,12 +12,10 @@ structure or to the meaning of an existing column.
 ### Fixed
 
 - **AIDAA**'s `domain` in `disinfo_sources_master.csv` set to `N/A`, with
-  the name moved into `notes`. `v0.5.0` listed it as the seventh of seven
-  rows carrying a person or organization name in `domain`, but the commit
-  that made that change only touched six — AIDAA kept `domain=AIDAA` and
-  was the last row in either file with a non-domain value there. Same
-  treatment as the other six, so the count the `v0.5.0` entry gives is now
-  accurate.
+  the name moved into `notes` — the same treatment the six rows in
+  `v0.5.0` got, and for the same reason: it names an association that
+  recurs as a hoax source, not a site. It was the last row in either file
+  with a person or organization name in that column.
 
 ### Added
 
@@ -111,9 +109,9 @@ structure or to the meaning of an existing column.
   The real target, `https://www.rts.rs/rss.html`, exists but returns a
   completely empty RSS channel, and no working feed was found elsewhere
   on the site.
-- Seven rows in `disinfo_sources_master.csv` — **Associazione Agitalia**,
+- Six rows in `disinfo_sources_master.csv` — **Associazione Agitalia**,
   **Avvocato Giacinto Canzona**, **Ermes Maiolica**, **Lorenzo Croce**,
-  **Proto Group**, **Senatore Cirenga**, **AIDAA** — had a person or
+  **Proto Group**, **Senatore Cirenga** — had a person or
   organization name in `domain` instead of a domain. Reading their
   `notes`, none are clone/typo-squat sites; they document recurring hoax
   subjects and personas from BUTAC/Bufalopedia (e.g. "Senatore Cirenga"
@@ -122,7 +120,7 @@ structure or to the meaning of an existing column.
   matching the convention `authentic_domain` already uses for "no
   specific target," and the name moved into `notes`.
   `scripts/validate.py`'s duplicate-domain check now exempts `N/A`, the
-  same way an empty field already is — seven rows sharing that literal
+  same way an empty field already is — six rows sharing that literal
   value was never a real collision.
 
 ### Removed
