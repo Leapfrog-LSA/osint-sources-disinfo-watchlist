@@ -9,6 +9,16 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Fixed
+
+- **AIDAA**'s `domain` in `disinfo_sources_master.csv` set to `N/A`, with
+  the name moved into `notes`. `v0.5.0` listed it as the seventh of seven
+  rows carrying a person or organization name in `domain`, but the commit
+  that made that change only touched six — AIDAA kept `domain=AIDAA` and
+  was the last row in either file with a non-domain value there. Same
+  treatment as the other six, so the count the `v0.5.0` entry gives is now
+  accurate.
+
 ### Added
 
 - Six sources found while cross-checking the maintainer's own browser
