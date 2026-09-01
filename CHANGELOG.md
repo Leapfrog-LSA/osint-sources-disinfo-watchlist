@@ -11,6 +11,37 @@ structure or to the meaning of an existing column.
 
 ### Fixed
 
+- Three sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`: **VERA
+  Files**, **Central Bank of The Gambia** and **Lanka Business Online**.
+  They were never dead. Each was re-fetched and answers `200` with its own
+  content — VERA Files 120 KB under the title "Truth is our business.",
+  the Gambian central bank 67 KB, Lanka Business Online 120 KB after a
+  redirect to `www.`, whose canonical form the row now carries.
+
+  The `v0.5.0` entry called these removals "confirmed dead or parked by
+  two independent runs of `scripts/check_links.py` on different days."
+  That confirmation was not independent: both runs used the same fetch
+  logic, so both reproduced the same three faults rather than checking
+  each other. `Connection reset by peer` was read as a dead site when it
+  is a verdict on the network path (**Central Bank of The Gambia**); a
+  `200` with an empty body was read the same way, when the site merely
+  redirects and the checker did not follow (**Lanka Business Online**);
+  and the parked-domain heuristic matched `future home of something quite
+  cool`, a stock web-server placeholder, on a live site (**VERA Files**).
+
+  The third fault also explains a claim made twice: `v0.5.0` cited VERA
+  Files as "independently confirmed dead" because the IFCN discovery
+  pilot had rejected it too. It shares the fetch logic, so it failed the
+  same way. VERA Files is an IFCN verified signatory — the kind of source
+  this catalogue exists to hold.
+
+  Fourteen of the other eighteen removals are still unresolved: they
+  cannot be reached from the environment this restore was checked in, and
+  that is not evidence either way. Only the four confirmed parked —
+  **Ojo Público** (`ojopublico.com`, since re-added on its current
+  domain), **Luxembourg Times**, **ReportUSA Albania**, **SupChina** —
+  stay out on evidence. The fixes to `scripts/check_links.py` are not in
+  this change.
 - **AIDAA**'s `domain` in `disinfo_sources_master.csv` set to `N/A`, with
   the name moved into `notes` — the same treatment the six rows in
   `v0.5.0` got, and for the same reason: it names an association that
