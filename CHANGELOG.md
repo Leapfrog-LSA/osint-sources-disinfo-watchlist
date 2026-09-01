@@ -50,6 +50,31 @@ structure or to the meaning of an existing column.
 
 ### Added
 
+- Seven IFCN verified signatories missing from the catalogue, growing
+  `Fact-Checking & Disinformazione` from 109 to 116 rows: **Cek Fakta —
+  Liputan 6**, **Doble Check**, **Factchequeado.com**, **Les
+  Surligneurs**, **Local Voices Media Network**, **Kashif**,
+  **Provereno.Media**.
+
+  Found by re-running the IFCN signatory list against the catalogue after
+  VERA Files showed the discovery pilot's verification could not be
+  trusted. `verify_candidate()` calls `check_links.check_url()`, so the
+  pilot and the link checker are not two opinions but one, and a source
+  the checker misjudged was rejected twice over. Of 146 verified
+  signatories with a website, 11 were absent; these seven were fetched
+  and answer `200` with their own content, from 144 KB (Kashif) to the
+  cap.
+
+  The other four were left out, not rejected: **Belarusian Investigative
+  Center**, **INTERNEWS KOSOVA**, **Tech4Peace** answer `403` and
+  **Knack Magazine** `405` — anti-bot refusals, which say nothing about
+  whether the site is real. Adding them on that basis would repeat the
+  error in the opposite direction.
+
+  `Lingua` and `Paese / Area` are still filled only from a signal on the
+  candidate's own page, and left empty otherwise. **Doble Check** keeps
+  its own `doblecheck.cr`, which redirects to the university radio that
+  hosts it, rather than the redirect target.
 - Six sources found while cross-checking the maintainer's own browser
   bookmarks against the catalogue, each verified live by
   `scripts/check_links.py` before being added: **Agência Pública** (Brazilian
