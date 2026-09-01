@@ -232,9 +232,18 @@ def fetch_opensanctions_candidates():
 
 
 def verify_candidate(candidate, source_config):
+    # This calls the same check_url() the monthly link check uses, which
+    # makes discovery and link-checking one opinion, not two. A rejection
+    # here is therefore NOT independent corroboration of a rejection there:
+    # v0.5.0 treated it as such and dropped VERA Files, a live IFCN
+    # signatory, on the strength of the same mistake counted twice.
+    #
+    # Keep the conservative behaviour — a candidate this cannot confirm is
+    # left out rather than guessed in — but never cite it as a second
+    # source, and re-check anything it rejects before believing it.
     verdict = cl.check_url(candidate["url"])
     if verdict is not None:
-        return None  # dead, parked, blocked, or otherwise unverified — not proof of life
+        return None  # unconfirmed here — not proof of life, and not proof of death either
     return {
         "Macro-categoria": source_config["macro"],
         "Sottosezione": source_config["sottosezione"],

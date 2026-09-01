@@ -45,10 +45,24 @@ Columns: `domain`, `impersonated_outlet`, `authentic_domain`, `country`, `tld`, 
 
 Dead link, wrong category, duplicate entry, outdated attribution — open an issue or a PR with the fix. If you're removing something, say why in the PR/commit description.
 
-Every URL in both files is also checked automatically once a month by [`scripts/check_links.py`](scripts/check_links.py) ([`.github/workflows/link-check.yml`](.github/workflows/link-check.yml)); findings land as a comment on a single recurring issue labelled `link-check`, not a fresh one each run. It applies the same "don't trust a single failed request, don't trust HTTP 200 either" logic described below — it only reports, it never edits a CSV. Treat a row in that issue as a lead to verify, same as a link reported manually.
+Every URL in both files is also checked automatically once a month by [`scripts/check_links.py`](scripts/check_links.py) ([`.github/workflows/link-check.yml`](.github/workflows/link-check.yml)); findings land as a comment on a single recurring issue labelled `link-check`, not a fresh one each run. It applies the same "don't trust a single failed request, don't trust HTTP 200 either" logic described below — it only reports, it never edits a CSV. Treat a row in that issue as a lead to verify, same as a link reported manually, and read the report's own header: it says how many findings are actually removal candidates, and whether the run was healthy enough to be believed at all.
 
 ## Removing entries
 
-A source can be removed if: the URL is confirmed dead (checked more than once, ideally with different timing to rule out anti-bot false positives), it's a duplicate of another row, or it turns out not to be a genuine standalone source (e.g. a one-off article citation rather than an ongoing outlet). Note the reason in the commit message.
+A source can be removed if it's a duplicate of another row, it turns out not to be a genuine standalone source (e.g. a one-off article citation rather than an ongoing outlet), or **the site itself gives a verdict that it is gone**. Note the reason in the commit message.
+
+That last one is narrow on purpose. Only two findings count:
+
+- the server answers **404 or 410** — it is telling you the resource does not exist;
+- the domain serves a **placeholder**: it lands on a domain-sale service, or a small page whose text says it is for sale, parked, expired or suspended.
+
+Everything else describes the connection, not the source, and **can never justify a removal**: a refused, reset or unroutable connection, a DNS failure, a timeout, an anti-bot wall (403/429/503, a CAPTCHA or challenge page), a `200` with an empty body. Those mean *you couldn't see the site*, which is not the same as the site being gone. `scripts/check_links.py` sorts its findings into exactly these categories and marks which ones are removal candidates; the rest are leads for a human, nothing more.
+
+Two further rules before you delete a row:
+
+1. **Confirm from a different network.** Two runs of `check_links.py` are not two opinions — they run the same code, and repeating a request from the same place reproduces the same failure. "Independent" means a genuinely different vantage point: your own browser on a normal connection, not a second CI run an hour later. `scripts/discover_candidates.py` calls `check_url()` too, so a rejection there is the *same* opinion as well, not corroboration.
+2. **A control probe must have passed.** If the run couldn't reach its reference sites, it couldn't tell a dead source from its own broken networking, and its findings are unusable for removals. The report says so at the top when this happens.
+
+This is not hypothetical caution. `v0.5.0` removed 21 sources under the older, looser version of this rule — "checked more than once, with different timing". At least three were alive and had to be restored, among them **VERA Files**, an IFCN verified signatory: one was condemned by a `Connection reset by peer`, one by an empty body from a site serving 120 KB to a browser, one by a stock web-server placeholder string. The retries agreed each time, because they were the same request from the same network.
 
 For `disinfo_sources_master.csv`, a domain going dark is often a takedown rather than a problem to fix — that's the point of documenting it. Don't remove a row just because the domain no longer resolves; keep it unless it's a duplicate or the entry itself was wrong.
