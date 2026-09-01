@@ -11,26 +11,6 @@ structure or to the meaning of an existing column.
 
 ## [0.5.1] — 2026-09-01
 
-### Changed
-
-- `README.md` and `CONTRIBUTING.md` brought back in line with the data and
-  the tooling. The counts had drifted: the catalogue reads 5,108 sources,
-  not 5,098, with `Fact-Checking & Disinformazione` at 116 rather than
-  109, `Media & Testate Giornalistiche` at 2,100 and `Statistiche & Dati
-  Macroeconomici` at 368. Field-coverage percentages were re-derived and
-  turned out unchanged.
-
-  The link-checking section described two rules where there are now three,
-  and omitted the one that matters most — that only a verdict from the
-  site itself can make a row a candidate for removal, and that a run whose
-  control probe fails offers no candidates at all. Both are documented,
-  with what `v0.5.0` cost when they were missing.
-
-  Two of the four scripts were undocumented. `scripts/discover_candidates.py`
-  now has a section of its own, including the caveat that it shares
-  `check_url()` with the link checker and so cannot corroborate it, and
-  the test suite is documented in both files with the command CI runs.
-
 ### Added
 
 - `scripts/test_check_links.py`, and a step in
@@ -53,7 +33,6 @@ structure or to the meaning of an existing column.
   emptiness before the parked marker, so it came out `empty` (inconclusive)
   instead of `parked`. That erred toward keeping rows rather than losing
   them, so it hurt nothing, but it did quietly weaken the check.
-
 
 - Seven IFCN verified signatories missing from the catalogue, growing
   `Fact-Checking & Disinformazione` from 109 to 116 rows: **Cek Fakta —
@@ -141,6 +120,23 @@ structure or to the meaning of an existing column.
   from the same network satisfy while proving nothing. It now requires a
   site-level verdict, confirmation from a genuinely different vantage
   point, and a passing control probe.
+- `README.md` and `CONTRIBUTING.md` brought back in line with the data and
+  the tooling. The counts had drifted: the catalogue reads 5,108 sources,
+  not 5,098, with `Fact-Checking & Disinformazione` at 116 rather than
+  109, `Media & Testate Giornalistiche` at 2,100 and `Statistiche & Dati
+  Macroeconomici` at 368. Field-coverage percentages were re-derived and
+  turned out unchanged.
+
+  The link-checking section described two rules where there are now three,
+  and omitted the one that matters most — that only a verdict from the
+  site itself can make a row a candidate for removal, and that a run whose
+  control probe fails offers no candidates at all. Both are documented,
+  with what `v0.5.0` cost when they were missing.
+
+  Two of the four scripts were undocumented. `scripts/discover_candidates.py`
+  now has a section of its own, including the caveat that it shares
+  `check_url()` with the link checker and so cannot corroborate it, and
+  the test suite is documented in both files with the command CI runs.
 
 ### Fixed
 
