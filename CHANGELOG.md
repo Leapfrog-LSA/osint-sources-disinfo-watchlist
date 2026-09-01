@@ -9,6 +9,8 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+## [0.5.1] — 2026-09-01
+
 ### Added
 
 - `scripts/test_check_links.py`, and a step in
@@ -31,6 +33,60 @@ structure or to the meaning of an existing column.
   emptiness before the parked marker, so it came out `empty` (inconclusive)
   instead of `parked`. That erred toward keeping rows rather than losing
   them, so it hurt nothing, but it did quietly weaken the check.
+
+
+- Seven IFCN verified signatories missing from the catalogue, growing
+  `Fact-Checking & Disinformazione` from 109 to 116 rows: **Cek Fakta —
+  Liputan 6**, **Doble Check**, **Factchequeado.com**, **Les
+  Surligneurs**, **Local Voices Media Network**, **Kashif**,
+  **Provereno.Media**.
+
+  Found by re-running the IFCN signatory list against the catalogue after
+  VERA Files showed the discovery pilot's verification could not be
+  trusted. `verify_candidate()` calls `check_links.check_url()`, so the
+  pilot and the link checker are not two opinions but one, and a source
+  the checker misjudged was rejected twice over. Of 146 verified
+  signatories with a website, 11 were absent; these seven were fetched
+  and answer `200` with their own content, from 144 KB (Kashif) to the
+  cap.
+
+  The other four were left out, not rejected: **Belarusian Investigative
+  Center**, **INTERNEWS KOSOVA**, **Tech4Peace** answer `403` and
+  **Knack Magazine** `405` — anti-bot refusals, which say nothing about
+  whether the site is real. Adding them on that basis would repeat the
+  error in the opposite direction.
+
+  `Lingua` and `Paese / Area` are still filled only from a signal on the
+  candidate's own page, and left empty otherwise. **Doble Check** keeps
+  its own `doblecheck.cr`, which redirects to the university radio that
+  hosts it, rather than the redirect target.
+- Six sources found while cross-checking the maintainer's own browser
+  bookmarks against the catalogue, each verified live by
+  `scripts/check_links.py` before being added: **Agência Pública** (Brazilian
+  investigative nonprofit), **Il Dubbio** (Italian daily), **EU Scream** (EU
+  affairs newsletter/podcast), **Webz.io** (open/deep/dark web intelligence
+  feed) and **Tax Justice Network — Data Portal**. The sixth, **Ojo
+  Público**, is a re-addition: the bookmark pointed at `ojo-publico.com`,
+  not the `ojopublico.com` removed as dead in `v0.5.0` — a different
+  domain, confirmed to be the same outlet's current one by the page's own
+  title and description ("OjoPúblico | Periodismo de investigación").
+  `Tax Justice Network — Data Portal` (`data.taxjustice.net`) is a distinct
+  URL from the organization's main site already in the catalogue
+  (`taxjustice.net`, under `Settori Specifici`); both are kept pending a
+  decision on whether the data portal is redundant with the parent entry.
+
+  Seven other bookmarked sources could not be checked at all — this
+  environment's outbound proxy returned a 502 on the connection itself for
+  `thedial.media`, `rise.ro`, `westafricaleaks.org`, `lalista.news`,
+  `direktoro.media`, `ocindex.africa` and `centreforinformationresilience.org`,
+  consistently on retry, which is a sandbox-side failure rather than a
+  verdict on the sites — they're left out rather than guessed at either way.
+  An eighth, `osintcat.net`, returned HTTP 503 on all three attempts and
+  landed in the same "blocked, not proof of death" bucket link-checking
+  already uses. A ninth, `sassate.it`, resolves fine but doesn't
+  self-declare as satire or fit any existing category on inspection, so it
+  was left out rather than forced into `disinfo_sources_master.csv` or
+  `Fonti_OSINT.csv` without the evidence either would need.
 
 ### Changed
 
@@ -104,61 +160,6 @@ structure or to the meaning of an existing column.
   `v0.5.0` got, and for the same reason: it names an association that
   recurs as a hoax source, not a site. It was the last row in either file
   with a person or organization name in that column.
-
-### Added
-
-- Seven IFCN verified signatories missing from the catalogue, growing
-  `Fact-Checking & Disinformazione` from 109 to 116 rows: **Cek Fakta —
-  Liputan 6**, **Doble Check**, **Factchequeado.com**, **Les
-  Surligneurs**, **Local Voices Media Network**, **Kashif**,
-  **Provereno.Media**.
-
-  Found by re-running the IFCN signatory list against the catalogue after
-  VERA Files showed the discovery pilot's verification could not be
-  trusted. `verify_candidate()` calls `check_links.check_url()`, so the
-  pilot and the link checker are not two opinions but one, and a source
-  the checker misjudged was rejected twice over. Of 146 verified
-  signatories with a website, 11 were absent; these seven were fetched
-  and answer `200` with their own content, from 144 KB (Kashif) to the
-  cap.
-
-  The other four were left out, not rejected: **Belarusian Investigative
-  Center**, **INTERNEWS KOSOVA**, **Tech4Peace** answer `403` and
-  **Knack Magazine** `405` — anti-bot refusals, which say nothing about
-  whether the site is real. Adding them on that basis would repeat the
-  error in the opposite direction.
-
-  `Lingua` and `Paese / Area` are still filled only from a signal on the
-  candidate's own page, and left empty otherwise. **Doble Check** keeps
-  its own `doblecheck.cr`, which redirects to the university radio that
-  hosts it, rather than the redirect target.
-- Six sources found while cross-checking the maintainer's own browser
-  bookmarks against the catalogue, each verified live by
-  `scripts/check_links.py` before being added: **Agência Pública** (Brazilian
-  investigative nonprofit), **Il Dubbio** (Italian daily), **EU Scream** (EU
-  affairs newsletter/podcast), **Webz.io** (open/deep/dark web intelligence
-  feed) and **Tax Justice Network — Data Portal**. The sixth, **Ojo
-  Público**, is a re-addition: the bookmark pointed at `ojo-publico.com`,
-  not the `ojopublico.com` removed as dead in `v0.5.0` — a different
-  domain, confirmed to be the same outlet's current one by the page's own
-  title and description ("OjoPúblico | Periodismo de investigación").
-  `Tax Justice Network — Data Portal` (`data.taxjustice.net`) is a distinct
-  URL from the organization's main site already in the catalogue
-  (`taxjustice.net`, under `Settori Specifici`); both are kept pending a
-  decision on whether the data portal is redundant with the parent entry.
-
-  Seven other bookmarked sources could not be checked at all — this
-  environment's outbound proxy returned a 502 on the connection itself for
-  `thedial.media`, `rise.ro`, `westafricaleaks.org`, `lalista.news`,
-  `direktoro.media`, `ocindex.africa` and `centreforinformationresilience.org`,
-  consistently on retry, which is a sandbox-side failure rather than a
-  verdict on the sites — they're left out rather than guessed at either way.
-  An eighth, `osintcat.net`, returned HTTP 503 on all three attempts and
-  landed in the same "blocked, not proof of death" bucket link-checking
-  already uses. A ninth, `sassate.it`, resolves fine but doesn't
-  self-declare as satire or fit any existing category on inspection, so it
-  was left out rather than forced into `disinfo_sources_master.csv` or
-  `Fonti_OSINT.csv` without the evidence either would need.
 
 ## [0.5.0] — 2026-08-10
 
