@@ -8,7 +8,7 @@ Run locally:
 
 This is the monthly companion to scripts/validate.py — it doesn't check
 structure, it checks whether the URLs still resolve. It never edits the
-CSVs; it only reports. Two rules drive every decision here:
+CSVs; it only reports. Three rules drive every decision here:
 
 1. HTTP 200 is not proof of life. A response is only treated as a success
    if its body doesn't look like a parked domain, a for-sale page, or an
@@ -20,6 +20,20 @@ CSVs; it only reports. Two rules drive every decision here:
    that looks like an anti-bot challenge (Cloudflare/Akamai/CAPTCHA-style
    pages, or status codes like 403/429/503) is reported separately from a
    URL that never resolves at all — the two need different follow-up.
+3. Only the site may condemn the site. A refused connection, a reset, a
+   timeout or an empty body describe the network between this run and the
+   host; they are reported, but they can never make a URL a candidate for
+   removal. That takes the server saying the resource is gone (404/410) or
+   the domain serving a placeholder. Before any of it is believed, a
+   control probe checks that this run can reach the open web at all: if it
+   can't, the whole run is marked unusable for removals.
+
+   Rule 3 exists because v0.5.0 removed 21 sources on connection-level
+   errors and a stray placeholder string. At least three were alive, among
+   them VERA Files, an IFCN verified signatory. Retrying did not catch it —
+   the retries repeated the same request from the same network — and
+   neither did a second opinion, because scripts/discover_candidates.py
+   calls check_url() too and so is the same opinion.
 
 In CI (GITHUB_TOKEN + GITHUB_REPOSITORY set), findings are posted to a
 single recurring GitHub issue (label "link-check") instead of a fresh
@@ -111,24 +125,66 @@ BOT_CHALLENGE_MARKERS = [
     "distil_r_captcha", "px-captcha", "datadome", "perimeterx",
 ]
 
+# Hosts that a domain sale/parking service redirects to. Landing on one of
+# these is the strongest parked signal there is — it doesn't depend on
+# reading the page at all — so it stands on its own.
+PARKING_HOSTS = {
+    "hugedomains.com", "dan.com", "afternic.com", "sedo.com",
+    "sedoparking.com", "bodis.com", "parkingcrew.net", "spaceship.com",
+    "above.com", "undeveloped.com",
+}
+
+# Phrases from real parked and suspended pages. Unlike PARKING_HOSTS these
+# are only text, so they are never conclusive alone: an ordinary article can
+# quote any of them. A hit only counts on a page small enough to be a
+# placeholder (see PARKED_MAX_TEXT).
+#
+# "future home of something quite cool" used to live here. It is the stock
+# Apache/cPanel placeholder, not a for-sale page, and it matched VERA Files
+# — a live IFCN signatory — which is how v0.5.0 came to remove it. A string
+# that means "this server is unconfigured" cannot mean "this source is
+# gone", so it is not a parked marker.
 PARKED_MARKERS = [
     "domain may be for sale", "this domain is for sale", "buy this domain",
     "domain for sale", "the domain has expired", "this web page is parked",
-    "parking page", "parkingcrew", "hugedomains.com", "dan.com",
-    "afternic.com", "sedo.com", "bodis.com", "future home of something quite cool",
+    "parking page", "parkingcrew",
     "account has been suspended", "website disabled", "this account has been suspended",
 ]
 
+# A parked or suspended page is a placeholder. Above this much text the page
+# is doing something else, and a marker in it is a quotation, not a verdict.
+PARKED_MAX_TEXT = 20_000
+
+# Codes that say the resource itself is gone, as opposed to refused,
+# rate-limited or broken. Only these and a confirmed parked page make a URL
+# a candidate for removal.
+GONE_STATUS = {404, 410}
+
 BUCKET_TITLES = {
-    "dead": "Likely dead — no successful attempt, no anti-bot signal",
-    "parked": "HTTP 200, but the content looks parked or empty",
+    "gone": "Gone — the server says the resource does not exist (404/410)",
+    "parked": "Parked or suspended — the domain resolves to a placeholder",
+    "unreachable": "Unreachable from this run — says nothing about the site",
     "blocked": "Blocked by anti-bot protection — needs a manual check",
+    "empty": "HTTP 200 with an empty body — inconclusive, check by hand",
     "http_error": "Persistent HTTP error (not a typical anti-bot code)",
     "timeout": "Timed out on every attempt",
     "tls_error": "TLS/certificate error on every attempt",
     "other": "Inconclusive — mixed results across attempts",
 }
-BUCKET_ORDER = ["dead", "parked", "blocked", "http_error", "timeout", "tls_error", "other"]
+
+# The only two buckets a removal may be based on. Everything else describes
+# this run's own conditions — a refused connection, a bot wall, a timeout —
+# and says nothing about whether the source still exists.
+#
+# v0.5.0 removed 21 sources, of which at least three were alive, because a
+# connection-level failure counted as "dead". It cannot any more: a network
+# error is a verdict on the path, not on the host.
+REMOVAL_CANDIDATE_BUCKETS = {"gone", "parked"}
+
+BUCKET_ORDER = [
+    "gone", "parked", "unreachable", "blocked", "empty",
+    "http_error", "timeout", "tls_error", "other",
+]
 
 
 Ref = namedtuple("Ref", "dataset line name column")
@@ -136,8 +192,9 @@ Ref = namedtuple("Ref", "dataset line name column")
 
 @dataclass
 class Attempt:
-    category: str  # success | parked | blocked | http_error | dns_error
-                    # | conn_error | timeout | ssl_error | other_error
+    category: str  # success | gone | parked | empty | blocked | http_error
+                    # | dns_error | conn_error | timeout | ssl_error
+                    # | other_error
     status: "int | None"
     detail: str
 
@@ -183,7 +240,16 @@ def load_targets():
 # Checking a single URL
 # --------------------------------------------------------------------------
 
-def classify_response(status, headers, body_bytes):
+def _parking_host(final_url):
+    """The parking service a URL ended up on, or None."""
+    host = (urllib.parse.urlparse(final_url or "").hostname or "").lower()
+    for known in PARKING_HOSTS:
+        if host == known or host.endswith("." + known):
+            return host
+    return None
+
+
+def classify_response(status, headers, body_bytes, final_url=""):
     text = body_bytes.decode("utf-8", errors="replace").lower()
     header_blob = " ".join(f"{k.lower()}:{v.lower()}" for k, v in (headers.items() if headers else []))
 
@@ -195,12 +261,36 @@ def classify_response(status, headers, body_bytes):
         return Attempt("blocked", status, detail)
 
     if 200 <= status < 300:
-        parked_hit = next((m for m in PARKED_MARKERS if m in text), None)
-        if parked_hit:
-            return Attempt("parked", status, f"HTTP {status}, matched parked-domain marker {parked_hit!r}")
+        landed_on = _parking_host(final_url)
+        if landed_on:
+            return Attempt("parked", status, f"HTTP {status}, redirected to parking service {landed_on!r}")
+
         stripped = re.sub(r"\s+", "", text)
         if len(stripped) < 60:
-            return Attempt("parked", status, f"HTTP {status}, body is empty or near-empty ({len(body_bytes)} bytes)")
+            # Not a verdict. A server can answer 200 with nothing for a
+            # client it doesn't like, and did: Lanka Business Online was
+            # removed in v0.5.0 over an empty body while serving 120 KB to
+            # an ordinary browser. Report it, never act on it alone.
+            return Attempt(
+                "empty", status,
+                f"HTTP {status}, body is empty or near-empty ({len(body_bytes)} bytes) — "
+                f"inconclusive, not evidence the source is gone",
+            )
+
+        parked_hit = next((m for m in PARKED_MARKERS if m in text), None)
+        if parked_hit and len(stripped) < PARKED_MAX_TEXT:
+            return Attempt(
+                "parked", status,
+                f"HTTP {status}, matched parked-domain marker {parked_hit!r} "
+                f"on a {len(stripped)}-character page",
+            )
+        if parked_hit:
+            # The phrase is there but the page is far too substantial to be
+            # a placeholder — it is being quoted, not served.
+            return Attempt(
+                "success", status,
+                f"HTTP {status} (marker {parked_hit!r} ignored on a {len(stripped)}-character page)",
+            )
         return Attempt("success", status, f"HTTP {status}")
 
     if 300 <= status < 400:
@@ -208,6 +298,9 @@ def classify_response(status, headers, body_bytes):
         # enabled in fetch_once, that's usually a loop urllib gave up on,
         # not evidence the destination is gone.
         return Attempt("blocked", status, f"HTTP {status}, redirect never reached a final page — needs a manual check")
+
+    if status in GONE_STATUS:
+        return Attempt("gone", status, f"HTTP {status} — the server says this resource does not exist")
 
     return Attempt("http_error", status, f"HTTP {status}")
 
@@ -244,16 +337,19 @@ def fetch_once(url, user_agent, timeout):
                     if target and target != final_url:
                         try:
                             with OPENER.open(_request(target, user_agent), timeout=timeout) as resp2:
-                                return classify_response(resp2.status, resp2.headers, resp2.read(MAX_BODY_BYTES))
+                                return classify_response(
+                                    resp2.status, resp2.headers,
+                                    resp2.read(MAX_BODY_BYTES), resp2.geturl(),
+                                )
                         except Exception:
                             pass  # fall through and classify the un-followed stub below
-            return classify_response(status, headers, body)
+            return classify_response(status, headers, body, final_url)
     except urllib.error.HTTPError as e:
         try:
             body = e.read(MAX_BODY_BYTES)
         except Exception:
             body = b""
-        return classify_response(e.code, e.headers, body)
+        return classify_response(e.code, e.headers, body, getattr(e, "url", url))
     except urllib.error.URLError as e:
         reason = e.reason
         if isinstance(reason, socket.timeout):
@@ -278,14 +374,22 @@ def summarize(attempts):
     cats = [a.category for a in attempts]
     if any(c == "parked" for c in cats):
         bucket = "parked"
+    elif all(c == "gone" for c in cats):
+        bucket = "gone"
     elif any(c == "blocked" for c in cats):
         bucket = "blocked"
     elif all(c in ("dns_error", "conn_error") for c in cats):
-        bucket = "dead"
+        # Formerly "dead". A refused, reset or unroutable connection is a
+        # fact about the path between this runner and the host, and a
+        # resolver that answers NXDOMAIN may simply be filtered. Neither
+        # licenses a removal.
+        bucket = "unreachable"
     elif all(c == "timeout" for c in cats):
         bucket = "timeout"
     elif all(c == "ssl_error" for c in cats):
         bucket = "tls_error"
+    elif any(c == "empty" for c in cats):
+        bucket = "empty"
     elif any(c == "http_error" for c in cats):
         bucket = "http_error"
     else:
@@ -293,6 +397,38 @@ def summarize(attempts):
 
     detail = "; ".join(f"attempt {i + 1}: {a.detail}" for i, a in enumerate(attempts))
     return Verdict(bucket, detail)
+
+
+# --------------------------------------------------------------------------
+# Control probe
+# --------------------------------------------------------------------------
+
+# Sites that are about as close to always-up as the web gets, and that don't
+# put a bot wall in front of their front page. They are checked through the
+# same code path as everything else, so if they fail, the run's own
+# connectivity is the problem — not 6,000 sources dying at once.
+CONTROL_URLS = [
+    "https://example.com",
+    "https://www.wikipedia.org",
+    "https://www.iana.org",
+]
+CONTROL_MIN_SUCCESS = 2
+
+
+def run_control_probe():
+    """Check the run itself before trusting anything it says about the data.
+
+    Returns (healthy, lines). A run that cannot reach the reference sites
+    cannot tell a dead source from its own broken network, which is exactly
+    how v0.5.0 removed live sources.
+    """
+    results = []
+    for url in CONTROL_URLS:
+        attempt = fetch_once(url, USER_AGENTS[0], ATTEMPT_TIMEOUTS[0])
+        results.append((url, attempt))
+    reached = sum(1 for _, a in results if a.category == "success")
+    lines = [f"- `{url}` — {a.detail}" for url, a in results]
+    return reached >= CONTROL_MIN_SUCCESS, reached, lines
 
 
 def check_url(url):
@@ -313,9 +449,10 @@ def check_url(url):
 # Reporting
 # --------------------------------------------------------------------------
 
-def render_report(by_url, buckets):
+def render_report(by_url, buckets, control_healthy=True, control_reached=0, control_lines=()):
     today = dt.date.today().isoformat()
     total = sum(len(v) for v in buckets.values())
+    candidates = sum(len(buckets.get(b, ())) for b in REMOVAL_CANDIDATE_BUCKETS)
 
     lines = [f"## Monthly link check — {today}", ""]
     lines.append(
@@ -328,10 +465,46 @@ def render_report(by_url, buckets):
         f"checked for parked-domain and bot-challenge pages."
     )
 
+    if not control_healthy:
+        lines.append("")
+        lines.append(
+            f"> ### ⚠ This run is not valid for removals\n"
+            f">\n"
+            f"> Only {control_reached} of {len(CONTROL_URLS)} reference sites "
+            f"could be reached, so this run cannot tell a dead source from "
+            f"its own broken connectivity. Everything below is reported for "
+            f"the record, and **nothing here may be used to remove a row** — "
+            f"re-run from a working network first."
+        )
+        lines.append("")
+        lines.extend(control_lines)
+
     if total == 0:
         lines.append("")
         lines.append("No problems found this run.")
         return "\n".join(lines)
+
+    lines.append("")
+    if not control_healthy:
+        lines.append(
+            "**Removal candidates: none this run** — the control probe failed "
+            "(see above)."
+        )
+    elif candidates:
+        lines.append(
+            f"**{candidates} of {total} findings are removal candidates.** Only "
+            f"`{'` and `'.join(sorted(REMOVAL_CANDIDATE_BUCKETS))}` qualify: a "
+            f"server saying the resource does not exist, or a domain serving a "
+            f"placeholder. Every other section below describes this run's own "
+            f"conditions — a refused connection, a bot wall, a timeout — and "
+            f"says nothing about whether the source still exists."
+        )
+    else:
+        lines.append(
+            f"**No removal candidates this run.** All {total} findings are "
+            f"inconclusive: they describe this run's conditions, not the "
+            f"sources."
+        )
 
     for bucket in BUCKET_ORDER:
         entries = buckets.get(bucket)
@@ -349,11 +522,13 @@ def render_report(by_url, buckets):
     lines.append("")
     lines.append("---")
     lines.append(
-        "Nothing above was changed automatically. A dead or blocked result "
-        "here isn't proof by itself — confirm in a normal browser before "
-        "editing either CSV, per CONTRIBUTING.md. For "
-        "`disinfo_sources_master.csv` specifically, a domain going dark is "
-        "often a takedown, not something to fix."
+        "Nothing above was changed automatically. Even a removal candidate "
+        "is a lead, not a verdict: confirm it in a normal browser, from a "
+        "network other than this run's, before editing either CSV, per "
+        "CONTRIBUTING.md. Two runs of this script are not two opinions — "
+        "they share this code, and in `v0.5.0` they agreed with each other "
+        "and were both wrong. For `disinfo_sources_master.csv` specifically, "
+        "a domain going dark is often a takedown, not something to fix."
     )
     return "\n".join(lines)
 
@@ -434,6 +609,12 @@ def post_to_github(repo_slug, token, report):
 # --------------------------------------------------------------------------
 
 def main():
+    print("Control probe: checking this run's own connectivity...")
+    control_healthy, control_reached, control_lines = run_control_probe()
+    print(f"  reached {control_reached}/{len(CONTROL_URLS)} reference sites")
+    if not control_healthy:
+        print("  ! degraded network — findings will be reported but flagged unusable for removals")
+
     by_url = load_targets()
     urls = list(by_url.keys())
     total_refs = sum(len(v) for v in by_url.values())
@@ -452,7 +633,7 @@ def main():
             if done % 200 == 0 or done == len(urls):
                 print(f"  {done}/{len(urls)} checked")
 
-    report = render_report(by_url, buckets)
+    report = render_report(by_url, buckets, control_healthy, control_reached, control_lines)
     print("\n" + report)
 
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY")

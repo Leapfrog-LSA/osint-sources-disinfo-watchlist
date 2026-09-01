@@ -9,6 +9,40 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Changed
+
+- `scripts/check_links.py` can no longer propose removing a source over a
+  network failure. A finding is a removal candidate only if the server
+  answers `404`/`410`, or the domain serves a placeholder; a refused or
+  reset connection, a DNS failure, a timeout, an anti-bot wall and a `200`
+  with an empty body are each reported in their own category and marked as
+  saying nothing about whether the source exists. The old `dead` bucket,
+  which lumped connection errors in with genuine disappearance, is now
+  `unreachable` and carries no such implication.
+
+  Three specific faults are fixed, one per source wrongly removed in
+  `v0.5.0`. An empty `200` body is classified `empty` rather than `parked`.
+  The parked-domain check now takes the strong signal on its own — the
+  request landing on a domain-sale host — while a text marker only counts
+  on a page small enough to be a placeholder, so a phrase quoted inside a
+  real article no longer condemns it; the marker that matched VERA Files,
+  `future home of something quite cool`, is a stock web-server placeholder
+  rather than a for-sale page and has been dropped entirely.
+
+  Each run now begins with a control probe against reference sites. If it
+  cannot reach them, the run cannot distinguish a dead source from its own
+  broken connectivity, and the report says so at the top and offers no
+  removal candidates at all. That alone would have stopped `v0.5.0`.
+
+  `scripts/discover_candidates.py` is unchanged in behaviour but now
+  documents that its `verify_candidate()` calls the same `check_url()`, so
+  a rejection there is not independent corroboration of a rejection here.
+  `CONTRIBUTING.md`'s removal rule is rewritten to match: it required a URL
+  "checked more than once, ideally with different timing", which two runs
+  from the same network satisfy while proving nothing. It now requires a
+  site-level verdict, confirmation from a genuinely different vantage
+  point, and a passing control probe.
+
 ### Fixed
 
 - Three sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`: **VERA
