@@ -14,9 +14,15 @@ Both datasets in this repo are only as useful as they are accurate. The rules be
 python scripts/validate.py
 ```
 
-This runs automatically on every pull request, so it's faster to catch problems locally first. It needs no dependencies, and lists every problem with its line number in one pass.
+This runs automatically on any pull request touching a CSV or a script, so it's faster to catch problems locally first. It needs no dependencies, and lists every problem with its line number in one pass.
 
 It checks structure and vocabularies — that a country code is *well-formed*, not that it's the *right* country. Accuracy is still on you; the rules below are what the checker can't verify.
+
+If you changed anything under `scripts/`, run the tests too — the same workflow does:
+
+```bash
+python -m unittest discover -s scripts -p "test_*.py"
+```
 
 ## Adding a source to `Fonti_OSINT.csv`
 
