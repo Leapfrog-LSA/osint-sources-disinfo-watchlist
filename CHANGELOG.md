@@ -9,6 +9,29 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- `scripts/test_check_links.py`, and a step in
+  `.github/workflows/validate.yml` that runs it. Until now nothing checked
+  the scripts at all: the workflow's path filter listed only `*.csv` and
+  `scripts/validate.py`, so a change to `check_links.py` — the code that
+  decides which sources get proposed for deletion — ran no checks
+  whatsoever. The filter is now `scripts/**.py`.
+
+  The suite is 25 cases, no network, standard library only. Each of the
+  three faults that removed a live source in `v0.5.0` has a test named
+  after the source it killed, so the failure message says which one is
+  about to be lost again. The rest cover what must keep working: a genuine
+  parked page, a redirect onto a domain-sale host, `404`/`410` as the only
+  status that means gone, and a degraded control probe suppressing every
+  removal candidate.
+
+  Writing them immediately caught a real ordering bug: a very short
+  placeholder page — `Buy this domain` and little else — was tested for
+  emptiness before the parked marker, so it came out `empty` (inconclusive)
+  instead of `parked`. That erred toward keeping rows rather than losing
+  them, so it hurt nothing, but it did quietly weaken the check.
+
 ### Changed
 
 - `scripts/check_links.py` can no longer propose removing a source over a

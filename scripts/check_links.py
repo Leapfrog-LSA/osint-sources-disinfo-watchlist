@@ -266,6 +266,18 @@ def classify_response(status, headers, body_bytes, final_url=""):
             return Attempt("parked", status, f"HTTP {status}, redirected to parking service {landed_on!r}")
 
         stripped = re.sub(r"\s+", "", text)
+
+        # Marker before emptiness: a placeholder that says it is for sale
+        # is often tiny, and testing emptiness first would file a genuinely
+        # parked page as merely inconclusive.
+        parked_hit = next((m for m in PARKED_MARKERS if m in text), None)
+        if parked_hit and len(stripped) < PARKED_MAX_TEXT:
+            return Attempt(
+                "parked", status,
+                f"HTTP {status}, matched parked-domain marker {parked_hit!r} "
+                f"on a {len(stripped)}-character page",
+            )
+
         if len(stripped) < 60:
             # Not a verdict. A server can answer 200 with nothing for a
             # client it doesn't like, and did: Lanka Business Online was
@@ -277,13 +289,6 @@ def classify_response(status, headers, body_bytes, final_url=""):
                 f"inconclusive, not evidence the source is gone",
             )
 
-        parked_hit = next((m for m in PARKED_MARKERS if m in text), None)
-        if parked_hit and len(stripped) < PARKED_MAX_TEXT:
-            return Attempt(
-                "parked", status,
-                f"HTTP {status}, matched parked-domain marker {parked_hit!r} "
-                f"on a {len(stripped)}-character page",
-            )
         if parked_hit:
             # The phrase is there but the page is far too substantial to be
             # a placeholder — it is being quoted, not served.
