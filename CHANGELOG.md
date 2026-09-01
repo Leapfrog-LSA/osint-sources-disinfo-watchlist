@@ -9,6 +9,8 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+## [0.5.1] — 2026-09-01
+
 ### Added
 
 - `scripts/test_check_links.py`, and a step in
@@ -31,81 +33,6 @@ structure or to the meaning of an existing column.
   emptiness before the parked marker, so it came out `empty` (inconclusive)
   instead of `parked`. That erred toward keeping rows rather than losing
   them, so it hurt nothing, but it did quietly weaken the check.
-
-### Changed
-
-- `scripts/check_links.py` can no longer propose removing a source over a
-  network failure. A finding is a removal candidate only if the server
-  answers `404`/`410`, or the domain serves a placeholder; a refused or
-  reset connection, a DNS failure, a timeout, an anti-bot wall and a `200`
-  with an empty body are each reported in their own category and marked as
-  saying nothing about whether the source exists. The old `dead` bucket,
-  which lumped connection errors in with genuine disappearance, is now
-  `unreachable` and carries no such implication.
-
-  Three specific faults are fixed, one per source wrongly removed in
-  `v0.5.0`. An empty `200` body is classified `empty` rather than `parked`.
-  The parked-domain check now takes the strong signal on its own — the
-  request landing on a domain-sale host — while a text marker only counts
-  on a page small enough to be a placeholder, so a phrase quoted inside a
-  real article no longer condemns it; the marker that matched VERA Files,
-  `future home of something quite cool`, is a stock web-server placeholder
-  rather than a for-sale page and has been dropped entirely.
-
-  Each run now begins with a control probe against reference sites. If it
-  cannot reach them, the run cannot distinguish a dead source from its own
-  broken connectivity, and the report says so at the top and offers no
-  removal candidates at all. That alone would have stopped `v0.5.0`.
-
-  `scripts/discover_candidates.py` is unchanged in behaviour but now
-  documents that its `verify_candidate()` calls the same `check_url()`, so
-  a rejection there is not independent corroboration of a rejection here.
-  `CONTRIBUTING.md`'s removal rule is rewritten to match: it required a URL
-  "checked more than once, ideally with different timing", which two runs
-  from the same network satisfy while proving nothing. It now requires a
-  site-level verdict, confirmation from a genuinely different vantage
-  point, and a passing control probe.
-
-### Fixed
-
-- Three sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`: **VERA
-  Files**, **Central Bank of The Gambia** and **Lanka Business Online**.
-  They were never dead. Each was re-fetched and answers `200` with its own
-  content — VERA Files 120 KB under the title "Truth is our business.",
-  the Gambian central bank 67 KB, Lanka Business Online 120 KB after a
-  redirect to `www.`, whose canonical form the row now carries.
-
-  The `v0.5.0` entry called these removals "confirmed dead or parked by
-  two independent runs of `scripts/check_links.py` on different days."
-  That confirmation was not independent: both runs used the same fetch
-  logic, so both reproduced the same three faults rather than checking
-  each other. `Connection reset by peer` was read as a dead site when it
-  is a verdict on the network path (**Central Bank of The Gambia**); a
-  `200` with an empty body was read the same way, when the site merely
-  redirects and the checker did not follow (**Lanka Business Online**);
-  and the parked-domain heuristic matched `future home of something quite
-  cool`, a stock web-server placeholder, on a live site (**VERA Files**).
-
-  The third fault also explains a claim made twice: `v0.5.0` cited VERA
-  Files as "independently confirmed dead" because the IFCN discovery
-  pilot had rejected it too. It shares the fetch logic, so it failed the
-  same way. VERA Files is an IFCN verified signatory — the kind of source
-  this catalogue exists to hold.
-
-  Fourteen of the other eighteen removals are still unresolved: they
-  cannot be reached from the environment this restore was checked in, and
-  that is not evidence either way. Only the four confirmed parked —
-  **Ojo Público** (`ojopublico.com`, since re-added on its current
-  domain), **Luxembourg Times**, **ReportUSA Albania**, **SupChina** —
-  stay out on evidence. The fixes to `scripts/check_links.py` are not in
-  this change.
-- **AIDAA**'s `domain` in `disinfo_sources_master.csv` set to `N/A`, with
-  the name moved into `notes` — the same treatment the six rows in
-  `v0.5.0` got, and for the same reason: it names an association that
-  recurs as a hoax source, not a site. It was the last row in either file
-  with a person or organization name in that column.
-
-### Added
 
 - Seven IFCN verified signatories missing from the catalogue, growing
   `Fact-Checking & Disinformazione` from 109 to 116 rows: **Cek Fakta —
@@ -159,6 +86,96 @@ structure or to the meaning of an existing column.
   self-declare as satire or fit any existing category on inspection, so it
   was left out rather than forced into `disinfo_sources_master.csv` or
   `Fonti_OSINT.csv` without the evidence either would need.
+
+### Changed
+
+- `scripts/check_links.py` can no longer propose removing a source over a
+  network failure. A finding is a removal candidate only if the server
+  answers `404`/`410`, or the domain serves a placeholder; a refused or
+  reset connection, a DNS failure, a timeout, an anti-bot wall and a `200`
+  with an empty body are each reported in their own category and marked as
+  saying nothing about whether the source exists. The old `dead` bucket,
+  which lumped connection errors in with genuine disappearance, is now
+  `unreachable` and carries no such implication.
+
+  Three specific faults are fixed, one per source wrongly removed in
+  `v0.5.0`. An empty `200` body is classified `empty` rather than `parked`.
+  The parked-domain check now takes the strong signal on its own — the
+  request landing on a domain-sale host — while a text marker only counts
+  on a page small enough to be a placeholder, so a phrase quoted inside a
+  real article no longer condemns it; the marker that matched VERA Files,
+  `future home of something quite cool`, is a stock web-server placeholder
+  rather than a for-sale page and has been dropped entirely.
+
+  Each run now begins with a control probe against reference sites. If it
+  cannot reach them, the run cannot distinguish a dead source from its own
+  broken connectivity, and the report says so at the top and offers no
+  removal candidates at all. That alone would have stopped `v0.5.0`.
+
+  `scripts/discover_candidates.py` is unchanged in behaviour but now
+  documents that its `verify_candidate()` calls the same `check_url()`, so
+  a rejection there is not independent corroboration of a rejection here.
+  `CONTRIBUTING.md`'s removal rule is rewritten to match: it required a URL
+  "checked more than once, ideally with different timing", which two runs
+  from the same network satisfy while proving nothing. It now requires a
+  site-level verdict, confirmation from a genuinely different vantage
+  point, and a passing control probe.
+- `README.md` and `CONTRIBUTING.md` brought back in line with the data and
+  the tooling. The counts had drifted: the catalogue reads 5,108 sources,
+  not 5,098, with `Fact-Checking & Disinformazione` at 116 rather than
+  109, `Media & Testate Giornalistiche` at 2,100 and `Statistiche & Dati
+  Macroeconomici` at 368. Field-coverage percentages were re-derived and
+  turned out unchanged.
+
+  The link-checking section described two rules where there are now three,
+  and omitted the one that matters most — that only a verdict from the
+  site itself can make a row a candidate for removal, and that a run whose
+  control probe fails offers no candidates at all. Both are documented,
+  with what `v0.5.0` cost when they were missing.
+
+  Two of the four scripts were undocumented. `scripts/discover_candidates.py`
+  now has a section of its own, including the caveat that it shares
+  `check_url()` with the link checker and so cannot corroborate it, and
+  the test suite is documented in both files with the command CI runs.
+
+### Fixed
+
+- Three sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`: **VERA
+  Files**, **Central Bank of The Gambia** and **Lanka Business Online**.
+  They were never dead. Each was re-fetched and answers `200` with its own
+  content — VERA Files 120 KB under the title "Truth is our business.",
+  the Gambian central bank 67 KB, Lanka Business Online 120 KB after a
+  redirect to `www.`, whose canonical form the row now carries.
+
+  The `v0.5.0` entry called these removals "confirmed dead or parked by
+  two independent runs of `scripts/check_links.py` on different days."
+  That confirmation was not independent: both runs used the same fetch
+  logic, so both reproduced the same three faults rather than checking
+  each other. `Connection reset by peer` was read as a dead site when it
+  is a verdict on the network path (**Central Bank of The Gambia**); a
+  `200` with an empty body was read the same way, when the site merely
+  redirects and the checker did not follow (**Lanka Business Online**);
+  and the parked-domain heuristic matched `future home of something quite
+  cool`, a stock web-server placeholder, on a live site (**VERA Files**).
+
+  The third fault also explains a claim made twice: `v0.5.0` cited VERA
+  Files as "independently confirmed dead" because the IFCN discovery
+  pilot had rejected it too. It shares the fetch logic, so it failed the
+  same way. VERA Files is an IFCN verified signatory — the kind of source
+  this catalogue exists to hold.
+
+  Fourteen of the other eighteen removals are still unresolved: they
+  cannot be reached from the environment this restore was checked in, and
+  that is not evidence either way. Only the four confirmed parked —
+  **Ojo Público** (`ojopublico.com`, since re-added on its current
+  domain), **Luxembourg Times**, **ReportUSA Albania**, **SupChina** —
+  stay out on evidence. The fixes to `scripts/check_links.py` are not in
+  this change.
+- **AIDAA**'s `domain` in `disinfo_sources_master.csv` set to `N/A`, with
+  the name moved into `notes` — the same treatment the six rows in
+  `v0.5.0` got, and for the same reason: it names an association that
+  recurs as a hoax source, not a site. It was the last row in either file
+  with a person or organization name in that column.
 
 ## [0.5.0] — 2026-08-10
 

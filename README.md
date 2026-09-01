@@ -46,19 +46,19 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-5,098 sources across 12 macro-categories:
+5,108 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
-| Media & Testate Giornalistiche | 2,098 |
+| Media & Testate Giornalistiche | 2,100 |
 | Settori Specifici (AI/dev tools, finance, sector-specific) | 1,198 |
 | Open Data & Trasparenza | 473 |
-| Statistiche & Dati Macroeconomici | 367 |
+| Statistiche & Dati Macroeconomici | 368 |
 | Registri Aziendali & Corporate Intelligence | 254 |
 | Cybersecurity & Digital OSINT | 170 |
 | Geopolitica & Intelligence | 152 |
 | Sanzioni, PEP & Compliance | 119 |
-| Fact-Checking & Disinformazione | 109 |
+| Fact-Checking & Disinformazione | 116 |
 | Social Media & Media Monitoring | 78 |
 | Sostenibilità & ESG | 46 |
 | Diritti Umani & Giudiziario | 34 |
@@ -147,16 +147,27 @@ python scripts/validate.py
 
 It needs no dependencies beyond the Python standard library, and reports every problem it finds with a line number rather than stopping at the first.
 
+The same workflow runs the scripts' own test suite:
+
+```bash
+python -m unittest discover -s scripts -p "test_*.py"
+```
+
+Those 25 cases cover [`scripts/check_links.py`](scripts/check_links.py), which decides what gets proposed for removal from the catalogue. Each of the three faults that removed a live source in `v0.5.0` has a test named after the source it killed, so a failure says which row is about to be lost. They make no network requests.
+
 ### Link checking
 
 `scripts/validate.py` checks that a URL is *well-formed* — it never fetches it. Whether a source is still live is checked separately, on a schedule, by [`scripts/check_links.py`](scripts/check_links.py) via [`.github/workflows/link-check.yml`](.github/workflows/link-check.yml), because dead links accumulate silently between pushes otherwise.
 
-Every URL in both files is fetched once a month. Two things make this different from a plain HTTP status check:
+Every URL in both files is fetched once a month. Three things make this different from a plain HTTP status check:
 
 - **A single failed request doesn't mean a link is dead.** Large sites routinely block automated clients. A URL that fails is retried up to three times, spaced out with a delay and a different browser identity each time, and a response that looks like an anti-bot challenge (Cloudflare, Akamai, PerimeterX and similar) is reported separately from one that never resolves at all — the two need different follow-up.
 - **HTTP 200 is not proof of life.** The response body is checked for parked-domain and for-sale pages, the same failure mode that got past a plain status check in `v0.2.0` (see [`CHANGELOG.md`](CHANGELOG.md)).
+- **Only the site may condemn the site.** A finding counts as a candidate for removal only when the server answers `404`/`410`, or the domain serves a placeholder. A refused or reset connection, a DNS failure, a timeout, a bot wall and a `200` with an empty body each get their own category and are reported as saying nothing about whether the source exists. Each run also opens with a control probe against reference sites: if those can't be reached, the run can't tell a dead source from its own broken networking, and it offers no removal candidates at all.
 
-Findings are posted to a single recurring issue (label `link-check`) rather than a fresh issue every run, so a URL that keeps failing month after month is visible in one place. The workflow never edits either CSV — a flagged row still needs a human to confirm it before removing or fixing it, per [`CONTRIBUTING.md`](CONTRIBUTING.md).
+  This rule was added in `v0.5.1`, after `v0.5.0` removed 21 sources on the older logic. At least three were alive — among them **VERA Files**, an IFCN verified signatory — condemned by a connection reset, an empty body, and a stock web-server placeholder string. Retrying caught none of it, because the retries repeated the same request from the same network.
+
+Findings are posted to a single recurring issue (label `link-check`) rather than a fresh issue every run, so a URL that keeps failing month after month is visible in one place. The report's header says how many findings are actually removal candidates, and whether the run was healthy enough to be believed at all. The workflow never edits either CSV — a flagged row still needs a human to confirm it, from a different network, before removing or fixing it, per [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 Run it locally the same way:
 
@@ -166,12 +177,25 @@ python scripts/check_links.py
 
 With no `GITHUB_TOKEN` set, it prints the findings and stops there.
 
+### Finding new sources
+
+[`scripts/discover_candidates.py`](scripts/discover_candidates.py) grows the catalogue without lowering the bar for what goes into it. Candidates come from an already-curated directory rather than open scraping, each is fetched for real, and `Lingua` and `Paese / Area` are filled only from a signal on the candidate's own page — an `<html lang>` attribute, a non-generic ccTLD — and left empty otherwise.
+
+```bash
+python scripts/discover_candidates.py --source ifcn
+python scripts/discover_candidates.py --source opensanctions
+```
+
+Two directories are wired up: the IFCN's verified signatories, and OpenSanctions' catalogue of the official publishers it aggregates. It never touches `Fonti_OSINT.csv` — it writes a separate review file with the same columns, for a human to check and merge by hand. The OpenSanctions source in particular needs that review: its publisher list is noisy enough that a keyword filter can't carry the whole job.
+
+One caveat worth knowing: its verification calls the same `check_url()` the link checker uses, so **a candidate it rejects has not had a second opinion**. `v0.5.0` treated a rejection here as independent corroboration of one there and dropped a live IFCN signatory on the strength of the same mistake counted twice.
+
 ## Versions
 
 Changes are tracked in [`CHANGELOG.md`](CHANGELOG.md). Released versions are tagged, so a specific snapshot can be pinned:
 
 ```bash
-git clone --branch v0.5.0.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
+git clone --branch v0.5.1 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
 ```
 
 A major version bump would signal a change to the column structure or to the meaning of an existing column. Adding, correcting or reclassifying rows does not.
