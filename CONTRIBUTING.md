@@ -26,7 +26,7 @@ python -m unittest discover -s scripts -p "test_*.py"
 
 ## Adding a source to `Fonti_OSINT.csv`
 
-Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`, `Paese / Area`, `Accesso`, `Note`
+Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`, `Paese / Area`, `Accesso`, `Note`, `Provenienza`
 
 - **Macro-categoria / Sottosezione**: reuse an existing category if it fits; only add a new one if nothing else applies.
 - **Fonte**: the source's actual name, not a generic placeholder. Add a parenthetical qualifier when the name alone is ambiguous (e.g. `Al Jazeera English` vs `Al Jazeera Africa`).
@@ -35,6 +35,7 @@ Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`
 - **Lingua / Paese / Area**: see [the README](README.md#columns) for the exact forms each accepts — `Paese / Area` takes subdivisions (`IT-Lombardia`) and region labels (`Globale`, `MENA`) as well as country codes. Only fill these when you have a real signal: the domain's ccTLD, an explicit statement on the site, or direct knowledge of the outlet. Don't default a country's official language onto every publication in it — plenty of national outlets publish in English (or another second language) for an international audience.
 - **Accesso**: what it costs to use, not a content-type label. One of `Gratuito`, `Pubblico`, `Freemium`, `A pagamento`, `Open Source`, `Commerciale`, `Community`, `Premium`, `Enterprise`, `Self-hosted`, `Waitlist`.
 - **Note**: short, factual context — what the source covers, notable caveats, why it's included.
+- **Provenienza**: **leave it empty** when adding by hand. It records which directory a batch of rows came from, as `<list>:<YYYY-MM>`, and [`scripts/discover_candidates.py`](scripts/discover_candidates.py) fills it automatically for the rows it produces. Its purpose is to make a batch measurable and reversible, so putting a value there by hand — or copying one from a neighbouring row — makes a batch look bigger than it was and quietly corrupts both.
 
 ## Adding an entry to `disinfo_sources_master.csv`
 

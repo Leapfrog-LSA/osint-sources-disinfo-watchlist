@@ -43,6 +43,7 @@ Standard library only — no dependencies to install.
 
 import argparse
 import csv
+import datetime as dt
 import json
 import re
 import sys
@@ -59,7 +60,7 @@ OSINT_CSV = REPO / "Fonti_OSINT.csv"
 
 OSINT_COLUMNS = [
     "Macro-categoria", "Sottosezione", "Fonte", "URL",
-    "RSS Feed", "Lingua", "Paese / Area", "Accesso", "Note",
+    "RSS Feed", "Lingua", "Paese / Area", "Accesso", "Note", "Provenienza",
 ]
 
 IFCN_API = "https://ifcn-cop-prod-server-8q9x7.ondigitalocean.app/api/organization/signatories"
@@ -96,13 +97,26 @@ SOURCES = {
         "macro": "✅ Fact-Checking & Disinformazione",
         "sottosezione": "Fact-Checking & Disinformazione",
         "note": "Fact-checker (rete IFCN) · verifica consigliata",
+        "provenance": "ifcn",
     },
     "opensanctions": {
         "macro": "⚖️ Sanzioni, PEP & Compliance",
         "sottosezione": "AML, Sanzioni & PEP",
         "note": "Fonte ufficiale citata da OpenSanctions · verifica consigliata prima del merge",
+        "provenance": "opensanctions",
     },
 }
+
+
+def batch_id(list_name):
+    """The `Provenienza` stamp for a run: `<list>:<YYYY-MM>`.
+
+    Month granularity on purpose. It identifies a batch, which is the unit a
+    sample accepts or rejects and the unit the monthly link check can later
+    score for dead links — a finer timestamp would split one batch into many
+    and make both meaningless.
+    """
+    return f"{list_name}:{dt.date.today():%Y-%m}"
 
 # ccTLDs that are widely used as generic/brand domains rather than a real
 # country signal — excluded so a ".io" or ".me" site doesn't get a wrong
@@ -254,6 +268,10 @@ def verify_candidate(candidate, source_config):
         "Paese / Area": candidate.get("country") or detect_country(candidate["url"]),
         "Accesso": "",
         "Note": source_config["note"],
+        # Stamped here rather than by hand at merge time: a batch that nobody
+        # can identify afterwards cannot be measured, and cannot be undone in
+        # one operation if it turns out to be bad.
+        "Provenienza": batch_id(source_config["provenance"]),
     }
 
 
