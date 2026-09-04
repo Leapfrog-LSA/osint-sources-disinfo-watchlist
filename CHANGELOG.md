@@ -9,6 +9,46 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Fixed
+
+- Thirteen more sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`:
+  **Visão**, **World Chambers Federation (ICC)**, **Dillinger News**,
+  **Department of Statistics** (Jordan), **INMETRO Brazil**, **National
+  Institute of Statistics (INS)** (Romania), **Media Observatory**,
+  **Office national de la statistique** (Mauritania), **Poligrafi**,
+  **Statistical Office of Slovenia (SURS)**, **W3C**, **Camera di
+  Commercio — Tunisia** and **Camera di Commercio — Angola**. With the
+  three restored earlier, that accounts for sixteen of the twenty-one.
+
+  Every one of these was removed on a connection-level error and nothing
+  else. No server ever said the resource was gone. Under the rule now in
+  `CONTRIBUTING.md` none of them was ever a candidate for removal, so
+  this undoes a deletion that had no evidence behind it rather than
+  asserting a new claim.
+
+  The domains do exist. Each was resolved through two independent public
+  resolvers over DNS-over-HTTPS — Google and Cloudflare — and all
+  thirteen return `NOERROR` with real A records. The method was
+  controlled first: an invented domain returns `NXDOMAIN` from both, live
+  sites return `NOERROR`, and — the case that matters — domains this
+  environment cannot reach over HTTP still resolve normally, so the
+  network filtering in front of HTTP is not reaching into DNS answers.
+
+  What DNS cannot establish is whether a host serves anything, and no
+  network available here can fetch eleven of the thirteen. That gap
+  closes on its own: back in the catalogue, they are checked every month
+  by `scripts/check_links.py` from a runner on an unfiltered network, and
+  a genuinely dead one now surfaces as `gone` with the server's own
+  verdict attached. **Camera di Commercio — Angola** and **Camera di
+  Commercio — Tunisia** are worth watching there: both answer `200` with
+  an empty body from two separate networks, which is inconclusive by the
+  same rule that a `200` with no content proves nothing.
+
+- **Sci-Hub** (`sci-hub.se`) stays out, now on evidence rather than by
+  default: both resolvers return `NXDOMAIN` for it, across `A`, `NS` and
+  `SOA`. The domain has no DNS records at all — consistent with the
+  seizures and rotations that domain has been through.
+
 ## [0.5.1] — 2026-09-01
 
 ### Added
