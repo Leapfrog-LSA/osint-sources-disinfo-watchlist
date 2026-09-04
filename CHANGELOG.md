@@ -9,6 +9,33 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- Three sources, each fetched and identified before being added:
+  **Centre for Information Resilience** (`info-res.org`), **The Dial**
+  (`thedial.world`) and **OsintCat** (`osintcat.net`).
+
+  The first two come from chasing the bookmark candidates that `v0.5.1`
+  recorded as unverifiable. Six of those domains turned out not to be
+  blocked but simply gone — no DNS records at all, from two independent
+  resolvers — because the organisations had moved. Three of the six were
+  already in the catalogue under their working domains all along:
+  **GITOC — Global Organized Crime Index** (`ocindex.net`), **CENOZO**
+  (`cenozo.org`) and **Rise Project** (`riseproject.ro`), so the
+  bookmarks were stale, not the catalogue.
+
+  **La Lista** was dropped, and is the reason identity is checked rather
+  than assumed: `lalista.com` resolves, answers `200`, and carries the
+  title "La Lista" — but its own description reads "specialists in
+  Italian weddings". Matching a name is not identifying a source. No
+  substitute domain for it, or for `direktoro.media`, could be
+  confirmed, so both stay out.
+
+  `Lingua` and `Paese / Area` are filled only from a signal on the page.
+  Centre for Information Resilience declares no `<html lang>` and sits on
+  a generic TLD, so both are empty for it rather than inferred from where
+  the organisation is based.
+
 ### Fixed
 
 - Thirteen more sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`:
