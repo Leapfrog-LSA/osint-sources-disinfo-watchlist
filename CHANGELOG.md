@@ -36,6 +36,17 @@ structure or to the meaning of an existing column.
   a generic TLD, so both are empty for it rather than inferred from where
   the organisation is based.
 
+### Changed
+
+- `README.md`'s source counts brought back in line: the catalogue now
+  reads 5,124 sources, not 5,108, with six of the twelve category rows
+  adjusted for the sixteen restorations and ten additions since `v0.5.1`.
+  Field-coverage percentages were re-derived and are unchanged.
+
+  Every figure was recomputed from the CSV rather than adjusted by hand,
+  and the twelve category rows now sum exactly to the declared total —
+  a check the table had never been held to before.
+
 ### Fixed
 
 - Thirteen more sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`:
