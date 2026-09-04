@@ -177,6 +177,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Globali & Internazionali,The Atlantic,https://www.theatlantic.com,https://www.theatlantic.com/feed/all/,EN,US,,Cultura e politica USA
 📰 Media & Testate Giornalistiche,Globali & Internazionali,The Bulwark,https://thebulwark.com,https://www.thebulwark.com/feed,EN,US,,Moderato USA
 📰 Media & Testate Giornalistiche,Globali & Internazionali,The Daily Beast,https://www.thedailybeast.com,,EN,US,,USA tabloide premium
+📰 Media & Testate Giornalistiche,Globali & Internazionali,The Dial,https://www.thedial.world/,,EN,,,"Rivista online — cultura, politica, corrispondenti locali"
 📰 Media & Testate Giornalistiche,Globali & Internazionali,The Dispatch,https://thedispatch.com,,EN,US,,Centrodestra USA
 📰 Media & Testate Giornalistiche,Globali & Internazionali,The Drum,https://www.thedrum.com,https://www.thedrum.com/rss.xml,EN,GB,,Marketing Media
 📰 Media & Testate Giornalistiche,Globali & Internazionali,The Economist,https://www.economist.com,,EN,GB,,Analisi settimanale
@@ -238,6 +239,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Bivol,https://bivol.bg,https://bivol.bg/feed,BG,BG,,Investigativo bulgaro — Bulgaria
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CENOZO,https://cenozo.org,https://cenozo.org/feed/,FR,Africa Occ.,,Sahel/Africa Occ. — investigativo transfrontaliero
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Center for Public Integrity,https://publicintegrity.org,https://publicintegrity.org/feed/,EN,US,,Investigativo nonprofit — USA
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Centre for Information Resilience,https://www.info-res.org/,,,,,Investigazioni open-source — Globale
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Chequeado,https://chequeado.com,https://chequeado.com/feed/?post_type=nota,ES,AR,,Fact-checking — Argentina
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CINS,https://www.cins.rs,https://www.cins.rs/web-stories/feed/,SR/EN,RS,,Serbia — centro giornalismo investigativo
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CIPER Chile,https://www.ciperchile.cl,https://www.ciperchile.cl/feed/,ES,CL,,Investigativo cileno — Cile
@@ -3745,6 +3747,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,OSINT Dojo,https://www.osintdojo.com,,,,Pubblico,Training
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,OSINT Framework,https://osintframework.com,,,,Pubblico,Collection di tool — Risorse
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,OSINT Industries,https://www.osint.industries,,,,,Email/phone lookup — Freemium — Lookup Tool
+🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,OsintCat,https://www.osintcat.net/,,EN,,,Piattaforma OSINT — aggregatore di fonti via API
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,Paliscope,https://www.paliscope.com,https://www.paliscope.com/feed/,,,Commerciale,OSINT platform
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,PeakFinder,https://www.peakfinder.org,,,,Freemium,Montagne — Geolocal.
 🔐 Cybersecurity & Digital OSINT,OSINT Tools & Intelligence,PeakVisor,https://peakvisor.com,,,,,Identificazione montagne — Freemium — Tool
