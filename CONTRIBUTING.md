@@ -39,6 +39,24 @@ Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`
 - **Note**: short, factual context — what the source covers, notable caveats, why it's included.
 - **Provenienza**: **leave it empty** when adding by hand. It records which directory a batch of rows came from, as `<list>:<YYYY-MM>`, and [`scripts/discover_candidates.py`](scripts/discover_candidates.py) fills it automatically for the rows it produces. Its purpose is to make a batch measurable and reversible, so putting a value there by hand — or copying one from a neighbouring row — makes a batch look bigger than it was and quietly corrupts both.
 
+## Adding sources in bulk
+
+Anything imported from a directory rather than added one at a time is a **batch**: every row sharing a `Provenienza` value, stamped automatically by [`scripts/discover_candidates.py`](scripts/discover_candidates.py).
+
+Up to a few hundred rows, read the batch end to end — that is how the first two imports were reviewed, and nothing beats it. Past that it stops being possible, and a batch is accepted on a sample instead:
+
+```bash
+python scripts/sample_batch.py --batch ifcn:2026-08
+```
+
+**Reject the whole batch if the sample turns up a single defect.** Not the row you found — the batch. The directory that produced it is the problem, and the rows you did not read came from the same place; repairing the ones you happened to see leaves the rest and buys false confidence. A rejected batch is not lost, it goes back for a better filter.
+
+A defect is narrow, and means one of the things this file already asks for: the URL does not identify the source it claims to be, the row duplicates one already in the catalogue, or a field carries a value nobody verified. **A source you would not personally have picked is not a defect** — that is a question for the directory's inclusion criteria, decided before importing, not during review.
+
+Two properties of the sampler are worth knowing. The draw comes from the batch id, so it is the same every time: nobody can re-roll until it looks clean, and a second reviewer sees exactly what the first one saw. And a batch smaller than the sample size is returned whole, so a small import is never signed off on a partial read.
+
+Say in the pull request which batch was sampled, how many rows were reviewed, and what the outcome was. With a clean sample of 60, the true defect rate is under roughly 5% at 95% confidence — worth stating plainly rather than implying the batch is spotless.
+
 ## Adding an entry to `disinfo_sources_master.csv`
 
 Columns: `domain`, `impersonated_outlet`, `authentic_domain`, `country`, `tld`, `first_seen`, `campaign`, `attribution`, `source`, `evidence_level`, `cats_flag`, `notes`
