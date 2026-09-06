@@ -30,6 +30,8 @@ Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`
 
 - **Macro-categoria / Sottosezione**: reuse an existing category if it fits; only add a new one if nothing else applies.
 - **Fonte**: the source's actual name, not a generic placeholder. Add a parenthetical qualifier when the name alone is ambiguous (e.g. `Al Jazeera English` vs `Al Jazeera Africa`).
+
+  Two rows may share a name, but only when something tells them apart: `National Bureau of Statistics` is Nigeria, Tanzania and Antigua, and `The Sun` is both a British tabloid and a Nigerian daily. `scripts/validate.py` allows that when the rows carry different `Paese / Area` values, and rejects it otherwise — same country, or a country missing on either side, reads as one source entered twice. If a repeat is flagged and the sources really are different, give each its country; if they are the same source, merge them rather than renaming one to slip past the check.
 - **URL**: check it resolves before adding. No tracking parameters, no session-specific paths.
 - **RSS Feed**: only fill if the feed genuinely exists — check the page's `<link rel="alternate">` tags or a known `/feed`, `/rss.xml` path.
 - **Lingua / Paese / Area**: see [the README](README.md#columns) for the exact forms each accepts — `Paese / Area` takes subdivisions (`IT-Lombardia`) and region labels (`Globale`, `MENA`) as well as country codes. Only fill these when you have a real signal: the domain's ccTLD, an explicit statement on the site, or direct knowledge of the outlet. Don't default a country's official language onto every publication in it — plenty of national outlets publish in English (or another second language) for an international audience.
