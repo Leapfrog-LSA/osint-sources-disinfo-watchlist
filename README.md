@@ -46,19 +46,19 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-5,124 sources across 12 macro-categories:
+5,145 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
 | Media & Testate Giornalistiche | 2,105 |
 | Settori Specifici (AI/dev tools, finance, sector-specific) | 1,200 |
 | Open Data & Trasparenza | 473 |
-| Statistiche & Dati Macroeconomici | 372 |
+| Statistiche & Dati Macroeconomici | 396 |
 | Registri Aziendali & Corporate Intelligence | 257 |
 | Cybersecurity & Digital OSINT | 171 |
 | Geopolitica & Intelligence | 152 |
 | Sanzioni, PEP & Compliance | 119 |
-| Fact-Checking & Disinformazione | 116 |
+| Fact-Checking & Disinformazione | 113 |
 | Social Media & Media Monitoring | 79 |
 | Sostenibilità & ESG | 46 |
 | Diritti Umani & Giudiziario | 34 |
@@ -92,13 +92,13 @@ Several tokens can be joined with `/` (e.g. `GB/IE`, `IT-Puglia/IT-Basilicata`).
 
 **`Accesso`** is a controlled vocabulary: `Gratuito`, `Pubblico`, `Freemium`, `A pagamento`, `Open Source`, `Commerciale`, `Community`, `Premium`, `Enterprise`, `Self-hosted`, `Waitlist`.
 
-**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
+**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `unsd:2026-09`, `wikipedia.nso:2026-09`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
 
 It exists so that a batch can be *measured* and, if it turns out to be bad, *removed in one operation*. A single directory that produces a high rate of dead links six months later is a fact you can only establish if you know which rows came from it — and a bad batch of two thousand rows cannot be undone by re-reading them one by one.
 
 Month granularity is deliberate: the batch is the unit a review sample accepts or rejects, and the unit the monthly link check can score. A finer timestamp would split one batch into many and make both meaningless.
 
-Empty means "not determined", as everywhere else here. The 4,986 rows that predate the column were curated by hand over time and their origin is genuinely unknown; labelling them with a guess would defeat the point of having the field.
+Empty means "not determined", as everywhere else here. The 4,990 unstamped rows are the ones that predate the column, plus the handful added one at a time since; the former were curated by hand over time and their origin is genuinely unknown, and labelling them with a guess would defeat the point of having the field.
 
 ### Field coverage
 
@@ -108,7 +108,7 @@ Optional fields are filled only where the value could be established from the so
 |---|---:|
 | `Note` | 100% |
 | `Paese / Area` | 89% |
-| `Lingua` | 81% |
+| `Lingua` | 82% |
 | `RSS Feed` | 21% |
 | `Accesso` | 7% |
 

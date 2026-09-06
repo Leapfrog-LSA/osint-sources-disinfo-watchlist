@@ -112,7 +112,7 @@ class SelectingABatch(unittest.TestCase):
         self.assertEqual([r["Fonte"] for _, r in rows], ["C"])
 
     def test_unstamped_rows_belong_to_no_batch(self):
-        # The 4,986 rows that predate the column must never be swept into one.
+        # The thousands of unstamped rows must never be swept into one.
         self.assertEqual(sb.load_batch("", self.path), [])
 
     def test_line_numbers_match_the_file(self):
