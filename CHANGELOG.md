@@ -132,6 +132,72 @@ structure or to the meaning of an existing column.
   116 after the duplicate removals. `Lingua` coverage ticks from 81% to 82%:
   every new row declares one.
 
+- **29 investigative newsrooms from the OCCRP network**, in
+  `Giornalismo Investigativo` — the first batch drawn from a professional
+  network rather than an institutional register.
+
+  The plan for growing this catalogue says to *measure* a network's yield
+  before working it, instead of assuming one. Measured, OCCRP's global
+  network page lists **75 organisations, of which the catalogue already held
+  45** — a 40% yield, close to the IFCN pilot's 54% (79 of 146). The
+  overlap is itself worth knowing: it says the existing hand-curated
+  coverage of investigative journalism was already good, and that the value
+  of the network is the tail, not the middle.
+
+  30 candidates were left. **One was rejected**: the Belarusian
+  Investigative Center (`investigatebel.org`) answers a Cloudflare challenge
+  rather than a page, so its identity could not be confirmed from here. It
+  is a blocked read, not a dead site, and it is left out rather than
+  admitted on the strength of the directory's word.
+
+  The other 29 were each fetched and read. Where the network's link pointed
+  at a section — `/en/`, `/ro/`, an `about` page — the row records the
+  homepage that section resolves to, verified separately. `Lingua` comes
+  from the page and not from the country: four sites declare an `<html lang>`
+  their own content contradicts (an Albanian outlet declaring `en`, a Syrian
+  one declaring `en-US`, a Georgian one declaring the non-existent code
+  `ge`), so the declared value was used only where the content agreed with
+  it. A second language is recorded only where that version was fetched and
+  found to exist — nine of the twenty-nine.
+
+  19 of the 29 rows carry a feed, each one requested and confirmed to return
+  a feed rather than a page — which caught a near-miss: the feed one site
+  advertises in its `<head>` is a WordPress *page* comment feed, not the
+  site feed, and only the fetch tells them apart. The site feed was found
+  and verified separately. The 29 rows span 23 countries, fifteen of them
+  places `Giornalismo Investigativo` had no outlet for at all — Albania,
+  Austria, Azerbaijan, Bosnia, Belarus, Cyprus, Georgia, Ghana, Moldova,
+  Malta, Papua New Guinea, the Solomon Islands, Syria, Togo and Kosovo.
+
+  Batch `occrp:2026-09`. At 29 rows it sits under the sample size, so
+  `scripts/sample_batch.py` returns it whole and the sample is again the
+  full review — zero defects.
+
+- **Two more networks measured, neither imported yet**, because the point of
+  measuring first is to know what a batch is worth before committing to it.
+
+  | Network | Listed | Already catalogued | Candidates | Yield |
+  |---|---:|---:|---:|---:|
+  | OCCRP | 75 | 45 | 30 | 40% |
+  | FIRST.org | 878 | — | 83 | 9% |
+  | GIJN | — | — | — | not reachable |
+
+  **FIRST.org's 878 member teams are mostly private.** 489 declare a
+  commercial, industrial, financial, ISP or vendor constituency and 286
+  serve only their own host organisation, so the headline number is not the
+  yield: the part that belongs in an OSINT catalogue is the national CERTs,
+  and FIRST's own metadata does not label them. Filtering on a governmental
+  host organisation with an external constituency leaves 91, of which 8 are
+  already catalogued — **83 candidates, a 9% yield**, and the filter still
+  admits a few corporate teams that a review would have to remove. That is a
+  workable batch, but a separate one.
+
+  **GIJN could not be measured at all.** Every path on `gijn.org` — the
+  member list, the API, even `robots.txt` — answers `403` from this network,
+  so there is nothing to report except that. Recording it as unmeasured is
+  the point: an estimate here would be exactly the invented number the plan
+  was written to avoid.
+
 ### Changed
 
 - `scripts/validate.py` now rejects a repeated `Fonte` when nothing
