@@ -76,6 +76,7 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 | `Paese / Area` | Country or geographic scope — see below |
 | `Accesso` | What it costs to use — see below |
 | `Note` | Short factual context |
+| `Provenienza` | Which directory the row came from, and in which batch — see below |
 
 **`Paese / Area`** is not always a country, because not every source has one. A token is any of:
 
@@ -90,6 +91,14 @@ Several tokens can be joined with `/` (e.g. `GB/IE`, `IT-Puglia/IT-Basilicata`).
 **`Lingua`** uses uppercase ISO 639 codes (`IT`, `EN`, `AR`), joined with `/` when a source publishes in more than one (`EN/FR`, `AR/EN`). `Multi` marks broadly multilingual sources. Three-letter codes appear where no two-letter code exists (e.g. `TET` for Tetum).
 
 **`Accesso`** is a controlled vocabulary: `Gratuito`, `Pubblico`, `Freemium`, `A pagamento`, `Open Source`, `Commerciale`, `Community`, `Premium`, `Enterprise`, `Self-hosted`, `Waitlist`.
+
+**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
+
+It exists so that a batch can be *measured* and, if it turns out to be bad, *removed in one operation*. A single directory that produces a high rate of dead links six months later is a fact you can only establish if you know which rows came from it — and a bad batch of two thousand rows cannot be undone by re-reading them one by one.
+
+Month granularity is deliberate: the batch is the unit a review sample accepts or rejects, and the unit the monthly link check can score. A finer timestamp would split one batch into many and make both meaningless.
+
+Empty means "not determined", as everywhere else here. The 4,986 rows that predate the column were curated by hand over time and their origin is genuinely unknown; labelling them with a guess would defeat the point of having the field.
 
 ### Field coverage
 

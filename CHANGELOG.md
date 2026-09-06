@@ -10,7 +10,6 @@ structure or to the meaning of an existing column.
 ## [Unreleased]
 
 ### Added
-
 - Three sources, each fetched and identified before being added:
   **Centre for Information Resilience** (`info-res.org`), **The Dial**
   (`thedial.world`) and **OsintCat** (`osintcat.net`).
@@ -37,6 +36,41 @@ structure or to the meaning of an existing column.
   the organisation is based.
 
 ### Changed
+- **`Fonti_OSINT.csv` gains a tenth column, `Provenienza`.** It records which
+  directory a row came from and in which batch, as `<list>:<YYYY-MM>`.
+  `scripts/discover_candidates.py` stamps it automatically; rows added by hand
+  leave it empty.
+
+  **This changes the column structure, so the next release is a major version
+  bump** — the first one this catalogue has had.
+
+  The field exists because the catalogue cannot grow much further without it.
+  Every bulk addition so far was small enough to review row by row: the IFCN
+  pilot was 79 rows and was read one at a time. At a few thousand rows that
+  stops being possible, and the alternative — accepting a batch on a sample —
+  only works if a rejected batch can be identified and removed in one
+  operation. Without provenance it cannot, so a bad directory would have to be
+  unpicked by hand, which is the same problem in a worse form.
+
+  It also makes quality measurable rather than asserted. Once the monthly link
+  check has a few months of history, the dead-link rate *per batch* says which
+  directories are worth using — a fact, where today there would only be an
+  impression.
+
+  138 rows are backfilled from git history rather than from guesswork:
+  `ifcn:2026-08` (79), `ifcn:2026-09` (7) and `opensanctions:2026-08` (52),
+  identified by the commits that introduced them. The remaining 4,986 stay
+  **empty**, which here means "not determined", as it does in every other
+  optional field: those rows were curated by hand over time and their origin is
+  genuinely unknown. Filling them with a plausible-looking label would defeat
+  the purpose of the column.
+
+  `scripts/validate.py` rejects a malformed stamp — a bare list name with no
+  batch, an impossible month, an uppercase list — while accepting an empty
+  field. `scripts/test_validate.py` is new and covers those rules along with
+  the requirement that `validate.py` and `discover_candidates.py` agree on the
+  column list, since a drift between them would silently emit rows of the
+  wrong shape.
 
 - `README.md`'s source counts brought back in line: the catalogue now
   reads 5,124 sources, not 5,108, with six of the twelve category rows
@@ -48,7 +82,6 @@ structure or to the meaning of an existing column.
   a check the table had never been held to before.
 
 ### Fixed
-
 - Thirteen more sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`:
   **Visão**, **World Chambers Federation (ICC)**, **Dillinger News**,
   **Department of Statistics** (Jordan), **INMETRO Brazil**, **National
@@ -81,7 +114,6 @@ structure or to the meaning of an existing column.
   Commercio — Tunisia** are worth watching there: both answer `200` with
   an empty body from two separate networks, which is inconclusive by the
   same rule that a `200` with no content proves nothing.
-
 - **Sci-Hub** (`sci-hub.se`) stays out, now on evidence rather than by
   default: both resolvers return `NXDOMAIN` for it, across `A`, `NS` and
   `SOA`. The domain has no DNS records at all — consistent with the

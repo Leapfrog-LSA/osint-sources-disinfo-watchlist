@@ -30,8 +30,19 @@ DISINFO_CSV = REPO / "disinfo_sources_master.csv"
 
 OSINT_COLUMNS = [
     "Macro-categoria", "Sottosezione", "Fonte", "URL",
-    "RSS Feed", "Lingua", "Paese / Area", "Accesso", "Note",
+    "RSS Feed", "Lingua", "Paese / Area", "Accesso", "Note", "Provenienza",
 ]
+
+# `Provenienza` records which directory a row came from and in which batch, as
+# `<list>:<YYYY-MM>` — e.g. `ifcn:2026-08`. It exists so a batch can be
+# measured and, if it turns out to be bad, removed in one operation instead of
+# being re-read row by row.
+#
+# Empty means "not determined", the same as every other optional field here:
+# the rows that predate the field were curated by hand over time and their
+# origin is genuinely unknown. Filling them with a guess would defeat the point
+# of having the column.
+PROVENANCE = re.compile(r"^[a-z0-9][a-z0-9._-]*:\d{4}-(0[1-9]|1[0-2])$")
 
 DISINFO_COLUMNS = [
     "domain", "impersonated_outlet", "authentic_domain", "country", "tld",
@@ -195,6 +206,12 @@ def validate_osint(report):
             report.error(dataset, line, "Accesso",
                          f"{access!r} is not in the controlled vocabulary "
                          f"({', '.join(sorted(ACCESS_TYPES))})")
+
+        provenance = row["Provenienza"].strip()
+        if provenance and not PROVENANCE.match(provenance):
+            report.error(dataset, line, "Provenienza",
+                         f"{provenance!r} is not `<list>:<YYYY-MM>` "
+                         f"(e.g. 'ifcn:2026-08'); leave it empty if unknown")
 
 
 def validate_disinfo(report):
