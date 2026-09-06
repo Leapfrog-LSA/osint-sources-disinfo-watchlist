@@ -154,6 +154,7 @@ def validate_osint(report):
         return
 
     seen_urls = {}
+    seen_names = {}
 
     for index, row in enumerate(rows):
         line = index + 2  # +1 for header, +1 for 1-based numbering
@@ -206,6 +207,31 @@ def validate_osint(report):
             report.error(dataset, line, "Accesso",
                          f"{access!r} is not in the controlled vocabulary "
                          f"({', '.join(sorted(ACCESS_TYPES))})")
+
+        # Two rows may legitimately share a `Fonte`: "National Bureau of
+        # Statistics" is Nigeria, Tanzania and Antigua, and "The Sun" is a
+        # British tabloid and a Nigerian daily. What separates those from a
+        # genuine duplicate is the country — so a repeated name is only an
+        # error when the rows do not distinguish themselves by one.
+        #
+        # On the catalogue as it stands this flags 5 of 22 repeated names, and
+        # all five were real: a bulk import had added an organisation's
+        # corporate site under the name of its fact-checking arm, while the
+        # actual fact-check page was already catalogued. The other 17 are
+        # statistical offices and namesake newspapers in different countries.
+        name = row["Fonte"].strip().lower()
+        place = row["Paese / Area"].strip()
+        if name:
+            for prev_line, prev_place in seen_names.get(name, ()):
+                if not place or not prev_place or place == prev_place:
+                    where = f"both {place!r}" if place and place == prev_place else "no country to tell them apart"
+                    report.error(dataset, line, "Fonte",
+                                 f"{row['Fonte'].strip()!r} also on line {prev_line} — "
+                                 f"{where}. Same organisation? Merge them. Different "
+                                 f"ones? Give each its `Paese / Area`, or a name that "
+                                 f"distinguishes them")
+                    break
+            seen_names.setdefault(name, []).append((line, place))
 
         provenance = row["Provenienza"].strip()
         if provenance and not PROVENANCE.match(provenance):
