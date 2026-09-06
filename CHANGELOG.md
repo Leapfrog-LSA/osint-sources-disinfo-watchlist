@@ -72,6 +72,66 @@ structure or to the meaning of an existing column.
   a generic TLD, so both are empty for it rather than inferred from where
   the organisation is based.
 
+- **24 national statistics offices**, closing most of the gap in
+  `Istituti di Statistica Nazionali`. The subsection covered 156 of the 193 UN
+  member states and now covers 180.
+
+  The starting list was wrong in one place and worth saying so: Italy was
+  counted as missing, but **ISTAT has been in the catalogue all along**,
+  filed under `Istituzioni, Trasparenza & Open Government`. That is a
+  classification question, not a gap, and it leaves 36 real ones.
+
+  Every row was fetched and read before being added — not for a `200`, but
+  for the name the page gives itself. Six of the URLs the UNSD directory
+  supplies failed exactly that test:
+
+  | Country | URL in the directory | What it actually serves |
+  |---|---|---|
+  | Marshall Islands | `rmiembassyus.org` | the embassy in Washington |
+  | Haiti | `ihsi.ht` | redirects to `znaki.fm`, an unrelated domain |
+  | Nauru, Tonga, Tuvalu, Vanuatu | `spc.int/prism/…` | one shared regional page — the same document for all four |
+
+  All six answered `200` with a full page. A liveness check would have admitted
+  every one of them, and the four Pacific entries would have become four rows
+  pointing at the same document.
+
+  A working URL was found for all six, so none of the countries was lost:
+  Haiti's IHSI at `ihsi.gouv.ht`, the Marshall Islands' EPPSO at
+  `rmieppso.org`, and the four Pacific offices on their own domains —
+  `stats.gov.nr`, `tongastats.gov.to`, `stats.gov.tv` and `vnso.gov.vu`.
+
+  `Provenienza` distinguishes where each URL came from, because the two
+  directories used are not equally reliable and their yield should be
+  measured separately: `unsd:2026-09` (8 rows) for the UNSD directory of
+  national statistical offices, `wikipedia.nso:2026-09` (12) for the
+  Wikipedia list, and **empty** for the four found by hand, as
+  `CONTRIBUTING.md` prescribes for entries added one at a time. UNSD is the
+  official source and was tried first; it is also the one carrying all six
+  misidentifications above, which is the sort of thing the column exists to
+  record.
+
+  **Twelve countries are still missing, and none of them were guessed at.**
+  Eritrea and North Korea have no published site at all. Bahrain, Costa Rica,
+  Ethiopia, Iran, Lithuania, Palau, South Sudan, Sudan, Eswatini and Venezuela
+  have a URL that could not be verified from here — DNS `SERVFAIL`, a
+  Cloudflare challenge, an empty page, or a blocked egress — and a source that
+  cannot be identified does not get added on the strength of a plausible name.
+  Italy is the classification question above.
+
+  Two rows carry a caveat in `Note` rather than being quietly dropped: Kenya's
+  KNBS and Vanuatu's VBoS serve an incomplete TLS certificate chain, so the
+  monthly check will report them as `tls_error`. `CONTRIBUTING.md` already
+  says a TLS error is never grounds for removal; this makes the reason legible
+  before someone acts on the report.
+
+  Both batches are under the sample size, so `scripts/sample_batch.py` returns
+  them whole and the sample *is* the full review — which is why a batch this
+  small was chosen first. `README.md`'s counts were recomputed from the file:
+  5,145 sources, `Statistiche & Dati Macroeconomici` 396, and
+  `Fact-Checking & Disinformazione` corrected to 113, which had been left at
+  116 after the duplicate removals. `Lingua` coverage ticks from 81% to 82%:
+  every new row declares one.
+
 ### Changed
 
 - `scripts/validate.py` now rejects a repeated `Fonte` when nothing
@@ -132,6 +192,19 @@ structure or to the meaning of an existing column.
   Every figure was recomputed from the CSV rather than adjusted by hand,
   and the twelve category rows now sum exactly to the declared total —
   a check the table had never been held to before.
+
+- `CONTRIBUTING.md`'s bulk-import section says two things it left implicit.
+  A `Provenienza` stamp is legitimate whenever the rows came from one directory
+  in one pass — `scripts/discover_candidates.py` stamps the directories it
+  knows about, but it is not the only way a batch can arrive, and the previous
+  wording read as though it were.
+
+  And **a directory is a source of candidates, not of facts.** That is the
+  lesson of `unsd:2026-09` above, and it is now stated where someone about to
+  import will read it: the rows have to be fetched and read for the name the
+  page gives itself *before* the batch is stamped. The sample check comes
+  after, and cannot stand in for it — a sample drawn from rows nobody
+  identified only measures how consistently they were not identified.
 
 ### Fixed
 

@@ -41,7 +41,9 @@ Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`
 
 ## Adding sources in bulk
 
-Anything imported from a directory rather than added one at a time is a **batch**: every row sharing a `Provenienza` value, stamped automatically by [`scripts/discover_candidates.py`](scripts/discover_candidates.py).
+Anything imported from a directory rather than added one at a time is a **batch**: every row sharing a `Provenienza` value. [`scripts/discover_candidates.py`](scripts/discover_candidates.py) stamps the directories it knows about; a batch pulled from anywhere else is stamped the same way, `<list>:<YYYY-MM>`, with a list name that says which directory it was. What makes a stamp legitimate is that the rows really did come from one directory in one pass — not which script wrote it.
+
+**A directory is a source of candidates, not of facts.** Its URLs go stale and its entries can be wrong: in `unsd:2026-09`, six of the URLs the UN Statistics Division publishes for national statistical offices answered `200` with a full page while pointing at an embassy, an unrelated domain, or one shared regional page reused for four different countries. Every row still has to be fetched and read for the name the page gives itself, before the batch is stamped — the sample check comes after that, and cannot substitute for it.
 
 Up to a few hundred rows, read the batch end to end — that is how the first two imports were reviewed, and nothing beats it. Past that it stops being possible, and a batch is accepted on a sample instead:
 
