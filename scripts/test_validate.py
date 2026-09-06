@@ -19,6 +19,9 @@ rather than becoming a guess.
 No network, no filesystem writes. Standard library only.
 """
 
+import csv
+import pathlib
+import tempfile
 import unittest
 
 import discover_candidates as dc
@@ -95,6 +98,96 @@ class SchemaStaysInStep(unittest.TestCase):
             "Lingua", "Paese / Area", "Accesso", "Note", "Provenienza",
         }
         self.assertEqual(row_keys, set(dc.OSINT_COLUMNS))
+
+
+class DuplicateNames(unittest.TestCase):
+    """A repeated `Fonte` is an error only when nothing distinguishes the rows.
+
+    Run through validate_osint() against a temporary CSV, so these exercise the
+    real check rather than a re-implementation of its rule.
+    """
+
+    COLUMNS = v.OSINT_COLUMNS
+
+    def check(self, rows):
+        """Validate a small catalogue and return the errors on `Fonte`."""
+        with tempfile.TemporaryDirectory() as tmp:
+            path = pathlib.Path(tmp) / "Fonti_OSINT.csv"
+            with path.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.writer(handle, lineterminator="\n")
+                writer.writerow(self.COLUMNS)
+                writer.writerows(rows)
+            report = v.Report()
+            original = v.OSINT_CSV
+            v.OSINT_CSV = path
+            try:
+                v.validate_osint(report)
+            finally:
+                v.OSINT_CSV = original
+        # Report.errors holds (dataset, line, column, message)
+        return [e for e in report.errors if e[2] == "Fonte"]
+
+    @staticmethod
+    def row(name, url, place=""):
+        return ["📰 Media & Testate Giornalistiche", "Globali & Internazionali",
+                name, url, "", "", place, "", "nota", ""]
+
+    def test_same_name_in_different_countries_is_allowed(self):
+        # "National Bureau of Statistics" is Nigeria, Tanzania and Antigua.
+        errors = self.check([
+            self.row("National Bureau of Statistics", "https://a.example", "NG"),
+            self.row("National Bureau of Statistics", "https://b.example", "TZ"),
+            self.row("National Bureau of Statistics", "https://c.example", "AG"),
+        ])
+        self.assertEqual(errors, [])
+
+    def test_same_name_and_same_country_is_an_error(self):
+        errors = self.check([
+            self.row("The Canadian Press", "https://a.example", "CA"),
+            self.row("The Canadian Press", "https://b.example", "CA"),
+        ])
+        self.assertEqual(len(errors), 1)
+
+    def test_same_name_with_a_missing_country_is_an_error(self):
+        # The shape of every real duplicate found in the catalogue: a bulk
+        # import added a row under an existing name without a country.
+        errors = self.check([
+            self.row("Reuters Fact Check", "https://a.example", "Globale"),
+            self.row("Reuters Fact Check", "https://b.example", ""),
+        ])
+        self.assertEqual(len(errors), 1)
+
+    def test_both_countries_missing_is_an_error(self):
+        errors = self.check([
+            self.row("Qualcosa", "https://a.example", ""),
+            self.row("Qualcosa", "https://b.example", ""),
+        ])
+        self.assertEqual(len(errors), 1)
+
+    def test_the_comparison_ignores_case_and_padding(self):
+        errors = self.check([
+            self.row("Il Post", "https://a.example", "IT"),
+            self.row("  il post  ", "https://b.example", "IT"),
+        ])
+        self.assertEqual(len(errors), 1)
+
+    def test_distinct_names_never_collide(self):
+        errors = self.check([
+            self.row("Il Post", "https://a.example", "IT"),
+            self.row("Il Foglio", "https://b.example", "IT"),
+        ])
+        self.assertEqual(errors, [])
+
+    def test_one_error_per_row_not_one_per_pair(self):
+        # Three colliding rows report twice, not three times: each row is
+        # reported once against the first match, so a large collision does not
+        # bury the rest of the report.
+        errors = self.check([
+            self.row("Stessa", "https://a.example", "IT"),
+            self.row("Stessa", "https://b.example", "IT"),
+            self.row("Stessa", "https://c.example", "IT"),
+        ])
+        self.assertEqual(len(errors), 2)
 
 
 if __name__ == "__main__":

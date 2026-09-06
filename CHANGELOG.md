@@ -36,6 +36,22 @@ structure or to the meaning of an existing column.
   the organisation is based.
 
 ### Changed
+
+- `scripts/validate.py` now rejects a repeated `Fonte` when nothing
+  distinguishes the rows. Two sources may legitimately share a name —
+  **National Bureau of Statistics** is Nigeria, Tanzania and Antigua, and
+  **The Sun** is a British tabloid and a Nigerian daily — so a repeat is only
+  an error when the rows carry the same `Paese / Area`, or when either is
+  missing one.
+
+  The rule was chosen by measuring it, not by intuition. The catalogue had 22
+  repeated names; the check flags 5 and lets 17 through, and every one of the
+  five turned out to be a real duplicate while all seventeen are namesakes in
+  different countries. A bare name-collision check would have reported all 22
+  and been ignored.
+
+  The exact-URL and exact-domain checks were already there and stay. They find
+  nothing today: no two rows differ only by scheme, `www.` or a trailing slash.
 - **`Fonti_OSINT.csv` gains a tenth column, `Provenienza`.** It records which
   directory a row came from and in which batch, as `<list>:<YYYY-MM>`.
   `scripts/discover_candidates.py` stamps it automatically; rows added by hand
@@ -82,6 +98,29 @@ structure or to the meaning of an existing column.
   a check the table had never been held to before.
 
 ### Fixed
+
+- Five duplicate rows resolved, all the same fault: a bulk import had added an
+  organisation's **corporate site under the name of its fact-checking arm**,
+  while the actual fact-check page was already in the catalogue. Four of the
+  five came from the IFCN pilot — this is not something hand curation does to
+  itself, and it is the failure mode the new check exists to catch.
+
+  Removed as duplicates, each because the real page is already listed:
+  **AP Fact Check** at `ap.org`, which is AP's corporate site, while
+  `Associated Press` is catalogued at `apnews.com` and the genuine hub at
+  `apnews.com/hub/ap-fact-check`; **EFE Verifica** at
+  `efe.com/efe/espana/efeverifica/50001435`, a deep link with a numeric id to
+  the same thing as `verifica.efe.com`; and **Reuters Fact Check** at
+  `reutersagency.com`, whose own title reads "Reuters: The Trusted,
+  International News Agency", with both `Reuters` and the real
+  `reuters.com/fact-check` already present.
+
+  Renamed, each taking the name the site gives itself rather than one invented
+  here: **Tempo** at `en.tempo.co` becomes **Tempo English** (its title is
+  "Tempo.co English"), and **The Canadian Press** at `thecanadianpressnews.ca`
+  becomes **The Canadian Press News** (its title is "The Canadian Press News
+  Home"), leaving the agency's own `thecanadianpress.com` to keep the plain
+  name.
 - Thirteen more sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`:
   **Visão**, **World Chambers Federation (ICC)**, **Dillinger News**,
   **Department of Statistics** (Jordan), **INMETRO Brazil**, **National

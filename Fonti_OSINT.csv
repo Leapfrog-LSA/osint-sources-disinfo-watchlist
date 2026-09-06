@@ -379,7 +379,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Tamedia Investigativ,https://www.tamedia.ch,,,CH,,Multi-titolo svizzero — Svizzera,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Tansa,https://tansajp.org,,JA/EN,JP,,Giappone — investigativo indipendente,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Telejato,https://www.telejato.it,https://www.telejato.it/feed/,,IT-Sicilia,,Sicilia — TV locale/investigativa,
-📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Tempo,https://en.tempo.co,https://rss.tempo.co/en,EN,ID,,Investigativo indonesiano — Indonesia,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Tempo English,https://en.tempo.co,https://rss.tempo.co/en,EN,ID,,Investigativo indonesiano — Indonesia,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Texas Tribune,https://www.texastribune.org,https://www.texastribune.org/rss.xml,EN,US,,Investigativo Texas — Texas Inv.,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,The 19th,https://19thnews.org,,EN,US,,Donne e politica — USA,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,The Africa Report,https://www.theafricareport.com,https://www.theafricareport.com/feed/,EN,Pan-Africa,,Business e politica — Pan-Africa,
@@ -3333,7 +3333,6 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Annie Lab,https://annielab.org,,EN,HK,,Fact-checker — Hong Kong (rete IFCN/EFCSN/Duke) · verifica consigliata,
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Annir,https://annir.ly/,,AR,LY,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Aos Fatos,https://aosfatos.org,,PT,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
-✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,AP Fact Check,https://www.ap.org,,EN,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,ARIJ,https://www.arij.net,,AR,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,BALOBAKI CHECK,https://www.balobakicheck.com,,FR,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Bolivia Verifica,https://boliviaverifica.bo,,ES,BO,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
@@ -3353,7 +3352,6 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Doğrula,https://www.dogrula.org/,,TR,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,dpa Deutsche Presse-Agentur GmbH,https://dpa-factchecking.com,,,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,E-farsas,https://www.e-farsas.com,http://www.e-farsas.com/feed,PT,BR,,Fact-checker — Brazil (rete IFCN/EFCSN/Duke) · verifica consigliata,
-✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,EFE Verifica,https://www.efe.com/efe/espana/efeverifica/50001435,,ES,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Eleza Fact,https://elezafact.cd/,,EN,CD,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Ellinika Hoaxes,https://ellinikahoaxes.gr,,EL,GR,,Fact-checker — Greece (rete IFCN/EFCSN/Duke) · verifica consigliata,
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Estadão Verifica,https://politica.estadao.com.br/blogs/estadao-verifica/,,PT,BR,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
@@ -3421,7 +3419,6 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Raskrinkavanje,http://raskrinkavanje.ba,,BS,BA,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Raskrinkavanje.me,https://www.raskrinkavanje.me/,,EN,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Re:Baltica,https://rebaltica.lv/,,LV,LV,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
-✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Reuters Fact Check,https://www.reutersagency.com/en/,,EN,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Roundcheck,https://roundcheck.com.ng,https://roundcheck.com.ng/feed/,EN,NG,,Fact-checker — Nigeria (rete IFCN/EFCSN/Duke) · verifica consigliata,
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Sawab (UNDP),https://sawablb.com,,AR,LB,,Fact-checker — Lebanon (rete IFCN/EFCSN/Duke) · verifica consigliata,
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Science Feedback,https://science.feedback.org,,EN,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
@@ -3430,7 +3427,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Stopfals.md,https://stopfals.md/,,RO,MD,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Telugupost.com,https://www.telugupost.com/,,TE,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,Tempo,https://www.tempo.co/,,ID,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
-✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,The Canadian Press,https://www.thecanadianpressnews.ca,,EN,CA,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
+✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,The Canadian Press News,https://www.thecanadianpressnews.ca,,EN,CA,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,The Stage Media -Liberia,https://tsmliberia.com/,,EN,,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,The Taiwan Society for Targeting Misinformation,https://tstm.tw/,,ZH,TW,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
 ✅ Fact-Checking & Disinformazione,Fact-Checking & Disinformazione,The Whistle,https://www.globes.co.il/news/home.aspx?fid=10559,,HE,IL,,Fact-checker (rete IFCN) · verifica consigliata,ifcn:2026-08
