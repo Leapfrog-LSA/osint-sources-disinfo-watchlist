@@ -10,6 +10,43 @@ structure or to the meaning of an existing column.
 ## [Unreleased]
 
 ### Added
+
+- `scripts/sample_batch.py`, which draws the review sample for one batch of
+  imported sources, and the acceptance rule to go with it in
+  `CONTRIBUTING.md`.
+
+  It replaces reading every imported row, which is what the first two imports
+  got and what stops being possible past a few hundred rows. A batch is now
+  accepted on a sample instead — and **rejected whole if the sample turns up a
+  single defect**, rather than repaired row by row. The directory that produced
+  a bad row produced the ones nobody read, so fixing only what was seen leaves
+  the rest and buys false confidence.
+
+  Two properties make that honest rather than a formality. The draw is seeded
+  from the batch id, so it is a function of the batch and not of when it was
+  asked for: nobody can re-roll until the sample looks clean, and a second
+  reviewer sees exactly the rows the first one saw. And a batch smaller than
+  the sample size is returned whole, so a small import is never signed off on a
+  partial read.
+
+  The threshold is zero defects in 60 rows, which by the rule of three puts the
+  true defect rate under about 5% with 95% confidence. That is the honest
+  reading, and `CONTRIBUTING.md` states it that way rather than implying a
+  clean sample means a clean batch. A single defect already weakens it to
+  roughly 8% — and every defect found in this catalogue so far was one no
+  reviewer would knowingly accept, so there is no sensible number to tolerate.
+
+  What counts as a defect is deliberately narrow and matches the rules already
+  in `CONTRIBUTING.md`: the URL does not identify the source it claims to be,
+  the row duplicates one already present, or a field carries an unverified
+  value. A source the reviewer would not personally have chosen is not a
+  defect — that belongs to the directory's inclusion criteria, settled before
+  importing.
+
+  Writing the tests caught a real defect in the sampler: an empty batch id
+  matched every unstamped row, so `--batch ""` would have presented the
+  thousands of rows that predate the `Provenienza` column as a single import
+  to sign off on.
 - Three sources, each fetched and identified before being added:
   **Centre for Information Resilience** (`info-res.org`), **The Dial**
   (`thedial.world`) and **OsintCat** (`osintcat.net`).
@@ -36,6 +73,7 @@ structure or to the meaning of an existing column.
   the organisation is based.
 
 ### Changed
+
 - **`Fonti_OSINT.csv` gains a tenth column, `Provenienza`.** It records which
   directory a row came from and in which batch, as `<list>:<YYYY-MM>`.
   `scripts/discover_candidates.py` stamps it automatically; rows added by hand
@@ -71,7 +109,6 @@ structure or to the meaning of an existing column.
   the requirement that `validate.py` and `discover_candidates.py` agree on the
   column list, since a drift between them would silently emit rows of the
   wrong shape.
-
 - `README.md`'s source counts brought back in line: the catalogue now
   reads 5,124 sources, not 5,108, with six of the twelve category rows
   adjusted for the sixteen restorations and ten additions since `v0.5.1`.
@@ -82,6 +119,7 @@ structure or to the meaning of an existing column.
   a check the table had never been held to before.
 
 ### Fixed
+
 - Thirteen more sources removed in `v0.5.0` restored to `Fonti_OSINT.csv`:
   **Visão**, **World Chambers Federation (ICC)**, **Dillinger News**,
   **Department of Statistics** (Jordan), **INMETRO Brazil**, **National
