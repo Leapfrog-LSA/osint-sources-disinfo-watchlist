@@ -46,11 +46,11 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-5,145 sources across 12 macro-categories:
+5,174 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
-| Media & Testate Giornalistiche | 2,105 |
+| Media & Testate Giornalistiche | 2,134 |
 | Settori Specifici (AI/dev tools, finance, sector-specific) | 1,200 |
 | Open Data & Trasparenza | 473 |
 | Statistiche & Dati Macroeconomici | 396 |
@@ -92,7 +92,7 @@ Several tokens can be joined with `/` (e.g. `GB/IE`, `IT-Puglia/IT-Basilicata`).
 
 **`Accesso`** is a controlled vocabulary: `Gratuito`, `Pubblico`, `Freemium`, `A pagamento`, `Open Source`, `Commerciale`, `Community`, `Premium`, `Enterprise`, `Self-hosted`, `Waitlist`.
 
-**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `unsd:2026-09`, `wikipedia.nso:2026-09`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
+**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `unsd:2026-09`, `wikipedia.nso:2026-09`, `occrp:2026-09`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
 
 It exists so that a batch can be *measured* and, if it turns out to be bad, *removed in one operation*. A single directory that produces a high rate of dead links six months later is a fact you can only establish if you know which rows came from it — and a bad batch of two thousand rows cannot be undone by re-reading them one by one.
 

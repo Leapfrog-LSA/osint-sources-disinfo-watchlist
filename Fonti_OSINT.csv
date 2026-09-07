@@ -224,6 +224,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Al-Monitor,https://www.al-monitor.com,https://www.al-monitor.com/rss,EN,US,,Medio Oriente — MENA,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,AllAfrica,https://allafrica.com,,EN,Pan-Africa,,Aggregatore notizie africane — Pan-Africa,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,AmaBhungane,https://amabhungane.org,https://amabhungane.org/feed/,EN,ZA,,"Corruzione, stato — Sudafrica",
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Amphora Media,https://www.amphora.media,https://www.amphora.media/feed,EN,MT,,Giornalismo investigativo — Malta,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Anara,https://anara.com,,,Asia Centrale,,Media indipendenti — Asia centrale,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Animal Político,https://www.animalpolitico.com,,ES,MX,,Politica e corruzione — Messico,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Antimafia Duemila,https://www.antimafiaduemila.com,,IT,IT,,Rivista specializzata — Antimafia,
@@ -236,13 +237,17 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Bellingcat,https://www.bellingcat.com,,EN,NL,,"OSINT, geolocalizzazione — Globale",
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Bellingcat Online Toolkit,https://docs.google.com/spreadsheets/d/18rtqh8EG2q1xBo2cLNyhIDuK9jrPGwYr9DI2UncoqJQ,,,Globale,,Bellingcat tools list — Pubblico — Spreadsheet,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Bellingcat OSINT Challenge,https://www.bellingcat.com/resources/how-tos,,NL,NL,Pubblico,Training,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,BIRD — Bureau for Investigative Reporting and Data,https://bird.bg,https://bird.bg/feed/,BG/EN,BG,,Inchieste e giornalismo di dati — Bulgaria,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Bivol,https://bivol.bg,https://bivol.bg/feed,BG,BG,,Investigativo bulgaro — Bulgaria,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Buro Media,https://buromedia.io,,RU/EN,BY,,Giornalismo investigativo — Bielorussia,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CENOZO,https://cenozo.org,https://cenozo.org/feed/,FR,Africa Occ.,,Sahel/Africa Occ. — investigativo transfrontaliero,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Center for Public Integrity,https://publicintegrity.org,https://publicintegrity.org/feed/,EN,US,,Investigativo nonprofit — USA,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Centre for Information Resilience,https://www.info-res.org/,,,,,Investigazioni open-source — Globale,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Chequeado,https://chequeado.com,https://chequeado.com/feed/?post_type=nota,ES,AR,,Fact-checking — Argentina,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CIN — Centar za istraživačko novinarstvo,https://cin.ba,https://cin.ba/feed/,BS/EN,BA,,Giornalismo investigativo — Bosnia ed Erzegovina,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CINS,https://www.cins.rs,https://www.cins.rs/web-stories/feed/,SR/EN,RS,,Serbia — centro giornalismo investigativo,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CIPER Chile,https://www.ciperchile.cl,https://www.ciperchile.cl/feed/,ES,CL,,Investigativo cileno — Cile,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CIReN — Cyprus Investigative Reporting Network,https://ciren.cy,https://ciren.cy/feed/,EN,CY,,Giornalismo investigativo e proprietà dei media — Cipro,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CIRO,https://cironline.org,,EN,US,,Investigativo USA,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,City Bureau,https://www.citybureau.org,https://www.citybureau.org/home?format=rss,EN,US,,Giornalismo civico Chicago — USA,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CJID,https://thecjid.org,https://thecjid.org/feed/,EN,NG,,Nigeria/Africa Occ. — Centre for Journalism Innovation,
@@ -252,10 +257,12 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Connectas,https://connectas.org,https://www.connectas.org/feed/,,LatAm,,Network giornalistico LATAM — Regionale,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Context.ro,https://context.ro,https://context.ro/feed/,RO,RO,,Romania — investigativo,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Correctiv,https://correctiv.org,,DE,DE,,Investigativo tedesco — Germania,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,CU SENS,https://cusens.md,https://cusens.md/ro/feed/,RO,MD,,Inchieste e fact-checking — Moldavia,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Cuartoscuro,https://cuartoscuro.com.mx,,ES,MX,,Fotoreportage — Messico,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Cuestión Pública,https://cuestionpublica.com,https://cuestionpublica.com/feed/,ES,CO,,Investigativo colombiano — Colombia,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Daily Maverick,https://www.dailymaverick.co.za,https://www.dailymaverick.co.za/feed/,EN,ZA,,Analisi e inchieste — Sudafrica,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Danwatch,https://danwatch.dk,https://danwatch.dk/feed/,DA,DK,,Investigativo danese — Danimarca,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Daraj,https://daraj.media,https://daraj.media/feed/,AR,LB,,Giornalismo investigativo — Libano,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Daraj Media,https://daraj.com,https://daraj.com/feed/,AR,LB,,Investigativo arabo — Pan-Arab Inv.,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Datasketch,https://www.datasketch.es,,ES,CO,,Data journalism — Colombia,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,DDoSecrets,https://ddosecrets.com,,,Globale,,Leak e dataset — Pubblico — Database,
@@ -265,6 +272,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Direkt36,https://www.direkt36.hu/en,,,HU,,"Corruzione, potere — Ungheria",
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Disclose,https://disclose.ngo,,FR,FR,,"Investigativo, ambiente — Francia",
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Dnevnik.si,https://www.dnevnik.si,https://www.dnevnik.si/?format=rss,SL,SI,,Investigativo sloveno — Slovenia,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,DOSSIER,https://www.dossier.at,,DE,AT,,Inchieste e giornalismo di dati — Austria,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,El CLIP,https://www.elclip.org,https://www.elclip.org/feed/,,LatAm,,Centro investigativo LATAM — Regionale,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,El Confidencial,https://www.elconfidencial.com,,ES,ES,,Investigativo spagnolo — Spagna,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,El Destape,https://www.eldestapeweb.com,,ES,AR,,Investigativo — Argentina,
@@ -278,22 +286,28 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Foundation Investigative Journalism,https://fij.ng,,EN,NG,,Nigeria investigativo,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,FragDenStaat,https://fragdenstaat.de,,DE,DE,,FOIA tedesco — Germania,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Frontier Myanmar,https://www.frontiermyanmar.net,,EN,MM,,Analisi politica — Myanmar,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Frontstory.pl,https://frontstory.pl,https://frontstory.pl/feed/,PL,PL,,Giornalismo investigativo — Polonia,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Fund for Investigative Journalism,https://fij.org,https://fij.org/feed/,EN,US,,USA — Funding,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Fundacja Reporterów,https://fundacjareporterow.org,https://fundacjareporterow.org/feed/,PL/EN,PL,,Polonia — fondazione reporter (VSquare),
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,GIJN,https://gijn.org,,,Globale,,Risorse per giornalisti,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,GK,https://gk.city,,ES,EC,,Investigativo digitale — Ecuador,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Global Witness,https://www.globalwitness.org,,,Globale,,Corruzione e ambiente — Pubblico — Database,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Governance Monitoring Center,https://gmc.org.ge,,EN,GE,,Monitoraggio della governance e della corruzione — Georgia,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Grounded News,https://grounded.news,,,,,Comparazione fonti — Media bias analysis,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Himal Southasian,https://www.himalmag.com,https://www.himalmag.com/rss/,EN,NP,,Analisi regionale — Asia meridionale,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,ICIJ,https://www.icij.org,,,Globale,,"Panama Papers, offshore",
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,ICIJ Offshore Leaks,https://offshoreleaks.icij.org,,EN,US,Pubblico,Società offshore — Database,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,ICJK — Ján Kuciak Investigative Center,https://icjk.sk,,SK/EN,SK,,Slovacchia — investigativo,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,iFact,https://ifact.ge,,KA/EN,GE,,Giornalismo investigativo — Georgia,occrp:2026-09
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,In-depth Solomons,https://indepthsolomons.com.sb,https://indepthsolomons.com.sb/feed/,EN,SB,,Giornalismo investigativo — Isole Salomone,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,InfoAmazonia,https://infoamazonia.org,https://infoamazonia.org/feed/,PT/EN,BR,,Amazzonia data journalism — Brasile,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,InfoLibre,https://www.infolibre.es,https://www.infolibre.es/rss/,ES,ES,,Indipendente spagnolo — Spagna,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,InfoNile,https://infonile.org,,EN,,,Bacino del Nilo — geo-giornalismo acqua,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Initium Media,https://theinitium.com,https://theinitium.com/rss/,ZH,HK,,Investigativo HK — Hong Kong,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Inkyfada,https://inkyfada.com,https://inkyfada.com/en/feed/,EN/AR,TN,,Investigativo tunisino — Tunisia Inv.,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Insecurity Insight,https://insecurityinsight.org,,,Globale,,Crisi umanitarie,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,inside story,https://insidestory.gr,,EL,GR,,Giornalismo investigativo in abbonamento — Grecia,occrp:2026-09
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,InsidePNG,https://insidepng.com,https://insidepng.com/feed/,EN,PG,,Giornalismo indipendente — Papua Nuova Guinea,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,InSight Crime,https://insightcrime.org,,,Americhe,,Criminalità organizzata LATAM,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,International Justice Monitor,https://www.ijmonitor.org,https://www.ijmonitor.org/feed/,,Globale,,Crimini di guerra — Globale — Monitor,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Investigace.cz,https://www.investigace.cz,https://www.investigace.cz/feed/,CS,CZ,,Investigativo ceco — Repubblica Ceca,
@@ -302,6 +316,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,IRPI Media,https://irpimedia.irpi.eu,https://irpimedia.irpi.eu/feed/,IT,IT,,"Rete giornalisti investigativi — Corruzione, criminalità — Criminalità org., corruzione",
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Istinomer,https://www.istinomer.rs,,SR,RS,,Fact-checking serbo — Serbia,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,iStories,https://istories.media,,EN/RU,RU,,Investigativo russo (indipendente) — Russia,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,JDPC — Journalistic Data Processing Centre,https://www.kavshirebi.com,,KA,GE,,Giornalismo di dati — Georgia,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Khaosod English,https://www.khaosodenglish.com,https://www.khaosodenglish.com/feed/,EN,TH,,Investigativo thai — Thailandia,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Kloop,https://kloop.kg,https://kloop.kg/feed/,,KG,,Investigativo Asia centrale — Kirghizistan,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,KRIK,https://www.krik.rs,https://www.krik.rs/feed/,SR,RS,,Investigativo balcanico — Serbia,
@@ -313,12 +328,16 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Liberainformazione,https://www.liberainformazione.org,,IT,IT,,Associazione Libera — Antimafia,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Lighthouse Reports,https://www.lighthousereports.com,https://www.lighthousereports.com/feed/,,Europa,,Investigativo collaborativo,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Linkiesta Inchieste,https://www.linkiesta.it/tag/inchieste,https://www.linkiesta.it/feed/,IT,IT,,Approfondimenti — Investigativo,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,L’Alternative,https://lalternative.info,,FR,TG,,Giornalismo d’inchiesta — Togo,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Mail & Guardian,https://mg.co.za,https://mg.co.za/feed/,EN,ZA,,Investigativo sudafricano — Sudafrica Inv.,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Malaysiakini,https://www.malaysiakini.com,,EN/MS,MY,,Investigativo malese — Malaysia,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Media Guard Association,https://mediaguard.ngo,https://mediaguard.ngo/feed/,RO,MD,,Monitoraggio dei media e della spesa pubblica — Moldavia,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Mediapart,https://www.mediapart.fr,,FR,FR,,Francia investigativo,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Mediazone,https://www.mediazone.cz,,CS,CZ,,Analisi media — Rep. Ceca,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Meduza,https://meduza.io,https://meduza.io/rss/all,EN/RU,RU,,Media russo indipendente — Russia,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,MeridioNews,https://meridionews.it,,,IT-Sicilia,,Sicilia — Locale/investigativo,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Mexicanos Contra la Corrupción y la Impunidad,https://contralacorrupcion.mx,https://contralacorrupcion.mx/feed/,ES,MX,,Corruzione e impunità — Messico,occrp:2026-09
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Mikroskop Media,https://mikroskopmedia.com,https://mikroskopmedia.com/feed/,AZ/EN,AZ,,Giornalismo investigativo — Azerbaigian,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Mnemonic,https://mnemonic.org,,,Globale,,Diritti umani digitali,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Mongabay Latam,https://es.mongabay.com,,,LatAm,,Ambiente e investigativo — Regionale,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,MuckRock,https://www.muckrock.com,,EN,US,,FOIA e trasparenza — USA,
@@ -327,6 +346,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Narcomafie,https://narcomafie.it,,IT,IT,,Antimafia — Criminalità,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Nation Africa,https://nation.africa,https://nation.africa/rss/,EN,KE,,Kenya e Africa orientale,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Netzwerk Recherche,https://netzwerkrecherche.org,,DE,DE,,Germania — rete giornalisti investigativi,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,NewsBridge Africa,https://www.newsbridgeafrica.org,https://www.newsbridgeafrica.org/?feed=rss2,EN,GH,,Giornalismo investigativo — Ghana,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Newtral,https://www.newtral.es,https://www.newtral.es/feed/,ES,ES,,Fact-checking + investigativo — Spagna,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Nexo Jornal,https://nexojornal.com.br,https://nexojornal.com.br/rss.xml,PT,BR,,Data journalism — Brasile,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Nikkei Business,https://business.nikkei.com,https://business.nikkei.com/rss/all_nb.rdf,JA,JP,,Business JP — Giappone,
@@ -357,6 +377,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,ProPublica,https://www.propublica.org,https://www.propublica.org/feeds/propublica/main,EN,US,,Investigativo nonprofit,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,ProPublica Data,https://www.propublica.org/datastore,,EN,US,,Dataset inv. — USA,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,ProPublica Local,https://www.propublica.org/local,https://www.propublica.org/feeds/propublica/main,EN,US,,USA locale investigativo,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Public Record,https://publicrecord.ro,https://publicrecord.ro/feed/,RO,RO,,Giornalismo di interesse pubblico — Romania,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Punch Nigeria,https://punchng.com,https://punchng.com/feed/,EN,NG,,Nigeria news,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Público España,https://www.publico.es,,ES,ES,,Progressista investigativo — Spagna,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Quartz Africa,https://qz.com/africa,,EN,Pan-Africa,,Business Africa — Pan-Africa,
@@ -370,12 +391,18 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Reuters Investigates,https://www.reuters.com/investigates,,,Globale,,Inchieste Reuters,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Reveal News,https://revealnews.org,https://revealnews.org/feed/,EN,US,,Investigativo radio — USA,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,RFI Afrique,https://www.rfi.fr/fr/afrique,https://www.rfi.fr/fr/afrique/rss,FR,FR,,"Francia — radio pubblica internazionale, edizione Africa",
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,RISE Moldova,https://www.rise.md,https://www.rise.md/feed/,RO/EN,MD,,Giornalismo investigativo — Moldavia,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Rise Project,https://www.riseproject.ro,,RO,RO,,Criminalità organizzata — Romania,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Sahara Reporters,https://saharareporters.com,,EN,NG,,Corruzione e governance — Nigeria,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Scroll.in,https://scroll.in,https://feeds.feedburner.com/ScrollinArticles.rss,EN,IN,,Investigativo progressista — India,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Shomrim,https://www.shomrim.news,,HE/EN,IL,,Giornalismo investigativo — Israele,occrp:2026-09
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,SHTEG,https://shteg.org,https://shteg.org/feed/,SQ,AL,,Crimine organizzato e corruzione — Albania,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Sicilian Post,https://www.sicilianpost.it,https://www.sicilianpost.it/feed/,,IT-Sicilia,,Sicilia — Locale/investigativo,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Siena.lt,https://siena.lt,,LT,LT,,Lituania — centro investigativo,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,SIRAJ,https://sirajsy.net,,AR,SY,,Giornalismo investigativo — Siria,occrp:2026-09
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Slidstvo.Info,https://www.slidstvo.info,https://www.slidstvo.info/feed/,UK,UA,,Giornalismo investigativo — Ucraina,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Status,https://statesman.com,,EN,US,,Investigativo — USA,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Studio Monitori,https://monitori.ge,,KA,GE,,Giornalismo investigativo — Georgia,occrp:2026-09
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Tamedia Investigativ,https://www.tamedia.ch,,,CH,,Multi-titolo svizzero — Svizzera,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Tansa,https://tansajp.org,,JA/EN,JP,,Giappone — investigativo indipendente,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Telejato,https://www.telejato.it,https://www.telejato.it/feed/,,IT-Sicilia,,Sicilia — TV locale/investigativa,
@@ -412,6 +439,8 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,WikiLeaks,https://wikileaks.org,,,Globale,,Leak e documenti,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Wire India,https://thewire.in,https://thewire.in/feed,EN,IN,,Investigativo indiano — India Inv.,
 📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Yemen Data Project,https://yemendataproject.org,,EN,GB,,Conflitto Yemen — Yemen Ricerca,
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,Átlátszó Erdély,https://atlatszo.ro,https://atlatszo.ro/feed/,HU/EN,RO,,Inchieste sulla comunità ungherese di Transilvania — Romania,occrp:2026-09
+📰 Media & Testate Giornalistiche,Giornalismo Investigativo,ÇOHU!,https://cohu.org,https://cohu.org/feed/posts,SQ/EN,XK,,Giornalismo investigativo e open data — Kosovo,occrp:2026-09
 📰 Media & Testate Giornalistiche,Italia,AbruzzoWeb,https://www.abruzzoweb.it,,IT,IT,,Abruzzo — testata digitale,
 📰 Media & Testate Giornalistiche,Italia,ACN Italia,https://www.acn.gov.it,,IT,IT,,Agenzia Cyber Naz. — CERT/NL IT,
 📰 Media & Testate Giornalistiche,Italia,Actionaid Italia,https://www.actionaid.it,,IT,IT,,Advocacy — Italia,
