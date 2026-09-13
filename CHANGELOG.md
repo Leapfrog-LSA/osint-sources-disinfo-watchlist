@@ -213,8 +213,33 @@ structure or to the meaning of an existing column.
   different countries. A bare name-collision check would have reported all 22
   and been ignored.
 
-  The exact-URL and exact-domain checks were already there and stay. They find
-  nothing today: no two rows differ only by scheme, `www.` or a trailing slash.
+- **`scripts/validate.py` compares URLs by what they identify, not by how they
+  are spelled**, and warns when one row's URL sits inside another's.
+
+  The old check compared URLs verbatim apart from case and a trailing slash, so
+  `http://x.org/news`, `https://www.x.org/news` and `https://x.org:443/news` —
+  one page written three ways — read as three distinct rows. Scheme, `www.`, a
+  default port and the trailing slash now all come off before comparing; the
+  query string stays, because `?id=1` and `?id=2` are different pages. This
+  finds nothing in the catalogue today, which is the answer to a question that
+  had never actually been asked: an earlier entry here asserted an
+  exact-domain check that `Fonti_OSINT.csv` did not have.
+
+  The second rule is the one the growth plan asked for, and it could not be
+  what that plan implied. 106 hosts appear on more than one row — `github.com`
+  on 18, `gov.br` on 11 — so flagging a repeated host would have reported 106
+  pairs of nothing and been ignored, exactly as a bare name-collision check
+  would have been. What is worth a look is narrower: two rows on one host where
+  **one URL is a path inside the other**. Measured, that finds 11 pairs, and
+  about a third are one source entered twice under two names — `rnz.co.nz`
+  twice for its Pacific desk, `europa.eu` twice for Eurobarometer — while the
+  rest are genuinely separate desks of one outlet, like `bbc.com/news` and
+  `bbc.com/news/world`.
+
+  A third is too low to fail a build on and much too high to throw away, so
+  `validate.py` grew **warnings**: printed, counted, and left to a person, with
+  the exit code untouched. It is the first check here that does not claim more
+  certainty than it has.
 - **`Fonti_OSINT.csv` gains a tenth column, `Provenienza`.** It records which
   directory a row came from and in which batch, as `<list>:<YYYY-MM>`.
   `scripts/discover_candidates.py` stamps it automatically; rows added by hand
@@ -273,6 +298,18 @@ structure or to the meaning of an existing column.
   identified only measures how consistently they were not identified.
 
 ### Fixed
+
+- **`CITATION.cff` said the catalogue held 5,098 sources when `v0.5.1` shipped
+  5,108.** That release bumped `version` and `date-released` and left the count
+  behind, so the citation metadata described a snapshot that never existed.
+  The count is corrected to the figure `v0.5.1` actually had; all three fields
+  move together at the next release.
+
+  The number was right at every release up to `v0.5.0` and then drifted,
+  because updating it is a hand step nobody wrote down. `CONTRIBUTING.md` now
+  has a **Cutting a release** section listing the four files that carry numbers
+  and the order to touch them, which is the part that stops it happening again
+  — a lone correction would just be the same step missed next time.
 
 - Five duplicate rows resolved, all the same fault: a bulk import had added an
   organisation's **corporate site under the name of its fact-checking arm**,

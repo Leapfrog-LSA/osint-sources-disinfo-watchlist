@@ -18,6 +18,8 @@ This runs automatically on any pull request touching a CSV or a script, so it's 
 
 It checks structure and vocabularies — that a country code is *well-formed*, not that it's the *right* country. Accuracy is still on you; the rules below are what the checker can't verify.
 
+It can also print **warnings**, which do not fail the run. Today there is one: a row whose URL sits inside another row's on the same host. Usually that's two desks of one outlet and nothing to do; sometimes it's one source entered twice under two names. Read them, decide, and leave them alone if they're fine — they are not a gate.
+
 If you changed anything under `scripts/`, run the tests too — the same workflow does:
 
 ```bash
@@ -95,3 +97,16 @@ Two further rules before you delete a row:
 This is not hypothetical caution. `v0.5.0` removed 21 sources under the older, looser version of this rule — "checked more than once, with different timing". At least three were alive and had to be restored, among them **VERA Files**, an IFCN verified signatory: one was condemned by a `Connection reset by peer`, one by an empty body from a site serving 120 KB to a browser, one by a stock web-server placeholder string. The retries agreed each time, because they were the same request from the same network.
 
 For `disinfo_sources_master.csv`, a domain going dark is often a takedown rather than a problem to fix — that's the point of documenting it. Don't remove a row just because the domain no longer resolves; keep it unless it's a duplicate or the entry itself was wrong.
+
+## Cutting a release
+
+Four files carry numbers that go stale, and nothing checks them against each other. Update all four in the release commit, in this order:
+
+1. **`CHANGELOG.md`** — rename `[Unreleased]` to the new version with today's date, and open a fresh empty `[Unreleased]` above it.
+2. **`README.md`** — recompute the total and the twelve category counts *from the CSV*, never by adjusting the old figures by hand, and check the twelve rows sum to the declared total. Re-derive the field-coverage percentages too.
+3. **`CITATION.cff`** — the row count in the abstract, `version`, and `date-released`. All three describe the release being cut, so they move together.
+4. **The tag**, pointing at the release commit.
+
+`CITATION.cff` is the one that has actually been missed: `v0.5.1` bumped `version` and left the abstract saying 5,098 when the catalogue held 5,108. Nothing failed, because nothing looks at it — which is why it is written down here.
+
+A major bump signals a change to the column structure or to the meaning of an existing column. Adding, correcting or reclassifying rows does not.
