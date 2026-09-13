@@ -198,6 +198,61 @@ structure or to the meaning of an existing column.
   the point: an estimate here would be exactly the invented number the plan
   was written to avoid.
 
+- **40 national CERT and CSIRT teams** from the FIRST.org directory, in
+  `Threat Intelligence & Cybersecurity`, as batch `first:2026-09`.
+
+  **The measured yield was 83 candidates; 40 survived being read.** That gap
+  is the finding, not a disappointment: a filter measured on metadata counts
+  rows that *look* like national CERTs, and the previous entry said as much —
+  "the filter still admits a few corporate teams that a review would have to
+  remove". It admitted more than a few, and in a shape metadata could not
+  show.
+
+  FIRST publishes a host organisation and a constituency type for each of its
+  883 member teams, and both are self-declared. Filtering on a governmental
+  host with an external constituency is the best either field supports, and it
+  still lets through a vendor (`cyberteq.com`, a commercial security firm
+  listed under "Ghana Cybersecurity Authority"), a state telecom operator's
+  own CSIRT, a public-procurement authority, and several teams whose declared
+  "website" is not the team's page at all but their parent ministry's front
+  door — Costa Rica's `micitt.go.cr`, Ukraine's `mod.gov.ua`, Singapore's
+  `tech.gov.sg`, Bangladesh's `bppa.gov.bd`. Each of those answers `200` with
+  a real government page. **Only reading them separates a CERT from the
+  ministry that houses one.**
+
+  So the rule applied here is the identity rule, sharpened for this batch:
+  **the page has to identify the CERT, not merely its parent.** 8 candidates
+  failed it outright, and 33 could not be read at all — Cloudflare and Akamai
+  challenges (`ccb.belgium.be`, `nksc.lt`, `csirt.gob.cl`, `ccn-cert.cni.es`),
+  DNS or TLS failures (`aecert.ae`, `cirt.org.bw`, `cicert.ci`, `cert.gov.ng`),
+  a 160-byte empty page (`cert.dga.gov.ge`), a stale redirect into a 404
+  (INCIBE-CERT). They are blocked reads, not dead sites, and none of them is
+  in this batch. **CISA** is the one rescued from that group: a second fetch
+  through a different path returned the page, which calls itself "America's
+  Cyber Defense Agency".
+
+  Two rows are deliberately not national and say so in `Note`: **CERT RS**
+  serves Republika Srpska rather than Bosnia and Herzegovina as a state, and
+  **Cyberzaintza** is the Basque Country's agency. Both are official and
+  public, both carry an ISO 3166-2 code in `Paese / Area` — `BA-SRP`,
+  `ES-Euskadi` — rather than being filed as if they covered a country.
+
+  Two more carry a caveat for the same reason the TLS ones did in
+  `unsd:2026-09`: `cert.gov.ua` and `cert.gov.kz` serve a JavaScript shell of
+  a couple of kilobytes whose `<title>` is the only thing identifying them.
+  That is enough to catalogue and worth writing down before a future link
+  check reports them as thin.
+
+  11 of the 40 advertise a feed, each one fetched and confirmed to return a
+  feed rather than a page. Cyprus's is `?format=feed&type=rss`, which the site
+  prints with `&amp;` in its own `<head>` — copied verbatim it would be wrong,
+  so it is stored decoded.
+
+  `CSIRT Italia` sits on `acn.gov.it`, a host the catalogue already carries
+  for the agency itself. It is a distinct service rather than a second row for
+  one thing, and the new nesting warning agrees: the run reports the same 11
+  pairs as before this batch, none of them new.
+
 ### Changed
 
 - `scripts/validate.py` now rejects a repeated `Fonte` when nothing
