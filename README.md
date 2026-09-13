@@ -146,7 +146,7 @@ Note that `satire_recognizable` marks **declared satire** (The Onion, Lercio) �
 
 ## Validation
 
-Both files are checked on every push and pull request by [`scripts/validate.py`](scripts/validate.py) — header and field count, required fields, URL format, duplicate URLs and domains, language and country codes, and the controlled vocabularies above.
+Both files are checked on every push and pull request by [`scripts/validate.py`](scripts/validate.py) — header and field count, required fields, URL format, duplicate URLs, repeated source names, language and country codes, and the controlled vocabularies above.
 
 Run it locally before opening a PR:
 
@@ -155,6 +155,12 @@ python scripts/validate.py
 ```
 
 It needs no dependencies beyond the Python standard library, and reports every problem it finds with a line number rather than stopping at the first.
+
+Two of its rules are worth knowing because they are deliberately narrow:
+
+**Duplicate URLs are compared by what they identify, not how they are spelled.** Scheme, `www.`, a default port and a trailing slash come off first, so `http://x.org/news` and `https://www.x.org/news/` are one row, not two. The query string stays — `?id=1` and `?id=2` are different pages.
+
+**A repeated host is a warning, not an error**, and only when one row's URL sits *inside* another's. 106 hosts appear on more than one row and almost all of them should: `bbc.com/news` and `bbc.com/news/world` are different desks. Flagging every repeated host would report a hundred pairs of nothing, so the check looks for nesting instead — which on the catalogue as it stands finds 11 pairs, about a third of them one source entered twice under two names. That precision is too low to fail a build on, so these print, are counted, and leave the exit code alone.
 
 The same workflow runs the scripts' own test suite:
 

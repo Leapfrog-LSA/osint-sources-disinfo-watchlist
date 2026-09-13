@@ -98,24 +98,41 @@ DATE = re.compile(r"^\d{4}(-\d{2}-\d{2})?$")
 # --------------------------------------------------------------------------
 
 class Report:
+    """Errors fail the run; warnings are printed and do not.
+
+    A check earns the right to fail CI by being precise. The one warning here
+    flags pairs a person should look at, and on the catalogue as it stands it
+    is right about a third of the time — useful to see, wrong to block on.
+    """
+
     def __init__(self):
         self.errors = []
+        self.warnings = []
 
     def error(self, dataset, line, column, message):
         self.errors.append((dataset, line, column, message))
 
+    def warn(self, dataset, line, column, message):
+        self.warnings.append((dataset, line, column, message))
+
+    @staticmethod
+    def _print_group(items, label):
+        by_dataset = {}
+        for dataset, line, column, message in items:
+            by_dataset.setdefault(dataset, []).append((line, column, message))
+        for dataset, rows in by_dataset.items():
+            print(f"\n{dataset} — {len(rows)} {label}:")
+            for line, column, message in rows[:100]:
+                print(f"  line {line}, column '{column}': {message}")
+            if len(rows) > 100:
+                print(f"  ... and {len(rows) - 100} more")
+
     def summary(self):
+        if self.warnings:
+            self._print_group(self.warnings, "thing(s) worth a look")
         if not self.errors:
             return True
-        by_dataset = {}
-        for dataset, line, column, message in self.errors:
-            by_dataset.setdefault(dataset, []).append((line, column, message))
-        for dataset, items in by_dataset.items():
-            print(f"\n{dataset} — {len(items)} problem(s):")
-            for line, column, message in items[:100]:
-                print(f"  line {line}, column '{column}': {message}")
-            if len(items) > 100:
-                print(f"  ... and {len(items) - 100} more")
+        self._print_group(self.errors, "problem(s)")
         print(f"\nFAILED — {len(self.errors)} problem(s) total.")
         return False
 
@@ -123,6 +140,39 @@ class Report:
 def valid_url(value):
     parsed = urlparse(value)
     return parsed.scheme in ("http", "https") and bool(parsed.netloc)
+
+
+def canonical_url(value):
+    """A URL reduced to what identifies the resource.
+
+    `http://x.org/news`, `https://www.x.org/news/` and `https://x.org:443/news`
+    are one page written three ways. The old check compared URLs verbatim apart
+    from case and a trailing slash, so it saw three distinct rows. Scheme,
+    `www.`, a default port and that trailing slash all come off here; the query
+    string stays, because `?id=1` and `?id=2` are different pages.
+    """
+    parsed = urlparse(value.strip())
+    host = parsed.netloc.lower().rsplit("@", 1)[-1]
+    for port in (":80", ":443"):
+        if host.endswith(port):
+            host = host[: -len(port)]
+    if host.startswith("www."):
+        host = host[4:]
+    path = parsed.path.rstrip("/").lower()
+    query = f"?{parsed.query}" if parsed.query else ""
+    return f"{host}{path}{query}"
+
+
+def url_host(value):
+    """The registrable host, without `www.` or a port."""
+    return canonical_url(value).split("/")[0]
+
+
+def url_path(value):
+    """The canonical path, or "" for a homepage."""
+    canonical = canonical_url(value)
+    _, _, rest = canonical.partition("/")
+    return f"/{rest}" if rest else ""
 
 
 def valid_place(token):
@@ -155,6 +205,7 @@ def validate_osint(report):
 
     seen_urls = {}
     seen_names = {}
+    by_host = {}
 
     for index, row in enumerate(rows):
         line = index + 2  # +1 for header, +1 for 1-based numbering
@@ -176,12 +227,15 @@ def validate_osint(report):
             if not valid_url(url):
                 report.error(dataset, line, "URL", f"not a valid http(s) URL: {url!r}")
             else:
-                key = url.lower().rstrip("/")
+                key = canonical_url(url)
                 if key in seen_urls:
                     report.error(dataset, line, "URL",
-                                 f"duplicate of line {seen_urls[key]}: {url!r}")
+                                 f"duplicate of line {seen_urls[key]}: {url!r} is the "
+                                 f"same page, written differently")
                 else:
                     seen_urls[key] = line
+                by_host.setdefault(url_host(url), []).append(
+                    (line, row["Fonte"].strip(), url_path(url), url))
 
         feed = row["RSS Feed"].strip()
         if feed and not valid_url(feed):
@@ -238,6 +292,41 @@ def validate_osint(report):
             report.error(dataset, line, "Provenienza",
                          f"{provenance!r} is not `<list>:<YYYY-MM>` "
                          f"(e.g. 'ifcn:2026-08'); leave it empty if unknown")
+
+    warn_nested_paths(by_host, report, dataset)
+
+
+def warn_nested_paths(by_host, report, dataset):
+    """Flag one row whose URL sits inside another's on the same host.
+
+    A repeated host is almost always fine — 106 hosts appear on more than one
+    row, and `github.com`, `gov.br` and `ec.europa.eu` account for much of it.
+    Flagging every one of them would report 106 pairs of nothing and be
+    ignored, the same way a bare name-collision check would have been.
+
+    What is worth a second look is narrower: two rows on one host where one
+    URL is a path *inside* the other. Most are still legitimate — `bbc.com/news`
+    and `bbc.com/news/world` are different desks — but this is the shape a real
+    near-duplicate takes, and on the catalogue as it stands it finds 11 pairs,
+    of which about a third are two rows for one thing under two names.
+
+    A third is too low to fail a build on and far too high to throw away, so
+    these are warnings: printed, counted, and left to a person.
+    """
+    for host, entries in sorted(by_host.items()):
+        if len(entries) < 2:
+            continue
+        for i, first in enumerate(entries):
+            for second in entries[i + 1:]:
+                if not first[2] or not second[2]:
+                    continue
+                inner, outer = sorted((first, second), key=lambda e: len(e[2]))
+                if not outer[2].startswith(f"{inner[2]}/"):
+                    continue
+                report.warn(dataset, outer[0], "URL",
+                            f"{outer[3]!r} sits inside line {inner[0]}'s "
+                            f"{inner[3]!r} on {host}. Two sections of one site, "
+                            f"or one source entered twice?")
 
 
 def validate_disinfo(report):
@@ -298,8 +387,11 @@ def main():
     if report.summary():
         osint_rows = sum(1 for _ in csv.DictReader(OSINT_CSV.open(encoding="utf-8")))
         disinfo_rows = sum(1 for _ in csv.DictReader(DISINFO_CSV.open(encoding="utf-8")))
+        note = ("No problems found." if not report.warnings else
+                f"No problems found; {len(report.warnings)} warning(s) above, "
+                f"which do not fail this check.")
         print(f"OK — {OSINT_CSV.name}: {osint_rows} rows, "
-              f"{DISINFO_CSV.name}: {disinfo_rows} rows. No problems found.")
+              f"{DISINFO_CSV.name}: {disinfo_rows} rows. {note}")
         return 0
     return 1
 

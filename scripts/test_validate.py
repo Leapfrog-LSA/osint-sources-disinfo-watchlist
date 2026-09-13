@@ -28,6 +28,33 @@ import discover_candidates as dc
 import validate as v
 
 
+def run_validate(rows):
+    """Validate a small catalogue and return the Report it produced.
+
+    Goes through validate_osint() against a temporary CSV, so these tests
+    exercise the real checks rather than a re-implementation of their rules.
+    """
+    with tempfile.TemporaryDirectory() as tmp:
+        path = pathlib.Path(tmp) / "Fonti_OSINT.csv"
+        with path.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.writer(handle, lineterminator="\n")
+            writer.writerow(v.OSINT_COLUMNS)
+            writer.writerows(rows)
+        report = v.Report()
+        original = v.OSINT_CSV
+        v.OSINT_CSV = path
+        try:
+            v.validate_osint(report)
+        finally:
+            v.OSINT_CSV = original
+    return report
+
+
+def row(name, url, place="", sub="Globali & Internazionali"):
+    return ["📰 Media & Testate Giornalistiche", sub,
+            name, url, "", "", place, "", "nota", ""]
+
+
 class ProvenanceFormat(unittest.TestCase):
     """`<list>:<YYYY-MM>`, or empty."""
 
@@ -101,36 +128,13 @@ class SchemaStaysInStep(unittest.TestCase):
 
 
 class DuplicateNames(unittest.TestCase):
-    """A repeated `Fonte` is an error only when nothing distinguishes the rows.
-
-    Run through validate_osint() against a temporary CSV, so these exercise the
-    real check rather than a re-implementation of its rule.
-    """
-
-    COLUMNS = v.OSINT_COLUMNS
+    """A repeated `Fonte` is an error only when nothing distinguishes the rows."""
 
     def check(self, rows):
-        """Validate a small catalogue and return the errors on `Fonte`."""
-        with tempfile.TemporaryDirectory() as tmp:
-            path = pathlib.Path(tmp) / "Fonti_OSINT.csv"
-            with path.open("w", newline="", encoding="utf-8") as handle:
-                writer = csv.writer(handle, lineterminator="\n")
-                writer.writerow(self.COLUMNS)
-                writer.writerows(rows)
-            report = v.Report()
-            original = v.OSINT_CSV
-            v.OSINT_CSV = path
-            try:
-                v.validate_osint(report)
-            finally:
-                v.OSINT_CSV = original
         # Report.errors holds (dataset, line, column, message)
-        return [e for e in report.errors if e[2] == "Fonte"]
+        return [e for e in run_validate(rows).errors if e[2] == "Fonte"]
 
-    @staticmethod
-    def row(name, url, place=""):
-        return ["📰 Media & Testate Giornalistiche", "Globali & Internazionali",
-                name, url, "", "", place, "", "nota", ""]
+    row = staticmethod(row)
 
     def test_same_name_in_different_countries_is_allowed(self):
         # "National Bureau of Statistics" is Nigeria, Tanzania and Antigua.
@@ -188,6 +192,124 @@ class DuplicateNames(unittest.TestCase):
             self.row("Stessa", "https://c.example", "IT"),
         ])
         self.assertEqual(len(errors), 2)
+
+
+class CanonicalUrls(unittest.TestCase):
+    """One page written several ways is one page.
+
+    The check used to compare URLs verbatim apart from case and a trailing
+    slash, so a row could be added again under `http://` or with a `www.` and
+    nothing would notice.
+    """
+
+    def test_scheme_www_port_and_trailing_slash_all_come_off(self):
+        for value in ("https://www.example.org/news", "http://example.org/news",
+                      "https://example.org/news/", "https://EXAMPLE.org/News",
+                      "https://example.org:443/news"):
+            with self.subTest(value=value):
+                self.assertEqual(v.canonical_url(value), "example.org/news")
+
+    def test_the_query_string_is_kept(self):
+        # `?id=1` and `?id=2` are different pages, and several catalogued
+        # sources are addressed that way.
+        self.assertNotEqual(v.canonical_url("https://x.org/a?id=1"),
+                            v.canonical_url("https://x.org/a?id=2"))
+
+    def test_different_paths_stay_different(self):
+        self.assertNotEqual(v.canonical_url("https://x.org/news"),
+                            v.canonical_url("https://x.org/sport"))
+
+    def test_a_subdomain_is_not_stripped(self):
+        # Only `www.` comes off: `en.x.org` is a different site from `x.org`.
+        self.assertNotEqual(v.canonical_url("https://en.x.org/"),
+                            v.canonical_url("https://x.org/"))
+
+    def test_host_and_path_are_split_consistently(self):
+        self.assertEqual(v.url_host("https://www.example.org/news/world"), "example.org")
+        self.assertEqual(v.url_path("https://www.example.org/news/world"), "/news/world")
+
+    def test_a_homepage_has_an_empty_path(self):
+        self.assertEqual(v.url_path("https://example.org/"), "")
+
+    def test_the_same_page_written_twice_is_an_error(self):
+        errors = [e for e in run_validate([
+            row("Example", "https://www.example.org/news/"),
+            row("Example Mirror", "http://example.org/news"),
+        ]).errors if e[2] == "URL"]
+        self.assertEqual(len(errors), 1)
+
+    def test_two_real_pages_on_one_host_are_not(self):
+        errors = [e for e in run_validate([
+            row("Example News", "https://example.org/news"),
+            row("Example Sport", "https://example.org/sport"),
+        ]).errors if e[2] == "URL"]
+        self.assertEqual(errors, [])
+
+
+class NestedPaths(unittest.TestCase):
+    """A URL inside another on the same host is a warning, never an error.
+
+    Measured on the catalogue, the rule finds 11 pairs and about a third are
+    one source entered twice; the rest are genuinely separate desks of one
+    outlet. That precision is too low to fail a build on and too high to
+    discard, so it prints and the run still passes.
+    """
+
+    def warnings(self, rows):
+        return [w for w in run_validate(rows).warnings if w[2] == "URL"]
+
+    def test_a_section_inside_another_is_flagged(self):
+        self.assertEqual(len(self.warnings([
+            row("Example News", "https://example.org/news"),
+            row("Example World", "https://example.org/news/world"),
+        ])), 1)
+
+    def test_a_warning_does_not_become_an_error(self):
+        report = run_validate([
+            row("Example News", "https://example.org/news"),
+            row("Example World", "https://example.org/news/world"),
+        ])
+        self.assertEqual(report.errors, [])
+        self.assertTrue(report.summary())
+
+    def test_sibling_paths_are_not_flagged(self):
+        # `/news` and `/sport` are not nested, however alike they look.
+        self.assertEqual(self.warnings([
+            row("Example News", "https://example.org/news"),
+            row("Example Sport", "https://example.org/sport"),
+        ]), [])
+
+    def test_a_shared_prefix_is_not_nesting(self):
+        # `/news` is not a parent of `/newsletter`: only a full path segment
+        # counts, or every outlet would flag against its own archive.
+        self.assertEqual(self.warnings([
+            row("Example News", "https://example.org/news"),
+            row("Example Letter", "https://example.org/newsletter"),
+        ]), [])
+
+    def test_different_hosts_never_pair(self):
+        self.assertEqual(self.warnings([
+            row("A", "https://a.example/news"),
+            row("B", "https://b.example/news/world"),
+        ]), [])
+
+    def test_a_homepage_is_not_a_parent_of_everything(self):
+        # Otherwise every row on a host with a catalogued homepage would be
+        # flagged against it, which is the noise this rule exists to avoid.
+        self.assertEqual(self.warnings([
+            row("Example", "https://example.org"),
+            row("Example News", "https://example.org/news"),
+        ]), [])
+
+    def test_the_warning_is_reported_against_the_inner_row(self):
+        warnings = self.warnings([
+            row("Example World", "https://example.org/news/world"),
+            row("Example News", "https://example.org/news"),
+        ])
+        # Report tuples are (dataset, line, column, message); the deeper URL is
+        # on line 2, the broader one on line 3.
+        self.assertEqual(warnings[0][1], 2)
+        self.assertIn("line 3", warnings[0][3])
 
 
 if __name__ == "__main__":
