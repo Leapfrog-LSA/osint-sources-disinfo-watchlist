@@ -3678,26 +3678,46 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,WCC — World Council of Churches,https://www.oikoumene.org,,EN,Globale,,Consiglio ecumenico delle chiese,
 🕊️ Diritti Umani & Giudiziario,Diritti Umani & Giudiziario,World Prison Brief,https://www.prisonstudies.org,,EN,Globale,,"Database comparativo penitenziario globale (ICPR, Birkbeck)",
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,AFRINIC,https://www.afrinic.net,,EN/FR,Africa,,Registro IP africano,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,AM-CERT,https://am-cert.am,,EN,AM,,Armenia — CERT nazionale (ISAA),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,APNIC,https://www.apnic.net,https://www.apnic.net/feed/,EN,Asia-Pacifico,,"Registro IP Asia-Pacifico, ricerca",
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ARIN,https://www.arin.net,https://www.arin.net/rss.xml,EN,Nord America,,Registro IP nordamericano,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Ars Technica Security,https://arstechnica.com,,EN,,,Tech generale — Security news,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ASC Moldova,https://asc.gov.md,,RO,MD,,Moldavia — Agenzia per la sicurezza cibernetica,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Avgi Greece,https://www.avgi.gr,,EL,GR,,SYRIZA — Grecia,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,bjCSIRT,https://csirt.bj,https://csirt.bj/feed/,FR,BJ,,Benin — CSIRT nazionale (ASIN),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,BleepingComputer,https://www.bleepingcomputer.com,,,,,"Aggiornamenti rapidi — Malware, ransomware — News",
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CCCS Canada,https://cyber.gc.ca,,,CA,,Canada — CERT,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT RS,https://cert.aikt.rs,https://cert.aikt.rs/feed/,BS,BA-SRP,,"Bosnia ed Erzegovina — CERT dell'entità Republika Srpska, non statale",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-EE,https://www.ria.ee/en/cyber-security/handling-cyber-incidents-cert-ee,,EN,EE,,Estonia — CERT nazionale (RIA),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-EU,https://cert.europa.eu,,,EU,,Alert ufficiali UE — CERT europeo — CERT,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-GH,https://csa.gov.gh/cert-gh,,EN,GH,,Ghana — CERT nazionale (Cyber Security Authority),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-MC,https://amsn.gouv.mc/cert-mc,,FR,MC,,Monaco — CERT nazionale (AMSN),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-SE,https://www.cert.se,https://www.cert.se/feed/atom.xml,SV,SE,,Svezia — CSIRT nazionale (FRA),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-UA,https://cert.gov.ua,,UK,UA,,Ucraina — CERT nazionale (SSSCIP); la home è un guscio JavaScript,first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT.AZ,https://www.cert.az,,AZ,AZ,,Azerbaigian — CERT nazionale (Ministero dello Sviluppo Digitale),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT.tg,https://cert.tg,https://cert.tg/fr/feed/,FR,TG,,Togo — CERT nazionale (ANCy),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CIRT Cameroun,https://cirt.cm,https://cirt.cm/feed/,FR,CM,,Camerun — CIRT nazionale (ANTIC),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CISA,https://www.cisa.gov,,EN,US,,Stati Uniti — Cybersecurity and Infrastructure Security Agency,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cloudflare Radar,https://radar.cloudflare.com,,EN,Globale,,"Traffico internet, outage, attacchi",
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CNCS — Centro Nacional de Ciberseguridad,https://cncs.gob.do,https://cncs.gob.do/feed/,ES,DO,,"Repubblica Dominicana — centro nazionale, ospita CSIRT-RD",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ColCERT,https://www.colcert.gov.co,,ES,CO,,Colombia — CERT governativo (MinTIC),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CrowdStrike Blog,https://www.crowdstrike.com/blog,,,,,CrowdStrike — Threat intel,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CSIRT Italia,https://www.acn.gov.it/portale/csirt-italia/,,IT,IT,,"Italia — CSIRT nazionale, servizio dell'ACN già in catalogo",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CSIRT.SK,https://www.csirt.sk,,SK,SK,,Slovacchia — unità governativa (MIRRI),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cybereason,https://www.cybereason.com/blog,https://www.cybereason.com/blog/rss.xml,,,,EDR vendor — Threat research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CyberScoop,https://www.cyberscoop.com,https://cyberscoop.com/feed/,,,,Policy e news — Cybersecurity policy,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cybersecurity Dive,https://www.cybersecuritydive.com,https://www.cybersecuritydive.com/feeds/news/,,,,Industry Dive — News,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cybersecurity360,https://www.cybersecurity360.it,https://www.cybersecurity360.it/feed/,IT,IT,,Cyber IT,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cyberwire,https://thecyberwire.com,https://thecyberwire.com/feeds/rss.xml,,,,Podcast/News,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cyberzaintza,https://zibersegurtasun.euskadi.eus,,EU,ES-Euskadi,,"Paesi Baschi — agenzia di cibersicurezza, regionale e non nazionale",first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Dark Net Diaries (podcast),https://darknetdiaries.com,https://feeds.megaphone.fm/darknetdiaries,,,,Security podcast — Podcast,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Dark Reading,https://www.darkreading.com,,,,Enterprise,Professionale — Enterprise security,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Defensive Security,https://defensivesecurity.org,https://defensivesecurity.org/feed/podcast/,,,,Podcast,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,EG-CERT,https://egcert.eg,,EN/AR,EG,,Egitto — CERT nazionale (NTRA),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ESET Research,https://www.welivesecurity.com,,,,,ESET — Malware research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,F-Secure Blog,https://blog.f-secure.com,,,,,WithSecure — Threat intel — Research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Google Project Zero,https://googleprojectzero.blogspot.com,https://projectzero.google/feed.xml,,,,Google — Zero-day research,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,GOVCERT.LU,https://govcert.lu,,EN/FR,LU,,Lussemburgo — CERT governativo (HCPN),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Graham Cluley,https://grahamcluley.com,https://grahamcluley.com/feed/,,,,Blog personale — Security commentary,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Help Net Security,https://www.helpnetsecurity.com,https://www.helpnetsecurity.com/feed/,,,,News e analisi — Security news,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,IANA,https://www.iana.org,,EN,Globale,,Registri tecnici internet,
@@ -3708,17 +3728,34 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Kaspersky Securelist,https://securelist.com,,,,,"Kaspersky — APT, malware — Research",
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Kela Cybersecurity,https://www.kelacyber.com/blog,,,,,Threat intel,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Krebs on Security,https://krebsonsecurity.com,https://krebsonsecurity.com/feed/,,,,Brian Krebs — Cybercrime — Blog,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,KZ-CERT,https://www.cert.gov.kz,,,KZ,,Kazakistan — CERT nazionale; la home è un guscio JavaScript,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Lacework Blog,https://www.lacework.com/blog,,,,,Cloud Sec.,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,LACNIC,https://www.lacnic.net,,ES/EN,LatAm,,Registro IP latinoamericano,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Malwarebytes Blog,https://www.malwarebytes.com/blog,,,,,News,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Mandiant Blog,https://www.mandiant.com/resources/blog,,,,,Google Cloud — Threat intelligence,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,MKD-CIRT,https://mkd-cirt.mk,,MK,MK,,Macedonia del Nord — CIRT nazionale (AEC),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,MKD-GOV-CSIRT,https://mdt.gov.mk/mk-MK/mkd-gov-csirt,,MK,MK,,Macedonia del Nord — CSIRT governativo (Ministero della Trasformazione Digitale),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Naked Security (Sophos),https://nakedsecurity.sophos.com,,,,,Sophos blog — Threat news,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NAM-CSIRT,https://nam-csirt.na,https://nam-csirt.na/feed/,EN,NA,,Namibia — CSIRT nazionale (CRAN),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,National CSIRT-CY,https://csirt.cy,https://csirt.cy/?format=feed&type=rss,EL,CY,,Cipro — CSIRT nazionale,first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCA Saudi Arabia,https://nca.gov.sa/en/,,EN,SA,,Arabia Saudita — autorità nazionale per la cibersicurezza,first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCERT Philippines,https://www.ncert.gov.ph,https://www.ncert.gov.ph/feed/,EN,PH,,Filippine — CERT nazionale (DICT),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCO Japan,https://www.cyber.go.jp/eng/,,EN,JP,,Giappone — National Cybersecurity Office (Cabinet Secretariat),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSC Bahrain,https://www.ncsc.gov.bh,,EN,BH,,"Bahrein — centro nazionale, ospita CERT BH",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSC Ireland,https://www.ncsc.gov.ie,,EN,IE,,"Irlanda — centro nazionale, ospita CSIRT-IE",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSC-FI,https://www.kyberturvallisuuskeskus.fi/en,,EN,FI,,Finlandia — centro nazionale (Traficom),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSIRT Mongolia,https://ncsirt.gov.mn,,MN,MN,,Mongolia — centro nazionale contro gli attacchi informatici,first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NKI — Nemzeti Kiberbiztonsági Intézet,https://nki.gov.hu,,HU,HU,,Ungheria — istituto nazionale di cibersicurezza,first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NÚKIB,https://nukib.gov.cz,,CS,CZ,,"Cechia — autorità nazionale, ospita GovCERT.CZ",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,OCERT Oman,https://cert.gov.om,,AR,OM,,Oman — centro nazionale per la sicurezza informatica,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,OONI,https://ooni.org,,EN,Globale,,Misurazione censura internet,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,PKCERT,https://pkcert.gov.pk,,EN,PK,,Pakistan — CERT nazionale (Ministero IT),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Qualys Blog,https://blog.qualys.com,https://blog.qualys.com/feed,,,,Vulnerability,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Rapid7 Blog,https://www.rapid7.com/blog,https://www.rapid7.com/rss.xml,,,,Research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,RedHotCyber,https://www.redhotcyber.com,https://www.redhotcyber.com/feed/,,,,Cyber IT — Cyber,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,RIPE NCC,https://www.ripe.net,https://www.ripe.net/news.xml,EN,Europa,,"Registro IP Europa, RIPE Atlas",
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Risky Biz (podcast),https://risky.biz,https://risky.biz/rss.xml,,,,Security podcast — Podcast,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,RW-CSIRT,https://cyber.gov.rw/rw-csirt/,,EN,RW,,Ruanda — CSIRT nazionale (NCSA),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SANS Internet Stormcast,https://isc.sans.edu,https://isc.sans.edu/rssfeed.xml,,,,SANS Institute — Daily threat brief — Daily brief,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SC Media,https://www.scmagazine.com,,,,,Media professionale — Security news,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Schneier on Security,https://www.schneier.com,,,,,Bruce Schneier — Security analysis — Blog,
@@ -3727,16 +3764,19 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Security Now,https://www.grc.com/sn,,,,,Gibson — Podcast,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SecurityWeek,https://www.securityweek.com,https://www.securityweek.com/feed/,,,,Copertura ampia — Security news,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SentinelOne Blog,https://www.sentinelone.com/blog,https://www.sentinelone.com/feed/,,,,SentinelOne — Threat intel,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SK-CERT,https://www.sk-cert.sk,,SK,SK,,Slovacchia — unità nazionale (NBÚ),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Smashing Security,https://www.smashingsecurity.com,https://www.smashingsecurity.com/feed/,,,,Podcast,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Symantec Threat Intel,https://symantec-enterprise-blogs.security.com,https://www.security.com/rss/v1/blogs/rss.xml,,,,Broadcom — Threat intel — Research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Talos Intelligence Blog,https://blog.talosintelligence.com,https://blog.talosintelligence.com/rss/,,,,Cisco Talos — Threat intel,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,TechCrunch Security,https://techcrunch.com,,EN,,,Venture e security — Startup security,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,TechRepublic Security,https://www.techrepublic.com,,,,,News,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Tenable Blog,https://www.tenable.com/blog,https://feeds.feedburner.com/tenable/qaXL,,,,Vulnerability,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ThaiCERT,https://www.thaicert.or.th,https://www.thaicert.or.th/feed/,TH,TH,,Thailandia — CERT nazionale (NCSA),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,The Hacker News,https://thehackernews.com,https://feeds.feedburner.com/TheHackersNews,,,,News quotidiane — Cybersecurity,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Threatpost,https://threatpost.com,https://threatpost.com/feed/,,,,Kaspersky Lab — Security news,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Trend Micro Blog,https://www.trendmicro.com/en_us/research.html,,,,,Research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Unit 42 (Palo Alto),https://unit42.paloaltonetworks.com,https://unit42.paloaltonetworks.com/feed/,,,,Palo Alto — Threat intel,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,UZCERT,https://uzcert.uz,https://uzcert.uz/feed/,UZ,UZ,,Uzbekistan — servizio nazionale di risposta agli incidenti,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Vectra AI Blog,https://www.vectra.ai/blog,https://www.vectra.ai/blog/rss.xml,,,,AI Security,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Virus Bulletin,https://www.virusbulletin.com,,,,,Ricerca tecnica — Malware research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Wired Security,https://www.wired.com/category/security,https://www.wired.com/feed/rss,,,,Copertura generale — Security news,
