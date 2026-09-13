@@ -307,6 +307,49 @@ structure or to the meaning of an existing column.
   under `SD`. That is the same error in a different subsection, and belongs to
   whoever works the media rows next.
 
+- **Five national chambers of commerce** — Azerbaijan, Bangladesh, Cambodia,
+  Indonesia and South Korea — and the finding that this subsection is **not
+  the enumerable register the growth plan assumed it was.**
+
+  The plan grouped chambers of commerce with statistics offices and central
+  banks as a category that "has by nature one entry per country", where "the
+  expected number is known in advance, so completeness is measurable". For the
+  first two that held: the UN Statistics Division publishes a directory, the
+  BIS publishes one, and both could be read. **For chambers there is no such
+  list reachable from here**, and four attempts is enough to say so rather
+  than keep looking:
+
+  | Directory | What it gives |
+  |---|---|
+  | ICC World Chambers Federation | member list rendered in JavaScript; no data in the HTML |
+  | ICC national committees | same |
+  | CACCI (Asia-Pacific) | member *names* in the page, but exactly one member URL in the whole document |
+  | World Chambers Network | a search portal over 12,700 chambers, local and national mixed, not enumerable |
+  | Wikipedia | 93 pages, mostly bilateral and city chambers, 18 country subcategories |
+
+  So these five rows are hand additions and `Provenienza` stays **empty**:
+  CACCI's map named the organisations, every URL was resolved and read
+  separately, and calling that a batch would put a directory's name on work it
+  did not do — which is the one thing the column must not be used for.
+
+  Coverage moves from 102 of the 193 UN member states to 107. That is the
+  honest yield of a subsection with no register behind it, and it says the
+  remaining 86 will come one at a time rather than in an import.
+
+  Two candidates were dropped for the usual reason: Timor-Leste's chamber sits
+  behind a Cloudflare challenge and Papua New Guinea's domain does not resolve.
+  Sweden was looked for and not added — `chamber.se` is gone, and
+  `svenskhandel.se` is a trade federation, not the chamber.
+
+  **`validate.py` caught a mistake of mine here, not a pre-existing one.**
+  CACCI also names Mongolia's chamber, and I probed and verified it without
+  first checking it against my own list of missing countries — where Mongolia
+  is not, because `mongolchamber.mn` has been in the catalogue all along. The
+  canonical-URL check added two entries ago failed the run and named both
+  lines. It is the second duplicate it has caught in two batches; the first
+  was a real data error, this one was carelessness, and the check does not
+  care which.
+
 ### Changed
 
 - `scripts/validate.py` now rejects a repeated `Fonte` when nothing
