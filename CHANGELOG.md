@@ -350,6 +350,51 @@ structure or to the meaning of an existing column.
   was a real data error, this one was carelessness, and the check does not
   care which.
 
+- **Eleven official gazettes, and a row that was hiding a continent.** Coverage
+  in `Gazzette Ufficiali & Legislazione` goes from **70 of the 193 UN member
+  states to 102** — and 22 of those 32 came from widening one existing row.
+
+  **Gazettes.Africa was filed under `Africa`.** Its own navigation names the
+  24 countries whose gazettes it holds, so `Paese / Area` now lists them.
+  The `Note` says plainly what the row is: an archive of where the issues can
+  be read, **not the official publisher**. That distinction matters for how the
+  coverage figure should be read, and it is the reason the note spells it out
+  rather than letting a country code imply more than it should.
+
+  The eleven added by hand are official publishers: Albania's QBZ, Armenia's
+  ARLIS, Bahrain's Legislation Commission, Bosnia's Službeni glasnik, Georgia's
+  Matsne, Iceland's Stjórnartíðindi, Moldova's Monitorul Oficial, Montenegro's
+  Službeni list, Morocco's SGG, North Macedonia's Службен весник, and
+  Uzbekistan's LEX.UZ.
+
+  **This is the second bacino in a row with no register behind it**, and that
+  is now a pattern rather than an accident. The plan credited all of bacino A
+  with "completezza misurabile"; on the evidence, that holds for two of the
+  four registers tested and fails for two:
+
+  | Register | Directory | Held up? |
+  |---|---|---|
+  | Statistics offices | UN Statistics Division | yes |
+  | Central banks | BIS, plus Wikipedia for the rest | yes |
+  | Chambers of commerce | — | no: nothing enumerable is reachable |
+  | Official gazettes | — | no: same |
+
+  For gazettes the attempts were the Law Library of Congress *Guide to Law
+  Online: Nations* (a LibGuides page whose country list is JavaScript), WIPO
+  Lex and ILO NATLEX (both 404 on their directory paths), and a Wikipedia list
+  that does not exist. What is reachable is regional: Gazettes.Africa for 24
+  African countries, and nothing comparable elsewhere.
+
+  So the eleven were found one at a time and `Provenienza` stays **empty** on
+  all of them, as it did for the chambers. Four candidates were rejected for
+  the usual reason and one for a subtler one: Tunisia's IORT serves 159 bytes,
+  Vietnam's `congbao.chinhphu.vn` does not resolve, Algeria's `joradp.dz` is a
+  998-byte frame stub, Kazakhstan's `adilet.zan.kz` serves a page whose visible
+  text is the developer's own notes about meta tags — and **Jordan's entry was
+  dropped because `pm.gov.jo` is the Prime Ministry, not the gazette.** A
+  government site that answers `200` is still not the source it was meant to
+  be.
+
 ### Changed
 
 - `scripts/validate.py` now rejects a repeated `Fonte` when nothing
