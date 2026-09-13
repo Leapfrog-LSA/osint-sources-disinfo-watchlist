@@ -253,6 +253,60 @@ structure or to the meaning of an existing column.
   one thing, and the new nesting warning agrees: the run reports the same 11
   pairs as before this batch, none of them new.
 
+- **12 central banks, and a correction worth more than the additions**, in
+  `Banche Centrali & Autorità Monetarie`. Coverage goes from **143 of the 193
+  UN member states to 173** — and only 12 of those 30 came from new rows.
+
+  The subsection looked as though it were missing 50 countries. It was missing
+  far fewer, and the difference is entirely in how the existing rows were
+  written.
+
+  **Eighteen countries were already covered by a row that named one of them.**
+  Three currency unions share a single central bank, and each was filed under a
+  single member: the BCEAO under `SN`, the BEAC under `CM`, the Eastern
+  Caribbean Central Bank under `Caraibi`. Their `Paese / Area` now lists every
+  member state, taken from each bank's own site rather than from memory —
+  BCEAO's own *États membres* page names all eight, BEAC's *la BEAC* page all
+  six, ECCB's home page all eight including Anguilla and Montserrat.
+
+  **The Bank of South Sudan was filed under `SD`.** Its own `Note` read
+  "South Sudan", so the country code was the error, not the row. That one
+  character was hiding a real gap: with South Sudan's bank standing in for
+  Sudan, **Sudan's own central bank looked catalogued and was not**. It is now
+  in, at `cbos.gov.sd`.
+
+  That was found by the canonical-URL check added in the previous entry, on its
+  first real use: the new row for South Sudan collided with the existing one,
+  which comparing URLs verbatim would have missed only if the two had been
+  spelled differently — and would have let through as two rows. Instead
+  `validate.py` failed the run and named both lines.
+
+  **Twenty countries remain outside, and every one is accounted for.** Ten have
+  no central bank at all — Andorra, Kiribati, Liechtenstein, Marshall Islands,
+  Micronesia, Monaco, Nauru, Palau, Panama, Tuvalu all use another country's
+  currency, which the list of central banks states explicitly. Four are
+  catalogued elsewhere and are a classification question rather than a gap:
+  the Bundesbank, Banca d'Italia and the Federal Reserve sit under
+  `Finanza, Economia & Business`, and **Banco de España under a *media*
+  category**, `Europa Occidentale`. Those four rows are left where they are;
+  moving a row is a different decision from adding one. The last six —
+  Iran, Lebanon, North Korea, Sierra Leone, Yemen, Zimbabwe — have a URL that
+  could not be verified from here: a Radware captcha on `rbz.co.zw`, a
+  Cloudflare challenge on `bdl.gov.lb`, DNS failures on the rest, and nothing
+  published at all for North Korea.
+
+  Provenance splits three ways because the URLs did: `bis:2026-09` (4) from the
+  BIS list of member central banks, `wikipedia.cb:2026-09` (6) from the
+  external links of each bank's Wikipedia article, and empty for the two found
+  by hand. No single directory covers this ground — BIS has 63 members and
+  stops there, and the Wikipedia list of central banks carries names and
+  currencies but no websites at all.
+
+  One thing this batch did **not** fix, and is worth recording: three South
+  Sudanese outlets — Eye Radio, Radio Tamazuj, Sudans Post — are also filed
+  under `SD`. That is the same error in a different subsection, and belongs to
+  whoever works the media rows next.
+
 ### Changed
 
 - `scripts/validate.py` now rejects a repeated `Fonte` when nothing
