@@ -46,7 +46,7 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-5,350 sources across 12 macro-categories:
+5,349 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
@@ -54,7 +54,7 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 | Settori Specifici (AI/dev tools, finance, sector-specific) | 1,245 |
 | Open Data & Trasparenza | 485 |
 | Statistiche & Dati Macroeconomici | 413 |
-| Registri Aziendali & Corporate Intelligence | 271 |
+| Registri Aziendali & Corporate Intelligence | 270 |
 | Cybersecurity & Digital OSINT | 236 |
 | Geopolitica & Intelligence | 151 |
 | Sanzioni, PEP & Compliance | 118 |
