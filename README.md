@@ -50,14 +50,14 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 | Category | Sources |
 |---|---:|
-| Media & Testate Giornalistiche | 2,134 |
-| Settori Specifici (AI/dev tools, finance, sector-specific) | 1,247 |
+| Media & Testate Giornalistiche | 2,132 |
+| Settori Specifici (AI/dev tools, finance, sector-specific) | 1,245 |
 | Open Data & Trasparenza | 484 |
-| Statistiche & Dati Macroeconomici | 408 |
+| Statistiche & Dati Macroeconomici | 413 |
 | Registri Aziendali & Corporate Intelligence | 271 |
 | Cybersecurity & Digital OSINT | 211 |
 | Geopolitica & Intelligence | 152 |
-| Sanzioni, PEP & Compliance | 119 |
+| Sanzioni, PEP & Compliance | 118 |
 | Fact-Checking & Disinformazione | 113 |
 | Social Media & Media Monitoring | 79 |
 | Sostenibilità & ESG | 46 |
