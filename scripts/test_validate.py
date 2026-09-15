@@ -50,9 +50,9 @@ def run_validate(rows):
     return report
 
 
-def row(name, url, place="", sub="Globali & Internazionali"):
+def row(name, url, place="", sub="Globali & Internazionali", note="nota"):
     return ["📰 Media & Testate Giornalistiche", sub,
-            name, url, "", "", place, "", "nota", ""]
+            name, url, "", "", place, "", note, ""]
 
 
 class ProvenanceFormat(unittest.TestCase):
@@ -310,6 +310,105 @@ class NestedPaths(unittest.TestCase):
         # on line 2, the broader one on line 3.
         self.assertEqual(warnings[0][1], 2)
         self.assertIn("line 3", warnings[0][3])
+
+
+class NotePlace(unittest.TestCase):
+    """Reading the place a `Note` opens with, and nothing else."""
+
+    def test_reads_the_leading_phrase(self):
+        self.assertEqual(v.note_place("Sud Sudan — radio/news Juba"), "sud sudan")
+        self.assertEqual(v.note_place("Bielorussia"), "bielorussia")
+
+    def test_stops_at_every_separator_the_notes_use(self):
+        for note in ("Belize — testata", "Belize · testata", "Belize | testata",
+                     "Belize (testata)", "Belize; testata"):
+            with self.subTest(note=note):
+                self.assertEqual(v.note_place(note), "belize")
+
+    def test_ignores_a_phrase_too_long_to_be_a_place_name(self):
+        self.assertEqual(v.note_place("Testata indipendente fondata nel 1999"), "")
+
+    def test_ignores_a_phrase_too_short_to_be_one(self):
+        self.assertEqual(v.note_place("TV — nazionale"), "")
+
+    def test_a_longer_name_is_not_read_as_the_shorter_one_inside_it(self):
+        # This is the whole reason only the leading phrase is read: `Sudan`
+        # sits inside `Sud Sudan`, and `Guinea` inside `Papua Nuova Guinea`.
+        self.assertEqual(v.note_place("Sud Sudan — radio"), "sud sudan")
+        self.assertEqual(v.note_place("Papua Nuova Guinea — quotidiano"),
+                         "papua nuova guinea")
+        self.assertNotIn(v.note_place("Sud Sudan — radio"), ("sudan",))
+
+
+class PlaceAgreesWithNote(unittest.TestCase):
+    """A valid ISO code can still be the wrong country."""
+
+    def warnings(self, rows):
+        return [w for w in run_validate(rows).warnings if "note opens" in w[3]]
+
+    def test_flags_a_code_the_note_contradicts(self):
+        # The defect this exists for: `SD` is Sudan, and the note says the
+        # source is South Sudanese. Nothing here is malformed.
+        warnings = self.warnings([
+            row("Eye Radio", "https://eyeradio.example", "SD",
+                note="Sud Sudan — radio"),
+        ])
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("SS", warnings[0][3])
+
+    def test_flags_a_language_code_copied_into_the_country_column(self):
+        # `BE` is Belgium; `be` is the Belarusian language tag.
+        self.assertEqual(len(self.warnings([
+            row("Nasha Niva", "https://nashaniva.example", "BE",
+                note="Bielorussia"),
+        ])), 1)
+
+    def test_flags_a_subdivision_read_as_a_country(self):
+        # `BZ` is Belize, not Bolzano; `MX` is Mexico, not New Mexico.
+        self.assertEqual(len(self.warnings([
+            row("Salto", "https://salto.example", "BZ", note="Alto Adige — testata"),
+            row("ABQ Journal", "https://abq.example", "MX", note="New Mexico — quotidiano"),
+        ])), 2)
+
+    def test_accepts_a_code_the_note_agrees_with(self):
+        self.assertEqual(self.warnings([
+            row("Sudans Post", "https://sudanspost.example", "SS",
+                note="Sud Sudan — testata online"),
+        ]), [])
+
+    def test_accepts_the_country_among_several(self):
+        # `BE/NL` is a cross-border newsroom, not a contradiction.
+        self.assertEqual(self.warnings([
+            row("Investico", "https://investico.example", "BE/NL", note="Belgio — inv."),
+        ]), [])
+
+    def test_accepts_a_subdivision_of_the_named_country(self):
+        # `GB-SCT` is in `GB`, so a note reading `Scozia` agrees with it.
+        self.assertEqual(self.warnings([
+            row("The Ferret", "https://ferret.example", "GB-SCT", note="Scozia — inv."),
+        ]), [])
+
+    def test_says_nothing_when_the_note_names_no_place(self):
+        self.assertEqual(self.warnings([
+            row("Example", "https://example.org", "IT", note="Quotidiano"),
+        ]), [])
+
+    def test_says_nothing_when_the_country_is_empty(self):
+        # Empty means "not determined" here, which is not a disagreement.
+        self.assertEqual(self.warnings([
+            row("Example", "https://example.org", "", note="Bielorussia"),
+        ]), [])
+
+    def test_a_disagreement_is_a_warning_and_never_fails_the_run(self):
+        # Filing by subject rather than by publisher is deliberate, so this
+        # rule is wrong often enough that it must not gate anything.
+        report = run_validate([
+            row("38 North", "https://38north.example", "US",
+                note="Corea del Nord — analisi"),
+        ])
+        self.assertTrue(report.warnings)
+        self.assertEqual(report.errors, [])
+        self.assertTrue(report.summary())
 
 
 if __name__ == "__main__":

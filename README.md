@@ -162,6 +162,8 @@ Two of its rules are worth knowing because they are deliberately narrow:
 
 **A repeated host is a warning, not an error**, and only when one row's URL sits *inside* another's. 106 hosts appear on more than one row and almost all of them should: `bbc.com/news` and `bbc.com/news/world` are different desks. Flagging every repeated host would report a hundred pairs of nothing, so the check looks for nesting instead — which on the catalogue as it stands finds 11 pairs, about a third of them one source entered twice under two names. That precision is too low to fail a build on, so these print, are counted, and leave the exit code alone.
 
+**A country code that disagrees with its own note is a warning too.** Every wrong country found so far has been a *valid* ISO code, so the format check accepts it and always will: `SD` for three South Sudanese outlets, `BZ` — Belize — for a South Tyrol paper, `BE` — Belgium — for a Belarusian one where a language tag had been copied into the wrong column, and `MX` for the Albuquerque Journal, from "New Mexico". Nothing in those rows is malformed; the only thing that disagrees is the prose beside them. So the check reads the place a `Note` opens with and compares it to the code. It is a warning because this catalogue deliberately files some sources by subject rather than by publisher — 38 North is a US think tank writing about North Korea — and those are indistinguishable from a mistake without reading the row.
+
 The same workflow runs the scripts' own test suite:
 
 ```bash
