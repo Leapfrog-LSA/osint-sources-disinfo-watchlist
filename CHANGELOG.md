@@ -79,6 +79,17 @@ structure or to the meaning of an existing column.
 
 ### Removed
 
+- **Camera di Commercio — Tanzania**, whose domain has been taken over.
+  `tccia.com` resolves to Cloudflare and redirects in two hops to
+  `cintatogelaman.com`, an Indonesian online-gambling site. The chamber let
+  the domain lapse and someone else registered it.
+
+  This is not a source that went quiet. It is a catalogued URL that actively
+  sends a reader somewhere else, in a dataset used for due diligence, and it
+  answers `200` — so the monthly link check would have called it healthy
+  indefinitely. `tccia.or.tz` resolves but serves an empty directory listing,
+  so there is no verified replacement to point the row at.
+
 - Two duplicate rows, each confirmed by fetching the pages rather than by
   comparing cells, and each approved individually — the rule this repository
   adopted after `v0.5.0` removed 21 sources on a script's say-so, at least
