@@ -35,6 +35,15 @@ CSVs; it only reports. Three rules drive every decision here:
    neither did a second opinion, because scripts/discover_candidates.py
    calls check_url() too and so is the same opinion.
 
+A fourth kind of finding does not fit those rules, because it is not a
+failure at all: a URL that answers 200 somewhere other than where it
+points. Every check above looks at *whether* a request succeeded; none
+looked at *where*. RNZ's catalogued Pacific address redirected to another
+section for months and was reported healthy every time, and the Tanzania
+chamber's lapsed domain redirected to an online-gambling site while doing
+the same. These are reported in their own section and are never removal
+candidates: a page that moved is a stale cell, not a dead source.
+
 In CI (GITHUB_TOKEN + GITHUB_REPOSITORY set), findings are posted to a
 single recurring GitHub issue (label "link-check") instead of a fresh
 issue every run, so repeat offenders are visible across months. Run
@@ -197,6 +206,11 @@ class Attempt:
                     # | other_error
     status: "int | None"
     detail: str
+    # Where the request actually ended up, and whether that body was a feed.
+    # Both only mean anything on a success: a URL that answers 200 can still
+    # have stopped being what the catalogue says it is.
+    final: str = ""
+    feedish: bool = False
 
 
 @dataclass
@@ -249,6 +263,22 @@ def _parking_host(final_url):
     return None
 
 
+FEED_ROOT = re.compile(rb"<rss[\s>]|<feed[\s>]|<rdf:RDF[\s>]", re.I)
+FEED_ENTRY = re.compile(rb"<item[\s>]|<entry[\s>]", re.I)
+
+
+def feed_like(body_bytes):
+    """True when a body is an RSS/Atom feed that carries at least one entry.
+
+    Both halves are needed. El Espectador's stale feed address redirects to
+    the site's default WordPress *comments* feed: valid XML, correct content
+    type, and nothing in it. A check that stopped at "parses as a feed" would
+    keep that cell forever.
+    """
+    head = body_bytes[:2000]
+    return bool(FEED_ROOT.search(head)) and bool(FEED_ENTRY.search(body_bytes))
+
+
 def classify_response(status, headers, body_bytes, final_url=""):
     text = body_bytes.decode("utf-8", errors="replace").lower()
     header_blob = " ".join(f"{k.lower()}:{v.lower()}" for k, v in (headers.items() if headers else []))
@@ -295,8 +325,10 @@ def classify_response(status, headers, body_bytes, final_url=""):
             return Attempt(
                 "success", status,
                 f"HTTP {status} (marker {parked_hit!r} ignored on a {len(stripped)}-character page)",
+                final_url, feed_like(body_bytes),
             )
-        return Attempt("success", status, f"HTTP {status}")
+        return Attempt("success", status, f"HTTP {status}",
+                       final_url, feed_like(body_bytes))
 
     if 300 <= status < 400:
         # A redirect chain that never lands on a final page — with cookies
@@ -372,6 +404,96 @@ def fetch_once(url, user_agent, timeout):
         return Attempt("other_error", None, f"{type(e).__name__}: {e}")
 
 
+# --------------------------------------------------------------------------
+# Where a URL landed
+# --------------------------------------------------------------------------
+
+# Path segments a site adds or drops without moving anything.
+_INDEX_FILE = re.compile(r"/(index|default)\.(html?|php|aspx?|jsp)$", re.I)
+_LANG_PREFIX = re.compile(r"^/[a-z]{2}(-[a-z]{2})?(?=/|$)", re.I)
+
+
+def _canonical_parts(url):
+    parsed = urllib.parse.urlparse(url.strip())
+    host = parsed.netloc.lower().rsplit("@", 1)[-1]
+    for port in (":80", ":443"):
+        if host.endswith(port):
+            host = host[: -len(port)]
+    if host.startswith("www."):
+        host = host[4:]
+    path = _INDEX_FILE.sub("", parsed.path.rstrip("/")).lower()
+    return host, path
+
+
+def landing_kind(stored, final):
+    """How far a URL moved, or "" when it did not meaningfully move.
+
+    A redirect is the blind spot every other check in this file shares: the
+    request succeeds, so nothing here ever looked at where it succeeded. RNZ's
+    Pacific desk had a catalogued address that redirected to a different
+    section for months, answering 200 the whole time.
+
+    Most redirects mean nothing — a scheme upgrade, a `www.`, a trailing
+    slash, a language prefix, one more path segment. Those return "". What is
+    left is an address that now resolves somewhere the catalogue does not say.
+    """
+    if not final:
+        return ""
+    host_a, path_a = _canonical_parts(stored)
+    host_b, path_b = _canonical_parts(final)
+    if (host_a, path_a) == (host_b, path_b):
+        return ""
+    if host_a != host_b:
+        # example.com -> fr.example.com is the same site speaking French.
+        if host_b.endswith("." + host_a) or host_a.endswith("." + host_b):
+            return ""
+        return "host"
+    if not path_b and path_a:
+        return "home"
+    # One path inside the other is a site adding or dropping a level, which
+    # is reorganisation rather than relocation.
+    if path_b.startswith(path_a + "/") or path_a.startswith(path_b + "/"):
+        return ""
+    if _LANG_PREFIX.sub("", path_b) == path_a or _LANG_PREFIX.sub("", path_a) == path_b:
+        return ""
+    return "path"
+
+
+LANDING_TITLES = {
+    "feed": "Feed addresses that answer 200 and serve no feed",
+    "home": "Redirected to a home page — the page itself is gone",
+    "host": "Redirected to a different site",
+    "path": "Redirected elsewhere on the same site",
+}
+LANDING_ORDER = ["feed", "home", "host", "path"]
+
+
+def landing_findings(by_url, landings):
+    """Findings among the URLs that succeeded.
+
+    Everything else in this script reports failures. These are successes that
+    are nonetheless wrong: the address resolves, and resolves somewhere other
+    than what the row claims. None of them is a removal candidate — a moved
+    page is a stale cell, not a dead source.
+    """
+    found = defaultdict(list)
+    for url, attempt in sorted(landings.items()):
+        is_feed = any(ref.column == "RSS Feed" for ref in by_url.get(url, ()))
+        if is_feed and not attempt.feedish:
+            where = ("" if not attempt.final or attempt.final == url
+                     else f", now at {attempt.final}")
+            found["feed"].append((url, Verdict(
+                "feed",
+                f"HTTP {attempt.status}, but the body is not a feed with "
+                f"entries{where}")))
+            continue
+        kind = landing_kind(url, attempt.final)
+        if kind:
+            found[kind].append((url, Verdict(
+                kind, f"HTTP {attempt.status}, landed on {attempt.final}")))
+    return found
+
+
 def summarize(attempts):
     if any(a.category == "success" for a in attempts):
         return None
@@ -436,7 +558,14 @@ def run_control_probe():
     return reached >= CONTROL_MIN_SUCCESS, reached, lines
 
 
-def check_url(url):
+def check_url(url, with_landing=False):
+    """Verdict for a URL, or None when it answered.
+
+    `with_landing` additionally returns the successful attempt, so a caller
+    can ask *where* it succeeded. It is opt-in so that
+    scripts/discover_candidates.py, which calls this for a single verdict,
+    keeps working unchanged.
+    """
     attempts = []
     for i in range(len(ATTEMPT_TIMEOUTS)):
         if i > 0:
@@ -447,14 +576,19 @@ def check_url(url):
         attempts.append(attempt)
         if attempt.category == "success":
             break
-    return summarize(attempts)
+    verdict = summarize(attempts)
+    if not with_landing:
+        return verdict
+    landed = next((a for a in attempts if a.category == "success"), None)
+    return verdict, landed
 
 
 # --------------------------------------------------------------------------
 # Reporting
 # --------------------------------------------------------------------------
 
-def render_report(by_url, buckets, control_healthy=True, control_reached=0, control_lines=()):
+def render_report(by_url, buckets, control_healthy=True, control_reached=0,
+                  control_lines=(), landings=None):
     today = dt.date.today().isoformat()
     total = sum(len(v) for v in buckets.values())
     candidates = sum(len(buckets.get(b, ())) for b in REMOVAL_CANDIDATE_BUCKETS)
@@ -484,13 +618,20 @@ def render_report(by_url, buckets, control_healthy=True, control_reached=0, cont
         lines.append("")
         lines.extend(control_lines)
 
-    if total == 0:
+    if total == 0 and not landings:
         lines.append("")
         lines.append("No problems found this run.")
         return "\n".join(lines)
 
     lines.append("")
-    if not control_healthy:
+    if total == 0:
+        # Nothing failed, but something still moved. Saying "no problems"
+        # here would be the old blind spot talking.
+        lines.append(
+            "Every URL answered. What follows is the other kind of finding: "
+            "addresses that resolve, but not to what the catalogue says."
+        )
+    elif not control_healthy:
         lines.append(
             "**Removal candidates: none this run** — the control probe failed "
             "(see above)."
@@ -523,6 +664,34 @@ def render_report(by_url, buckets, control_healthy=True, control_reached=0, cont
             ref_str = ", ".join(f"`{r.dataset}:{r.line}` {r.name} ({r.column})" for r in refs)
             lines.append(f"- {ref_str} — {url}")
             lines.append(f"  {verdict.detail}")
+
+    if landings:
+        total_landed = sum(len(v) for v in landings.values())
+        lines.append("")
+        lines.append(f"## Answered, but not where the catalogue says ({total_landed})")
+        lines.append("")
+        lines.append(
+            "Every URL below returned a working page. Each returned it "
+            "somewhere other than the address on file, or — for a feed — "
+            "returned something that is not a feed. No status check can see "
+            "this: they all answer `200`, and this script called them healthy "
+            "every month until it started looking at where the request ended "
+            "up. **None of them is a removal candidate.** A page that moved "
+            "is a stale cell, not a dead source."
+        )
+        for kind in LANDING_ORDER:
+            entries = landings.get(kind)
+            if not entries:
+                continue
+            lines.append("")
+            lines.append(f"### {LANDING_TITLES[kind]} ({len(entries)})")
+            lines.append("")
+            for url, verdict in sorted(entries, key=lambda pair: pair[0]):
+                refs = by_url[url]
+                ref_str = ", ".join(
+                    f"`{r.dataset}:{r.line}` {r.name} ({r.column})" for r in refs)
+                lines.append(f"- {ref_str} — {url}")
+                lines.append(f"  {verdict.detail}")
 
     lines.append("")
     lines.append("---")
@@ -626,19 +795,27 @@ def main():
     print(f"Checking {len(urls)} unique URLs ({total_refs} references)...")
 
     buckets = defaultdict(list)
+    landed = {}
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
-        futures = {pool.submit(check_url, url): url for url in urls}
+        futures = {pool.submit(check_url, url, True): url for url in urls}
         done = 0
         for future in as_completed(futures):
             url = futures[future]
-            verdict = future.result()
+            verdict, attempt = future.result()
             if verdict is not None:
                 buckets[verdict.bucket].append((url, verdict))
+            elif attempt is not None:
+                landed[url] = attempt
             done += 1
             if done % 200 == 0 or done == len(urls):
                 print(f"  {done}/{len(urls)} checked")
 
-    report = render_report(by_url, buckets, control_healthy, control_reached, control_lines)
+    landings = landing_findings(by_url, landed)
+    print(f"  {sum(len(v) for v in landings.values())} of {len(landed)} working "
+          f"URLs answered somewhere other than where they point")
+
+    report = render_report(by_url, buckets, control_healthy, control_reached,
+                           control_lines, landings)
     print("\n" + report)
 
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
@@ -646,7 +823,8 @@ def main():
         with open(summary_path, "a", encoding="utf-8") as handle:
             handle.write(report + "\n")
 
-    total_flagged = sum(len(v) for v in buckets.values())
+    total_flagged = (sum(len(v) for v in buckets.values())
+                     + sum(len(v) for v in landings.values()))
     if total_flagged == 0:
         return 0
 
