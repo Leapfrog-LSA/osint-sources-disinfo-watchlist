@@ -11,6 +11,36 @@ structure or to the meaning of an existing column.
 
 ### Added
 
+- `scripts/validate.py` warns when a row's `Paese / Area` disagrees with the
+  place its `Note` opens with.
+
+  Four wrong country codes turned up this month, and the format check
+  accepted every one of them, correctly: `SD` for three South Sudanese
+  outlets, `BZ` — Belize — for a South Tyrol paper, `BE` — Belgium — for a
+  Belarusian one, where `lang="be"` had been copied from the language tag,
+  and `MX` for the Albuquerque Journal, from "New Mexico". All four are valid
+  ISO 3166 codes in a column that accepts ISO 3166 codes. Nothing in the row
+  is malformed; the only thing that disagrees is the prose beside it.
+
+  The first attempt learned the place names from the catalogue itself and was
+  useless: "Sud Sudan" appeared three times, all three coded `SD`, so the
+  dictionary learned that "Sud Sudan" means Sudan. A systematic error teaches
+  itself, and a one-off — "Bielorussia" appeared once — never reaches a
+  threshold. So `PLACE_COUNTRY` is written out, independently of the data.
+
+  Only the phrase a `Note` opens with is read, which is what keeps `Guinea`
+  inside "Papua Nuova Guinea" and `Sudan` inside "Sud Sudan" from being read
+  as those countries. Cities are deliberately not in the map: a note opening
+  with a city gives a location, not a country, and "Berlino" on an EU think
+  tank is not a mistake about Germany.
+
+  Run against the catalogue as it stood this morning, it finds four of the
+  six wrong codes. It is a warning, not an error: this catalogue files some
+  sources by subject rather than by publisher — 38 North is a US think tank
+  writing about North Korea, DVB is Oslo-based and writes about Burma — and
+  those are indistinguishable from a mistake without reading the row. Six of
+  the seven it currently prints are exactly that.
+
 - 29 Media Ownership Monitor country projects (`mom:2026-09`). Reporters
   Without Borders documents who owns the media in a given country —
   ownership structures, concentration, and the political and business ties
@@ -48,6 +78,10 @@ structure or to the meaning of an existing column.
   public API was used to confirm the service and its size.
 
 ### Fixed
+
+- **The Irish News**, published in Belfast, was filed `IE`. Northern Ireland
+  is in the United Kingdom, and the catalogue already codes the Belfast
+  Telegraph and NISRA `GB`. Found by the new check on its first run.
 
 - The regional subsections now mean the country, as they were always meant to.
 

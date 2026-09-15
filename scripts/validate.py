@@ -89,6 +89,85 @@ CATS_FLAGS = {
     "satire_recognizable", "suspect_source", "suspected",
 }
 
+# Place names as the `Note` column spells them, mapped to the country whose
+# code the row should carry. This list is written here rather than learned from
+# the catalogue on purpose: a wrong code that appears three times teaches a
+# learned dictionary to expect it, which is exactly how "Sud Sudan" would have
+# taught itself to mean `SD`.
+#
+# Only names that a `Note` actually leads with are worth carrying. Subdivisions
+# are included because two of the wrong codes found so far were subdivisions
+# read as countries: `BZ` for Alto Adige is Belize, and `MX` for New Mexico is
+# Mexico.
+PLACE_COUNTRY = {
+    # Countries
+    "afghanistan": "AF", "albania": "AL", "algeria": "DZ", "andorra": "AD",
+    "angola": "AO", "arabia saudita": "SA", "argentina": "AR", "armenia": "AM",
+    "australia": "AU", "austria": "AT", "azerbaigian": "AZ", "bahamas": "BS",
+    "bahrein": "BH", "bangladesh": "BD", "barbados": "BB", "belgio": "BE",
+    "belize": "BZ", "benin": "BJ", "bhutan": "BT", "bielorussia": "BY",
+    "bolivia": "BO", "bosnia": "BA", "bosnia ed erzegovina": "BA",
+    "botswana": "BW", "brasile": "BR", "brunei": "BN", "bulgaria": "BG",
+    "burkina faso": "BF", "burundi": "BI", "cambogia": "KH", "camerun": "CM",
+    "canada": "CA", "capo verde": "CV", "ciad": "TD", "cile": "CL",
+    "cina": "CN", "cipro": "CY", "colombia": "CO", "comore": "KM",
+    "corea": "KR", "corea del sud": "KR", "corea del nord": "KP",
+    "costa d'avorio": "CI", "costa rica": "CR", "croazia": "HR", "cuba": "CU",
+    "danimarca": "DK", "ecuador": "EC", "egitto": "EG", "el salvador": "SV",
+    "emirati arabi uniti": "AE", "eritrea": "ER", "estonia": "EE",
+    "eswatini": "SZ", "etiopia": "ET", "figi": "FJ", "filippine": "PH",
+    "finlandia": "FI", "francia": "FR", "gabon": "GA", "gambia": "GM",
+    "georgia": "GE", "germania": "DE", "ghana": "GH", "giamaica": "JM",
+    "giappone": "JP", "gibuti": "DJ", "giordania": "JO", "grecia": "GR",
+    "guatemala": "GT", "guinea": "GN", "guinea equatoriale": "GQ",
+    "guinea-bissau": "GW", "guyana": "GY", "haiti": "HT", "honduras": "HN",
+    "hong kong": "HK", "india": "IN", "indonesia": "ID", "iran": "IR",
+    "iraq": "IQ", "irlanda": "IE", "islanda": "IS", "israele": "IL",
+    "italia": "IT", "kazakistan": "KZ", "kenya": "KE", "kirghizistan": "KG",
+    "kosovo": "XK", "kuwait": "KW", "laos": "LA", "lesotho": "LS",
+    "lettonia": "LV", "libano": "LB", "liberia": "LR", "libia": "LY",
+    "lituania": "LT", "lussemburgo": "LU", "macao": "MO",
+    "macedonia del nord": "MK", "madagascar": "MG", "malawi": "MW",
+    "malaysia": "MY", "maldive": "MV", "mali": "ML", "malta": "MT",
+    "marocco": "MA", "mauritania": "MR", "mauritius": "MU", "messico": "MX",
+    "moldavia": "MD", "monaco": "MC", "mongolia": "MN", "montenegro": "ME",
+    "mozambico": "MZ", "myanmar": "MM", "namibia": "NA", "nepal": "NP",
+    "nicaragua": "NI", "niger": "NE", "nigeria": "NG", "norvegia": "NO",
+    "nuova zelanda": "NZ", "oman": "OM", "paesi bassi": "NL", "pakistan": "PK",
+    "palestina": "PS", "panama": "PA", "papua nuova guinea": "PG",
+    "paraguay": "PY", "perù": "PE", "polonia": "PL", "porto rico": "PR",
+    "portogallo": "PT", "qatar": "QA", "rd congo": "CD", "regno unito": "GB",
+    "rep. ceca": "CZ", "rep. dominicana": "DO", "romania": "RO", "ruanda": "RW",
+    "russia": "RU", "senegal": "SN", "serbia": "RS", "seychelles": "SC",
+    "sierra leone": "SL", "singapore": "SG", "siria": "SY", "slovacchia": "SK",
+    "slovenia": "SI", "somalia": "SO", "spagna": "ES", "sri lanka": "LK",
+    "sud sudan": "SS", "sudafrica": "ZA", "sudan": "SD", "suriname": "SR",
+    "svezia": "SE", "svizzera": "CH", "tagikistan": "TJ", "taiwan": "TW",
+    "tanzania": "TZ", "thailandia": "TH", "togo": "TG", "trinidad": "TT",
+    "tunisia": "TN", "turchia": "TR", "turkmenistan": "TM", "ucraina": "UA",
+    "uganda": "UG", "ungheria": "HU", "uruguay": "UY", "uzbekistan": "UZ",
+    "vaticano": "VA", "venezuela": "VE", "vietnam": "VN", "yemen": "YE",
+    "zambia": "ZM", "zimbabwe": "ZW",
+    # Regions and states, which is where two of the wrong codes hid. Cities are
+    # deliberately absent: a note that opens with a city is giving a location,
+    # not claiming a country, and `Berlino` on an EU think tank is not a
+    # mistake about Germany.
+    "abruzzo": "IT", "alto adige": "IT", "basilicata": "IT", "calabria": "IT",
+    "liguria": "IT", "sicilia": "IT", "toscana": "IT",
+    "andalusia": "ES", "canarie": "ES", "catalogna": "ES", "galizia": "ES",
+    "paesi baschi": "ES", "comunità valenciana": "ES",
+    "baden-württemberg": "DE", "baviera": "DE", "sassonia": "DE",
+    "occitania": "FR", "paca": "FR",
+    "scozia": "GB", "irlanda del nord": "GB", "galles": "GB",
+    "california": "US", "connecticut": "US", "florida": "US", "michigan": "US",
+    "minnesota": "US", "montana": "US", "new mexico": "US",
+    "north carolina": "US", "ohio": "US", "oklahoma": "US", "oregon": "US",
+    "pennsylvania": "US", "south carolina": "US", "texas": "US",
+    "virginia": "US", "wisconsin": "US", "wyoming": "US",
+    "gujarat": "IN", "karnataka": "IN", "kashmir": "IN", "kerala": "IN",
+    "maharashtra": "IN", "tamil nadu": "IN",
+}
+
 ISO2 = re.compile(r"^[A-Z]{2}$")
 LANG_TOKEN = re.compile(r"^[A-Z]{2,3}$")          # ISO 639-1, or 639-3 where no 2-letter code exists
 SUBDIVISION = re.compile(r"^[A-Z]{2}-[\w\-À-ÿ]+$")  # ISO 3166-2 style, e.g. IT-Lombardia, GB-SCT
@@ -293,7 +372,52 @@ def validate_osint(report):
                          f"{provenance!r} is not `<list>:<YYYY-MM>` "
                          f"(e.g. 'ifcn:2026-08'); leave it empty if unknown")
 
+        warn_place_disagrees(row, line, report, dataset)
+
     warn_nested_paths(by_host, report, dataset)
+
+
+def note_place(note):
+    """The place name a `Note` leads with, if it leads with one.
+
+    Notes in this catalogue open with the place and then say what the source
+    is: `Sud Sudan — radio/news Juba`. Only that leading phrase is read, so
+    `Guinea` inside `Papua Nuova Guinea` is not mistaken for Guinea, and
+    `Sudan` inside `Sud Sudan` is not mistaken for Sudan.
+    """
+    head = re.split(r"[—–·|(;]", note, 1)[0].strip()
+    if not 1 <= len(head.split()) <= 3 or len(head) < 4:
+        return ""
+    return head.casefold()
+
+
+def warn_place_disagrees(row, line, report, dataset):
+    """Flag a row whose `Note` names one country and whose code says another.
+
+    Every wrong country code found so far has been a *valid* ISO code, so
+    `valid_place` accepts all of them and always will: `SD` for South Sudan,
+    `BZ` (Belize) for Alto Adige, `BE` (Belgium) for Belarus — a language code
+    copied into the wrong column — and `MX` for New Mexico. Nothing in the row
+    is malformed. The only thing that disagrees is the prose next to it.
+
+    This is a warning rather than an error because the catalogue deliberately
+    files some sources by subject instead of by publisher: 38 North is a US
+    think tank writing about North Korea, DVB is Oslo-based and writes about
+    Burma. Those are the shape this check cannot tell from a mistake, and on
+    the catalogue as it stands they are most of what it prints.
+    """
+    place = row["Paese / Area"].strip()
+    want = PLACE_COUNTRY.get(note_place(row["Note"]))
+    if not place or not want:
+        return
+    codes = {token.strip() for token in place.split("/")}
+    if want in codes or want in {code.split("-")[0] for code in codes}:
+        return
+    report.warn(dataset, line, "Paese / Area",
+                f"{place!r}, but the note opens with "
+                f"{note_place(row['Note'])!r}, which is {want}. A source "
+                f"filed by subject rather than by publisher, or the wrong "
+                f"country?")
 
 
 def warn_nested_paths(by_host, report, dataset):

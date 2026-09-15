@@ -18,7 +18,13 @@ This runs automatically on any pull request touching a CSV or a script, so it's 
 
 It checks structure and vocabularies — that a country code is *well-formed*, not that it's the *right* country. Accuracy is still on you; the rules below are what the checker can't verify.
 
-It can also print **warnings**, which do not fail the run. Today there is one: a row whose URL sits inside another row's on the same host. Usually that's two desks of one outlet and nothing to do; sometimes it's one source entered twice under two names. Read them, decide, and leave them alone if they're fine — they are not a gate.
+It can also print **warnings**, which do not fail the run. There are two.
+
+A row whose URL sits inside another row's on the same host. Usually that's two desks of one outlet and nothing to do; sometimes it's one source entered twice under two names.
+
+A row whose `Paese / Area` disagrees with the place its `Note` opens with. Often that is deliberate — this catalogue files some sources by subject rather than by publisher — but it is also the only thing that catches a country code that is valid and wrong, which is the only kind anyone has ever entered.
+
+Read them, decide, and leave them alone if they're fine — they are not a gate.
 
 If you changed anything under `scripts/`, run the tests too — the same workflow does:
 
