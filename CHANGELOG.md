@@ -447,6 +447,39 @@ structure or to the meaning of an existing column.
 
   Italy's Garante is the same shape, under `Italia`, and likewise untouched.
 
+- **23 financial supervisors**, taking `Autorità di Vigilanza Finanziaria &
+  Regolatori` from **42 of the 193 UN member states to 65**.
+
+  **IOSCO is the second register of the "list without links" kind**, which
+  settles that the data protection case was not a one-off. Its membership page
+  names 134 members — as `Jurisdiction - Organization` inside a dropdown — and
+  links to none of them; the per-member detail page is JavaScript. The IAIS
+  page is the same: 225 external links, every one of them to `iais.org` or its
+  own portal. So the expected set is knowable and the URLs are not, and the 23
+  below were resolved and read one at a time with `Provenienza` left empty.
+
+  Of IOSCO's 134 entries, 102 map to a country; 43 of those were already
+  catalogued, leaving 59 candidates. Bot walls took nine of them — Albania,
+  the Dominican Republic, Mauritius, Pakistan, the Philippines, Slovenia and
+  Thailand all answer a challenge rather than a page — and Angola, Indonesia
+  and Vietnam could not be reached at all. Romania's `asfromania.ro` returns a
+  page whose only text asks whether you are a human.
+
+  **Two candidates were dropped because the catalogue already had them under
+  another hat.** IOSCO lists the Bermuda Monetary Authority and the Cayman
+  Islands Monetary Authority as its members for those jurisdictions, and both
+  are in `Banche Centrali & Autorità Monetarie` — the same institution
+  supervises and issues currency. The host check caught them before they were
+  written, rather than `validate.py` catching them after.
+
+  That is the change this batch actually reflects: after the privacy
+  authorities, where two rows were missed because I searched existing names
+  for words like "privacy", the check now runs on **hosts** before anything is
+  built. A dozen of IOSCO's members are central banks — Armenia, Bahrain,
+  Czechia, Georgia, Hungary, Ireland, Iceland, Lithuania, Malawi, Russia,
+  Slovakia, Uruguay — so the same collision was going to happen again, and by
+  a wider margin.
+
 ### Changed
 
 - `scripts/validate.py` now rejects a repeated `Fonte` when nothing
