@@ -395,6 +395,58 @@ structure or to the meaning of an existing column.
   government site that answers `200` is still not the source it was meant to
   be.
 
+- **24 data protection authorities**, taking `Autorità Data Protection &
+  Privacy` from **42 of the 193 UN member states to 62** — plus Guernsey,
+  Hong Kong, the Isle of Man and Jersey, which have authorities but are not
+  member states and so do not move that count.
+
+  This bacino behaves differently from the four before it, and the difference
+  is worth naming because the growth plan has only one category for all of
+  them. The **Global Privacy Assembly** publishes a list of 101 accredited
+  members: it says authoritatively *which* authorities exist and what each is
+  called, and links to none of them — every link on that page goes to an
+  accreditation resolution in PDF. So the register exists and completeness is
+  measurable, but the URLs are not in it. Three shapes now, not two:
+
+  | Register | The list | The links |
+  |---|---|---|
+  | Statistics offices, central banks | yes | yes |
+  | **Data protection authorities** | **yes** | **no** |
+  | Chambers of commerce, gazettes | no | — |
+
+  The regional networks do not close that gap: NADPA does not resolve, the
+  Ibero-American RIPD returns 404 on its authorities page, and APPA's member
+  list is a megabyte of JavaScript with no link in the HTML. The **EDPB** is
+  the one exception — it publishes real URLs — and it was worth almost
+  nothing here, because 25 of its 27 authorities were already catalogued.
+  Only Liechtenstein was new. Europe was already done.
+
+  So the 24 URLs were resolved and read one at a time, and `Provenienza` stays
+  empty. **Armenia is why that matters**: the obvious candidate, `foi.am`,
+  answers `200` and is the Freedom of Information Center of Armenia — an NGO,
+  not the Personal Data Protection Agency the GPA list names. It is not in.
+
+  Nine more are out for the usual reasons: Cloudflare challenges on Israel's
+  and the Philippines' authorities, dead DNS for Gabon, Ghana, Georgia, Qatar
+  and Tunisia, and pages too thin to identify anything for Senegal (457 bytes)
+  and Uganda (541).
+
+- **Two authorities were already catalogued, filed by their other mandate.**
+  Chile's **Consejo para la Transparencia** sits under `AML, Sanzioni & PEP`
+  and Colombia's **SIC** under `Antitrust & Concorrenza`. Neither filing is
+  wrong — both bodies are genuinely multi-mandate — but neither is where a
+  privacy lookup would find them, and the rows are left where they are because
+  moving one is a different decision from adding one.
+
+  Both slipped past the check I ran for exactly this: I searched existing rows
+  for privacy words in the name, URL and note, and neither *Consejo para la
+  Transparencia* nor *Superintendencia de Industria y Comercio* contains one.
+  What caught them was the canonical-URL check, failing the run on the
+  duplicate hosts — its third find in three batches. **Searching by name looks
+  for sources you already know how to describe; searching by host does not.**
+
+  Italy's Garante is the same shape, under `Italia`, and likewise untouched.
+
 ### Changed
 
 - `scripts/validate.py` now rejects a repeated `Fonte` when nothing
