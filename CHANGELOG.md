@@ -49,6 +49,35 @@ structure or to the meaning of an existing column.
 
 ### Fixed
 
+- The regional subsections now mean the country, as they were always meant to.
+
+  `Italia` held 12 rows that are not Italian: five Romanian outlets
+  (Digi24, G4Media, HotNews, Libertatea, ProTV), two Ukrainian (Euromaidan
+  Press, Hromadske), a Swiss-Italian daily, ITV News, the Vatican's
+  Osservatore Romano, the EU-wide EUnews — and Kumu, which is not a
+  newspaper at all but a relationship-mapping tool, now filed with Gephi and
+  Maltego under OSINT tools.
+
+  The subsection had drifted into meaning "Italian-language", which is why
+  Corriere del Ticino and Osservatore Romano looked at home there while
+  ProTV Romania did not.
+
+- Two more misfilings, found by checking every regional subsection against
+  the countries of the rows in it: SIC Notícias, a Portuguese broadcaster,
+  sat under Latin America; Doğruluk Payı, a Turkish fact-checker, sat under
+  Western Europe rather than with Turkey's other 11 rows.
+
+- Two country codes that read as a country and were not. **Nasha Niva**, the
+  Belarusian paper, was filed `BE` — Belgium; the site declares `lang="be"`,
+  so a language code had been copied into the country column, and the
+  language it names is now recorded where it belongs. **Albuquerque Journal**
+  was filed `MX`, from "New Mexico".
+
+  That is the third instance this month of a plausible two-letter code
+  filing a source under the wrong country, after `SD`/`SS` and Salto.bz
+  under Belize. Nothing checks these: every one of them is a valid ISO code,
+  so the validator is right to accept it.
+
 - 43 `RSS Feed` cells that return 404 now point at a feed confirmed to carry
   items. No row was added or removed.
 
