@@ -480,6 +480,46 @@ structure or to the meaning of an existing column.
   Slovakia, Uruguay — so the same collision was going to happen again, and by
   a wider margin.
 
+- **Nine cadastres and land registries**, taking `Catasti & Registri
+  Immobiliari` from **23 of the 193 UN member states to 32** — and closing the
+  survey of bacino A, which the growth plan had described as seven registers
+  with "completezza misurabile".
+
+  Cadastres are the third register with **no enumerable directory at all**,
+  alongside chambers of commerce and official gazettes. EuroGeographics — the
+  network of national mapping and cadastral agencies, and already a row in this
+  subsection — serves a 1.1 MB members page with four external links, none of
+  them a member. ELRA's members page has two. IPRA-CINDER returns nothing at
+  all, FIG's member list is a 1,352-byte stub, and UNECE's land administration
+  page answers `403`.
+
+  So the survey now reads, complete:
+
+  | Register | Covered | Directory |
+  |---|---:|---|
+  | Statistics offices | 180/193 | list and links |
+  | Central banks | 173/193 | list and links |
+  | Chambers of commerce | 107/193 | none |
+  | Official gazettes | 102/193 | none |
+  | Financial supervisors | 65/193 | list, no links |
+  | Data protection authorities | 62/193 | list, no links |
+  | **Cadastres** | **32/193** | **none** |
+
+  **Two of the seven have what the plan assumed all seven had.** That is the
+  finding worth carrying forward: "one entry per country" describes the
+  *world*, not the *directories*, and only two bodies publish the world in a
+  form a machine can read.
+
+  Two candidates here were rejected for identity, and both were close enough
+  to be worth recording. Iceland's `lmi.is` redirects to
+  **Náttúrufræðistofnun**, the Institute of Natural History — the land survey
+  was folded into it, and the page that answers is not a land registry.
+  Denmark's cadastre moved to the **Klimadatastyrelsen**, whose site carries
+  no occurrence of *matrikel* at all; a climate data agency answering `200` is
+  not evidence that the cadastre is there. Six more were out for bot walls
+  (Lithuania, Greece, Israel, Mexico), dead DNS (Croatia, South Africa,
+  Rwanda) or a guessed path that 404s (Italy, Japan).
+
 ### Changed
 
 - `scripts/validate.py` now rejects a repeated `Fonte` when nothing
