@@ -2979,6 +2979,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Datos.gob.es,https://datos.gob.es,,ES,ES,,Gratuito,
 🔓 Open Data & Trasparenza,Portali Open Data & Database,datos.gob.mx,https://datos.gob.mx,,ES,MX,,Gratuito,
 🔓 Open Data & Trasparenza,Portali Open Data & Database,DgStat — Min. Giustizia,https://datiestatistiche.giustizia.it,,IT,IT,,Statistiche giudiziarie civili/penali — Dati pubblici,
+🔓 Open Data & Trasparenza,Portali Open Data & Database,DOAJ — Directory of Open Access Journals,https://doaj.org,,EN,Globale,,"Indice di 23.452 riviste ad accesso aperto; la home risponde 403 ai client automatici, l'API pubblica conferma il servizio",doaj:2026-09
 🔓 Open Data & Trasparenza,Portali Open Data & Database,DPLA,https://dp.la,,EN,US,Pubblico,USA cultura digitale — Archivio,
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Dryad Digital Repository,https://datadryad.org,,,,,Dati sottostanti pubblicazioni scientifiche peer-reviewed — Freemium — Repository,
 🔓 Open Data & Trasparenza,Portali Open Data & Database,Economic Times,https://economictimes.indiatimes.com,,,IN,,Business — India,
@@ -3723,18 +3724,27 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Ars Technica Security,https://arstechnica.com,,EN,,,Tech generale — Security news,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ASC Moldova,https://asc.gov.md,,RO,MD,,Moldavia — Agenzia per la sicurezza cibernetica,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Avgi Greece,https://www.avgi.gr,,EL,GR,,SYRIZA — Grecia,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,BA-CSIRT,https://buenosaires.gob.ar/gcaba_historico/jefaturadegabinete/centro-de-ciberseguridad,,ES,AR,,Argentina — CSIRT della Città di Buenos Aires,first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,BACS,https://www.bacs.admin.ch/de,,DE,CH,,Svizzera — Ufficio federale per la cibersicurezza (ex NCSC.ch),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,BGD e-Gov CIRT,https://www.cirt.gov.bd,,EN,BD,,Bangladesh — CIRT governativo (BCC),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,bjCSIRT,https://csirt.bj,https://csirt.bj/feed/,FR,BJ,,Benin — CSIRT nazionale (ASIN),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,BleepingComputer,https://www.bleepingcomputer.com,,,,,"Aggiornamenti rapidi — Malware, ransomware — News",
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CAIS/RNP,https://www.rnp.br/servicos/cais/,https://www.rnp.br/feed/,PT,BR,,Brasile — CSIRT della rete nazionale della ricerca (RNP),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CCCS Canada,https://cyber.gc.ca,,,CA,,Canada — CERT,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT RS,https://cert.aikt.rs,https://cert.aikt.rs/feed/,BS,BA-SRP,,"Bosnia ed Erzegovina — CERT dell'entità Republika Srpska, non statale",first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-EE,https://www.ria.ee/en/cyber-security/handling-cyber-incidents-cert-ee,,EN,EE,,Estonia — CERT nazionale (RIA),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-EU,https://cert.europa.eu,,,EU,,Alert ufficiali UE — CERT europeo — CERT,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-FR,https://www.cert.ssi.gouv.fr/,,FR,FR,,Francia — CERT nazionale e governativo (ANSSI),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-GH,https://csa.gov.gh/cert-gh,,EN,GH,,Ghana — CERT nazionale (Cyber Security Authority),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-MC,https://amsn.gouv.mc/cert-mc,,FR,MC,,Monaco — CERT nazionale (AMSN),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-QC,https://www.cyber.gouv.qc.ca/presentation/mission,,FR,CA,,Canada — centro governativo di cyberdifesa del Québec,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-SE,https://www.cert.se,https://www.cert.se/feed/atom.xml,SV,SE,,Svezia — CSIRT nazionale (FRA),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT-UA,https://cert.gov.ua,,UK,UA,,Ucraina — CERT nazionale (SSSCIP); la home è un guscio JavaScript,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT.AZ,https://www.cert.az,,AZ,AZ,,Azerbaigian — CERT nazionale (Ministero dello Sviluppo Digitale),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT.GOV.AZ,https://cert.gov.az,,AZ,AZ,,Azerbaigian — CERT governativo,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT.tg,https://cert.tg,https://cert.tg/fr/feed/,FR,TG,,Togo — CERT nazionale (ANCy),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERT/CC — Vulnerability Notes,https://www.kb.cert.org/vuls/,,,US,,"USA — database delle vulnerabilità del CERT/CC (SEI, Carnegie Mellon)",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CERTuy,https://www.gub.uy/centro-nacional-respuesta-incidentes-seguridad-informatica/,,ES,UY,,Uruguay — CERT nazionale (AGESIC),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CIRT Cameroun,https://cirt.cm,https://cirt.cm/feed/,FR,CM,,Camerun — CIRT nazionale (ANTIC),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CISA,https://www.cisa.gov,,EN,US,,Stati Uniti — Cybersecurity and Infrastructure Security Agency,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cloudflare Radar,https://radar.cloudflare.com,,EN,Globale,,"Traffico internet, outage, attacchi",
@@ -3742,18 +3752,24 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ColCERT,https://www.colcert.gov.co,,ES,CO,,Colombia — CERT governativo (MinTIC),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CrowdStrike Blog,https://www.crowdstrike.com/blog,,,,,CrowdStrike — Threat intel,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CSIRT Italia,https://www.acn.gov.it/portale/csirt-italia/,,IT,IT,,"Italia — CSIRT nazionale, servizio dell'ACN già in catalogo",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CSIRT-CV,https://csirtcv.gva.es/,https://csirtcv.gva.es/feed/,ES,ES,,Spagna — CSIRT della Generalitat Valenciana,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CSIRT.SK,https://www.csirt.sk,,SK,SK,,Slovacchia — unità governativa (MIRRI),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CSIRTPONAL,https://cc-csirt.policia.gov.co,,,CO,,Colombia — CSIRT della Polizia Nazionale,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cybereason,https://www.cybereason.com/blog,https://www.cybereason.com/blog/rss.xml,,,,EDR vendor — Threat research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CyberScoop,https://www.cyberscoop.com,https://cyberscoop.com/feed/,,,,Policy e news — Cybersecurity policy,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cybersecurity Dive,https://www.cybersecuritydive.com,https://www.cybersecuritydive.com/feeds/news/,,,,Industry Dive — News,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cybersecurity360,https://www.cybersecurity360.it,https://www.cybersecurity360.it/feed/,IT,IT,,Cyber IT,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cyberwire,https://thecyberwire.com,https://thecyberwire.com/feeds/rss.xml,,,,Podcast/News,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Cyberzaintza,https://zibersegurtasun.euskadi.eus,,EU,ES-Euskadi,,"Paesi Baschi — agenzia di cibersicurezza, regionale e non nazionale",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,CyNet-CSIRT,https://csirt.cynet.ac.cy/,https://csirt.cynet.ac.cy/feed/,EN,CY,,Cipro — CSIRT della rete accademica CYNET,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Dark Net Diaries (podcast),https://darknetdiaries.com,https://feeds.megaphone.fm/darknetdiaries,,,,Security podcast — Podcast,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Dark Reading,https://www.darkreading.com,,,,Enterprise,Professionale — Enterprise security,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Defensive Security,https://defensivesecurity.org,https://defensivesecurity.org/feed/podcast/,,,,Podcast,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,EcuCERT,https://www.ecucert.gob.ec,https://www.ecucert.gob.ec/feed/,ES,EC,,Ecuador — CERT nazionale (ARCOTEL),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,EG-CERT,https://egcert.eg,,EN/AR,EG,,Egitto — CERT nazionale (NTRA); catena dei certificati TLS incompleta sul server,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ESET Research,https://www.welivesecurity.com,,,,,ESET — Malware research,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ESP DEF CERT,https://emad.defensa.gob.es/unidades/mcce/,,ES,ES,,Spagna — CERT del Mando Conjunto del Ciberespacio,first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ETHIO-CERT,https://www.ethiocert.gov.et/,,EN,ET,,"Etiopia — CERT nazionale (INSA); il sito si compone via JavaScript, contenuti non leggibili da un fetch semplice",first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,F-Secure Blog,https://blog.f-secure.com,,,,,WithSecure — Threat intel — Research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Google Project Zero,https://googleprojectzero.blogspot.com,https://projectzero.google/feed.xml,,,,Google — Zero-day research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,GOVCERT.LU,https://govcert.lu,,EN/FR,LU,,Lussemburgo — CERT governativo (HCPN),first:2026-09
@@ -3762,6 +3778,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,IANA,https://www.iana.org,,EN,Globale,,Registri tecnici internet,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ICANN,https://www.icann.org,,EN,Globale,,Governance nomi a dominio,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,IGF — Internet Governance Forum,https://www.intgovforum.org,,EN,Globale,,Forum ONU governance internet,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,ILAN-CERT,https://www.iucc.ac.il/en/infrastructuretechnologies/cyber/,,EN,IL,,Israele — CERT della rete accademica IUCC,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Infosecurity Magazine,https://www.infosecurity-magazine.com,,,,,Media professionale — Security news,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Internet Society Pulse,https://pulse.internetsociety.org,https://pulse.internetsociety.org/release-notes/rss/,EN,Globale,,"Shutdown, resilienza, centralizzazione",
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Kaspersky Securelist,https://securelist.com,,,,,"Kaspersky — APT, malware — Research",
@@ -3774,17 +3791,21 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Mandiant Blog,https://www.mandiant.com/resources/blog,,,,,Google Cloud — Threat intelligence,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,MKD-CIRT,https://mkd-cirt.mk,,MK,MK,,Macedonia del Nord — CIRT nazionale (AEC),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,MKD-GOV-CSIRT,https://mdt.gov.mk/mk-MK/mkd-gov-csirt,,MK,MK,,Macedonia del Nord — CSIRT governativo (Ministero della Trasformazione Digitale),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,MZ CSIRT.GOV,https://csirt.gov.mz,,PT,MZ,,Mozambico — CSIRT governativo,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Naked Security (Sophos),https://nakedsecurity.sophos.com,,,,,Sophos blog — Threat news,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NAM-CSIRT,https://nam-csirt.na,https://nam-csirt.na/feed/,EN,NA,,Namibia — CSIRT nazionale (CRAN),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,National CSIRT-CY,https://csirt.cy,https://csirt.cy/?format=feed&type=rss,EL,CY,,Cipro — CSIRT nazionale,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCA Saudi Arabia,https://nca.gov.sa/en/,,EN,SA,,Arabia Saudita — autorità nazionale per la cibersicurezza,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCERT Philippines,https://www.ncert.gov.ph,https://www.ncert.gov.ph/feed/,EN,PH,,Filippine — CERT nazionale (DICT),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCO Japan,https://www.cyber.go.jp/eng/,,EN,JP,,Giappone — National Cybersecurity Office (Cabinet Secretariat),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSA Q-CERT,https://ncsa.gov.qa/,,EN,QA,,"Qatar — National Cyber Security Agency; il sito si compone via JavaScript, contenuti non leggibili da un fetch semplice",first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSC Bahrain,https://www.ncsc.gov.bh,,EN,BH,,"Bahrein — centro nazionale, ospita CERT BH",first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSC Ireland,https://www.ncsc.gov.ie,,EN,IE,,"Irlanda — centro nazionale, ospita CSIRT-IE",first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSC NZ,https://www.ncsc.govt.nz/,,,NZ,,"Nuova Zelanda — National Cyber Security Centre; muro anti-bot: 403 ai client automatici, raggiunto una volta oggi",first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSC-FI,https://www.kyberturvallisuuskeskus.fi/en,,EN,FI,,Finlandia — centro nazionale (Traficom),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NCSIRT Mongolia,https://ncsirt.gov.mn,,MN,MN,,Mongolia — centro nazionale contro gli attacchi informatici; catena dei certificati TLS incompleta sul server,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NKI — Nemzeti Kiberbiztonsági Intézet,https://nki.gov.hu,,HU,HU,,Ungheria — istituto nazionale di cibersicurezza,first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NORDUnet CERT,https://nordu.net/network-operations/cert/,https://nordu.net/feed/,EN,DK,,Nordics — CERT della rete della ricerca nordica,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,NÚKIB,https://nukib.gov.cz,,CS,CZ,,"Cechia — autorità nazionale, ospita GovCERT.CZ",first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,OCERT Oman,https://cert.gov.om,,AR,OM,,Oman — centro nazionale per la sicurezza informatica,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,OONI,https://ooni.org,,EN,Globale,,Misurazione censura internet,
@@ -3795,6 +3816,7 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,RIPE NCC,https://www.ripe.net,https://www.ripe.net/news.xml,EN,Europa,,"Registro IP Europa, RIPE Atlas",
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Risky Biz (podcast),https://risky.biz,https://risky.biz/rss.xml,,,,Security podcast — Podcast,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,RW-CSIRT,https://cyber.gov.rw/rw-csirt/,,EN,RW,,Ruanda — CSIRT nazionale (NCSA),first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SA NREN CSIRT,https://csirt.sanren.ac.za/,,EN,ZA,,Sudafrica — CSIRT della rete nazionale della ricerca (SANReN),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SANS Internet Stormcast,https://isc.sans.edu,https://isc.sans.edu/rssfeed.xml,,,,SANS Institute — Daily threat brief — Daily brief,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SC Media,https://www.scmagazine.com,,,,,Media professionale — Security news,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Schneier on Security,https://www.schneier.com,,,,,Bruce Schneier — Security analysis — Blog,
@@ -3803,8 +3825,11 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Security Now,https://www.grc.com/sn,,,,,Gibson — Podcast,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SecurityWeek,https://www.securityweek.com,https://www.securityweek.com/feed/,,,,Copertura ampia — Security news,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SentinelOne Blog,https://www.sentinelone.com/blog,https://www.sentinelone.com/feed/,,,,SentinelOne — Threat intel,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SingCERT,https://www.csa.gov.sg/resources/singcert/,,EN,SG,,Singapore — CERT nazionale (Cyber Security Agency),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SK-CERT,https://www.sk-cert.sk,,SK,SK,,Slovacchia — unità nazionale (NBÚ),first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Smashing Security,https://www.smashingsecurity.com,https://www.smashingsecurity.com/feed/,,,,Podcast,
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Sri Lanka CERT,https://www.cert.gov.lk,,EN,LK,,Sri Lanka — CERT nazionale,first:2026-09
+🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,SURFcert,https://www.surf.nl/diensten/beveiliging/surfcert,,NL,NL,,Paesi Bassi — CERT della rete della ricerca SURF,first:2026-09
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Symantec Threat Intel,https://symantec-enterprise-blogs.security.com,https://www.security.com/rss/v1/blogs/rss.xml,,,,Broadcom — Threat intel — Research,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,Talos Intelligence Blog,https://blog.talosintelligence.com,https://blog.talosintelligence.com/rss/,,,,Cisco Talos — Threat intel,
 🔐 Cybersecurity & Digital OSINT,Threat Intelligence & Cybersecurity,TechCrunch Security,https://techcrunch.com,,EN,,,Venture e security — Startup security,
@@ -3970,6 +3995,35 @@ Macro-categoria,Sottosezione,Fonte,URL,RSS Feed,Lingua,Paese / Area,Accesso,Note
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media,https://www.404media.co,,EN,US,,Tech investigativo — USA,
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Freedom Rapid Response,https://www.mfrr.eu,,,EU,,Monitor,
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Observatory,https://www.mediaobservatory.com,,,,,Monitor,
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Albania,https://www.mom-gmr.org/en/countries/albania/,,EN,AL,,Proprietà e concentrazione dei media — Albania (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Argentina,https://www.mom-gmr.org/en/countries/argentina/,,EN,AR,,Proprietà e concentrazione dei media — Argentina (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Armenia,https://www.mom-gmr.org/en/countries/armenia/,,EN,AM,,Proprietà e concentrazione dei media — Armenia (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Bosnia ed Erzegovina,https://www.mom-gmr.org/en/countries/bosnia-and-herzegovina/,,EN,BA,,Proprietà e concentrazione dei media — Bosnia ed Erzegovina (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Brasile,https://www.mom-gmr.org/en/countries/brazil/,,EN,BR,,Proprietà e concentrazione dei media — Brasile (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Cambogia,https://www.mom-gmr.org/en/countries/cambodia/,,EN,KH,,Proprietà e concentrazione dei media — Cambogia (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Colombia,https://www.mom-gmr.org/en/countries/colombia/,,EN,CO,,Proprietà e concentrazione dei media — Colombia (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Egitto,https://www.mom-gmr.org/en/countries/egypt/,,EN,EG,,Proprietà e concentrazione dei media — Egitto (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Filippine,https://www.mom-gmr.org/en/countries/philippines/,,EN,PH,,Proprietà e concentrazione dei media — Filippine (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Germania,https://www.mom-gmr.org/en/countries/germany/,,EN,DE,,Proprietà e concentrazione dei media — Germania (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Ghana,https://www.mom-gmr.org/en/countries/ghana/,,EN,GH,,Proprietà e concentrazione dei media — Ghana (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — India,https://www.mom-gmr.org/en/countries/indien/,,EN,IN,,Proprietà e concentrazione dei media — India (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Irlanda,https://www.mom-gmr.org/en/countries/ireland/,,EN,IE,,Proprietà e concentrazione dei media — Irlanda (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Kosovo,https://www.mom-gmr.org/en/countries/kosovo/,,EN,XK,,Proprietà e concentrazione dei media — Kosovo (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Libano,https://www.mom-gmr.org/en/countries/lebanon/,,EN,LB,,Proprietà e concentrazione dei media — Libano (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Macedonia del Nord,https://www.mom-gmr.org/en/countries/north-macedonia/,,EN,MK,,Proprietà e concentrazione dei media — Macedonia del Nord (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Marocco,https://www.mom-gmr.org/en/countries/morocco/,,EN,MA,,Proprietà e concentrazione dei media — Marocco (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Messico,https://www.mom-gmr.org/en/countries/mexico/,,EN,MX,,Proprietà e concentrazione dei media — Messico (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Moldavia,https://www.mom-gmr.org/en/countries/moldova/,,EN,MD,,Proprietà e concentrazione dei media — Moldavia (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Mongolia,https://www.mom-gmr.org/en/countries/mongolia/,,EN,MN,,Proprietà e concentrazione dei media — Mongolia (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Montenegro,https://www.mom-gmr.org/en/countries/montenegro/,,EN,ME,,Proprietà e concentrazione dei media — Montenegro (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Pakistan,https://www.mom-gmr.org/en/countries/pakistan/,,EN,PK,,Proprietà e concentrazione dei media — Pakistan (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Perù,https://www.mom-gmr.org/en/countries/peru/,,EN,PE,,Proprietà e concentrazione dei media — Perù (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Serbia,https://www.mom-gmr.org/en/countries/serbia/,,EN,RS,,Proprietà e concentrazione dei media — Serbia (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Sri Lanka,https://www.mom-gmr.org/en/countries/sri-lanka/,,EN,LK,,Proprietà e concentrazione dei media — Sri Lanka (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Tanzania,https://www.mom-gmr.org/en/countries/tanzania/,,EN,TZ,,Proprietà e concentrazione dei media — Tanzania (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Tunisia,https://www.mom-gmr.org/en/countries/tunisia/,,EN,TN,,Proprietà e concentrazione dei media — Tunisia (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Turchia,https://www.mom-gmr.org/en/countries/turkey/,,EN,TR,,Proprietà e concentrazione dei media — Turchia (RSF),mom:2026-09
+📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Media Ownership Monitor — Ucraina,https://www.mom-gmr.org/en/countries/ukraine/,,EN,UA,,Proprietà e concentrazione dei media — Ucraina (RSF),mom:2026-09
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,MediaShift,https://mediashift.org,,EN,US,,Innovazione media — USA,
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Medium Journalism,https://medium.com/topic/journalism,,,Globale,,Articoli giornalismo,
 📡 Social Media & Media Monitoring,Social Media & Media Monitoring,Meta Journalism Project,https://www.facebook.com/journalismproject,,,,,Meta — Funding,
