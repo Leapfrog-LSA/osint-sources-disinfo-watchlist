@@ -9,6 +9,44 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- 29 Media Ownership Monitor country projects (`mom:2026-09`). Reporters
+  Without Borders documents who owns the media in a given country —
+  ownership structures, concentration, and the political and business ties
+  behind them — which is the background a disinformation watchlist is read
+  against. All 29 were fetched: each answered 200 with an 18–39 KB country
+  report whose `<title>` names the country.
+
+- 24 public-sector and research-network CERTs from FIRST (`first:2026-09`,
+  continuing the batch that added the 40 national ones).
+
+  The measurement matters more than the 24 rows. FIRST has 883 member teams.
+  83 were already catalogued and 79 list no usable website; of the 721 left,
+  **511 are private corporate teams whose listed site is a company home page**.
+  Membership in FIRST is a fact about a team, not a publication: a CSIRT that
+  answers incidents for its own employer is not a source.
+
+  Filtering on "has a live feed" does not separate them — 73 of those teams
+  have one, and most are consultancy marketing blogs. What separates them is
+  who they publish for. What is left are government CERTs (national, regional,
+  police, military) and the CERTs of national research and education networks.
+  Campus CERTs are excluded on the same reasoning as the corporate ones: a
+  university's IT security page serves that campus.
+
+  Two rows are annotated rather than dropped because their sites render
+  client-side and a plain fetch cannot read what they publish (ETHIO-CERT,
+  NCSA Q-CERT), and one because it answers 403 to automated clients after
+  having answered once today (NCSC NZ). Identity is what was verified — a
+  government domain serving the team's own name — and the rendering method
+  is a property of the site, not evidence of absence.
+
+- DOAJ as a single row (`doaj:2026-09`), not as 23,452 journals. The
+  directory is the source you consult; importing its contents would multiply
+  this catalogue more than fourfold with entries that are not OSINT sources
+  individually. Its front page answers 403 to automated clients, so the
+  public API was used to confirm the service and its size.
+
 ### Fixed
 
 - 43 `RSS Feed` cells that return 404 now point at a feed confirmed to carry
