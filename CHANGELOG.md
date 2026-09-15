@@ -9,6 +9,8 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+## [1.0.0] — 2026-09-15
+
 ### Added
 
 - `scripts/sample_batch.py`, which draws the review sample for one batch of
