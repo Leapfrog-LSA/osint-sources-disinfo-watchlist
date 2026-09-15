@@ -9,6 +9,60 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Fixed
+
+- 43 `RSS Feed` cells that return 404 now point at a feed confirmed to carry
+  items. No row was added or removed.
+
+  The 2026-09-15 link check reported 92 removal candidates. 87 of them are
+  feed addresses, and 83 of those sit on a row whose own `URL` answered
+  normally in the same run — the source is alive and only its feed moved.
+  FrontPage Africa is the clearest case: the feed still pointed at `fpa.news`
+  while the paper had moved to `frontpageafricaonline.com`.
+
+  A replacement is accepted only if it parses as RSS or Atom **and carries at
+  least one item**. That second condition is not pedantry: El Espectador's
+  stale cell would otherwise have been "repaired" with the site's default
+  WordPress *comments* feed, which returns `200`, is valid XML, and is empty.
+
+  The remaining 44 keep their dead address rather than being blanked. 4 sit
+  behind sites that answer `403` to this network (AFP, Sky News, Ouest
+  France, NRK Beta) and 1 behind a redirect this fetcher did not follow
+  (Tages-Anzeiger), 1 is on a site that is itself 404 (Libya Prospect), and
+  for 38 no feed could be found at any address the site advertises or that
+  its publisher's platform normally uses. "I could not
+  find one" is not "there is none", and blanking the cell would assert the
+  second while having only established the first.
+
+- Four wrong country codes. Eye Radio, Radio Tamazuj and Sudans Post are
+  South Sudanese and were filed under `SD`; Salto.bz is a bilingual South
+  Tyrol paper filed under `BZ`, which is Belize and holds five genuine
+  Belizean sources.
+
+- Nine rows reclassified.
+
+  The Federal Reserve, the ECB, the Bundesbank and Banca d'Italia sat under
+  `Settori Specifici / Finanza, Economia & Business` while the other 165
+  central banks sit under `Statistiche & Dati Macroeconomici / Banche
+  Centrali & Autorità Monetarie`, so filtering that subsection missed four of
+  the most consequential ones. Banco de España was further out still, under a
+  *media* macro-category, as was Garante Privacy; Chile's Consejo para la
+  Transparencia sat under `AML, Sanzioni & PEP`. Both authorities join the
+  data-protection register.
+
+  Two more came from the validator's nesting warnings: BBC Science &
+  Environment was filed under Eastern Europe, RFI Afrique under investigative
+  journalism.
+
+### Changed
+
+- Seven `Note` cells record a condition the monthly run measured and a reader
+  would otherwise mistake for a dead source: five servers with an incomplete
+  TLS certificate chain (EG-CERT, NCSIRT Mongolia, Службен весник, Central
+  Bank of Seychelles, Legal Affairs Bahrain) and two that answer `200` with an
+  empty body to non-browser clients (the Tunisian and Angolan chambers of
+  commerce).
+
 ## [1.0.0] — 2026-09-15
 
 ### Added
