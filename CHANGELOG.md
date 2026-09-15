@@ -77,6 +77,27 @@ structure or to the meaning of an existing column.
   individually. Its front page answers 403 to automated clients, so the
   public API was used to confirm the service and its size.
 
+### Removed
+
+- Two duplicate rows, each confirmed by fetching the pages rather than by
+  comparing cells, and each approved individually — the rule this repository
+  adopted after `v0.5.0` removed 21 sources on a script's say-so, at least
+  three of which were alive.
+
+  **Radio New Zealand Pacific**, whose URL redirects to `/news/pacific`, while
+  the surviving **RNZ Pacific** row points at the page actually titled "RNZ
+  Pacific" and carries the feed, the language and the country. One service
+  under two names — and because the stale URL redirects with a `200`, the
+  monthly link check would never have reported it.
+
+  **Eurobarometer** under Geopolitics, whose URL and the surviving row's
+  returned **byte-identical documents**: md5 `6a1fd451a80c75f60c763c1f7d292ad7`,
+  2,171 bytes, `<base href="/eurobarometer/">`. The site is a single-page app,
+  so every path under it serves the same shell and the routing happens in the
+  browser; the deep link does not exist server-side. The surviving row, under
+  Surveys where a survey programme belongs, now carries the address that
+  actually serves it.
+
 ### Fixed
 
 - **The Irish News**, published in Belfast, was filed `IE`. Northern Ireland
@@ -156,6 +177,13 @@ structure or to the meaning of an existing column.
   journalism.
 
 ### Changed
+
+- The two SIPRI rows are **not** duplicates and were renamed rather than
+  merged. `/databases` indexes nine databases; `/databases/armstransfers` is
+  one of them. Only the names were wrong — the institute's full name sat on a
+  single database while a vaguer one sat on the index — so they are now
+  `SIPRI — Databases` and `SIPRI — Arms Transfers Database`, and the index's
+  note says what the index holds instead of naming one of the nine.
 
 - Seven `Note` cells record a condition the monthly run measured and a reader
   would otherwise mistake for a dead source: five servers with an incomplete
