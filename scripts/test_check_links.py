@@ -240,5 +240,130 @@ class SharedVerificationIsDocumented(unittest.TestCase):
         self.assertIn("check_url", dc.verify_candidate.__code__.co_names)
 
 
+class FeedBodies(unittest.TestCase):
+    """A feed is a feed when it parses as one *and* carries an entry."""
+
+    FEED = (b'<?xml version="1.0"?><rss version="2.0"><channel>'
+            b"<title>Example</title><item><title>a</title></item></channel></rss>")
+    EMPTY = (b'<?xml version="1.0"?><rss version="2.0"><channel>'
+             b"<title>Comentarios en:</title></channel></rss>")
+    ATOM = (b'<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom">'
+            b"<entry><title>a</title></entry></feed>")
+
+    def test_a_feed_with_entries_is_a_feed(self):
+        self.assertTrue(cl.feed_like(self.FEED))
+        self.assertTrue(cl.feed_like(self.ATOM))
+
+    def test_an_empty_feed_is_not(self):
+        # El Espectador's stale cell redirects to the site's default
+        # WordPress *comments* feed: valid XML, right content type, nothing
+        # in it. Accepting "parses as a feed" would keep that cell forever.
+        self.assertFalse(cl.feed_like(self.EMPTY))
+
+    def test_a_web_page_is_not(self):
+        self.assertFalse(cl.feed_like(b"<!doctype html><html><body>hi</body></html>"))
+
+
+class LandingClassification(unittest.TestCase):
+    """Which redirects mean something, and which are noise."""
+
+    def test_cosmetic_redirects_are_not_findings(self):
+        for stored, final in (
+            ("https://example.org/news", "https://www.example.org/news"),
+            ("http://example.org/news", "https://example.org/news"),
+            ("https://example.org/news", "https://example.org/news/"),
+            ("https://example.org/news", "https://example.org/news/index.html"),
+            ("https://example.org:443/news", "https://example.org/news"),
+            ("https://example.org/news", "https://example.org/en/news"),
+            ("https://example.org/news", "https://fr.example.org/news"),
+            ("https://example.org/news", "https://example.org/news/world"),
+        ):
+            with self.subTest(final=final):
+                self.assertEqual(cl.landing_kind(stored, final), "")
+
+    def test_a_different_site_is_a_finding(self):
+        # The Tanzania chamber's domain lapsed and now redirects to an
+        # online-gambling site, answering 200 the whole way.
+        self.assertEqual(
+            cl.landing_kind("http://tccia.com/", "https://cintatogelaman.com/"),
+            "host")
+
+    def test_a_different_section_is_a_finding(self):
+        # RNZ's catalogued Pacific address redirected to another section for
+        # months while every status check called it healthy.
+        self.assertEqual(
+            cl.landing_kind("https://www.rnz.co.nz/international/pacific-news",
+                            "https://www.rnz.co.nz/news/pacific"),
+            "path")
+
+    def test_a_deep_page_falling_back_to_the_home_page_is_a_finding(self):
+        self.assertEqual(
+            cl.landing_kind("https://example.org/citypress", "https://example.org/"),
+            "home")
+
+    def test_no_landing_recorded_is_not_a_finding(self):
+        self.assertEqual(cl.landing_kind("https://example.org/news", ""), "")
+
+
+class LandingFindings(unittest.TestCase):
+    """Successes that are nonetheless wrong."""
+
+    def by_url(self, url, column):
+        return {url: [cl.Ref("Fonti_OSINT.csv", 2, "Example", column)]}
+
+    def ok(self, final="", feedish=False):
+        return cl.Attempt("success", 200, "HTTP 200", final, feedish)
+
+    def test_a_feed_cell_serving_a_page_is_flagged(self):
+        url = "https://example.org/feed/"
+        found = cl.landing_findings(self.by_url(url, "RSS Feed"),
+                                    {url: self.ok(url, feedish=False)})
+        self.assertEqual([u for u, _ in found["feed"]], [url])
+
+    def test_a_working_feed_is_not_flagged(self):
+        url = "https://example.org/feed/"
+        found = cl.landing_findings(self.by_url(url, "RSS Feed"),
+                                    {url: self.ok(url, feedish=True)})
+        self.assertEqual(found, {})
+
+    def test_a_url_cell_is_judged_on_where_it_landed_not_on_feeds(self):
+        url = "https://example.org/section"
+        found = cl.landing_findings(self.by_url(url, "URL"),
+                                    {url: self.ok("https://elsewhere.example/")})
+        self.assertEqual([u for u, _ in found["host"]], [url])
+
+    def test_a_url_that_stayed_put_is_not_flagged(self):
+        url = "https://example.org/section"
+        found = cl.landing_findings(self.by_url(url, "URL"), {url: self.ok(url)})
+        self.assertEqual(found, {})
+
+    def test_no_landing_bucket_is_ever_a_removal_candidate(self):
+        # A page that moved is a stale cell, not a dead source. If these ever
+        # become removal candidates, v0.5.0 is about to happen again with a
+        # new cause.
+        self.assertFalse(set(cl.LANDING_ORDER) & cl.REMOVAL_CANDIDATE_BUCKETS)
+
+    def test_the_report_says_they_are_not_removal_candidates(self):
+        url = "https://example.org/section"
+        by_url = self.by_url(url, "URL")
+        landings = cl.landing_findings(by_url, {url: self.ok("https://elsewhere.example/")})
+        report = cl.render_report(by_url, {}, True, 3, [], landings)
+        self.assertIn("None of them is a removal candidate", report)
+        self.assertIn("https://elsewhere.example/", report)
+
+
+class DiscoveryContractUnchanged(unittest.TestCase):
+    """check_url() keeps its single-value contract for its other caller."""
+
+    def test_landing_is_opt_in(self):
+        # scripts/discover_candidates.py does `verdict = cl.check_url(url)`
+        # and compares it to None. Returning a tuple by default would make
+        # every candidate look rejected.
+        import inspect
+
+        signature = inspect.signature(cl.check_url)
+        self.assertIs(signature.parameters["with_landing"].default, False)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
