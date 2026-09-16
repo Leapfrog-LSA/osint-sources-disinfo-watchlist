@@ -11,6 +11,35 @@ structure or to the meaning of an existing column.
 
 ### Added
 
+- `scripts/check_links.py` now reports where a URL lands, not only whether it
+  answered.
+
+  Every rule in that script asks whether a request succeeded. None asked
+  where. A URL that has been retargeted answers `200`, so it was reported
+  healthy every month: RNZ's catalogued Pacific address had redirected to
+  another section, and the Tanzania chamber's lapsed domain redirected to an
+  online-gambling site. Both were found by hand, one of them by accident.
+
+  A sweep over all 6,440 catalogued URLs found **208** in that state — about
+  4% of the catalogue — which is why this is now part of the monthly run
+  rather than something someone notices. They are listed in #41.
+
+  Most redirects mean nothing, and saying so is most of the work: a scheme
+  upgrade, a `www.`, a trailing slash, an `index.html`, a language prefix, a
+  subdomain, one more path segment. `landing_kind()` returns those as "". What
+  survives is a different host, a different section, or a deep page falling
+  back to a home page.
+
+  For an `RSS Feed` cell the test is stricter: the body must be a feed *with
+  entries*. A valid empty feed passes every other check in the file, which is
+  how El Espectador's cell would have been "repaired" with the site's default
+  WordPress comments feed.
+
+  **None of these is a removal candidate**, and a test asserts it: a page that
+  moved is a stale cell, not a dead source. Writing that test found a real
+  defect — a run where nothing failed and something had moved would have
+  printed "No problems found this run" and posted nothing.
+
 - `scripts/validate.py` warns when a row's `Paese / Area` disagrees with the
   place its `Note` opens with.
 
