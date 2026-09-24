@@ -9,31 +9,7 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
-### Fixed
-
-- 5 of the 16 `RSS Feed` cells that answer `200` and serve no feed (#41).
-
-  TV Rain's feed moved with the channel from `.ru` to `.tv`; CiberCuba,
-  Tunisie Numérique and La Gazzetta del Mezzogiorno had simply moved theirs;
-  El Espectador's only working feed is now the one it publishes for Google
-  Discover, its general one having become the site's default WordPress
-  comments feed — valid XML, no entries.
-
-  Each replacement was accepted by `check_links.feed_like()`, the
-  repository's own rule, so a cell repaired here is one the monthly run will
-  not flag next month. Then each was checked again for whose articles it
-  actually carries, which is not the same question.
-
-  That second check earned its keep. `lidovky.cz` advertises a feed, that
-  feed parses, and it is **iDNES.cz's** — the publisher points its sister
-  title's feed from Lidovky's own page, and every link in it goes to
-  `idnes.cz`. Taking it would have filed one paper's articles under another's
-  name. The cell keeps its dead address and a note saying why.
-
-  The other 10 have no feed to find: Brookings, ISEAS, RedHotCyber,
-  Osservatorio Balcani, Nómada, El Punt Avui, Taiwan News, Avvenire and
-  Noticias Caracol advertise none that carries entries, and Prachatai timed
-  out from this network.
+## [1.1.0] — 2026-09-24
 
 ### Added
 
@@ -178,6 +154,22 @@ structure or to the meaning of an existing column.
   individually. Its front page answers 403 to automated clients, so the
   public API was used to confirm the service and its size.
 
+### Changed
+
+- The two SIPRI rows are **not** duplicates and were renamed rather than
+  merged. `/databases` indexes nine databases; `/databases/armstransfers` is
+  one of them. Only the names were wrong — the institute's full name sat on a
+  single database while a vaguer one sat on the index — so they are now
+  `SIPRI — Databases` and `SIPRI — Arms Transfers Database`, and the index's
+  note says what the index holds instead of naming one of the nine.
+
+- Seven `Note` cells record a condition the monthly run measured and a reader
+  would otherwise mistake for a dead source: five servers with an incomplete
+  TLS certificate chain (EG-CERT, NCSIRT Mongolia, Службен весник, Central
+  Bank of Seychelles, Legal Affairs Bahrain) and two that answer `200` with an
+  empty body to non-browser clients (the Tunisian and Angolan chambers of
+  commerce).
+
 ### Removed
 
 - **Camera di Commercio — Tanzania**, whose domain has been taken over.
@@ -211,6 +203,30 @@ structure or to the meaning of an existing column.
   actually serves it.
 
 ### Fixed
+
+- 5 of the 16 `RSS Feed` cells that answer `200` and serve no feed (#41).
+
+  TV Rain's feed moved with the channel from `.ru` to `.tv`; CiberCuba,
+  Tunisie Numérique and La Gazzetta del Mezzogiorno had simply moved theirs;
+  El Espectador's only working feed is now the one it publishes for Google
+  Discover, its general one having become the site's default WordPress
+  comments feed — valid XML, no entries.
+
+  Each replacement was accepted by `check_links.feed_like()`, the
+  repository's own rule, so a cell repaired here is one the monthly run will
+  not flag next month. Then each was checked again for whose articles it
+  actually carries, which is not the same question.
+
+  That second check earned its keep. `lidovky.cz` advertises a feed, that
+  feed parses, and it is **iDNES.cz's** — the publisher points its sister
+  title's feed from Lidovky's own page, and every link in it goes to
+  `idnes.cz`. Taking it would have filed one paper's articles under another's
+  name. The cell keeps its dead address and a note saying why.
+
+  The other 10 have no feed to find: Brookings, ISEAS, RedHotCyber,
+  Osservatorio Balcani, Nómada, El Punt Avui, Taiwan News, Avvenire and
+  Noticias Caracol advertise none that carries entries, and Prachatai timed
+  out from this network.
 
 - **The Irish News**, published in Belfast, was filed `IE`. Northern Ireland
   is in the United Kingdom, and the catalogue already codes the Belfast
@@ -287,22 +303,6 @@ structure or to the meaning of an existing column.
   Two more came from the validator's nesting warnings: BBC Science &
   Environment was filed under Eastern Europe, RFI Afrique under investigative
   journalism.
-
-### Changed
-
-- The two SIPRI rows are **not** duplicates and were renamed rather than
-  merged. `/databases` indexes nine databases; `/databases/armstransfers` is
-  one of them. Only the names were wrong — the institute's full name sat on a
-  single database while a vaguer one sat on the index — so they are now
-  `SIPRI — Databases` and `SIPRI — Arms Transfers Database`, and the index's
-  note says what the index holds instead of naming one of the nine.
-
-- Seven `Note` cells record a condition the monthly run measured and a reader
-  would otherwise mistake for a dead source: five servers with an incomplete
-  TLS certificate chain (EG-CERT, NCSIRT Mongolia, Службен весник, Central
-  Bank of Seychelles, Legal Affairs Bahrain) and two that answer `200` with an
-  empty body to non-browser clients (the Tunisian and Angolan chambers of
-  commerce).
 
 ## [1.0.0] — 2026-09-15
 
