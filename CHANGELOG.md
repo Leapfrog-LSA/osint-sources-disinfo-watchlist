@@ -11,6 +11,52 @@ structure or to the meaning of an existing column.
 
 ### Added
 
+- 538 Italian sources (`ricerca.it:2026-09`), from a proposed file of 1,000.
+
+  The file arrived with the right columns, valid macro-categories, no
+  duplicate URLs — and template-generated addresses. `comune.<city>.it`,
+  `prefettura.it/<city>`, `ordineavvocati<city>.it`, `<city>today.it`. It
+  works for Torino and Treviso and fails for Padova and Verona, which are
+  called PadovaOggi and VeronaSera. Three of its own subsection names said
+  "(verificare dominio)".
+
+  All 1,000 were fetched. 666 had a page that said it was the thing the row
+  claimed; 40 answered as something else; **108 "Prefetture" rows resolved to
+  a single national landing page** — one title, one body of 14,280
+  characters, one final URL between them.
+
+  Two rows were refused outright: `confindustriadigitale.it` now redirects to
+  an online-casino affiliate page and `confindustriaveneto.it` to a
+  pet-products one. Both are lapsed domains of real trade associations, and
+  both answer `200`.
+
+  The first 592-row import was then **rejected whole** by the rule in
+  CONTRIBUTING.md, because its 60-row sample contained one defect: "Bologna
+  Notizie 24" pointing at `zic.it`, a real Bolognese outlet that is called
+  Zeroincondotta. The name was invented. Looking past the sample found two
+  more — "La Provincia di Sondrio" paired with Valtellina News, and a radio
+  station whose site says "New website coming soon".
+
+  So the filter was rebuilt. The first one asked whether the *page* was
+  right, by looking for a word from the name anywhere in the body — which
+  passes any Bologna outlet for anything named "Bologna". The second asks
+  whether the page, or its address, **states the name**: `og:site_name`,
+  `<h1>`, the title where there is no `og:site_name`, or the URL itself. A
+  generic "Home" is fine when the domain carries the name; a perfect title is
+  not enough when neither says it.
+
+  That gate passed 607 of the 666, and the batch's new sample of 60 is clean.
+  With a clean sample of 60 the true defect rate is under roughly 5% at 95%
+  confidence — worth stating plainly rather than implying the batch is
+  spotless.
+
+  The 57 subsections the file proposed were not taken; the rows were folded
+  into 19 the catalogue already has, which keeps the taxonomy at 66 blocks.
+  74 rows were left out for having nowhere honest to go: the catalogue has no
+  education subsection, and filing universities under "AI, LLM & Ricerca
+  Scientifica", which holds LLM APIs and coding tools, would repeat the
+  mislabelling fixed last week.
+
 - `scripts/check_links.py` now reports where a URL lands, not only whether it
   answered.
 
