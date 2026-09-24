@@ -92,7 +92,7 @@ Several tokens can be joined with `/` (e.g. `GB/IE`, `IT-Puglia/IT-Basilicata`).
 
 **`Accesso`** is a controlled vocabulary: `Gratuito`, `Pubblico`, `Freemium`, `A pagamento`, `Open Source`, `Commerciale`, `Community`, `Premium`, `Enterprise`, `Self-hosted`, `Waitlist`.
 
-**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `unsd:2026-09`, `wikipedia.nso:2026-09`, `occrp:2026-09`, `first:2026-09`, `bis:2026-09`, `mom:2026-09`, `doaj:2026-09`, `ricerca.it:2026-09`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
+**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `ifcn:2026-09`, `unsd:2026-09`, `wikipedia.nso:2026-09`, `wikipedia.cb:2026-09`, `occrp:2026-09`, `first:2026-09`, `bis:2026-09`, `mom:2026-09`, `doaj:2026-09`, `ricerca.it:2026-09`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
 
 It exists so that a batch can be *measured* and, if it turns out to be bad, *removed in one operation*. A single directory that produces a high rate of dead links six months later is a fact you can only establish if you know which rows came from it — and a bad batch of two thousand rows cannot be undone by re-reading them one by one.
 
