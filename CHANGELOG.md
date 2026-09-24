@@ -9,6 +9,32 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Fixed
+
+- 5 of the 16 `RSS Feed` cells that answer `200` and serve no feed (#41).
+
+  TV Rain's feed moved with the channel from `.ru` to `.tv`; CiberCuba,
+  Tunisie Numérique and La Gazzetta del Mezzogiorno had simply moved theirs;
+  El Espectador's only working feed is now the one it publishes for Google
+  Discover, its general one having become the site's default WordPress
+  comments feed — valid XML, no entries.
+
+  Each replacement was accepted by `check_links.feed_like()`, the
+  repository's own rule, so a cell repaired here is one the monthly run will
+  not flag next month. Then each was checked again for whose articles it
+  actually carries, which is not the same question.
+
+  That second check earned its keep. `lidovky.cz` advertises a feed, that
+  feed parses, and it is **iDNES.cz's** — the publisher points its sister
+  title's feed from Lidovky's own page, and every link in it goes to
+  `idnes.cz`. Taking it would have filed one paper's articles under another's
+  name. The cell keeps its dead address and a note saying why.
+
+  The other 10 have no feed to find: Brookings, ISEAS, RedHotCyber,
+  Osservatorio Balcani, Nómada, El Punt Avui, Taiwan News, Avvenire and
+  Noticias Caracol advertise none that carries entries, and Prachatai timed
+  out from this network.
+
 ### Added
 
 - 538 Italian sources (`ricerca.it:2026-09`), from a proposed file of 1,000.
