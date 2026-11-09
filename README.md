@@ -46,11 +46,11 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-6,031 sources across 12 macro-categories:
+6,028 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
-| Media & Testate Giornalistiche | 2,275 |
+| Media & Testate Giornalistiche | 2,273 |
 | Settori Specifici (AI/dev tools, finance, sector-specific) | 1,565 |
 | Open Data & Trasparenza | 621 |
 | Statistiche & Dati Macroeconomici | 413 |
@@ -59,7 +59,7 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 | Sanzioni, PEP & Compliance | 185 |
 | Geopolitica & Intelligence | 151 |
 | Fact-Checking & Disinformazione | 116 |
-| Social Media & Media Monitoring | 108 |
+| Social Media & Media Monitoring | 107 |
 | Sostenibilità & ESG | 46 |
 | Diritti Umani & Giudiziario | 34 |
 
@@ -98,7 +98,7 @@ It exists so that a batch can be *measured* and, if it turns out to be bad, *rem
 
 Month granularity is deliberate: the batch is the unit a review sample accepts or rejects, and the unit the monthly link check can score. A finer timestamp would split one batch into many and make both meaningless.
 
-Empty means "not determined", as everywhere else here. The 5,061 unstamped rows are the ones that predate the column, plus the handful added one at a time since; the former were curated by hand over time and their origin is genuinely unknown, and labelling them with a guess would defeat the point of having the field.
+Empty means "not determined", as everywhere else here. The 5,058 unstamped rows are the ones that predate the column, plus the handful added one at a time since; the former were curated by hand over time and their origin is genuinely unknown, and labelling them with a guess would defeat the point of having the field.
 
 ### Field coverage
 
