@@ -70,6 +70,28 @@ structure or to the meaning of an existing column.
   evidence against it, so none of these is recorded as dead — they are simply
   not in.
 
+### Removed
+
+- Three sources whose sites say they are gone, each approved individually.
+  Each was `404` in the September, October and November runs and `404` again
+  from an independent network in October and November, with the control
+  probe passing every time — the rule this repository adopted after `v0.5.0`
+  (#3). Before deleting, each was also searched for a successor address,
+  which the rule does not require and which saved the fourth (see Fixed).
+
+  **Reply All** — the podcast ended in 2022 and Gimlet's show page is gone.
+  **Libya Prospect** — the site and its feed are both `404`.
+  **Roar Media LK** — `roar.media` is `404`; what remains is a static archive
+  whose newest item is from February 2024, which is not an ongoing source.
+
+### Fixed
+
+- **NRK Beta** was one of four rows that qualified for removal, and is alive.
+  `nrk.no/beta` is `404` because the blog lives at `nrkbeta.no`, whose feed
+  carries items up to 28 October 2026. The row now points there. The removal
+  rule judges an address; a source can outlive one, and only looking for it
+  shows which.
+
 ## [1.1.0] — 2026-09-24
 
 ### Added
