@@ -9,6 +9,8 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+## [1.2.0] — 2026-11-09
+
 ### Added
 
 - 78 national and regional intellectual property offices (`wipo:2026-11`),
