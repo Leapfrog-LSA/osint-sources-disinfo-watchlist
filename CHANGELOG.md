@@ -9,6 +9,67 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- 78 national and regional intellectual property offices (`wipo:2026-11`),
+  from the WIPO Directory of IP Offices, and 66 Financial Intelligence Units
+  (`egmont:2026-11`), from the Egmont Group's member list. 5,887 → 6,031 rows.
+
+  A patent and trademark register and the national FIU are two of the first
+  places a due diligence analyst looks. The catalogue held 25 IP offices, and
+  40 of the 177 Egmont members' sites — many of those as the central bank
+  that houses the unit, which is left as it is.
+
+  WIPO's directory gives one page per country; Egmont embeds its members as
+  JSON. Of 196 countries and 186 members, 285 candidates remained after
+  dropping copyright offices — a register of works is not a register of
+  owners — and every host already in the catalogue. All 285 were fetched.
+
+  A page passed if it stated the body's name, its acronym, or its kind on the
+  right country's domain; a ministry whose title says "Ministry of Finance"
+  does not pass for the FIU it houses. Every page that passed was then read
+  by hand, and that reading went both ways. It refused 14 the rule had
+  accepted — an error page served with `200`, a server's default "IIS Windows
+  Server" page, `(KG)` matching `.kg`, a foreign ministry's home page standing
+  in for Cook Islands' IP office, an Anguillan regulator's page that never
+  names the unit the row would have claimed. And it accepted 24 the rule had
+  refused, nearly all for saying who they were in a language the word lists
+  did not cover: "Завод за интелектуалну својину", "Rahapesu Andmebüroo",
+  "Hvidvasksekretariatet". Each decision is recorded with its reason in the
+  import script.
+
+  Both batches were then **rejected on their review samples**, and accepted
+  only on the third and second reading respectively:
+
+  * The `Lingua` column trusted `<html lang>`. Bangladesh's patent office
+    declares `en` and is written in Bengali; Lebanon's ministry declares `ar`
+    on its English page; San Marino's office declares `it` on its `/en/`
+    pages. The cross-check by stopwords only knew Latin-script languages, and
+    the requests had carried `Accept-Language: en,fr,es`, so a server that
+    negotiates answered in French and the check measured the request. Now
+    the script of the text decides first, then a language segment in the
+    address, then the declaration — unless the text contradicts it — with no
+    language preference sent. 10 rows changed.
+  * The `Note` said "brevetti, marchi, disegni" of every IP office. Andorra's
+    registers trademarks only, because Andorra grants no patents. The note
+    now says only what was verified: that WIPO lists the body as the
+    country's IP office.
+  * Four rows carried the directory's name where the site states another:
+    Guernsey's unit is now the Financial Intelligence Unit, not the Service;
+    BOIP is the Benelux *Office*, not Organization, for Intellectual Property.
+
+  Samples: 60 of 78 and 60 of 66, both clean after the fixes, which were
+  applied to every row rather than to the ones the sample happened to show.
+
+  Not taken, 141 in all, and why: 85 could not be fetched from this network
+  at all (a bot wall, a TLS error, a refused connection); 34 answered but did
+  not say who they were — a government portal's home page, or a site that
+  renders only in the browser, as the Philippines' and Thailand's IP offices
+  do; 14 were refused on reading, as above; 5 had moved to an unrelated host
+  or a bot-protection service; 3 were placeholders. Not reading a page is not
+  evidence against it, so none of these is recorded as dead — they are simply
+  not in.
+
 ## [1.1.0] — 2026-09-24
 
 ### Added
