@@ -9,6 +9,44 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Fixed
+
+- The monthly link check's report now reaches its issue whole, and the right
+  issue.
+
+  **The right issue.** The October and November runs commented on #41, the
+  redirect list, instead of #3: the script posted to the newest open issue
+  labelled `link-check`, and #41 carried the label too. The month-to-month
+  record that #3 exists to keep was split across two issues without anyone
+  deciding it. The issue is now found by its title.
+
+  **Whole.** Each run's comment was cut at GitHub's size limit wherever it
+  fell. That was always inside the anti-bot list, which came before the
+  redirect section, so the redirect check added in v1.1.0 never once
+  reached the issue. Removal candidates and redirects now come first and are
+  always listed in full; the inconclusive buckets are counted in full and
+  list 20 entries each, pointing to the job summary for the rest.
+
+  The first version of this fix shortened the inconclusive lists until the
+  report fitted one comment. A test at November's real volume showed it
+  could not: 59 candidates and about 240 redirects alone came to 67,615
+  characters, so the last-resort truncation would have dropped some of them
+  — the same failure, one step later. The report is now split across
+  comments between entries, never inside one, with each continuation
+  numbered. November's run would have been two comments.
+
+  Three identical failures are now described once ("3 attempts: HTTP 404 …"),
+  which loses nothing and shortens every entry by two thirds. The job
+  summary, which GitHub discards whole above 1 MiB, is checked against that
+  limit too; the full report is about 480 KB today.
+
+  And the script now posts only from GitHub Actions. It used to post wherever
+  it found a `GITHUB_TOKEN`, which many machines carry for other tools: a
+  local smoke test of this very change posted a test report to #3 that way.
+  It was deleted within a minute. A token, a repository *and*
+  `GITHUB_ACTIONS=true` are now required, which the workflow sets on its own.
+  21 new tests, 103 → 124.
+
 ## [1.2.0] — 2026-11-09
 
 ### Added
