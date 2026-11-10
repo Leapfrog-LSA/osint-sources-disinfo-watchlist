@@ -9,6 +9,28 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Removed
+
+- Seven rows from `disinfo_sources_master.csv` that were not domains: two
+  associations (AIDAA, Associazione Agitalia), a company (Proto Group), two
+  characters their own sources call fictional, and **two real people**, one
+  labelled a "recurring source of hoaxes" and one a "known hoax author", each
+  with `domain` set to `N/A`.
+
+  The file is a list of domains. A person is not one, and naming a person in
+  a public list of disinformation sources is processing their personal data
+  and making a claim about them that a domain watchlist has no need to make
+  — under the GDPR and, for a claim like that, under Italian defamation law.
+  The associations carried the same kind of label, sourced only to
+  "BUTAC/Bufalopedia" with no link. 114 → 107 rows.
+
+  `scripts/validate.py` now rejects any `domain` that is not an address — a
+  domain, or an account or section on a platform — so a name cannot come
+  back in. CONTRIBUTING.md says why. Writing that rule found four more rows
+  that are not plain domains: three platform accounts and a column on
+  `newyorker.com`. None is a person, three are declared satire; they stay
+  until someone decides otherwise.
+
 ### Fixed
 
 - The monthly link check's report now reaches its issue whole, and the right

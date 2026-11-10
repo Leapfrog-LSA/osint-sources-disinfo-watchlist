@@ -453,6 +453,34 @@ def warn_nested_paths(by_host, report, dataset):
                             f"or one source entered twice?")
 
 
+# A hostname: labels of letters, digits and hyphens, a dot between each, a
+# final label of letters. Subdomains (`x.altervista.org`) are domains too.
+DOMAIN = re.compile(r"^(?=.{4,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$")
+
+
+def is_domain(value):
+    """True for a hostname, false for anything a hostname cannot be.
+
+    `disinfo_sources_master.csv` lists domains. Until November 2026 it also
+    held seven rows whose `domain` was `N/A` — two associations, a company,
+    two fictional characters and two real people, one labelled a "recurring
+    source of hoaxes". A person is not a domain, and naming one in a public
+    list of disinformation sources is personal data and a claim about them,
+    which a domain watchlist has no need to make.
+    """
+    return bool(DOMAIN.match(value.strip().lower()))
+
+
+def is_watch_address(value):
+    """A domain, or a domain followed by a path — an account or a section on
+    a platform (`twitter.com/…`, `newyorker.com/humor/…`). No scheme, no
+    spaces: the column names a place on the web, never a person."""
+    value = value.strip()
+    if not value or " " in value or "://" in value:
+        return False
+    return is_domain(value.split("/", 1)[0])
+
+
 def validate_disinfo(report):
     dataset = DISINFO_CSV.name
     rows = read_csv(DISINFO_CSV, DISINFO_COLUMNS, report, dataset)
@@ -473,7 +501,11 @@ def validate_disinfo(report):
                 report.error(dataset, line, column, "required field is empty")
 
         domain = row["domain"].strip().lower()
-        if domain and domain != "n/a":
+        if domain and not is_watch_address(domain):
+            report.error(dataset, line, "domain",
+                         f"{row['domain'].strip()!r} is not a domain — this file lists "
+                         f"domains, never people or organisations (see CONTRIBUTING.md)")
+        elif domain:
             if domain in seen_domains:
                 report.error(dataset, line, "domain",
                              f"duplicate of line {seen_domains[domain]}: {domain!r}")

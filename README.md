@@ -116,7 +116,7 @@ Optional fields are filled only where the value could be established from the so
 
 ## `disinfo_sources_master.csv`
 
-114 documented disinformation domains, two main clusters:
+107 documented disinformation domains and platform accounts, two main clusters:
 
 - **Doppelganger campaign** (51 entries) — Russian state-linked infrastructure (SDA/Structura/ANO Dialog) cloning major outlets: Bild, Der Spiegel, Süddeutsche Zeitung, Der Tagesspiegel, T-Online, Welt, FAZ, Neues Deutschland, The Guardian, Mail Online, Reuters, Fox News, ANSA, and others. Sourced from Qurium (2022) and DFRLab (2024).
 - **Italian fake-news / satire network** (~60 entries) — typo-squats, hoax sites, and declared satire, sourced from BUTAC/Bufalopedia.

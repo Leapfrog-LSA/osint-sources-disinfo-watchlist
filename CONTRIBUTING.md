@@ -71,7 +71,7 @@ Say in the pull request which batch was sampled, how many rows were reviewed, an
 
 Columns: `domain`, `impersonated_outlet`, `authentic_domain`, `country`, `tld`, `first_seen`, `campaign`, `attribution`, `source`, `evidence_level`, `cats_flag`, `notes`
 
-- **domain**: the disinformation/clone domain itself, not the outlet it imitates.
+- **domain**: the disinformation/clone domain itself, not the outlet it imitates — or, for something that lives on a platform, the account or section (`twitter.com/…`). **Never a person, an association or a company by name.** This file is a list of places on the web; naming a person in a public list of disinformation sources is processing their personal data and making a claim about them, which a domain watchlist has no need to do. `scripts/validate.py` rejects anything that is not an address. Seven such rows, two of them real people, were removed in November 2026.
 - **authentic_domain**: the real outlet's domain, if this is an impersonation. `N/A` if it isn't imitating anyone specific.
 - **evidence_level**: how the entry was established — `forensic` (technical/infrastructure analysis, e.g. Qurium), `journalistic` (reported by a newsroom), `judicial` (court/law-enforcement action), `debunker` (fact-checking organization). Don't add an entry you can't back with at least one of these.
 - **cats_flag**: the classification — see [the README](README.md#columns-1) for the full list. Use `satire_recognizable` for declared satire and `suspected` when the attribution itself is weak; don't reach for `disinformation_clone` unless the entry really impersonates a specific outlet.
