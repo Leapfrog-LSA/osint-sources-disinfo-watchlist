@@ -31,6 +31,33 @@ structure or to the meaning of an existing column.
   `newyorker.com`. None is a person, three are declared satire; they stay
   until someone decides otherwise.
 
+- Four watchlist domains that now serve someone else's content, so that a
+  label from 2020 would name a stranger: `liberogiornale.com` (an Indonesian
+  internet blog), `worldnewsdailyreport.com` (redirects to a Québec site on
+  social-assistance rights), `empiresports.co` (a sports content farm with a
+  betting affiliate link) and `newsexaminer.net` (celebrity net-worth
+  articles). Checked 2026-11-10. 107 → 103 rows.
+
+### Changed
+
+- Every watchlist row now cites the document that named its domain, with
+  its date and its address. None had a link before, and 34 had no date.
+  Each document was fetched and searched for each row's domain: Qurium's
+  2022 Doppelganger report names 51 of the clones, DFRLab's 2024 article the
+  other two; Bufalopedia's list of hoax sites, last updated 2020-05-05, names
+  every one of the Italian and satire rows, and BUTAC's Black List five of
+  them. BUTAC is no longer cited where its list does not name the domain: a
+  citation that does not check out is worse than none.
+
+- Nine domains carry a dated note on how they have changed since their
+  source: three for sale or parked, and six registered again after the
+  source's date — read from the public registry — for which the note says
+  that the classification concerns the registration the source documented,
+  not whoever holds the domain now.
+
+- The data-problem issue template has an option for a domain that changed
+  hands, so its current holder can say so.
+
 ### Fixed
 
 - The monthly link check's report now reaches its issue whole, and the right

@@ -116,10 +116,10 @@ Optional fields are filled only where the value could be established from the so
 
 ## `disinfo_sources_master.csv`
 
-107 documented disinformation domains and platform accounts, two main clusters:
+103 documented disinformation domains and platform accounts, two main clusters:
 
 - **Doppelganger campaign** (51 entries) — Russian state-linked infrastructure (SDA/Structura/ANO Dialog) cloning major outlets: Bild, Der Spiegel, Süddeutsche Zeitung, Der Tagesspiegel, T-Online, Welt, FAZ, Neues Deutschland, The Guardian, Mail Online, Reuters, Fox News, ANSA, and others. Sourced from Qurium (2022) and DFRLab (2024).
-- **Italian fake-news / satire network** (~60 entries) — typo-squats, hoax sites, and declared satire, sourced from BUTAC/Bufalopedia.
+- **Italian fake-news / satire network** (50 entries) — typo-squats, hoax sites, and declared satire, sourced from [Bufalopedia's list](https://bufalopedia.blogspot.com/p/siti-creatori-di-bufale.html) (last updated 2020-05-05) and [BUTAC's Black List](https://www.butac.it/the-black-list/).
 
 ### Columns
 
@@ -133,7 +133,7 @@ Optional fields are filled only where the value could be established from the so
 | `first_seen` | `YYYY-MM-DD` or `YYYY`, where known |
 | `campaign` | Campaign or network the entry belongs to |
 | `attribution` | Who is assessed to be behind it, and by whom |
-| `source` | Who documented it, with date |
+| `source` | Who documented it, with the document's date and address — a document checked to name the domain |
 | `evidence_level` | How it was established — see below |
 | `cats_flag` | Classification — see below |
 | `notes` | Context needed to read the row correctly |
