@@ -12,6 +12,7 @@ body:
         - Wrong value — a field says something incorrect
         - Duplicate — the same source appears twice
         - Doesn't belong — not a genuine ongoing source
+        - Changed hands — the domain is no longer held by whoever its source documented
         - Something else
     validations:
       required: true

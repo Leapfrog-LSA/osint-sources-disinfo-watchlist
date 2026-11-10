@@ -411,5 +411,68 @@ class PlaceAgreesWithNote(unittest.TestCase):
         self.assertTrue(report.summary())
 
 
+
+def run_validate_disinfo(rows):
+    """Validate a small watchlist through validate_disinfo() and return the Report."""
+    with tempfile.TemporaryDirectory() as tmp:
+        path = pathlib.Path(tmp) / "disinfo_sources_master.csv"
+        with path.open("w", newline="", encoding="utf-8") as handle:
+            writer = csv.writer(handle, lineterminator="\n")
+            writer.writerow(v.DISINFO_COLUMNS)
+            writer.writerows(rows)
+        report = v.Report()
+        original = v.DISINFO_CSV
+        v.DISINFO_CSV = path
+        try:
+            v.validate_disinfo(report)
+        finally:
+            v.DISINFO_CSV = original
+    return report
+
+
+def watch(domain):
+    return [domain, "Outlet", "N/A", "IT", "", "", "IT bufale network",
+            "N/A (bufala IT)", "BUTAC 2020-05-05", "debunker", "fake_news_site", ""]
+
+
+class WatchlistHoldsOnlyDomains(unittest.TestCase):
+    """The watchlist is a list of domains — never of people.
+
+    Seven rows with `domain` = `N/A` were removed in November 2026, among
+    them two real people labelled as sources of hoaxes.
+    """
+
+    def test_hostnames_are_domains(self):
+        for value in ("spiegel.pro", "anno3000.altervista.org",
+                      "notiziepericolose.blogspot.com", "xn--80ak6aa92e.com"):
+            with self.subTest(value=value):
+                self.assertTrue(v.is_domain(value))
+
+    def test_a_person_or_a_placeholder_is_not(self):
+        for value in ("N/A", "n/a", "Lorenzo Croce", "AIDAA (associazione)",
+                      "localhost", "http://example.com", "example.com/path"):
+            with self.subTest(value=value):
+                self.assertFalse(v.is_domain(value))
+
+    def test_an_account_or_section_on_a_platform_is_an_address(self):
+        for value in ("twitter.com/VigileVittorino", "newyorker.com/humor/borowitz-report"):
+            with self.subTest(value=value):
+                self.assertTrue(v.is_watch_address(value))
+
+    def test_a_name_is_never_an_address(self):
+        for value in ("N/A", "Lorenzo Croce", "AIDAA (associazione)", "Proto Group",
+                      "https://example.com", ""):
+            with self.subTest(value=value):
+                self.assertFalse(v.is_watch_address(value))
+
+    def test_the_validator_rejects_a_row_that_is_not_a_domain(self):
+        report = run_validate_disinfo([watch("example.org"), watch("Mario Rossi")])
+        self.assertEqual(len(report.errors), 1)
+        self.assertIn("is not a domain", str(report.errors[0]))
+
+    def test_the_validator_accepts_a_watchlist_of_domains(self):
+        report = run_validate_disinfo([watch("example.org"), watch("x.altervista.org")])
+        self.assertEqual(report.errors, [])
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

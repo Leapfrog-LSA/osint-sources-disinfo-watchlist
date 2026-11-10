@@ -9,6 +9,81 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- Two README sections. **Where the data comes from** names each directory a
+  batch was drawn from, its terms, and what was taken — only the name of a
+  body and its website's address. It flags the one set of terms that does
+  not match this repository's licence: OpenSanctions licenses its data for
+  non-commercial use, and 52 rows were identified through its index.
+  **Legal notice and corrections** says what a watchlist classification is —
+  an attribution to a dated document, not a finding about whoever holds the
+  domain now — and how anyone, including a domain's current holder, can ask
+  for a correction or removal.
+
+### Changed
+
+- Every watchlist row now cites the document that named its domain, with
+  its date and its address. None had a link before, and 34 had no date.
+  Each document was fetched and searched for each row's domain: Qurium's
+  2022 Doppelganger report names 51 of the clones, DFRLab's 2024 article the
+  other two; Bufalopedia's list of hoax sites, last updated 2020-05-05, names
+  every one of the Italian and satire rows, and BUTAC's Black List five of
+  them. BUTAC is no longer cited where its list does not name the domain: a
+  citation that does not check out is worse than none.
+
+- Nine domains carry a dated note on how they have changed since their
+  source: three for sale or parked, and six registered again after the
+  source's date — read from the public registry — for which the note says
+  that the classification concerns the registration the source documented,
+  not whoever holds the domain now.
+
+- The data-problem issue template has an option for a domain that changed
+  hands, so its current holder can say so.
+
+- 149 of the 237 rows whose `Note` still said "verifica consigliata" — a
+  working note from their import, "check before merging", that shipped —
+  were checked and lost it. Each was fetched and had to state its own name
+  on its own address: its acronym, *every* distinctive word of its name, or
+  the whole name in its domain. A first pass that accepted a single word
+  passed 178, among them names like "Business News" that any business site
+  would match, so the rule was tightened; five more were refused on reading
+  (a bot wall, a "Success!" placeholder, an error page, a repurposed domain,
+  one unconfirmed). The other 88 keep the note, because it is still true:
+  22 could not be read from this network, 9 have moved to another address,
+  1 is a placeholder, and the rest did not state who they are. Of the 52
+  `opensanctions:2026-08` rows, 21 are now confirmed at the authority's own
+  site.
+
+### Removed
+
+- Seven rows from `disinfo_sources_master.csv` that were not domains: two
+  associations (AIDAA, Associazione Agitalia), a company (Proto Group), two
+  characters their own sources call fictional, and **two real people**, one
+  labelled a "recurring source of hoaxes" and one a "known hoax author", each
+  with `domain` set to `N/A`.
+
+  The file is a list of domains. A person is not one, and naming a person in
+  a public list of disinformation sources is processing their personal data
+  and making a claim about them that a domain watchlist has no need to make
+  — under the GDPR and, for a claim like that, under Italian defamation law.
+  The associations carried the same kind of label, sourced only to
+  "BUTAC/Bufalopedia" with no link. 114 → 107 rows.
+
+  `scripts/validate.py` now rejects any `domain` that is not an address — a
+  domain, or an account or section on a platform — so a name cannot come
+  back in. CONTRIBUTING.md says why. Writing that rule found four more rows
+  that are not plain domains: three platform accounts and a column on
+  `newyorker.com`. None is a person, three are declared satire; they stay
+  until someone decides otherwise.
+
+- Four watchlist domains that now serve someone else's content, so that a
+  label from 2020 would name a stranger: `liberogiornale.com` (an Indonesian
+  internet blog), `worldnewsdailyreport.com` (redirects to a Québec site on
+  social-assistance rights), `empiresports.co` (a sports content farm with a
+  betting affiliate link) and `newsexaminer.net` (celebrity net-worth
+  articles). Checked 2026-11-10. 107 → 103 rows.
+
 ### Fixed
 
 - The monthly link check's report now reaches its issue whole, and the right
