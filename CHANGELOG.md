@@ -58,6 +58,20 @@ structure or to the meaning of an existing column.
 - The data-problem issue template has an option for a domain that changed
   hands, so its current holder can say so.
 
+- 149 of the 237 rows whose `Note` still said "verifica consigliata" — a
+  working note from their import, "check before merging", that shipped —
+  were checked and lost it. Each was fetched and had to state its own name
+  on its own address: its acronym, *every* distinctive word of its name, or
+  the whole name in its domain. A first pass that accepted a single word
+  passed 178, among them names like "Business News" that any business site
+  would match, so the rule was tightened; five more were refused on reading
+  (a bot wall, a "Success!" placeholder, an error page, a repurposed domain,
+  one unconfirmed). The other 88 keep the note, because it is still true:
+  22 could not be read from this network, 9 have moved to another address,
+  1 is a placeholder, and the rest did not state who they are. Of the 52
+  `opensanctions:2026-08` rows, 21 are now confirmed at the authority's own
+  site.
+
 ### Fixed
 
 - The monthly link check's report now reaches its issue whole, and the right
