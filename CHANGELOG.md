@@ -9,6 +9,8 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+## [1.3.0] — 2026-11-10
+
 ### Added
 
 - Two README sections. **Where the data comes from** names each directory a

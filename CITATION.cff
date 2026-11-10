@@ -12,10 +12,11 @@ abstract: >-
   sources across media, open data, corporate registries, sanctions and
   PEP lists, cybersecurity intelligence and other domains, annotated with
   language, geographic scope, access type and RSS feed where available.
-  disinfo_sources_master is a watchlist of 114 documented disinformation
+  disinfo_sources_master is a watchlist of 103 documented disinformation
   domains, covering the Russian state-linked Doppelganger impersonation
   clones and Italian fake-news and typo-squat networks, each recorded
-  with its attribution, documenting source and level of evidence.
+  with its attribution, a dated and linked documenting source, and level
+  of evidence.
 keywords:
   - OSINT
   - disinformation
@@ -26,5 +27,5 @@ keywords:
   - source-reliability
   - due-diligence
 license: CC-BY-4.0
-version: 1.2.0
-date-released: "2026-11-09"
+version: 1.3.0
+date-released: "2026-11-10"
