@@ -222,8 +222,43 @@ Filenames carry no version number — the git tag is what identifies a snapshot,
 
 > **Moved in v0.3.0:** the catalogue was renamed from `Fonti_OSINT_v.0.1.csv` to `Fonti_OSINT.csv`. Links to the old path resolve only up to the `v0.2.0` tag.
 
+## Where the data comes from
+
+Rows imported in bulk carry a `Provenienza` stamp naming the directory they came from (see above). A directory is where a candidate was found, not the authority for the row. From September 2026 every batch was fetched and checked against the names it carries before it was added. The two August batches, `ifcn:2026-08` and `opensanctions:2026-08`, were not: they shipped with a `Note` ending in "verifica consigliata" ("verification recommended"). They were checked in November 2026, together with 102 older rows carrying the same note, and the note was removed from the 149 that passed. **Where a `Note` still ends in "verifica consigliata", the row is not confirmed** — 88 rows, which could not be read from the checking network or did not state who they are.
+
+| Stamp | Directory | Its terms | What was taken from it |
+|---|---|---|---|
+| `ifcn:*` | [IFCN signatories](https://ifcncodeofprinciples.poynter.org/), Poynter | public list | name and website of each fact-checker |
+| `opensanctions:2026-08` | [OpenSanctions](https://www.opensanctions.org/) index of its data sources | data under [CC BY-NC 4.0](https://www.opensanctions.org/licensing/) — **non-commercial** | name and website of the public authority publishing each list — see below |
+| `unsd:2026-09` | UN Statistics Division directory of national statistical offices | public directory | name and website of each office |
+| `wikipedia.nso:2026-09`, `wikipedia.cb:2026-09` | Wikipedia lists and articles | text under CC BY-SA 4.0 | the official website a list or article links to |
+| `bis:2026-09` | BIS list of member central banks | public list | name and website of each bank |
+| `occrp:2026-09` | OCCRP member centres | public list | name and website of each outlet |
+| `first:2026-09` | FIRST member teams | public directory | name and website of public-sector and research-network CERTs only |
+| `mom:2026-09` | Media Ownership Monitor, RSF / Global Media Registry | public site | name and address of each country project |
+| `doaj:2026-09` | DOAJ | metadata under CC0 | one row: the directory itself |
+| `wipo:2026-11` | [WIPO Directory of IP Offices](https://www.wipo.int/en/web/country-profiles/directory-ip-offices) | online content under [CC BY 4.0](https://www.wipo.int/en/web/terms-of-use) | name and website of each IP office; each row credits WIPO in `Note` |
+| `egmont:2026-11` | [Egmont Group](https://egmontgroup.org/members-by-region/) member list | public list | name and website of each Financial Intelligence Unit |
+| `ricerca.it:2026-09` | a file prepared for this repository | — | Italian sources, each verified individually |
+
+From every directory, only facts were taken — the name of a body and the address of its website — and each address was checked as described above. No directory's descriptions, rankings or other content were copied: the `Note` text is this repository's own.
+
+**OpenSanctions.** The 52 rows stamped `opensanctions:2026-08` list public authorities that publish sanctions and PEP lists, identified through OpenSanctions' index of the sources it collects. OpenSanctions licenses its data for non-commercial use only. What these rows hold is the name and official website of a public authority — 21 of them confirmed at the authority's own site in November 2026, the rest still marked "verifica consigliata". If you plan to reuse these particular rows commercially, check [OpenSanctions' terms](https://www.opensanctions.org/licensing/) first. Filtering them out is one line: `sources[~sources["Provenienza"].str.startswith("opensanctions", na=False)]`.
+
+**The watchlist.** Every row of `disinfo_sources_master.csv` cites, in `source`, the document that named the domain, with its date and its address. Each of those documents was fetched in November 2026 and checked to name the row's domain: Qurium's 2022 Doppelganger report, DFRLab's 2024 article, Correctiv's 2024 investigation, Bufalopedia's list of hoax sites (last updated 2020-05-05) and BUTAC's Black List.
+
+## Legal notice and corrections
+
+**The watchlist reports what others documented, as of when they documented it.** A classification in `disinfo_sources_master.csv` — `fake_news_site`, `disinformation_clone` and the rest — is an attribution to the document in `source`, at that document's date. It is not a finding by the maintainers about whoever holds the domain today. Domains lapse and are registered again by people with no connection to their past; where a domain is known to have changed state since its source, `notes` says so and says when it was checked.
+
+**It lists places on the web, never people.** The `domain` column holds a domain, or an account or section on a platform, and `scripts/validate.py` rejects anything else. Rows that carried the name of a person or an organisation instead of an address were removed in November 2026.
+
+**The catalogue points to sources; it does not license them.** This repository's licence covers the two CSV files and the scripts. The sources they point to have their own terms, which apply to anything you take from them.
+
+**Corrections and removals.** Anyone — including the current holder of a listed domain — can ask for an entry to be corrected or removed by opening an issue with the **Report a data problem** template. Say which entry, what is wrong, and how you know. Requests are handled under the rules in [CONTRIBUTING.md](CONTRIBUTING.md#removing-entries): a domain shown to have changed hands since its source is updated or removed, not defended. If the request is not something you want to discuss in public, open a minimal issue saying so, and the maintainers will arrange a private channel.
+
 ## License and citation
 
-Licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) — see [`LICENSE`](LICENSE). You may use, adapt, and redistribute the datasets, including commercially, as long as you credit Leapfrog-LSA / LAWARA AI.
+Licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) — see [`LICENSE`](LICENSE). You may use, adapt, and redistribute the datasets, including commercially, as long as you credit Leapfrog-LSA / LAWARA AI — with the caveat on the OpenSanctions rows in [Where the data comes from](#where-the-data-comes-from).
 
 For a ready-made citation, use the **Cite this repository** button on the repository page, or see [`CITATION.cff`](CITATION.cff).

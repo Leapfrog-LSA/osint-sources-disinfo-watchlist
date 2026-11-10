@@ -9,34 +9,17 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
-### Removed
+### Added
 
-- Seven rows from `disinfo_sources_master.csv` that were not domains: two
-  associations (AIDAA, Associazione Agitalia), a company (Proto Group), two
-  characters their own sources call fictional, and **two real people**, one
-  labelled a "recurring source of hoaxes" and one a "known hoax author", each
-  with `domain` set to `N/A`.
-
-  The file is a list of domains. A person is not one, and naming a person in
-  a public list of disinformation sources is processing their personal data
-  and making a claim about them that a domain watchlist has no need to make
-  — under the GDPR and, for a claim like that, under Italian defamation law.
-  The associations carried the same kind of label, sourced only to
-  "BUTAC/Bufalopedia" with no link. 114 → 107 rows.
-
-  `scripts/validate.py` now rejects any `domain` that is not an address — a
-  domain, or an account or section on a platform — so a name cannot come
-  back in. CONTRIBUTING.md says why. Writing that rule found four more rows
-  that are not plain domains: three platform accounts and a column on
-  `newyorker.com`. None is a person, three are declared satire; they stay
-  until someone decides otherwise.
-
-- Four watchlist domains that now serve someone else's content, so that a
-  label from 2020 would name a stranger: `liberogiornale.com` (an Indonesian
-  internet blog), `worldnewsdailyreport.com` (redirects to a Québec site on
-  social-assistance rights), `empiresports.co` (a sports content farm with a
-  betting affiliate link) and `newsexaminer.net` (celebrity net-worth
-  articles). Checked 2026-11-10. 107 → 103 rows.
+- Two README sections. **Where the data comes from** names each directory a
+  batch was drawn from, its terms, and what was taken — only the name of a
+  body and its website's address. It flags the one set of terms that does
+  not match this repository's licence: OpenSanctions licenses its data for
+  non-commercial use, and 52 rows were identified through its index.
+  **Legal notice and corrections** says what a watchlist classification is —
+  an attribution to a dated document, not a finding about whoever holds the
+  domain now — and how anyone, including a domain's current holder, can ask
+  for a correction or removal.
 
 ### Changed
 
@@ -71,6 +54,35 @@ structure or to the meaning of an existing column.
   1 is a placeholder, and the rest did not state who they are. Of the 52
   `opensanctions:2026-08` rows, 21 are now confirmed at the authority's own
   site.
+
+### Removed
+
+- Seven rows from `disinfo_sources_master.csv` that were not domains: two
+  associations (AIDAA, Associazione Agitalia), a company (Proto Group), two
+  characters their own sources call fictional, and **two real people**, one
+  labelled a "recurring source of hoaxes" and one a "known hoax author", each
+  with `domain` set to `N/A`.
+
+  The file is a list of domains. A person is not one, and naming a person in
+  a public list of disinformation sources is processing their personal data
+  and making a claim about them that a domain watchlist has no need to make
+  — under the GDPR and, for a claim like that, under Italian defamation law.
+  The associations carried the same kind of label, sourced only to
+  "BUTAC/Bufalopedia" with no link. 114 → 107 rows.
+
+  `scripts/validate.py` now rejects any `domain` that is not an address — a
+  domain, or an account or section on a platform — so a name cannot come
+  back in. CONTRIBUTING.md says why. Writing that rule found four more rows
+  that are not plain domains: three platform accounts and a column on
+  `newyorker.com`. None is a person, three are declared satire; they stay
+  until someone decides otherwise.
+
+- Four watchlist domains that now serve someone else's content, so that a
+  label from 2020 would name a stranger: `liberogiornale.com` (an Indonesian
+  internet blog), `worldnewsdailyreport.com` (redirects to a Québec site on
+  social-assistance rights), `empiresports.co` (a sports content farm with a
+  betting affiliate link) and `newsexaminer.net` (celebrity net-worth
+  articles). Checked 2026-11-10. 107 → 103 rows.
 
 ### Fixed
 
