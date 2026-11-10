@@ -146,7 +146,7 @@ Note that `satire_recognizable` marks **declared satire** (The Onion, Lercio) �
 
 ## Validation
 
-Both files are checked on every push and pull request by [`scripts/validate.py`](scripts/validate.py) — header and field count, required fields, URL format, duplicate URLs, repeated source names, language and country codes, and the controlled vocabularies above.
+Both files are checked on every push and pull request by [`scripts/validate.py`](scripts/validate.py) — header and field count, required fields, URL format, duplicate URLs, repeated source names, language and country codes, the controlled vocabularies above, and — in the watchlist — that every `domain` is an address on the web: a domain, or an account or section on a platform, never the name of a person or organisation.
 
 Run it locally before opening a PR:
 
@@ -160,7 +160,7 @@ Two of its rules are worth knowing because they are deliberately narrow:
 
 **Duplicate URLs are compared by what they identify, not how they are spelled.** Scheme, `www.`, a default port and a trailing slash come off first, so `http://x.org/news` and `https://www.x.org/news/` are one row, not two. The query string stays — `?id=1` and `?id=2` are different pages.
 
-**A repeated host is a warning, not an error**, and only when one row's URL sits *inside* another's. 106 hosts appear on more than one row and almost all of them should: `bbc.com/news` and `bbc.com/news/world` are different desks. Flagging every repeated host would report a hundred pairs of nothing, so the check looks for nesting instead — which on the catalogue as it stands finds 11 pairs, about a third of them one source entered twice under two names. That precision is too low to fail a build on, so these print, are counted, and leave the exit code alone.
+**A repeated host is a warning, not an error**, and only when one row's URL sits *inside* another's. 115 hosts appear on more than one row and almost all of them should: `bbc.com/news` and `bbc.com/news/world` are different desks. Flagging every repeated host would report a hundred pairs of nothing, so the check looks for nesting instead — which found 11 pairs when it was written, about a third of them one source entered twice under two names, and finds 9 on the catalogue today. That precision is too low to fail a build on, so these print, are counted, and leave the exit code alone.
 
 **A country code that disagrees with its own note is a warning too.** Every wrong country found so far has been a *valid* ISO code, so the format check accepts it and always will: `SD` for three South Sudanese outlets, `BZ` — Belize — for a South Tyrol paper, `BE` — Belgium — for a Belarusian one where a language tag had been copied into the wrong column, and `MX` for the Albuquerque Journal, from "New Mexico". Nothing in those rows is malformed; the only thing that disagrees is the prose beside them. So the check reads the place a `Note` opens with and compares it to the code. It is a warning because this catalogue deliberately files some sources by subject rather than by publisher — 38 North is a US think tank writing about North Korea — and those are indistinguishable from a mistake without reading the row.
 
@@ -170,7 +170,7 @@ The same workflow runs the scripts' own test suite:
 python -m unittest discover -s scripts -p "test_*.py"
 ```
 
-Those 25 cases cover [`scripts/check_links.py`](scripts/check_links.py), which decides what gets proposed for removal from the catalogue. Each of the three faults that removed a live source in `v0.5.0` has a test named after the source it killed, so a failure says which row is about to be lost. They make no network requests.
+The 130 tests cover [`scripts/check_links.py`](scripts/check_links.py) (61), which decides what gets proposed for removal from the catalogue and where the findings are posted; [`scripts/validate.py`](scripts/validate.py) (54); and [`scripts/sample_batch.py`](scripts/sample_batch.py) (15), which draws the review sample for a bulk import. Each of the three faults that removed a live source in `v0.5.0` has a test named after the source it killed, so a failure says which row is about to be lost. They make no network requests.
 
 ### Link checking
 
@@ -185,7 +185,7 @@ Every URL in both files is fetched once a month. Three things make this differen
 
   This rule was added in `v0.5.1`, after `v0.5.0` removed 21 sources on the older logic. At least three were alive — among them **VERA Files**, an IFCN verified signatory — condemned by a connection reset, an empty body, and a stock web-server placeholder string. Retrying caught none of it, because the retries repeated the same request from the same network.
 
-Findings are posted to a single recurring issue (label `link-check`) rather than a fresh issue every run, so a URL that keeps failing month after month is visible in one place. The report's header says how many findings are actually removal candidates, and whether the run was healthy enough to be believed at all. The workflow never edits either CSV — a flagged row still needs a human to confirm it, from a different network, before removing or fixing it, per [`CONTRIBUTING.md`](CONTRIBUTING.md).
+Findings are posted as comments on a single recurring issue, found by its title — *Monthly link check — recurring findings* ([#3](https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/issues/3)) — rather than a fresh issue every run, so a URL that keeps failing month after month is visible in one place. What someone has to act on comes first and in full: removal candidates, then addresses that answer somewhere other than where the catalogue says. Inconclusive results follow, at most 20 per category, with the complete list in the workflow run's summary and log. A report longer than GitHub allows in one comment is split into numbered comments rather than cut. The report's header says how many findings are actually removal candidates, and whether the run was healthy enough to be believed at all. The workflow never edits either CSV — a flagged row still needs a human to confirm it, from a different network, before removing or fixing it, per [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 Run it locally the same way:
 
@@ -193,7 +193,7 @@ Run it locally the same way:
 python scripts/check_links.py
 ```
 
-With no `GITHUB_TOKEN` set, it prints the findings and stops there.
+Run anywhere but GitHub Actions, it prints the findings and stops there — it never posts, even with a `GITHUB_TOKEN` in the environment.
 
 ### Finding new sources
 
@@ -213,7 +213,7 @@ One caveat worth knowing: its verification calls the same `check_url()` the link
 Changes are tracked in [`CHANGELOG.md`](CHANGELOG.md). Released versions are tagged, so a specific snapshot can be pinned:
 
 ```bash
-git clone --branch v0.5.1 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
+git clone --branch v1.3.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
 ```
 
 A major version bump would signal a change to the column structure or to the meaning of an existing column. Adding, correcting or reclassifying rows does not.

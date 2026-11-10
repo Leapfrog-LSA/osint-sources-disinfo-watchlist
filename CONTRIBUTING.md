@@ -84,7 +84,7 @@ Columns: `domain`, `impersonated_outlet`, `authentic_domain`, `country`, `tld`, 
 
 Dead link, wrong category, duplicate entry, outdated attribution — open an issue or a PR with the fix. If you're removing something, say why in the PR/commit description.
 
-Every URL in both files is also checked automatically once a month by [`scripts/check_links.py`](scripts/check_links.py) ([`.github/workflows/link-check.yml`](.github/workflows/link-check.yml)); findings land as a comment on a single recurring issue labelled `link-check`, not a fresh one each run. It applies the same "don't trust a single failed request, don't trust HTTP 200 either" logic described below — it only reports, it never edits a CSV. Treat a row in that issue as a lead to verify, same as a link reported manually, and read the report's own header: it says how many findings are actually removal candidates, and whether the run was healthy enough to be believed at all.
+Every URL in both files is also checked automatically once a month by [`scripts/check_links.py`](scripts/check_links.py) ([`.github/workflows/link-check.yml`](.github/workflows/link-check.yml)); findings land as comments on a single recurring issue, *Monthly link check — recurring findings* ([#3](https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/issues/3)), not a fresh one each run. It applies the same "don't trust a single failed request, don't trust HTTP 200 either" logic described below — it only reports, it never edits a CSV. Treat a row in that issue as a lead to verify, same as a link reported manually, and read the report's own header: it says how many findings are actually removal candidates, and whether the run was healthy enough to be believed at all.
 
 ## Removing entries
 

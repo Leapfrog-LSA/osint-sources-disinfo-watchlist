@@ -9,6 +9,26 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Changed
+
+- `README.md` brought up to date after `v1.3.0`: the pinning example
+  clones `v1.3.0` instead of `v0.5.1`; the validation section lists the
+  watchlist address rule and describes the whole test suite (130 tests
+  across `check_links.py`, `validate.py` and `sample_batch.py`) instead of
+  "25 cases"; the repeated-host figures are re-measured (115 hosts, 9 nested
+  pairs); and the link-check section says how findings are posted since
+  `v1.3.0` — to issue #3, found by title, candidates and moved addresses in
+  full, split into numbered comments, never from outside GitHub Actions.
+- `CONTRIBUTING.md` names the recurring link-check issue by title, as the
+  script finds it: the `link-check` label alone does not identify it, since
+  #41 carries it too.
+
+### Fixed
+
+- The version links at the foot of this file stopped at `0.5.0`, and the one
+  for `0.5.0` pointed at a tag that does not exist (the tag is `v0.5.0.0`).
+  Every release from `0.1.0` to `1.3.0` now has a working compare link.
+
 ## [1.3.0] — 2026-11-10
 
 ### Added
@@ -1568,8 +1588,13 @@ Initial release.
   satire networks, with attribution, documenting source and evidence level.
 - `README.md`, `CONTRIBUTING.md`, `LICENSE` (CC BY 4.0) and `.gitignore`.
 
-[Unreleased]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.5.0...HEAD
-[0.5.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.4.0...v0.5.0
+[Unreleased]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.5.1...v1.0.0
+[0.5.1]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.5.0.0...v0.5.1
+[0.5.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.4.0...v0.5.0.0
 [0.4.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v0.1.0...v0.2.0

@@ -423,16 +423,16 @@ def warn_place_disagrees(row, line, report, dataset):
 def warn_nested_paths(by_host, report, dataset):
     """Flag one row whose URL sits inside another's on the same host.
 
-    A repeated host is almost always fine — 106 hosts appear on more than one
+    A repeated host is almost always fine — 115 hosts appear on more than one
     row, and `github.com`, `gov.br` and `ec.europa.eu` account for much of it.
-    Flagging every one of them would report 106 pairs of nothing and be
+    Flagging every one of them would report a hundred pairs of nothing and be
     ignored, the same way a bare name-collision check would have been.
 
     What is worth a second look is narrower: two rows on one host where one
     URL is a path *inside* the other. Most are still legitimate — `bbc.com/news`
     and `bbc.com/news/world` are different desks — but this is the shape a real
-    near-duplicate takes, and on the catalogue as it stands it finds 11 pairs,
-    of which about a third are two rows for one thing under two names.
+    near-duplicate takes. When this was written it found 11 pairs, of which
+    about a third were two rows for one thing under two names; it finds 9 now.
 
     A third is too low to fail a build on and far too high to throw away, so
     these are warnings: printed, counted, and left to a person.
