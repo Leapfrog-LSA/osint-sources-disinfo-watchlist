@@ -44,10 +44,15 @@ chamber's lapsed domain redirected to an online-gambling site while doing
 the same. These are reported in their own section and are never removal
 candidates: a page that moved is a stale cell, not a dead source.
 
-In CI (GITHUB_TOKEN + GITHUB_REPOSITORY set), findings are posted to a
-single recurring GitHub issue (label "link-check") instead of a fresh
-issue every run, so repeat offenders are visible across months. Run
-locally, findings just print — nothing is posted without a token.
+In GitHub Actions (GITHUB_ACTIONS=true, with GITHUB_TOKEN and
+GITHUB_REPOSITORY set — a token alone is not enough), findings are posted to a
+single recurring GitHub issue, found by its title (ISSUE_TITLE), instead of
+a fresh issue every run, so repeat offenders are visible across months.
+Removal candidates and landings are posted in full, split across comments
+when they exceed one; inconclusive findings are counted in full and listed
+up to COMMENT_LIST_LIMIT each. The job summary carries the full report, and
+the log always does. Run locally, findings just print — nothing is posted
+without a token.
 
 Standard library only — no dependencies to install.
 """
@@ -522,8 +527,17 @@ def summarize(attempts):
     else:
         bucket = "other"
 
-    detail = "; ".join(f"attempt {i + 1}: {a.detail}" for i, a in enumerate(attempts))
-    return Verdict(bucket, detail)
+    return Verdict(bucket, describe_attempts(attempts))
+
+
+def describe_attempts(attempts):
+    """What the attempts saw. Identical results are said once — "3 attempts:
+    HTTP 404 …" — which loses nothing and is a third of the length; the
+    report has to fit in an issue comment."""
+    details = [a.detail for a in attempts]
+    if len(details) > 1 and len(set(details)) == 1:
+        return f"{len(details)} attempts: {details[0]}"
+    return "; ".join(f"attempt {i + 1}: {d}" for i, d in enumerate(details))
 
 
 # --------------------------------------------------------------------------
@@ -587,8 +601,27 @@ def check_url(url, with_landing=False):
 # Reporting
 # --------------------------------------------------------------------------
 
+def _entry_lines(by_url, entries):
+    lines = []
+    for url, verdict in sorted(entries, key=lambda pair: pair[0]):
+        refs = by_url[url]
+        ref_str = ", ".join(f"`{r.dataset}:{r.line}` {r.name} ({r.column})" for r in refs)
+        lines.append(f"- {ref_str} — {url}")
+        lines.append(f"  {verdict.detail}")
+    return lines
+
+
 def render_report(by_url, buckets, control_healthy=True, control_reached=0,
-                  control_lines=(), landings=None):
+                  control_lines=(), landings=None, list_limit=None,
+                  full_list_at="the workflow run's log"):
+    """The run's findings as Markdown.
+
+    Removal candidates and landings are always listed in full: they are the
+    findings someone acts on, and the ones a month-to-month comparison needs.
+    `list_limit` caps only the inconclusive buckets — a bot wall, a timeout —
+    which are counted in full and listed up to that many entries each, with
+    the rest pointed to `full_list_at`.
+    """
     today = dt.date.today().isoformat()
     total = sum(len(v) for v in buckets.values())
     candidates = sum(len(buckets.get(b, ())) for b in REMOVAL_CANDIDATE_BUCKETS)
@@ -641,9 +674,9 @@ def render_report(by_url, buckets, control_healthy=True, control_reached=0,
             f"**{candidates} of {total} findings are removal candidates.** Only "
             f"`{'` and `'.join(sorted(REMOVAL_CANDIDATE_BUCKETS))}` qualify: a "
             f"server saying the resource does not exist, or a domain serving a "
-            f"placeholder. Every other section below describes this run's own "
-            f"conditions — a refused connection, a bot wall, a timeout — and "
-            f"says nothing about whether the source still exists."
+            f"placeholder. Every inconclusive finding below describes this "
+            f"run's own conditions — a refused connection, a bot wall, a "
+            f"timeout — and says nothing about whether the source still exists."
         )
     else:
         lines.append(
@@ -652,18 +685,18 @@ def render_report(by_url, buckets, control_healthy=True, control_reached=0,
             f"sources."
         )
 
+    # Removal candidates first, then the landings, then everything
+    # inconclusive. The order is what survives when space runs out: until
+    # November 2026 the landings came last, behind a thousand anti-bot
+    # entries, and the comment's size limit cut them off every month.
     for bucket in BUCKET_ORDER:
         entries = buckets.get(bucket)
-        if not entries:
+        if not entries or bucket not in REMOVAL_CANDIDATE_BUCKETS:
             continue
         lines.append("")
         lines.append(f"### {BUCKET_TITLES[bucket]} ({len(entries)})")
         lines.append("")
-        for url, verdict in sorted(entries, key=lambda pair: pair[0]):
-            refs = by_url[url]
-            ref_str = ", ".join(f"`{r.dataset}:{r.line}` {r.name} ({r.column})" for r in refs)
-            lines.append(f"- {ref_str} — {url}")
-            lines.append(f"  {verdict.detail}")
+        lines.extend(_entry_lines(by_url, entries))
 
     if landings:
         total_landed = sum(len(v) for v in landings.values())
@@ -686,12 +719,29 @@ def render_report(by_url, buckets, control_healthy=True, control_reached=0,
             lines.append("")
             lines.append(f"### {LANDING_TITLES[kind]} ({len(entries)})")
             lines.append("")
-            for url, verdict in sorted(entries, key=lambda pair: pair[0]):
-                refs = by_url[url]
-                ref_str = ", ".join(
-                    f"`{r.dataset}:{r.line}` {r.name} ({r.column})" for r in refs)
-                lines.append(f"- {ref_str} — {url}")
-                lines.append(f"  {verdict.detail}")
+            lines.extend(_entry_lines(by_url, entries))
+
+    inconclusive = [b for b in BUCKET_ORDER
+                    if buckets.get(b) and b not in REMOVAL_CANDIDATE_BUCKETS]
+    if inconclusive:
+        lines.append("")
+        lines.append(f"## Inconclusive ({sum(len(buckets[b]) for b in inconclusive)})")
+        lines.append("")
+        lines.append(
+            "Each of these describes this run's own conditions, not the "
+            "source. They are leads for a person with a browser on another "
+            "network, never grounds for a removal."
+        )
+    for bucket in inconclusive:
+        entries = sorted(buckets[bucket], key=lambda pair: pair[0])
+        lines.append("")
+        lines.append(f"### {BUCKET_TITLES[bucket]} ({len(entries)})")
+        lines.append("")
+        shown = entries if list_limit is None else entries[:list_limit]
+        lines.extend(_entry_lines(by_url, shown))
+        hidden = len(entries) - len(shown)
+        if hidden:
+            lines.append(f"- … and {hidden} more, listed in full in {full_list_at}.")
 
     lines.append("")
     lines.append("---")
@@ -713,16 +763,104 @@ def render_report(by_url, buckets, control_healthy=True, control_reached=0,
 
 API_ROOT = "https://api.github.com"
 ISSUE_LABELS = ["link-check", "data problem"]
+# The issue every run comments on. It is found by this title, not by label:
+# until November 2026 the script took the newest open issue labelled
+# `link-check`, so labelling a second issue (#41, the redirect list) quietly
+# moved the month-to-month record there, and the history this issue exists
+# to keep was split in two.
+ISSUE_TITLE = "Monthly link check — recurring findings"
 GITHUB_BODY_LIMIT = 60_000  # issue/comment bodies are rejected past 65536
+# GitHub drops a step summary over 1 MiB entirely rather than cutting it.
+STEP_SUMMARY_LIMIT = 1_000_000
+
+# How many entries each inconclusive bucket keeps, tried in order until the
+# report fits. Removal candidates and landings are never shortened.
+LIST_LIMITS = (None, 50, 20, 5, 0)
+# In the issue comment, each inconclusive bucket lists this many entries and
+# counts the rest; the full list is in the job summary.
+COMMENT_LIST_LIMIT = 20
 
 
-def truncate_for_github(text):
-    if len(text) <= GITHUB_BODY_LIMIT:
+def fit_report(by_url, buckets, control_healthy, control_reached,
+               control_lines, landings, limit, full_list_at):
+    """The fullest rendering of the report that fits in `limit` characters.
+
+    Used for the job summary, which GitHub discards whole above 1 MiB and
+    which cannot be split. Shortening the inconclusive lists keeps what
+    someone acts on and says what it left out; plain truncation is the last
+    resort. The issue comment is split instead (`split_for_github`), so it
+    never needs either.
+    """
+    for list_limit in LIST_LIMITS:
+        report = render_report(by_url, buckets, control_healthy, control_reached,
+                               control_lines, landings, list_limit, full_list_at)
+        if len(report) <= limit:
+            return report
+    return truncate_for_github(report, limit)
+
+
+TRUNCATION_NOTE = "\n\n… truncated — see the workflow run's job summary for the full list."
+
+
+def truncate_for_github(text, limit=GITHUB_BODY_LIMIT):
+    # The note is counted inside the limit, so the result never exceeds it.
+    if len(text) <= limit:
         return text
-    return (
-        text[:GITHUB_BODY_LIMIT]
-        + "\n\n… truncated — see the workflow run's job summary for the full list."
-    )
+    return text[:limit - len(TRUNCATION_NOTE)] + TRUNCATION_NOTE
+
+
+def split_for_github(report, limit=GITHUB_BODY_LIMIT):
+    """The report as one or more comment bodies, each within `limit`.
+
+    Removal candidates and landings are always listed in full, and at
+    November 2026's volume — 59 candidates and some 240 landings — they alone
+    exceed one comment. Shortening them would drop exactly what someone acts
+    on, so the report is split instead: only between entries, never inside
+    one, with each continuation saying what it continues.
+    """
+    if len(report) <= limit:
+        return [report]
+    title = report.split("\n", 1)[0].lstrip("# ").strip()
+    # An entry is its bullet line plus the indented detail under it; a
+    # heading or a paragraph is a unit of its own.
+    units = []
+    for line in report.split("\n"):
+        if units and line.startswith("  ") and units[-1].startswith("- "):
+            units[-1] += "\n" + line
+        else:
+            units.append(line)
+    parts, current = [], []
+    room = limit - 80  # reserved for the continuation header
+    for unit in units:
+        if len(unit) > room:  # a single entry longer than a comment: cut it
+            unit = unit[:room]
+        if current and len("\n".join(current + [unit])) > room:
+            parts.append(current)
+            current = []
+        current.append(unit)
+    parts.append(current)
+    total = len(parts)
+    out = []
+    for i, part in enumerate(parts, start=1):
+        body = "\n".join(part).strip("\n")
+        if i > 1:
+            body = f"## {title} — continued ({i}/{total})\n\n" + body
+        else:
+            body += f"\n\n*Continued in the next comment ({i}/{total}).*"
+        out.append(body)
+    return out
+
+
+def pick_issue(issues):
+    """The recurring issue among `issues`, or None.
+
+    Matched on the exact title; pull requests, which the issues API also
+    returns, never qualify. If two open issues carry the title, the older
+    one keeps the history.
+    """
+    matches = [i for i in issues
+               if i.get("title") == ISSUE_TITLE and "pull_request" not in i]
+    return min(matches, key=lambda i: i["number"]) if matches else None
 
 
 def api_request(method, path, token, payload=None):
@@ -744,20 +882,22 @@ def api_request(method, path, token, payload=None):
         return json.loads(raw) if raw else {}
 
 
-def post_to_github(repo_slug, token, report):
+def post_to_github(repo_slug, token, parts):
+    """Post the report's parts, in order, to the recurring issue."""
     owner, repo = repo_slug.split("/")
-    existing = api_request(
+    existing = pick_issue(api_request(
         "GET",
-        f"/repos/{owner}/{repo}/issues?state=open&labels=link-check&per_page=1",
+        f"/repos/{owner}/{repo}/issues?state=open&labels=link-check&per_page=100",
         token,
-    )
+    ))
     if existing:
-        number = existing[0]["number"]
-        api_request(
-            "POST", f"/repos/{owner}/{repo}/issues/{number}/comments", token,
-            {"body": truncate_for_github(report)},
-        )
-        print(f"Commented on existing issue #{number}")
+        number = existing["number"]
+        for part in parts:
+            api_request(
+                "POST", f"/repos/{owner}/{repo}/issues/{number}/comments", token,
+                {"body": truncate_for_github(part)},
+            )
+        print(f"Commented on existing issue #{number} ({len(parts)} comment(s))")
     else:
         intro = (
             "Opened by the monthly link-check workflow "
@@ -772,12 +912,17 @@ def post_to_github(repo_slug, token, report):
         created = api_request(
             "POST", f"/repos/{owner}/{repo}/issues", token,
             {
-                "title": "Monthly link check — recurring findings",
-                "body": truncate_for_github(intro + report),
+                "title": ISSUE_TITLE,
+                "body": intro + "See the comments below for this run's findings.",
                 "labels": ISSUE_LABELS,
             },
         )
-        print(f"Opened issue #{created['number']}")
+        for part in parts:
+            api_request(
+                "POST", f"/repos/{owner}/{repo}/issues/{created['number']}/comments",
+                token, {"body": truncate_for_github(part)},
+            )
+        print(f"Opened issue #{created['number']} ({len(parts)} comment(s))")
 
 
 # --------------------------------------------------------------------------
@@ -814,30 +959,57 @@ def main():
     print(f"  {sum(len(v) for v in landings.values())} of {len(landed)} working "
           f"URLs answered somewhere other than where they point")
 
+    # The log always carries everything; the summary and the comment carry
+    # the fullest version that fits their limits.
     report = render_report(by_url, buckets, control_healthy, control_reached,
                            control_lines, landings)
     print("\n" + report)
 
+    run_url = ""
+    if os.environ.get("GITHUB_RUN_ID") and os.environ.get("GITHUB_REPOSITORY"):
+        run_url = (f"{os.environ.get('GITHUB_SERVER_URL', 'https://github.com')}/"
+                   f"{os.environ['GITHUB_REPOSITORY']}/actions/runs/"
+                   f"{os.environ['GITHUB_RUN_ID']}")
+    in_log = f"[the run's log]({run_url})" if run_url else "the workflow run's log"
+    summary = fit_report(by_url, buckets, control_healthy, control_reached,
+                         control_lines, landings, STEP_SUMMARY_LIMIT, in_log)
     summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary_path:
         with open(summary_path, "a", encoding="utf-8") as handle:
-            handle.write(report + "\n")
+            handle.write(summary + "\n")
+    # The comment points at the summary when the summary is complete, and at
+    # the log otherwise — wherever the full list really is.
+    where = (f"[the run's job summary]({run_url})" if run_url and summary == report
+             else in_log)
+    comment = render_report(by_url, buckets, control_healthy, control_reached,
+                            control_lines, landings, COMMENT_LIST_LIMIT, where)
+    parts = split_for_github(comment)
 
     total_flagged = (sum(len(v) for v in buckets.values())
                      + sum(len(v) for v in landings.values()))
     if total_flagged == 0:
         return 0
 
-    token = os.environ.get("GITHUB_TOKEN")
-    repo_slug = os.environ.get("GITHUB_REPOSITORY")
-    if token and repo_slug:
-        post_to_github(repo_slug, token, report)
+    if should_post(os.environ):
+        post_to_github(os.environ["GITHUB_REPOSITORY"], os.environ["GITHUB_TOKEN"], parts)
     else:
         print(
-            "\n(GITHUB_TOKEN/GITHUB_REPOSITORY not set — skipping issue "
-            "creation, as expected for a local run.)"
+            "\n(Not running in GitHub Actions with a token and a repository "
+            "— nothing posted, as expected for a local run.)"
         )
     return 0
+
+
+def should_post(env):
+    """Post only from GitHub Actions itself.
+
+    A token alone is not enough: plenty of machines have GITHUB_TOKEN set
+    for other tools, and on 10 November 2026 a local smoke test of this
+    script posted a test report to #3 that way. It was deleted within a
+    minute; this check is so that it does not need to be.
+    """
+    return (env.get("GITHUB_ACTIONS") == "true"
+            and bool(env.get("GITHUB_TOKEN")) and bool(env.get("GITHUB_REPOSITORY")))
 
 
 if __name__ == "__main__":

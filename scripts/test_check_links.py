@@ -365,5 +365,197 @@ class DiscoveryContractUnchanged(unittest.TestCase):
         self.assertIs(signature.parameters["with_landing"].default, False)
 
 
+class RecurringIssue(unittest.TestCase):
+    """The month-to-month record goes to one issue, found by its title.
+
+    The October and November 2026 runs commented on #41 instead of #3: the
+    script took the newest open issue labelled `link-check`, and #41 — the
+    redirect list — carried the label too.
+    """
+
+    def test_found_by_title_not_by_being_the_newest_labelled_issue(self):
+        issues = [
+            {"number": 41, "title": "208 catalogued URLs no longer point where they resolve"},
+            {"number": 3, "title": cl.ISSUE_TITLE},
+        ]
+        self.assertEqual(cl.pick_issue(issues)["number"], 3)
+
+    def test_a_pull_request_never_qualifies(self):
+        issues = [{"number": 9, "title": cl.ISSUE_TITLE, "pull_request": {}}]
+        self.assertIsNone(cl.pick_issue(issues))
+
+    def test_no_match_means_a_new_issue(self):
+        self.assertIsNone(cl.pick_issue([{"number": 41, "title": "something else"}]))
+
+    def test_with_two_the_older_one_keeps_the_history(self):
+        issues = [{"number": 50, "title": cl.ISSUE_TITLE},
+                  {"number": 3, "title": cl.ISSUE_TITLE}]
+        self.assertEqual(cl.pick_issue(issues)["number"], 3)
+
+
+class PostingGoesToTheRecurringIssue(unittest.TestCase):
+    """End to end against a fake GitHub API: where the parts land, in order."""
+
+    def setUp(self):
+        self.calls = []
+        self.real = cl.api_request
+
+        def fake(method, path, token, payload=None):
+            self.calls.append((method, path, payload))
+            if method == "GET":
+                return self.listing
+            if path.endswith("/issues"):
+                return {"number": 77}
+            return {}
+        cl.api_request = fake
+
+    def tearDown(self):
+        cl.api_request = self.real
+
+    def test_parts_go_to_the_titled_issue_in_order_not_to_41(self):
+        self.listing = [
+            {"number": 41, "title": "208 catalogued URLs no longer point where they resolve"},
+            {"number": 3, "title": cl.ISSUE_TITLE},
+        ]
+        cl.post_to_github("o/r", "t", ["part one", "part two"])
+        posts = [(path, payload["body"]) for method, path, payload in self.calls
+                 if method == "POST"]
+        self.assertEqual(posts, [("/repos/o/r/issues/3/comments", "part one"),
+                                 ("/repos/o/r/issues/3/comments", "part two")])
+
+    def test_without_the_issue_one_is_opened_and_the_parts_follow(self):
+        self.listing = [{"number": 41, "title": "something else"}]
+        cl.post_to_github("o/r", "t", ["only part"])
+        posts = [(path, payload) for method, path, payload in self.calls if method == "POST"]
+        self.assertEqual(posts[0][0], "/repos/o/r/issues")
+        self.assertEqual(posts[0][1]["title"], cl.ISSUE_TITLE)
+        self.assertEqual(posts[1], ("/repos/o/r/issues/77/comments", {"body": "only part"}))
+
+class PostsOnlyFromActions(unittest.TestCase):
+    """A token in the environment is not a reason to post.
+
+    A local smoke test on 10 November 2026 posted a test report to #3
+    because the machine had GITHUB_TOKEN set for other tools.
+    """
+
+    FULL = {"GITHUB_ACTIONS": "true", "GITHUB_TOKEN": "t", "GITHUB_REPOSITORY": "o/r"}
+
+    def test_actions_with_token_and_repository_posts(self):
+        self.assertTrue(cl.should_post(self.FULL))
+
+    def test_a_token_on_a_developer_machine_does_not(self):
+        local = {k: v for k, v in self.FULL.items() if k != "GITHUB_ACTIONS"}
+        self.assertFalse(cl.should_post(local))
+
+    def test_actions_without_a_token_does_not(self):
+        self.assertFalse(cl.should_post({"GITHUB_ACTIONS": "true", "GITHUB_REPOSITORY": "o/r"}))
+
+class CommentKeepsEverythingAnyoneActsOn(unittest.TestCase):
+    """A run the size of November 2026's reaches the issue whole.
+
+    That run had 59 removal candidates and 989 anti-bot findings. Cut at the
+    size limit wherever it fell, the comment ended inside the anti-bot list
+    and the redirect section never appeared. A first fix — shorten the
+    inconclusive lists until it fits — still did not fit once entries had
+    realistic lengths: candidates and landings alone came to 67,615
+    characters. So the comment is split between entries instead.
+    """
+
+    def setUp(self):
+        self.by_url, self.buckets, self.landings = {}, {}, {}
+
+        def add(kind, n, detail, store):
+            for i in range(n):
+                url = f"https://www.{kind}-{i}.example.gov.xx/en/section/page-{i}"
+                self.by_url[url] = [cl.Ref("Fonti_OSINT.csv", 1000 + i,
+                                           f"Realistic Source Name Number {i}", "RSS Feed")]
+                store.setdefault(kind, []).append((url, cl.Verdict(kind, detail)))
+
+        three = "; ".join(f"attempt {i}: HTTP 403, matched anti-bot marker 'just a moment...'"
+                          for i in (1, 2, 3))
+        november = {"gone": 57, "parked": 2, "unreachable": 92, "blocked": 989,
+                    "empty": 2, "http_error": 22, "timeout": 60, "tls_error": 104,
+                    "other": 9}
+        for bucket, n in november.items():
+            add(bucket, n, three, self.buckets)
+        for kind, n in {"feed": 16, "home": 30, "host": 149, "path": 43}.items():
+            add(kind, n, "HTTP 200, landed on https://www.somewhere-else.example.com/a/b",
+                self.landings)
+        report = cl.render_report(self.by_url, self.buckets, True, 3, [], self.landings,
+                                  cl.COMMENT_LIST_LIMIT, "the job summary")
+        self.parts = cl.split_for_github(report)
+
+    def test_every_part_fits(self):
+        for part in self.parts:
+            self.assertLessEqual(len(part), cl.GITHUB_BODY_LIMIT)
+
+    def test_every_removal_candidate_and_every_landing_arrives(self):
+        posted = "\n".join(self.parts)
+        for bucket in cl.REMOVAL_CANDIDATE_BUCKETS:
+            for url, _ in self.buckets[bucket]:
+                self.assertIn(url, posted)
+        for entries in self.landings.values():
+            for url, _ in entries:
+                self.assertIn(url, posted)
+
+    def test_no_entry_is_split_across_two_comments(self):
+        for part in self.parts:
+            lines = part.split("\n")
+            for i, line in enumerate(lines):
+                if line.startswith("- `"):
+                    self.assertTrue(i + 1 < len(lines) and lines[i + 1].startswith("  "),
+                                    f"entry without its detail: {line[:60]}")
+
+    def test_continuations_say_what_they_continue(self):
+        self.assertGreater(len(self.parts), 1)
+        for i, part in enumerate(self.parts[1:], start=2):
+            self.assertIn(f"continued ({i}/{len(self.parts)})", part.split("\n", 1)[0])
+
+    def test_landings_come_before_the_inconclusive_findings(self):
+        posted = "\n".join(self.parts)
+        self.assertLess(posted.index("## Answered, but not where"),
+                        posted.index("## Inconclusive"))
+
+    def test_what_was_left_out_is_counted_and_pointed_to(self):
+        posted = "\n".join(self.parts)
+        hidden = len(self.buckets["blocked"]) - cl.COMMENT_LIST_LIMIT
+        self.assertIn(f"- … and {hidden} more, listed in full in the job summary.", posted)
+
+    def test_the_full_report_still_lists_everything_and_fits_the_summary(self):
+        full = cl.render_report(self.by_url, self.buckets, True, 3, [], self.landings)
+        for url, _ in self.buckets["blocked"]:
+            self.assertIn(url, full)
+        self.assertNotIn("… and", full)
+        self.assertLessEqual(len(full), cl.STEP_SUMMARY_LIMIT)
+
+    def test_a_small_run_is_one_comment_unchanged(self):
+        small = {"blocked": self.buckets["blocked"][:3], "gone": self.buckets["gone"][:2]}
+        report = cl.render_report(self.by_url, small, True, 3, [], None,
+                                  cl.COMMENT_LIST_LIMIT, "the job summary")
+        self.assertEqual(cl.split_for_github(report), [report])
+
+    def test_truncation_respects_its_limit(self):
+        self.assertLessEqual(len(cl.truncate_for_github("x" * 70_000)), cl.GITHUB_BODY_LIMIT)
+        self.assertLessEqual(len(cl.fit_report(self.by_url, self.buckets, True, 3, [],
+                                               self.landings, 2_000, "x")), 2_000)
+
+
+class AttemptsAreDescribedOnce(unittest.TestCase):
+    """Three identical failures are one fact, said once."""
+
+    def attempt(self, detail):
+        return cl.Attempt("gone", 404, detail)
+
+    def test_identical_attempts_collapse(self):
+        same = [self.attempt("HTTP 404 — gone")] * 3
+        self.assertEqual(cl.describe_attempts(same), "3 attempts: HTTP 404 — gone")
+
+    def test_differing_attempts_are_each_kept(self):
+        mixed = [self.attempt("HTTP 404"), self.attempt("HTTP 503")]
+        self.assertEqual(cl.describe_attempts(mixed), "attempt 1: HTTP 404; attempt 2: HTTP 503")
+
+    def test_a_single_attempt_reads_as_before(self):
+        self.assertEqual(cl.describe_attempts([self.attempt("HTTP 404")]), "attempt 1: HTTP 404")
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
