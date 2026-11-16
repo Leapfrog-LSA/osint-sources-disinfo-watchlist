@@ -9,6 +9,26 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- 123 watchlist domains of the PAPERWALL campaign: websites that pose as
+  local news outlets in 30 countries while operated from China, named one by
+  one in the appendix of Citizen Lab's report of 2024-02-07, which attributes
+  the campaign to the PR firm Haimai. 103 → 226 rows.
+
+  The report was fetched and its appendix table parsed — not the report's
+  other domain tables, one of which lists every domain that ever shared an
+  IP address with the network and includes strangers. Each domain was then
+  looked up in the public registry and fetched. For 120 the registry gives a
+  registration date before the report and no registration since, so the
+  label names the registration the source documented. Two `.co` domains
+  could not be read from the registry and still serve the same outlet; one
+  domain is no longer registered. Each row's `notes` says which.
+
+  `impersonated_outlet` carries the name the site gave itself when fetched,
+  where it answered with one; `first_seen` is left empty, because the report
+  gives no date per domain and a registration date is not a sighting.
+
 ## [1.4.0] — 2026-11-16
 
 ### Added
