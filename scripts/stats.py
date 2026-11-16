@@ -46,11 +46,25 @@ def plain(category):
     return re.sub(r"^[^\w]+", "", category).strip()
 
 
+def percent(part, whole):
+    """A whole-number percentage, halves rounded up.
+
+    Not `round()`, which rounds a half to the even number: 12.5% would be
+    demanded as 12 and 37.5% as 38, and the README would be "wrong" for
+    writing 13.
+    """
+    return (200 * part + whole) // (2 * whole)
+
+
+STAMP = re.compile(r"`([a-z0-9][a-z0-9._-]*:\d{4}-(?:0[1-9]|1[0-2]))`")
+TABLE_ROW = re.compile(r"^\| ([^|`]+?)(?: \([^|]*\))? \| ([\d,]+) \|$", re.M)
+
+
 def compute(osint, disinfo):
     total = len(osint)
     categories = Counter(plain(row["Macro-categoria"]) for row in osint)
     coverage = {
-        field: round(100 * sum(1 for row in osint if row[field].strip()) / total)
+        field: percent(sum(1 for row in osint if row[field].strip()), total)
         for field in COVERAGE_FIELDS
     } if total else {}
     batches = Counter(row["Provenienza"].strip() for row in osint)
@@ -131,6 +145,14 @@ def check_readme(stats, readme):
     for batch in sorted(stats["batches"]):
         if f"`{batch}`" not in readme:
             problems.append(f"README never mentions the batch `{batch}`")
+    # And the other way: a batch or a category the README still lists after
+    # its last row has gone.
+    for batch in sorted(set(STAMP.findall(readme)) - set(stats["batches"])):
+        problems.append(f"README mentions the batch `{batch}`, which no row carries")
+    for name, count in TABLE_ROW.findall(readme):
+        if name.strip() not in stats["categories"] and name.strip() != "Category":
+            problems.append(f"README's category table lists {name.strip()!r} ({count}), "
+                            f"which no row carries")
 
     match = re.search(r"^([\d,]+) documented disinformation domains", readme, re.M)
     if not match:
@@ -165,10 +187,12 @@ def main():
     parser.add_argument("--check", action="store_true",
                         help="exit non-zero if README.md disagrees with the CSVs")
     parser.add_argument("--release", action="store_true",
-                        help="with --check, also compare CITATION.cff")
+                        help="check README.md and CITATION.cff; implies --check")
     args = parser.parse_args()
 
     stats = compute(read(OSINT_CSV), read(DISINFO_CSV))
+    if args.release:
+        args.check = True  # asking for the release comparison is asking for a check
     if not args.check:
         print(render(stats))
         return 0

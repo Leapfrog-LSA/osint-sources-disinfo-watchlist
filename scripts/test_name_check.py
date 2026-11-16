@@ -41,6 +41,25 @@ class Distinctive(unittest.TestCase):
     def test_folds_accents_and_case(self):
         self.assertEqual(nc.distinctive("Société GÉNÉRALE"), ["societe", "generale"])
 
+    def test_a_bracketed_qualifier_stays_part_of_the_name(self):
+        # Only an acronym comes off. `(Yukon)` is what tells this registry
+        # from Alberta's.
+        self.assertEqual(nc.distinctive("Corporate Registry (Yukon)"),
+                         ["corporate", "registry", "yukon"])
+
+    def test_letters_without_a_decomposition_are_folded(self):
+        self.assertEqual(nc.distinctive("Główny Urząd"), ["glowny", "urzad"])
+        self.assertEqual(nc.words("ODASI"), nc.words("Odası"))
+        self.assertEqual(nc.words("København"), ["kobenhavn"])
+
+    def test_a_soft_hyphen_does_not_split_a_word(self):
+        self.assertEqual(nc.words("Bundes\u00adanzeiger"), ["bundesanzeiger"])
+
+    def test_a_vowel_sign_does_not_split_a_word(self):
+        # `\w` does not match an Indic vowel sign; splitting on it made
+        # fragments that matched inside longer words.
+        self.assertEqual(len(nc.words("कानूनी सहायता")), 2)
+
     def test_keeps_non_latin_words(self):
         self.assertEqual(nc.distinctive("Агенция по вписванията"),
                          ["агенция", "по", "вписванията"])
@@ -82,6 +101,20 @@ class StatesName(unittest.TestCase):
         self.assertEqual(nc.states_name("Some Long Name (INAPI)", "Accueil", "inapi.gov.dz"),
                          "domain")
 
+    def test_a_subdomain_is_not_the_domain(self):
+        # `news.example.com` is a section of someone's site.
+        self.assertEqual(nc.states_name("News", "Home", "news.example.com"), "")
+
+    def test_an_ip_address_has_no_name(self):
+        self.assertEqual(nc.states_name("168", "x", "192.168.100.200"), "")
+
+    def test_another_bodys_page_does_not_pass_on_a_dropped_qualifier(self):
+        page = "Alberta Corporate Registry — Service Alberta"
+        self.assertEqual(nc.states_name("Corporate Registry (Yukon)", page), "")
+
+    def test_a_longer_word_does_not_state_a_shorter_one(self):
+        self.assertEqual(nc.states_name("कानून", "कानूनी सहायता"), "")
+
     def test_generic_labels_are_not_the_domain(self):
         self.assertEqual(nc.states_name("Gov", "Home", "www.gov.fk"), "")
 
@@ -118,6 +151,24 @@ class VisibleText(unittest.TestCase):
         self.assertIn("Guernsey Registry", text)
         self.assertIn("Company search", text)
 
+    def test_an_apostrophe_does_not_end_a_quoted_attribute(self):
+        # The name of a body whose name is its logo is only in the `alt`.
+        markup = '<img alt="Chambre de Commerce et d\'Industrie du Bénin">'
+        self.assertEqual(nc.states_name("Chambre de Commerce et d'Industrie du Bénin",
+                                        nc.visible_text(markup)), "words")
+
+    def test_commented_out_markup_is_not_text(self):
+        # A reused template with the old owner's name commented out.
+        markup = "<title>Casino 88</title><!-- <h1>Ministry of Finance</h1> -->"
+        self.assertEqual(nc.states_name("Ministry of Finance", nc.visible_text(markup)), "")
+
+    def test_an_attribute_inside_a_script_is_not_text(self):
+        markup = '<script>el.title="Ministry of Finance";</script><p>Casino</p>'
+        self.assertEqual(nc.visible_text(markup), "Casino")
+
+    def test_a_data_attribute_is_not_shown_text(self):
+        self.assertEqual(nc.visible_text('<div data-title="Ministry of Finance">x</div>'), "x")
+
     def test_entities_are_decoded(self):
         self.assertEqual(nc.visible_text("<h1>Commerce &amp; Industry</h1>"),
                          "Commerce & Industry")
@@ -125,6 +176,14 @@ class VisibleText(unittest.TestCase):
     def test_decode_honours_a_declared_charset(self):
         body = '<meta charset="iso-8859-1"><title>Cámara</title>'.encode("iso-8859-1")
         self.assertIn("Cámara", nc.decode(body))
+
+    def test_decode_falls_back_to_the_servers_charset(self):
+        body = "<title>Cámara de Comercio</title>".encode("iso-8859-1")
+        self.assertIn("Cámara", nc.decode(body, "iso-8859-1"))
+
+    def test_decode_survives_a_codec_that_is_not_for_text(self):
+        body = b'<meta charset="idna"><title>Registry</title>'
+        self.assertIn("Registry", nc.decode(body))
 
     def test_decode_survives_an_unknown_charset(self):
         body = b'<meta charset="not-a-charset"><title>Registry</title>'

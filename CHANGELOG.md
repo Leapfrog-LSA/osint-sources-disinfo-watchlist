@@ -11,9 +11,9 @@ structure or to the meaning of an existing column.
 
 ### Added
 
-- 199 business registers and registration authorities (`gleif:2026-11`), 69
+- 196 business registers and registration authorities (`gleif:2026-11`), 67
   national human rights institutions (`ganhri:2026-11`) and 5 fact-checkers
-  (`efcsn:2026-11`). 6,028 → 6,301 rows.
+  (`efcsn:2026-11`). 6,028 → 6,296 rows.
 
   **Registers.** The register a company is entered in is the first thing a
   due diligence check asks for, and the catalogue held 78. GLEIF's
@@ -49,7 +49,8 @@ structure or to the meaning of an existing column.
   Five more landed on a host the catalogue already has. Reading the 129 that
   had *not* stated a name accepted 15 of them, each because the page's own
   title names the body: in Arabic, Hebrew or Japanese, or under a name GLEIF
-  spells differently. That left 199.
+  spells differently. That left 199, and the second reading below took out
+  three more.
 
   Three of the addresses GLEIF publishes have changed hands. The ones listed
   for the Marshall Islands' Ministry of Finance and for the Bank of Sierra
@@ -59,20 +60,21 @@ structure or to the meaning of an existing column.
 
   Each row is named as the subsection names its rows, `Country — Register`,
   carries its GLEIF RA code in `Note`, and has `Lingua` only where the text
-  of the page and the language it declares agree; 38 are left empty. Review
-  sample: 60 of 199, clean.
+  of the page and the language it declares agree; the rest are left empty.
+  Review sample: 60 of 199, read as clean by the hand that ran the import —
+  which the second reading showed was not the same as clean.
 
   **Human rights institutions.** GANHRI lists 119 members with their
   accreditation status; 108 link a website and 104 of those hosts were new.
-  87 answered. 69 are in — 53 on the rule, 16 on reading a title in the
+  87 answered. 69 passed the first reading — 53 on the rule, 16 on reading a title in the
   institution's own language, such as "Pučka pravobraniteljica" or
   "Tiesībsargs". Refused on reading: Spain's entry, which links the Slovak
   centre's site; Moldova's, which serves a web server's default page;
   Malawi's, which links another network's page about the commission; and
   Timor-Leste's, whose heading is a theme's placeholder. The other 14 gave
   no name that could be confirmed, or too little text. The batch is small
-  enough to have been read whole. `Diritti Umani & Giudiziario` goes from 34
-  rows to 103.
+  enough to have been read whole. After the second reading 67 are in, and
+  `Diritti Umani & Giudiziario` goes from 34 rows to 101.
 
   **Fact-checkers.** EFCSN lists 62 verified members; 47 were already in by
   host. Of the 15 others, 4 more were in under another domain (dpa,
@@ -83,21 +85,65 @@ structure or to the meaning of an existing column.
 
   Not reading a page is not evidence against it: none of the 191 registers
   and 17 institutions that could not be fetched is recorded as dead. They
-  are simply not in. The reading was done by the same hand that ran the
-  import, which is one opinion, not two.
+  are simply not in.
+
+  **A second reading, and what it found.** The first reading was done by the
+  hand that ran the import, which is one opinion. Before merge, 260 of the
+  273 rows were fetched and read again by readers who had not seen the first
+  pass; the other 13 could not be fetched that time. It found what the first
+  had missed:
+
+  * **Every GANHRI row said "accreditamento 200".** The import kept the
+    directory's status and the HTTP status of the fetch under one key, and
+    the second overwrote the first: 67 rows carried a response code where
+    the note promised A or B. Nothing checks a `Note`. Each now carries the
+    letter GANHRI's page gives — 58 A, 9 B.
+  * **Mongolia's commission was at a hijacked domain.** The address GANHRI
+    links still serves a copy of the commission's site frozen in 2018 under
+    `/eng/`, which is what the first reading saw; the domain's root is an
+    Indonesian gambling blog. The row is out. The commission's present site
+    renders too little text to be read here, so it is not in either.
+  * **Two bodies were already in the catalogue under another domain** —
+    Türkiye's Capital Markets Board (`spk.gov.tr`) and Peru's SUNAT, whose
+    existing row already names the RUC lookup. Both rows are out.
+  * **Two genuine sites carry injected gambling links** in their own markup:
+    Greece's national human rights commission and Umm Al Quwain's chamber of
+    commerce. The bodies are who they say; the sites are compromised. Both
+    rows are held out rather than added.
+  * **Austria's GISA pointed at the City of Vienna's leaflet about it.** It
+    now points at the register, `gisa.gv.at`.
+  * **Ten rows carried the directory's wording where the site states
+    another**: a Maltese name on a site that is only in English, a misspelt
+    "Formalite des Enterprises", "Nur-Sultan" for a body whose own footer
+    says Astana, a ministry Bhutan's site no longer names. Each now reads as
+    the site does.
+
+  Kept after being questioned: Denmark's and Italy's rows are a register
+  service beside the row for the body that runs it, which this catalogue
+  already does elsewhere.
 
 - `scripts/name_check.py` — the rule a page has to pass before it becomes a
   row, as a module and a command: the acronym the name carries, every
   distinctive word of the name, or the name as the domain. Earlier imports
   applied this rule from a script that was never committed, so each one
-  rewrote it. 27 tests, among them the hijacked domain and the wrong site
+  rewrote it. 41 tests, among them the hijacked domain and the wrong site
   above.
+
+  A review of the module before merge found five ways it was looser or
+  stricter than it claimed, each now fixed and tested: a bracketed qualifier
+  was dropped from the name, so "Corporate Registry (Yukon)" passed on
+  Alberta's page; any subdomain counted as "the domain"; text in comments
+  and scripts counted as shown; an apostrophe ended a quoted attribute, so
+  "Chambre de Commerce et d'Industrie" in a logo's `alt` was cut short; and
+  `ł`, `ø` and `ı` were not folded.
 
 - `scripts/stats.py` — counts both files and, with `--check`, fails when
   `README.md` states a different total, category count, coverage figure,
   number of unstamped rows, list of batches or watchlist size. It runs in the
   validation workflow, which now also triggers on `README.md`. `--release`
-  compares `CITATION.cff` as well. 17 tests.
+  compares `CITATION.cff` as well, and implies `--check`. 20 tests. The
+  comparison runs both ways: a batch or category the README still lists
+  after its last row has gone is reported too.
 
   Run against the README as `v1.3.0` left it, it found nothing: the figures
   written by hand for that release were all right. The check is for the

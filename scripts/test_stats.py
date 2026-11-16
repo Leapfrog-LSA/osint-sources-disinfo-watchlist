@@ -62,6 +62,14 @@ class Compute(unittest.TestCase):
         self.assertEqual(self.stats["coverage"]["Note"], 100)
         self.assertEqual(self.stats["coverage"]["Lingua"], 25)
 
+    def test_a_half_rounds_up(self):
+        # `round()` would give 12 for 12.5 and 2 for 2.5.
+        self.assertEqual(stats.percent(1, 8), 13)
+        self.assertEqual(stats.percent(5, 200), 3)
+        self.assertEqual(stats.percent(3, 8), 38)
+        self.assertEqual(stats.percent(0, 8), 0)
+        self.assertEqual(stats.percent(8, 8), 100)
+
     def test_unstamped_rows_are_not_a_batch(self):
         self.assertEqual(self.stats["unstamped"], 2)
         self.assertEqual(self.stats["batches"], {"egmont:2026-11": 2})
@@ -110,6 +118,16 @@ class CheckReadme(unittest.TestCase):
     def test_an_undocumented_batch_is_reported(self):
         problems = stats.check_readme(self.stats, README.replace("`egmont:2026-11`", ""))
         self.assertTrue(any("egmont:2026-11" in p for p in problems))
+
+    def test_a_batch_no_row_carries_is_reported(self):
+        problems = stats.check_readme(self.stats, README + "\n`gone:2020-01`\n")
+        self.assertTrue(any("gone:2020-01" in p for p in problems))
+
+    def test_a_category_no_row_carries_is_reported(self):
+        readme = README.replace("| Sanzioni, PEP & Compliance (lists) | 2 |",
+                                "| Sanzioni, PEP & Compliance (lists) | 2 |\n| Ghost Category | 40 |")
+        problems = stats.check_readme(self.stats, readme)
+        self.assertTrue(any("Ghost Category" in p for p in problems))
 
     def test_a_stale_watchlist_count_is_reported(self):
         problems = stats.check_readme(self.stats, README.replace("3 documented", "9 documented"))

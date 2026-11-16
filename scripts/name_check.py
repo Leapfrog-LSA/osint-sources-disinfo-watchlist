@@ -52,18 +52,42 @@ STOPWORDS = {
 }
 
 ACRONYM = re.compile(r"\(([A-Z][A-Za-z&.\-]{1,11})\)")
-WORD = re.compile(r"[^\W_]+", re.UNICODE)
 MIN_ACRONYM = 3
+
+# Letters that are one letter to a reader and have no decomposition for
+# `unicodedata` to strip: Polish `ł`, Nordic `ø`, Turkish dotless `ı`.
+_NO_DECOMPOSITION = str.maketrans({
+    "ł": "l", "Ł": "l", "ø": "o", "Ø": "o", "đ": "d", "Đ": "d",
+    "ı": "i", "İ": "i", "ß": "ss",
+})
+# Characters a browser never shows and that would split a word in two.
+_INVISIBLE = dict.fromkeys(map(ord, "\u00ad\u200b\u200c\u200d\u2060\ufeff"))
 
 
 def fold(text):
     """Lower case, without accents: `Société` and `SOCIETE` are one word."""
+    text = text.translate(_INVISIBLE).translate(_NO_DECOMPOSITION)
     decomposed = unicodedata.normalize("NFKD", text)
-    return "".join(c for c in decomposed if not unicodedata.combining(c)).casefold()
+    return "".join(c for c in decomposed if unicodedata.category(c) != "Mn").casefold()
 
 
 def words(text):
-    return WORD.findall(fold(text))
+    """The words of a text, folded.
+
+    A word is a run of letters, digits and the marks that belong to them. The
+    marks matter: an Indic vowel sign is not a letter to `\\w`, and splitting
+    on it turns one word into fragments that match inside longer words.
+    """
+    found, current = [], []
+    for char in fold(text):
+        if unicodedata.category(char)[0] in "LNM":
+            current.append(char)
+        elif current:
+            found.append("".join(current))
+            current = []
+    if current:
+        found.append("".join(current))
+    return found
 
 
 def acronyms(name):
@@ -82,23 +106,34 @@ def acronyms(name):
 
 def distinctive(name):
     """The words of a name that could tell it from another, in order."""
-    bare = ACRONYM.sub(" ", name)
+    # Only a bracket that *is* an acronym comes off. `Corporate Registry
+    # (Yukon)` is not stated by Alberta's Corporate Registry: a qualifier in
+    # brackets is part of the name, and CONTRIBUTING.md asks for exactly that
+    # kind of qualifier to tell two bodies apart.
+    bare = name
+    for acronym in acronyms(name):
+        bare = bare.replace(f"({acronym})", " ")
     return [w for w in words(bare) if w not in STOPWORDS and (len(w) > 1 or not w.isascii())]
 
 
 def registrable_label(host):
-    """The label a body chose for itself: `inapi` in `www.inapi.gov.dz`.
+    """The label a body registered for itself: `inapi` in `www.inapi.gov.dz`.
 
-    Without a public-suffix list this cannot be exact, so it returns every
-    label that is not a generic second level or a country code, and the
-    caller asks whether the name is *one* of them.
+    One label, the one next to the suffix — not every label. `news` in
+    `news.example.com` is a section of someone's site, and a source called
+    "News" does not have that site's name as its domain. Without a
+    public-suffix list the suffix is approximated: the top-level domain, and
+    any generic second level before it. Returns a list, empty or of one.
     """
     generic = {"www", "gov", "gob", "gouv", "govt", "go", "com", "org", "net",
                "co", "ac", "edu", "or", "nic", "gv", "admin", "web", "portal"}
     labels = fold(host).split(":")[0].split(".")
-    if len(labels) > 1:
-        labels = labels[:-1]  # the top-level domain
-    return [label for label in labels if label not in generic and len(label) > 2]
+    if len(labels) < 2 or all(label.isdigit() for label in labels):
+        return []  # a bare name or an IP address has no registered label
+    labels = labels[:-1]  # the top-level domain
+    while labels and labels[-1] in generic:
+        labels.pop()
+    return [labels[-1]] if labels and len(labels[-1]) > 2 else []
 
 
 def states_name(name, page_text, host=""):
@@ -137,18 +172,31 @@ def states_name(name, page_text, host=""):
 # --------------------------------------------------------------------------
 
 _HIDDEN = re.compile(r"<(script|style|noscript|svg|template)\b[^>]*>.*?</\1>", re.S | re.I)
+_COMMENT = re.compile(r"<!--.*?-->", re.S)
 _TAG = re.compile(r"<[^>]+>")
 _CHARSET = re.compile(rb'<meta[^>]+charset=["\']?([\w-]+)', re.I)
+# The value runs to the quote that opened it, so `alt="Chambre d'Industrie"`
+# is read whole. No `data-content`, no `og:title`-style suffix match.
+_SHOWN_ATTR = re.compile(r"""(?<![\w-])(?:content|alt|title)\s*=\s*(?:"([^"]*)"|'([^']*)')""", re.I)
 
 
-def decode(body):
-    """Bytes to text, honouring the charset the page declares for itself."""
+def decode(body, header_charset=""):
+    """Bytes to text, honouring the charset the page declares for itself.
+
+    The page's own `<meta charset>` first, then the one the server sent in
+    `Content-Type`, then UTF-8. A charset Python does not know, or cannot use
+    on text, falls through to the next.
+    """
     declared = _CHARSET.search(body[:4000])
-    if declared:
+    candidates = [declared.group(1).decode("ascii", "replace") if declared else "",
+                  header_charset or ""]
+    for charset in candidates:
+        if not charset:
+            continue
         try:
-            return body.decode(declared.group(1).decode("ascii"), errors="replace")
-        except LookupError:
-            pass
+            return body.decode(charset, errors="replace")
+        except (LookupError, UnicodeError):
+            continue
     return body.decode("utf-8", errors="replace")
 
 
@@ -159,8 +207,12 @@ def visible_text(markup):
     `content`, `alt` and `title` — because a body whose name is a logo says
     so only in the image's `alt`.
     """
-    shown = " ".join(re.findall(r'\b(?:content|alt|title)=["\']([^"\']*)', markup, re.I))
-    stripped = _TAG.sub(" ", _HIDDEN.sub(" ", markup))
+    # Comments and scripts go first, and the attributes are read from what is
+    # left: a name that survives only in commented-out markup, or in a string
+    # inside a script, is not on the page.
+    markup = _HIDDEN.sub(" ", _COMMENT.sub(" ", markup))
+    shown = " ".join(a or b for a, b in _SHOWN_ATTR.findall(markup))
+    stripped = _TAG.sub(" ", markup)
     return re.sub(r"\s+", " ", html.unescape(f"{stripped} {shown}")).strip()
 
 
@@ -177,7 +229,8 @@ def main():
     try:
         with cl.OPENER.open(cl._request(args.url, cl.USER_AGENTS[0]), timeout=25) as resp:
             final = resp.geturl()
-            text = visible_text(decode(resp.read(400_000)))
+            text = visible_text(decode(resp.read(400_000),
+                                       resp.headers.get_content_charset() or ""))
     except Exception as error:  # noqa: BLE001 — any failure means "not read"
         print(f"not read — {type(error).__name__}: {error}")
         print("That says nothing about the source: it was not seen.")

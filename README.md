@@ -50,21 +50,21 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-6,301 sources across 12 macro-categories:
+6,296 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
 | Media & Testate Giornalistiche | 2,273 |
 | Settori Specifici (AI/dev tools, finance, sector-specific) | 1,565 |
 | Open Data & Trasparenza | 621 |
-| Registri Aziendali & Corporate Intelligence | 480 |
+| Registri Aziendali & Corporate Intelligence | 477 |
 | Statistiche & Dati Macroeconomici | 413 |
 | Cybersecurity & Digital OSINT | 236 |
 | Sanzioni, PEP & Compliance | 185 |
 | Geopolitica & Intelligence | 151 |
 | Fact-Checking & Disinformazione | 121 |
 | Social Media & Media Monitoring | 107 |
-| Diritti Umani & Giudiziario | 103 |
+| Diritti Umani & Giudiziario | 101 |
 | Sostenibilità & ESG | 46 |
 
 ### Columns
@@ -183,7 +183,7 @@ The same workflow runs the scripts' own test suite:
 python -m unittest discover -s scripts -p "test_*.py"
 ```
 
-The 174 tests cover [`scripts/check_links.py`](scripts/check_links.py) (61), which decides what gets proposed for removal from the catalogue and where the findings are posted; [`scripts/validate.py`](scripts/validate.py) (54); [`scripts/name_check.py`](scripts/name_check.py) (27), the rule a page has to pass before it becomes a row; [`scripts/stats.py`](scripts/stats.py) (17); and [`scripts/sample_batch.py`](scripts/sample_batch.py) (15), which draws the review sample for a bulk import. Each of the three faults that removed a live source in `v0.5.0` has a test named after the source it killed, so a failure says which row is about to be lost. They make no network requests.
+The 191 tests cover [`scripts/check_links.py`](scripts/check_links.py) (61), which decides what gets proposed for removal from the catalogue and where the findings are posted; [`scripts/validate.py`](scripts/validate.py) (54); [`scripts/name_check.py`](scripts/name_check.py) (41), the rule a page has to pass before it becomes a row; [`scripts/stats.py`](scripts/stats.py) (20); and [`scripts/sample_batch.py`](scripts/sample_batch.py) (15), which draws the review sample for a bulk import. Each of the three faults that removed a live source in `v0.5.0` has a test named after the source it killed, so a failure says which row is about to be lost. They make no network requests.
 
 ### Link checking
 

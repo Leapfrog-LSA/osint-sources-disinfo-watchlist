@@ -69,10 +69,12 @@ python scripts/name_check.py "Guernsey Registry" https://www.guernseyregistry.co
 
 It is a filter, not a verdict, in both directions. **What passes is still read**: a ministry's home page states the ministry's name and is not the register the row would claim; a server's default page has passed on a stock phrase. **What fails is not thereby wrong**: a page that says who it is in Arabic fails against an English name, and a person who can read it may accept it — saying so in the pull request. And a name the site states differently from the directory is entered as the site states it.
 
-Three things the check cannot see, each of which a batch has been caught on:
+Five things the check cannot see, each of which a batch has been caught on:
 
 - **The same body under another address.** Comparing hosts finds `www.` and `http` variants and nothing else. Kuwait's chamber of commerce, Delaware's Division of Corporations and three fact-checkers were already in the catalogue under a different domain when `gleif:2026-11` and `efcsn:2026-11` proposed them again. Search the catalogue for the name, not only the host.
 - **The subsection's own conventions.** `Registri & Ownership` names its rows `Country — Register`; a batch that arrives with another shape is a batch nobody compared with its neighbours.
+- **Its own bookkeeping.** All 67 rows of `ganhri:2026-11` first said "accreditamento 200": the script that built them kept GANHRI's status and the HTTP status of the fetch under one name. No check reads a `Note`, and the reader who ran the import did not see it; a second reader did, on the first row. Have someone who did not build the batch read the sample.
+- **A path that outlived its domain.** Mongolia's human rights commission was listed at an address whose `/eng/` still served the commission's old pages while the domain's root had become a gambling blog. Read the root as well as the path.
 - **What the directory's own fields mean.** EFCSN gives Estonia as the country of two Georgian fact-checkers. A country taken from a directory is filled only where the site does not contradict it.
 
 Up to a few hundred rows, read the batch end to end — that is how the first two imports were reviewed, and nothing beats it. Past that it stops being possible, and a batch is accepted on a sample instead:
