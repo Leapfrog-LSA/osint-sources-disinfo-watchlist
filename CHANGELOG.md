@@ -9,6 +9,100 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- 199 business registers and registration authorities (`gleif:2026-11`), 69
+  national human rights institutions (`ganhri:2026-11`) and 5 fact-checkers
+  (`efcsn:2026-11`). 6,028 → 6,301 rows.
+
+  **Registers.** The register a company is entered in is the first thing a
+  due diligence check asks for, and the catalogue held 78. GLEIF's
+  Registration Authorities List — the registers an LEI record may cite, v1.9
+  of 2026-09-30 — names 1,181, of which 884 give a website, on 816 hosts, 605
+  of them not in the catalogue. All 605 were fetched, over HTTPS only: the
+  network this was run from makes no plain-HTTP requests, so a site that
+  answers on `http://` alone was not read and is not in.
+
+  414 answered, 43 of them only at the site's root because the path GLEIF
+  gives is `404`. 285 stated the register's name or its keeper's, in English
+  or in the local form GLEIF records. Every one of those was then read, and
+  96 were refused:
+
+  * 21 free-zone sites whose page sells company formation rather than
+    publishing a register — the two that publish one, DMCC's and Dubai
+    South's, are in;
+  * 19 home pages of a ministry, a department or a government portal, which
+    state the ministry's name and are not the register;
+  * 17 that render too little text to read — under 300 characters;
+  * 13 registers of people in a profession: doctors, dentists, midwives,
+    lawyers, auditors. A register of persons is not a register of entities;
+  * 12 that are something else: parish directories, a water information
+    system, a land court, a register of universities, document-verification
+    services, the UN Treaty Collection;
+  * 12 on the page itself: a "page not found" served with `200`, a login
+    form, a theme's placeholder heading, an address carrying a session or
+    document id, an acronym with nothing beside it to confirm it, a
+    department renamed since, an agency dissolved since;
+  * 2 already in the catalogue under another domain — Kuwait's chamber of
+    commerce and Malaysia's SSM.
+
+  Five more landed on a host the catalogue already has. Reading the 129 that
+  had *not* stated a name accepted 15 of them, each because the page's own
+  title names the body: in Arabic, Hebrew or Japanese, or under a name GLEIF
+  spells differently. That left 199.
+
+  Three of the addresses GLEIF publishes have changed hands. The ones listed
+  for the Marshall Islands' Ministry of Finance and for the Bank of Sierra
+  Leone serve gambling pages, and the one for Senegal's Trade Point
+  redirects to a football-streaming site. All three answer `200` with a full
+  page, and none states the name — which is the reason the rule exists.
+
+  Each row is named as the subsection names its rows, `Country — Register`,
+  carries its GLEIF RA code in `Note`, and has `Lingua` only where the text
+  of the page and the language it declares agree; 38 are left empty. Review
+  sample: 60 of 199, clean.
+
+  **Human rights institutions.** GANHRI lists 119 members with their
+  accreditation status; 108 link a website and 104 of those hosts were new.
+  87 answered. 69 are in — 53 on the rule, 16 on reading a title in the
+  institution's own language, such as "Pučka pravobraniteljica" or
+  "Tiesībsargs". Refused on reading: Spain's entry, which links the Slovak
+  centre's site; Moldova's, which serves a web server's default page;
+  Malawi's, which links another network's page about the commission; and
+  Timor-Leste's, whose heading is a theme's placeholder. The other 14 gave
+  no name that could be confirmed, or too little text. The batch is small
+  enough to have been read whole. `Diritti Umani & Giudiziario` goes from 34
+  rows to 103.
+
+  **Fact-checkers.** EFCSN lists 62 verified members; 47 were already in by
+  host. Of the 15 others, 4 more were in under another domain (dpa,
+  Re:Baltica, Myth Detector, Viral Check), 4 showed a verification that had
+  lapsed on the day it was read, and 2 could not be fetched. The directory
+  gives Estonia as the country of two Georgian fact-checkers, so `Paese /
+  Area` is filled only where the site does not contradict it.
+
+  Not reading a page is not evidence against it: none of the 191 registers
+  and 17 institutions that could not be fetched is recorded as dead. They
+  are simply not in. The reading was done by the same hand that ran the
+  import, which is one opinion, not two.
+
+- `scripts/name_check.py` — the rule a page has to pass before it becomes a
+  row, as a module and a command: the acronym the name carries, every
+  distinctive word of the name, or the name as the domain. Earlier imports
+  applied this rule from a script that was never committed, so each one
+  rewrote it. 27 tests, among them the hijacked domain and the wrong site
+  above.
+
+- `scripts/stats.py` — counts both files and, with `--check`, fails when
+  `README.md` states a different total, category count, coverage figure,
+  number of unstamped rows, list of batches or watchlist size. It runs in the
+  validation workflow, which now also triggers on `README.md`. `--release`
+  compares `CITATION.cff` as well. 17 tests.
+
+  Run against the README as `v1.3.0` left it, it found nothing: the figures
+  written by hand for that release were all right. The check is for the
+  next time.
+
 ### Changed
 
 - `README.md` brought up to date after `v1.3.0`: the pinning example

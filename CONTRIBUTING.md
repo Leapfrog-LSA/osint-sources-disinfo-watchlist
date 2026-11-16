@@ -26,6 +26,14 @@ A row whose `Paese / Area` disagrees with the place its `Note` opens with. Often
 
 Read them, decide, and leave them alone if they're fine — they are not a gate.
 
+If your change adds or removes rows, the figures in `README.md` change with it, and the same workflow checks them:
+
+```bash
+python scripts/stats.py --check
+```
+
+It names each figure that is out of date; `python scripts/stats.py` prints the current ones.
+
 If you changed anything under `scripts/`, run the tests too — the same workflow does:
 
 ```bash
@@ -52,6 +60,20 @@ Columns: `Macro-categoria`, `Sottosezione`, `Fonte`, `URL`, `RSS Feed`, `Lingua`
 Anything imported from a directory rather than added one at a time is a **batch**: every row sharing a `Provenienza` value. [`scripts/discover_candidates.py`](scripts/discover_candidates.py) stamps the directories it knows about; a batch pulled from anywhere else is stamped the same way, `<list>:<YYYY-MM>`, with a list name that says which directory it was. What makes a stamp legitimate is that the rows really did come from one directory in one pass — not which script wrote it.
 
 **A directory is a source of candidates, not of facts.** Its URLs go stale and its entries can be wrong: in `unsd:2026-09`, six of the URLs the UN Statistics Division publishes for national statistical offices answered `200` with a full page while pointing at an embassy, an unrelated domain, or one shared regional page reused for four different countries. Every row still has to be fetched and read for the name the page gives itself, before the batch is stamped — the sample check comes after that, and cannot substitute for it.
+
+[`scripts/name_check.py`](scripts/name_check.py) is the first half of that, so that every import applies the same rule: a page passes if it prints the acronym the name carries, every distinctive word of the name, or has the name as its domain.
+
+```bash
+python scripts/name_check.py "Guernsey Registry" https://www.guernseyregistry.com
+```
+
+It is a filter, not a verdict, in both directions. **What passes is still read**: a ministry's home page states the ministry's name and is not the register the row would claim; a server's default page has passed on a stock phrase. **What fails is not thereby wrong**: a page that says who it is in Arabic fails against an English name, and a person who can read it may accept it — saying so in the pull request. And a name the site states differently from the directory is entered as the site states it.
+
+Three things the check cannot see, each of which a batch has been caught on:
+
+- **The same body under another address.** Comparing hosts finds `www.` and `http` variants and nothing else. Kuwait's chamber of commerce, Delaware's Division of Corporations and three fact-checkers were already in the catalogue under a different domain when `gleif:2026-11` and `efcsn:2026-11` proposed them again. Search the catalogue for the name, not only the host.
+- **The subsection's own conventions.** `Registri & Ownership` names its rows `Country — Register`; a batch that arrives with another shape is a batch nobody compared with its neighbours.
+- **What the directory's own fields mean.** EFCSN gives Estonia as the country of two Georgian fact-checkers. A country taken from a directory is filled only where the site does not contradict it.
 
 Up to a few hundred rows, read the batch end to end — that is how the first two imports were reviewed, and nothing beats it. Past that it stops being possible, and a batch is accepted on a sample instead:
 
@@ -108,13 +130,19 @@ For `disinfo_sources_master.csv`, a domain going dark is often a takedown rather
 
 ## Cutting a release
 
-Four files carry numbers that go stale, and nothing checks them against each other. Update all four in the release commit, in this order:
+Four files carry numbers that go stale. `README.md` is checked against the CSVs on every push; `CITATION.cff` describes a release, so it is checked only when you ask:
+
+```bash
+python scripts/stats.py --check --release
+```
+
+Update all four in the release commit, in this order:
 
 1. **`CHANGELOG.md`** — rename `[Unreleased]` to the new version with today's date, and open a fresh empty `[Unreleased]` above it.
 2. **`README.md`** — recompute the total and the twelve category counts *from the CSV*, never by adjusting the old figures by hand, and check the twelve rows sum to the declared total. Re-derive the field-coverage percentages too.
 3. **`CITATION.cff`** — the row count in the abstract, `version`, and `date-released`. All three describe the release being cut, so they move together.
 4. **The tag**, pointing at the release commit.
 
-`CITATION.cff` is the one that has actually been missed: `v0.5.1` bumped `version` and left the abstract saying 5,098 when the catalogue held 5,108. Nothing failed, because nothing looks at it — which is why it is written down here.
+`CITATION.cff` is the one that has actually been missed: `v0.5.1` bumped `version` and left the abstract saying 5,098 when the catalogue held 5,108. Nothing failed, because nothing looked at it — which is why it is written down here, and why `--release` now does.
 
 A major bump signals a change to the column structure or to the meaning of an existing column. Adding, correcting or reclassifying rows does not.
