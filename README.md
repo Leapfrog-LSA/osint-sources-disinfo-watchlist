@@ -20,7 +20,11 @@ They are kept in the same repo because they're produced and maintained together 
 Fonti_OSINT.csv              the source catalogue
 disinfo_sources_master.csv   the disinformation watchlist
 scripts/validate.py          checks both files; run before opening a PR
+scripts/stats.py             counts both files; checks this README says the same
 scripts/check_links.py       checks every URL still resolves; runs monthly in CI
+scripts/name_check.py        checks a page states the name a row would give it
+scripts/discover_candidates.py   draws candidates from a curated directory
+scripts/sample_batch.py      draws the review sample for a bulk import
 CHANGELOG.md                 what changed, by release
 CONTRIBUTING.md              conventions and data-quality rules
 CITATION.cff                 citation metadata
@@ -46,22 +50,22 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-6,028 sources across 12 macro-categories:
+6,296 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
 | Media & Testate Giornalistiche | 2,273 |
 | Settori Specifici (AI/dev tools, finance, sector-specific) | 1,565 |
 | Open Data & Trasparenza | 621 |
+| Registri Aziendali & Corporate Intelligence | 477 |
 | Statistiche & Dati Macroeconomici | 413 |
-| Registri Aziendali & Corporate Intelligence | 281 |
 | Cybersecurity & Digital OSINT | 236 |
 | Sanzioni, PEP & Compliance | 185 |
 | Geopolitica & Intelligence | 151 |
-| Fact-Checking & Disinformazione | 116 |
+| Fact-Checking & Disinformazione | 121 |
 | Social Media & Media Monitoring | 107 |
+| Diritti Umani & Giudiziario | 101 |
 | Sostenibilità & ESG | 46 |
-| Diritti Umani & Giudiziario | 34 |
 
 ### Columns
 
@@ -92,7 +96,7 @@ Several tokens can be joined with `/` (e.g. `GB/IE`, `IT-Puglia/IT-Basilicata`).
 
 **`Accesso`** is a controlled vocabulary: `Gratuito`, `Pubblico`, `Freemium`, `A pagamento`, `Open Source`, `Commerciale`, `Community`, `Premium`, `Enterprise`, `Self-hosted`, `Waitlist`.
 
-**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `ifcn:2026-09`, `unsd:2026-09`, `wikipedia.nso:2026-09`, `wikipedia.cb:2026-09`, `occrp:2026-09`, `first:2026-09`, `bis:2026-09`, `mom:2026-09`, `doaj:2026-09`, `ricerca.it:2026-09`, `wipo:2026-11`, `egmont:2026-11`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
+**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `ifcn:2026-09`, `unsd:2026-09`, `wikipedia.nso:2026-09`, `wikipedia.cb:2026-09`, `occrp:2026-09`, `first:2026-09`, `bis:2026-09`, `mom:2026-09`, `doaj:2026-09`, `ricerca.it:2026-09`, `wipo:2026-11`, `egmont:2026-11`, `gleif:2026-11`, `ganhri:2026-11`, `efcsn:2026-11`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
 
 It exists so that a batch can be *measured* and, if it turns out to be bad, *removed in one operation*. A single directory that produces a high rate of dead links six months later is a fact you can only establish if you know which rows came from it — and a bad batch of two thousand rows cannot be undone by re-reading them one by one.
 
@@ -107,7 +111,7 @@ Optional fields are filled only where the value could be established from the so
 | Field | Filled |
 |---|---:|
 | `Note` | 100% |
-| `Paese / Area` | 90% |
+| `Paese / Area` | 91% |
 | `Lingua` | 84% |
 | `RSS Feed` | 18% |
 | `Accesso` | 6% |
@@ -164,13 +168,22 @@ Two of its rules are worth knowing because they are deliberately narrow:
 
 **A country code that disagrees with its own note is a warning too.** Every wrong country found so far has been a *valid* ISO code, so the format check accepts it and always will: `SD` for three South Sudanese outlets, `BZ` — Belize — for a South Tyrol paper, `BE` — Belgium — for a Belarusian one where a language tag had been copied into the wrong column, and `MX` for the Albuquerque Journal, from "New Mexico". Nothing in those rows is malformed; the only thing that disagrees is the prose beside them. So the check reads the place a `Note` opens with and compares it to the code. It is a warning because this catalogue deliberately files some sources by subject rather than by publisher — 38 North is a US think tank writing about North Korea — and those are indistinguishable from a mistake without reading the row.
 
+**The figures in this README are checked too.** The total, the twelve category counts, the coverage percentages, the number of unstamped rows, the list of batches and the size of the watchlist are compared with the CSVs by [`scripts/stats.py`](scripts/stats.py) on every push and pull request, so a change that adds rows has to update this page in the same change:
+
+```bash
+python scripts/stats.py            # print the current figures
+python scripts/stats.py --check    # fail if this README disagrees
+```
+
+Before that check existed the figures were recomputed by hand at each release, and `v0.5.1` shipped a `CITATION.cff` that was ten rows behind the catalogue.
+
 The same workflow runs the scripts' own test suite:
 
 ```bash
 python -m unittest discover -s scripts -p "test_*.py"
 ```
 
-The 130 tests cover [`scripts/check_links.py`](scripts/check_links.py) (61), which decides what gets proposed for removal from the catalogue and where the findings are posted; [`scripts/validate.py`](scripts/validate.py) (54); and [`scripts/sample_batch.py`](scripts/sample_batch.py) (15), which draws the review sample for a bulk import. Each of the three faults that removed a live source in `v0.5.0` has a test named after the source it killed, so a failure says which row is about to be lost. They make no network requests.
+The 191 tests cover [`scripts/check_links.py`](scripts/check_links.py) (61), which decides what gets proposed for removal from the catalogue and where the findings are posted; [`scripts/validate.py`](scripts/validate.py) (54); [`scripts/name_check.py`](scripts/name_check.py) (41), the rule a page has to pass before it becomes a row; [`scripts/stats.py`](scripts/stats.py) (20); and [`scripts/sample_batch.py`](scripts/sample_batch.py) (15), which draws the review sample for a bulk import. Each of the three faults that removed a live source in `v0.5.0` has a test named after the source it killed, so a failure says which row is about to be lost. They make no network requests.
 
 ### Link checking
 
@@ -206,6 +219,14 @@ python scripts/discover_candidates.py --source opensanctions
 
 Two directories are wired up: the IFCN's verified signatories, and OpenSanctions' catalogue of the official publishers it aggregates. It never touches `Fonti_OSINT.csv` — it writes a separate review file with the same columns, for a human to check and merge by hand. The OpenSanctions source in particular needs that review: its publisher list is noisy enough that a keyword filter can't carry the whole job.
 
+**A candidate that is alive is not yet a candidate that is who the directory says.** A directory's addresses go stale while still answering `200` with a full page. Of the addresses GLEIF's list of registration authorities gave in November 2026, three had changed hands — the ones listed for the Marshall Islands' Ministry of Finance and for the Bank of Sierra Leone now serve gambling pages — and GANHRI's member list links Spain's ombudsman to the Slovak human rights centre. So before a candidate becomes a row, its own page has to state its own name, and [`scripts/name_check.py`](scripts/name_check.py) is that rule:
+
+```bash
+python scripts/name_check.py "Registro Mercantil Central" https://www.rmc.es
+```
+
+A page passes if it prints the acronym the name carries, *every* distinctive word of the name, or has the name as its domain. Passing is necessary, not sufficient — a server's default page and a ministry's portal standing in for an office it hosts both pass a rule like this — so whatever passes is still read by a person. Failing means "not confirmed", never "wrong".
+
 One caveat worth knowing: its verification calls the same `check_url()` the link checker uses, so **a candidate it rejects has not had a second opinion**. `v0.5.0` treated a rejection here as independent corroboration of one there and dropped a live IFCN signatory on the strength of the same mistake counted twice.
 
 ## Versions
@@ -239,9 +260,12 @@ Rows imported in bulk carry a `Provenienza` stamp naming the directory they came
 | `doaj:2026-09` | DOAJ | metadata under CC0 | one row: the directory itself |
 | `wipo:2026-11` | [WIPO Directory of IP Offices](https://www.wipo.int/en/web/country-profiles/directory-ip-offices) | online content under [CC BY 4.0](https://www.wipo.int/en/web/terms-of-use) | name and website of each IP office; each row credits WIPO in `Note` |
 | `egmont:2026-11` | [Egmont Group](https://egmontgroup.org/members-by-region/) member list | public list | name and website of each Financial Intelligence Unit |
+| `gleif:2026-11` | [GLEIF Registration Authorities List](https://www.gleif.org/en/about-lei/code-lists/gleif-registration-authorities-list), v1.9 of 2026-09-30 | a code list published by GLEIF, whose [LEI data terms](https://www.gleif.org/en/meta/lei-data-terms-of-use) are CC0 | name, jurisdiction, website and RA code of each business register or registration authority; each row gives its RA codes in `Note` |
+| `ganhri:2026-11` | [GANHRI](https://ganhri.org/membership/) member list | public list | name, website and accreditation status (A or B) of each national human rights institution |
+| `efcsn:2026-11` | [EFCSN](https://members.efcsn.com/signatories) verified members | public list | name and website of each fact-checker whose verification was current when read |
 | `ricerca.it:2026-09` | a file prepared for this repository | — | Italian sources, each verified individually |
 
-From every directory, only facts were taken — the name of a body and the address of its website — and each address was checked as described above. No directory's descriptions, rankings or other content were copied: the `Note` text is this repository's own.
+From every directory, only facts were taken — the name of a body, the address of its website and, where a row says so, an identifier or status the directory assigns — and each address was checked as described above. No directory's descriptions, rankings or other content were copied: the `Note` text is this repository's own.
 
 **OpenSanctions.** The 52 rows stamped `opensanctions:2026-08` list public authorities that publish sanctions and PEP lists, identified through OpenSanctions' index of the sources it collects. OpenSanctions licenses its data for non-commercial use only. What these rows hold is the name and official website of a public authority — 21 of them confirmed at the authority's own site in November 2026, the rest still marked "verifica consigliata". If you plan to reuse these particular rows commercially, check [OpenSanctions' terms](https://www.opensanctions.org/licensing/) first. Filtering them out is one line: `sources[~sources["Provenienza"].str.startswith("opensanctions", na=False)]`.
 

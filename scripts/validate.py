@@ -385,7 +385,7 @@ def note_place(note):
     `Guinea` inside `Papua Nuova Guinea` is not mistaken for Guinea, and
     `Sudan` inside `Sud Sudan` is not mistaken for Sudan.
     """
-    head = re.split(r"[—–·|(;]", note, 1)[0].strip()
+    head = re.split(r"[—–·|(;]", note, maxsplit=1)[0].strip()
     if not 1 <= len(head.split()) <= 3 or len(head) < 4:
         return ""
     return head.casefold()
