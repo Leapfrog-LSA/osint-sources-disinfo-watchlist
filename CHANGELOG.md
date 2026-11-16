@@ -9,6 +9,109 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+### Added
+
+- 724 public authorities (`ror:2026-11`) and 202 open data portals
+  (`dataportals:2026-11`). 6,296 → 7,222 rows.
+
+  **Public authorities.** ROR, the Research Organization Registry, lists
+  9,556 active organisations of type *government*, each with a website, a
+  country and an identifier, under CC0. 5,368 had a host the catalogue did
+  not, once municipalities, universities, hospitals and laboratories were
+  set aside by name. The inclusion rule was fixed before any page was read:
+  a national authority, an authority of a federated state or region, or an
+  international organisation, in an area the catalogue already has a
+  subsection for. Read from the names alone, that kept 2,526 and left out
+  2,843 — local government, research institutes, sub-offices, programmes.
+
+  Of the 2,526, 1,445 could be fetched and had text to read; 949 could not
+  be reached and 132 rendered too little. The first 900 of the 1,445 —
+  national bodies whose page states their name — were read, each page
+  fetched again by its reader: 728 accepted, 102 refused, 70 not reachable
+  that time. Refused: bodies already in the catalogue under another domain,
+  bodies dissolved or renamed whose old site still answers, domains that
+  have changed hands, maintenance notices, laboratories that had passed the
+  name triage. The other 545 have not been read and are not in.
+
+  Each row is named as its site names itself — the current name where a
+  ministry has been renamed since ROR recorded it — and carries its ROR id
+  in `Note`.
+
+  **Open data portals.** dataportals.org lists 702; 583 had a new host, 297
+  could be read, and 205 were accepted: a portal had to offer datasets
+  today, not a page about data, a pointer to another site, or a shell.
+
+  **Second reading.** All 933 accepted rows were then read again,
+  independently and with the instruction to find what the first reading
+  had got wrong. 901 stood. 22 were right about the source and wrong in a
+  field, and were corrected: ten names the site states differently, five
+  languages — an English section entered with the languages of the whole
+  site — and notes, a subsection, two addresses. Seven were removed: a
+  forestry service whose pages carry injected gambling links, a statistics
+  office already in the catalogue, an inspectorate dissolved in 2025 whose
+  site says so, a ministry site frozen since 2021, and three city portals
+  whose newest dataset is years old. Three could not be fetched the second
+  time and stand on one reading.
+
+  The first reading of 600 of the 900 authorities was done by a smaller
+  model than the rest, after a comparison on 50 candidates: it gave the
+  same verdict on 44 and was the stricter of the two on the other six,
+  never the more permissive. The second reading was not delegated down.
+
+- 177 official bodies from Wikidata (`wikidata:2026-11`) and 62 more public
+  authorities from ROR. 7,222 → 7,461 rows.
+
+  Wikidata gave 5,009 candidates with a new host, in classes that map onto
+  a subsection: stock exchanges, legislatures, electoral commissions,
+  supreme and constitutional courts, standards bodies, national libraries
+  and archives, revenue services, development banks and some forty smaller
+  ones. Classes too wide to mean anything were left out whole — diplomatic
+  missions, "international organization", state-owned enterprises — and so
+  were news agencies, because belonging to that class says nothing about
+  reliability. 1,525 could be read and stated their name. The first 300,
+  taken in rotation across the classes, were read: 177 accepted, 103
+  refused, 20 not reachable. Wikidata files a city council beside a national
+  parliament and a single tax office beside a revenue service; 87 of the
+  refusals were for scope.
+
+  The fourth lot of ROR candidates was almost entirely authorities of
+  federated states and regions: 261 accepted of 300, 152 of them in the
+  United States. All met the inclusion rule, and taking all of them would
+  have tilted the catalogue. 63 were kept — justice, public health,
+  treasuries and audit, revenue, electoral bodies, registers, financial
+  supervision, statistics — and 198 set aside, not refused: departments of
+  wildlife, parks, labour, agriculture and transport of individual states.
+
+  All 240 were read a second time. 210 stood, 28 had a field corrected —
+  thirteen names, among them bare names such as "Anti-Corruption
+  Commission" that needed their country — one was removed as a sub-page of
+  a legislature's site, and one could not be re-fetched.
+
+- The 123 PAPERWALL rows were checked against their source by a reader who
+  had not built them: the set is the report's appendix table exactly, the
+  countries agree, and every outlet name is the title the site shows. One
+  wording changed. `attribution` opened with "Cina —", which can be read as
+  attributing the campaign to a state; the report attributes it to a PR
+  firm based in China, and the row now says that.
+
+- 123 watchlist domains of the PAPERWALL campaign: websites that pose as
+  local news outlets in 30 countries while operated from China, named one by
+  one in the appendix of Citizen Lab's report of 2024-02-07, which attributes
+  the campaign to the PR firm Haimai. 103 → 226 rows.
+
+  The report was fetched and its appendix table parsed — not the report's
+  other domain tables, one of which lists every domain that ever shared an
+  IP address with the network and includes strangers. Each domain was then
+  looked up in the public registry and fetched. For 120 the registry gives a
+  registration date before the report and no registration since, so the
+  label names the registration the source documented. Two `.co` domains
+  could not be read from the registry and still serve the same outlet; one
+  domain is no longer registered. Each row's `notes` says which.
+
+  `impersonated_outlet` carries the name the site gave itself when fetched,
+  where it answered with one; `first_seen` is left empty, because the report
+  gives no date per domain and a registration date is not a sighting.
+
 ## [1.4.0] — 2026-11-16
 
 ### Added

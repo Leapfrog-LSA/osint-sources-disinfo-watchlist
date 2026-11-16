@@ -50,21 +50,21 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-6,296 sources across 12 macro-categories:
+7,461 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
-| Media & Testate Giornalistiche | 2,273 |
-| Settori Specifici (AI/dev tools, finance, sector-specific) | 1,565 |
-| Open Data & Trasparenza | 621 |
-| Registri Aziendali & Corporate Intelligence | 477 |
-| Statistiche & Dati Macroeconomici | 413 |
-| Cybersecurity & Digital OSINT | 236 |
-| Sanzioni, PEP & Compliance | 185 |
-| Geopolitica & Intelligence | 151 |
+| Media & Testate Giornalistiche | 2,274 |
+| Settori Specifici (AI/dev tools, finance, sector-specific) | 2,228 |
+| Open Data & Trasparenza | 1,055 |
+| Registri Aziendali & Corporate Intelligence | 481 |
+| Statistiche & Dati Macroeconomici | 452 |
+| Cybersecurity & Digital OSINT | 241 |
+| Sanzioni, PEP & Compliance | 189 |
+| Geopolitica & Intelligence | 158 |
 | Fact-Checking & Disinformazione | 121 |
 | Social Media & Media Monitoring | 107 |
-| Diritti Umani & Giudiziario | 101 |
+| Diritti Umani & Giudiziario | 109 |
 | Sostenibilità & ESG | 46 |
 
 ### Columns
@@ -96,7 +96,7 @@ Several tokens can be joined with `/` (e.g. `GB/IE`, `IT-Puglia/IT-Basilicata`).
 
 **`Accesso`** is a controlled vocabulary: `Gratuito`, `Pubblico`, `Freemium`, `A pagamento`, `Open Source`, `Commerciale`, `Community`, `Premium`, `Enterprise`, `Self-hosted`, `Waitlist`.
 
-**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `ifcn:2026-09`, `unsd:2026-09`, `wikipedia.nso:2026-09`, `wikipedia.cb:2026-09`, `occrp:2026-09`, `first:2026-09`, `bis:2026-09`, `mom:2026-09`, `doaj:2026-09`, `ricerca.it:2026-09`, `wipo:2026-11`, `egmont:2026-11`, `gleif:2026-11`, `ganhri:2026-11`, `efcsn:2026-11`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
+**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `ifcn:2026-09`, `unsd:2026-09`, `wikipedia.nso:2026-09`, `wikipedia.cb:2026-09`, `occrp:2026-09`, `first:2026-09`, `bis:2026-09`, `mom:2026-09`, `doaj:2026-09`, `ricerca.it:2026-09`, `wipo:2026-11`, `egmont:2026-11`, `gleif:2026-11`, `ganhri:2026-11`, `efcsn:2026-11`, `dataportals:2026-11`, `ror:2026-11`, `wikidata:2026-11`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
 
 It exists so that a batch can be *measured* and, if it turns out to be bad, *removed in one operation*. A single directory that produces a high rate of dead links six months later is a fact you can only establish if you know which rows came from it — and a bad batch of two thousand rows cannot be undone by re-reading them one by one.
 
@@ -111,18 +111,19 @@ Optional fields are filled only where the value could be established from the so
 | Field | Filled |
 |---|---:|
 | `Note` | 100% |
-| `Paese / Area` | 91% |
-| `Lingua` | 84% |
-| `RSS Feed` | 18% |
-| `Accesso` | 6% |
+| `Paese / Area` | 92% |
+| `Lingua` | 86% |
+| `RSS Feed` | 15% |
+| `Accesso` | 5% |
 
 `RSS Feed` and `Accesso` are sparse largely by nature: many entries are databases, portals and tools that publish no feed and have no single access tier.
 
 ## `disinfo_sources_master.csv`
 
-103 documented disinformation domains and platform accounts, two main clusters:
+226 documented disinformation domains and platform accounts, three main clusters:
 
 - **Doppelganger campaign** (51 entries) — Russian state-linked infrastructure (SDA/Structura/ANO Dialog) cloning major outlets: Bild, Der Spiegel, Süddeutsche Zeitung, Der Tagesspiegel, T-Online, Welt, FAZ, Neues Deutschland, The Guardian, Mail Online, Reuters, Fox News, ANSA, and others. Sourced from Qurium (2022) and DFRLab (2024).
+- **PAPERWALL** (123 entries) — websites posing as local news outlets in 30 countries while operated from China, which [Citizen Lab (2024)](https://citizenlab.ca/2024/02/paperwall-chinese-websites-posing-as-local-news-outlets-with-pro-beijing-content/) attributes to the PR firm Haimai. For 120 of them the public registry shows the domain was registered before the report and has not been registered again since; each row's `notes` gives the date.
 - **Italian fake-news / satire network** (50 entries) — typo-squats, hoax sites, and declared satire, sourced from [Bufalopedia's list](https://bufalopedia.blogspot.com/p/siti-creatori-di-bufale.html) (last updated 2020-05-05) and [BUTAC's Black List](https://www.butac.it/the-black-list/).
 
 ### Columns
@@ -263,13 +264,16 @@ Rows imported in bulk carry a `Provenienza` stamp naming the directory they came
 | `gleif:2026-11` | [GLEIF Registration Authorities List](https://www.gleif.org/en/about-lei/code-lists/gleif-registration-authorities-list), v1.9 of 2026-09-30 | a code list published by GLEIF, whose [LEI data terms](https://www.gleif.org/en/meta/lei-data-terms-of-use) are CC0 | name, jurisdiction, website and RA code of each business register or registration authority; each row gives its RA codes in `Note` |
 | `ganhri:2026-11` | [GANHRI](https://ganhri.org/membership/) member list | public list | name, website and accreditation status (A or B) of each national human rights institution |
 | `efcsn:2026-11` | [EFCSN](https://members.efcsn.com/signatories) verified members | public list | name and website of each fact-checker whose verification was current when read |
+| `dataportals:2026-11` | [dataportals.org](https://dataportals.org/), a community directory of open data portals | no licence stated in its repository | the address of each portal; the name is the one the portal gives itself |
+| `ror:2026-11` | [ROR](https://ror.org/), the Research Organization Registry, organisations of type *government* | data under [CC0](https://ror.org/about/) | name, country, website and ROR id of national, regional and international public authorities; each row gives its ROR id in `Note` |
+| `wikidata:2026-11` | [Wikidata](https://www.wikidata.org/), items with an official website in classes of official body (stock exchanges, legislatures, electoral commissions, supreme courts, standards bodies, national libraries and archives, and others) | data under CC0 | name, country, website and Wikidata id; each row gives its id in `Note` |
 | `ricerca.it:2026-09` | a file prepared for this repository | — | Italian sources, each verified individually |
 
 From every directory, only facts were taken — the name of a body, the address of its website and, where a row says so, an identifier or status the directory assigns — and each address was checked as described above. No directory's descriptions, rankings or other content were copied: the `Note` text is this repository's own.
 
 **OpenSanctions.** The 52 rows stamped `opensanctions:2026-08` list public authorities that publish sanctions and PEP lists, identified through OpenSanctions' index of the sources it collects. OpenSanctions licenses its data for non-commercial use only. What these rows hold is the name and official website of a public authority — 21 of them confirmed at the authority's own site in November 2026, the rest still marked "verifica consigliata". If you plan to reuse these particular rows commercially, check [OpenSanctions' terms](https://www.opensanctions.org/licensing/) first. Filtering them out is one line: `sources[~sources["Provenienza"].str.startswith("opensanctions", na=False)]`.
 
-**The watchlist.** Every row of `disinfo_sources_master.csv` cites, in `source`, the document that named the domain, with its date and its address. Each of those documents was fetched in November 2026 and checked to name the row's domain: Qurium's 2022 Doppelganger report, DFRLab's 2024 article, Correctiv's 2024 investigation, Bufalopedia's list of hoax sites (last updated 2020-05-05) and BUTAC's Black List.
+**The watchlist.** Every row of `disinfo_sources_master.csv` cites, in `source`, the document that named the domain, with its date and its address. Each of those documents was fetched in November 2026 and checked to name the row's domain: Qurium's 2022 Doppelganger report, DFRLab's 2024 article, Correctiv's 2024 investigation, Bufalopedia's list of hoax sites (last updated 2020-05-05) and BUTAC's Black List. The 123 PAPERWALL rows cite Citizen Lab's 2024 report, whose appendix names each domain; the report was fetched and its appendix read in November 2026, and each domain's registration date was read from the public registry the same day.
 
 ## Legal notice and corrections
 
