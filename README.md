@@ -50,21 +50,21 @@ sources["Paese / Area"].str.split("/")    # "GB/IE" -> ["GB", "IE"]
 
 ## `Fonti_OSINT.csv`
 
-6,296 sources across 12 macro-categories:
+7,222 sources across 12 macro-categories:
 
 | Category | Sources |
 |---|---:|
-| Media & Testate Giornalistiche | 2,273 |
-| Settori Specifici (AI/dev tools, finance, sector-specific) | 1,565 |
-| Open Data & Trasparenza | 621 |
-| Registri Aziendali & Corporate Intelligence | 477 |
-| Statistiche & Dati Macroeconomici | 413 |
-| Cybersecurity & Digital OSINT | 236 |
+| Media & Testate Giornalistiche | 2,274 |
+| Settori Specifici (AI/dev tools, finance, sector-specific) | 2,078 |
+| Open Data & Trasparenza | 1,000 |
+| Registri Aziendali & Corporate Intelligence | 480 |
+| Statistiche & Dati Macroeconomici | 435 |
+| Cybersecurity & Digital OSINT | 239 |
 | Sanzioni, PEP & Compliance | 185 |
-| Geopolitica & Intelligence | 151 |
+| Geopolitica & Intelligence | 154 |
 | Fact-Checking & Disinformazione | 121 |
 | Social Media & Media Monitoring | 107 |
-| Diritti Umani & Giudiziario | 101 |
+| Diritti Umani & Giudiziario | 103 |
 | Sostenibilità & ESG | 46 |
 
 ### Columns
@@ -96,7 +96,7 @@ Several tokens can be joined with `/` (e.g. `GB/IE`, `IT-Puglia/IT-Basilicata`).
 
 **`Accesso`** is a controlled vocabulary: `Gratuito`, `Pubblico`, `Freemium`, `A pagamento`, `Open Source`, `Commerciale`, `Community`, `Premium`, `Enterprise`, `Self-hosted`, `Waitlist`.
 
-**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `ifcn:2026-09`, `unsd:2026-09`, `wikipedia.nso:2026-09`, `wikipedia.cb:2026-09`, `occrp:2026-09`, `first:2026-09`, `bis:2026-09`, `mom:2026-09`, `doaj:2026-09`, `ricerca.it:2026-09`, `wipo:2026-11`, `egmont:2026-11`, `gleif:2026-11`, `ganhri:2026-11`, `efcsn:2026-11`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
+**`Provenienza`** records which directory a row came from and in which batch, as `<list>:<YYYY-MM>` — `ifcn:2026-08`, `opensanctions:2026-08`, `ifcn:2026-09`, `unsd:2026-09`, `wikipedia.nso:2026-09`, `wikipedia.cb:2026-09`, `occrp:2026-09`, `first:2026-09`, `bis:2026-09`, `mom:2026-09`, `doaj:2026-09`, `ricerca.it:2026-09`, `wipo:2026-11`, `egmont:2026-11`, `gleif:2026-11`, `ganhri:2026-11`, `efcsn:2026-11`, `dataportals:2026-11`, `ror:2026-11`. `scripts/discover_candidates.py` stamps it automatically; rows added by hand leave it empty.
 
 It exists so that a batch can be *measured* and, if it turns out to be bad, *removed in one operation*. A single directory that produces a high rate of dead links six months later is a fact you can only establish if you know which rows came from it — and a bad batch of two thousand rows cannot be undone by re-reading them one by one.
 
@@ -111,10 +111,10 @@ Optional fields are filled only where the value could be established from the so
 | Field | Filled |
 |---|---:|
 | `Note` | 100% |
-| `Paese / Area` | 91% |
-| `Lingua` | 84% |
-| `RSS Feed` | 18% |
-| `Accesso` | 6% |
+| `Paese / Area` | 92% |
+| `Lingua` | 86% |
+| `RSS Feed` | 15% |
+| `Accesso` | 5% |
 
 `RSS Feed` and `Accesso` are sparse largely by nature: many entries are databases, portals and tools that publish no feed and have no single access tier.
 
@@ -264,6 +264,8 @@ Rows imported in bulk carry a `Provenienza` stamp naming the directory they came
 | `gleif:2026-11` | [GLEIF Registration Authorities List](https://www.gleif.org/en/about-lei/code-lists/gleif-registration-authorities-list), v1.9 of 2026-09-30 | a code list published by GLEIF, whose [LEI data terms](https://www.gleif.org/en/meta/lei-data-terms-of-use) are CC0 | name, jurisdiction, website and RA code of each business register or registration authority; each row gives its RA codes in `Note` |
 | `ganhri:2026-11` | [GANHRI](https://ganhri.org/membership/) member list | public list | name, website and accreditation status (A or B) of each national human rights institution |
 | `efcsn:2026-11` | [EFCSN](https://members.efcsn.com/signatories) verified members | public list | name and website of each fact-checker whose verification was current when read |
+| `dataportals:2026-11` | [dataportals.org](https://dataportals.org/), a community directory of open data portals | no licence stated in its repository | the address of each portal; the name is the one the portal gives itself |
+| `ror:2026-11` | [ROR](https://ror.org/), the Research Organization Registry, organisations of type *government* | data under [CC0](https://ror.org/about/) | name, country, website and ROR id of national, regional and international public authorities; each row gives its ROR id in `Note` |
 | `ricerca.it:2026-09` | a file prepared for this repository | — | Italian sources, each verified individually |
 
 From every directory, only facts were taken — the name of a body, the address of its website and, where a row says so, an identifier or status the directory assigns — and each address was checked as described above. No directory's descriptions, rankings or other content were copied: the `Note` text is this repository's own.
