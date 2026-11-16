@@ -234,7 +234,7 @@ One caveat worth knowing: its verification calls the same `check_url()` the link
 Changes are tracked in [`CHANGELOG.md`](CHANGELOG.md). Released versions are tagged, so a specific snapshot can be pinned:
 
 ```bash
-git clone --branch v1.3.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
+git clone --branch v1.4.0 https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist.git
 ```
 
 A major version bump would signal a change to the column structure or to the meaning of an existing column. Adding, correcting or reclassifying rows does not.

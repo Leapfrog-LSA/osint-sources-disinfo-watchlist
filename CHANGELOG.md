@@ -9,6 +9,8 @@ structure or to the meaning of an existing column.
 
 ## [Unreleased]
 
+## [1.4.0] — 2026-11-16
+
 ### Added
 
 - 196 business registers and registration authorities (`gleif:2026-11`), 67
@@ -1728,7 +1730,8 @@ Initial release.
   satire networks, with attribution, documenting source and evidence level.
 - `README.md`, `CONTRIBUTING.md`, `LICENSE` (CC BY 4.0) and `.gitignore`.
 
-[Unreleased]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/Leapfrog-LSA/osint-sources-disinfo-watchlist/compare/v1.0.0...v1.1.0
