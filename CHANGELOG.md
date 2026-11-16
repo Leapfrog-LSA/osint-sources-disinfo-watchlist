@@ -58,6 +58,35 @@ structure or to the meaning of an existing column.
   same verdict on 44 and was the stricter of the two on the other six,
   never the more permissive. The second reading was not delegated down.
 
+- 177 official bodies from Wikidata (`wikidata:2026-11`) and 62 more public
+  authorities from ROR. 7,222 → 7,461 rows.
+
+  Wikidata gave 5,009 candidates with a new host, in classes that map onto
+  a subsection: stock exchanges, legislatures, electoral commissions,
+  supreme and constitutional courts, standards bodies, national libraries
+  and archives, revenue services, development banks and some forty smaller
+  ones. Classes too wide to mean anything were left out whole — diplomatic
+  missions, "international organization", state-owned enterprises — and so
+  were news agencies, because belonging to that class says nothing about
+  reliability. 1,525 could be read and stated their name. The first 300,
+  taken in rotation across the classes, were read: 177 accepted, 103
+  refused, 20 not reachable. Wikidata files a city council beside a national
+  parliament and a single tax office beside a revenue service; 87 of the
+  refusals were for scope.
+
+  The fourth lot of ROR candidates was almost entirely authorities of
+  federated states and regions: 261 accepted of 300, 152 of them in the
+  United States. All met the inclusion rule, and taking all of them would
+  have tilted the catalogue. 63 were kept — justice, public health,
+  treasuries and audit, revenue, electoral bodies, registers, financial
+  supervision, statistics — and 198 set aside, not refused: departments of
+  wildlife, parks, labour, agriculture and transport of individual states.
+
+  All 240 were read a second time. 210 stood, 28 had a field corrected —
+  thirteen names, among them bare names such as "Anti-Corruption
+  Commission" that needed their country — one was removed as a sub-page of
+  a legislature's site, and one could not be re-fetched.
+
 - The 123 PAPERWALL rows were checked against their source by a reader who
   had not built them: the set is the report's appendix table exactly, the
   countries agree, and every outlet name is the title the site shows. One
