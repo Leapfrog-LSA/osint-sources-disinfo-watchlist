@@ -6,11 +6,13 @@ on:
     paths:
       - "*.csv"
       - "scripts/**.py"
+      - "README.md"
       - ".github/workflows/validate.yml"
   pull_request:
     paths:
       - "*.csv"
       - "scripts/**.py"
+      - "README.md"
       - ".github/workflows/validate.yml"
   workflow_dispatch:
 
@@ -26,6 +28,11 @@ jobs:
 
       - name: Validate CSV structure and vocabularies
         run: python scripts/validate.py
+
+      # README.md states a total, category counts and coverage figures. They
+      # were recomputed by hand until v1.3.0 and drifted more than once.
+      - name: Check the README's figures against the CSVs
+        run: python scripts/stats.py --check
 
       # The link checker decides what gets proposed for removal from the
       # catalogue, so a regression in it costs live sources — as it did in

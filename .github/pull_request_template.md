@@ -5,6 +5,7 @@
 ## Checklist
 
 - [ ] `python scripts/validate.py` passes locally
+- [ ] `python scripts/stats.py --check` passes — the README's figures follow the CSVs
 - [ ] Fields I couldn't verify are left empty rather than guessed
 - [ ] Country and language values use the forms documented in the README
 - [ ] This PR does one thing (adding sources, fixing a field, removing dead links — not a mix)
